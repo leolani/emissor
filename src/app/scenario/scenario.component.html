@@ -1,14 +1,22 @@
 <h2>My Modality</h2>
-<ul class="signals">
+
+<ul class="overview">
+  <li *ngFor="let scenario of scenarios"
+      [class.selected]="scenario === selectedScenario"
+      (click)="onScenarioSelect(scenario)">
+    <span class="badge">{{scenario.id}}</span> {{scenario.name}}
+  </li>
+</ul>
+
+<ul class="overview">
   <li *ngFor="let signal of signals"
       [class.selected]="signal === selectedSignal"
-      (click)="onSelect(signal)">
+      (click)="onSignalSelect(signal)">
     <span class="badge">{{signal.id}}</span> {{signal.name}}
   </li>
 </ul>
 
 <div *ngIf="selectedSignal">
-
   <h2>{{selectedSignal.name | uppercase}} Details</h2>
   <div><span>id: </span>{{selectedSignal.id}}</div>
   <div>

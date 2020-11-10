@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
 import { AppComponent } from './app.component';
-import { TimelineComponent } from './timeline/timeline.component';
+import { ScenarioComponent } from './scenario/scenario.component';
 import { HttpClientModule } from '@angular/common/http';
 
 // Testing
@@ -13,7 +13,7 @@ import { InMemoryDataService } from './in-memory-data.service';
 @NgModule({
   declarations: [
     AppComponent,
-    TimelineComponent
+    ScenarioComponent
   ],
   imports: [
     BrowserModule,

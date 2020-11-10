@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ModalityService } from './modality.service';
+import { ScenarioService } from './scenario.service';
 
-describe('ModalityService', () => {
-  let service: ModalityService;
+describe('ScenarioService', () => {
+  let service: ScenarioService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ModalityService);
+    service = TestBed.inject(ScenarioService);
   });
 
   it('should be created', () => {
