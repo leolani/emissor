@@ -4,6 +4,9 @@ import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
 import {AppComponent} from './app.component';
 import {ScenarioComponent} from './scenario/scenario.component';
 import {HttpClientModule} from '@angular/common/http';
+import {ModalityComponent} from './modality/modality.component';
+import {CommonModule} from "@angular/common";
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
 // Testing
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
@@ -14,13 +17,16 @@ import {InMemoryDataService} from './in-memory-data.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ScenarioComponent
+    ScenarioComponent,
+    ModalityComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     // AppRoutingModule,
+    NgxSliderModule,
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

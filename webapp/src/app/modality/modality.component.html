@@ -1,0 +1,14 @@
+<ul class="overview">
+  <li *ngFor="let signal of signals.entries()"
+      [class.selected]="signal[0] === selectedSignal"
+      (click)="onSignalSelect(signal[0])">
+    <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}
+  </li>
+</ul>
+
+<ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
+
+<div *ngIf="selectedSignal">
+  <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>
+  <div>{{signals[selectedSignal] | json}}</div>
+</div>

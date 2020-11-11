@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Scenario, Signal} from "./scenario";
+import {Scenario, Signal} from "./scenario/scenario";
 
 import {HttpClient, HttpParams} from '@angular/common/http';
 
@@ -18,12 +18,10 @@ export class ScenarioService {
       .set('path', "1");
       // .set('path', scenarioPath);
 
-    console.log(scenarioPath);
-
     return this.http.get<Scenario>(this.scenarioEndpoint + "/1")//, {params})
   }
 
-  loadSignals(modality: string): Observable<Signal[]> {
-    return this.http.get<Signal[]>(this.modalityEndpoint + modality)
+  loadSignals(modalityPath: string): Observable<Signal[]> {
+    return this.http.get<Signal[]>(this.modalityEndpoint + modalityPath)
   }
 }

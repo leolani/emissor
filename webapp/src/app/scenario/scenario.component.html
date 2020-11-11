@@ -12,30 +12,17 @@
 
 <div *ngIf="scenario">
   <h2>{{scenario.name | uppercase}} Details</h2>
+  <div>{{scenario | json}}</div>
   <div><span>id: </span>{{scenario.id}}</div>
   <div>
     <label>name:
       <input [(ngModel)]="scenario.name" placeholder="name"/>
     </label>
   </div>
-</div>
-
-
-<ul class="overview">
-  <li *ngFor="let signal of signals"
-      [class.selected]="signal === selectedSignal"
-      (click)="onSignalSelect(signal)">
-    <span class="badge">{{signal.id}}</span> {{signal.name}}
-  </li>
-</ul>
-
-
-<div *ngIf="selectedSignal">
-  <h2>{{selectedSignal.name | uppercase}} Details</h2>
-  <div><span>id: </span>{{selectedSignal.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="selectedSignal.name" placeholder="name"/>
-    </label>
-  </div>
+  <div><span>modalities: </span>{{scenario.modalities}}</div>
+  <ul class="overview">
+    <li *ngFor="let modality of scenario.modalities | keyvalue">
+      <app-modality [scenario]="scenario" [modality]="modality.key"></app-modality>
+    </li>
+  </ul>
 </div>

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ScenarioService} from './scenario.service';
+import {ScenarioService} from '../scenario.service';
 import {Scenario, Signal} from "./scenario";
 
 @Component({
@@ -21,14 +21,5 @@ export class ScenarioComponent implements OnInit {
   loadScenario(): void {
     this.scenarioService.loadScenario(this.scenarioPath)
       .subscribe(scenario => this.scenario = scenario);
-  }
-
-  loadSignals(modality: string): void {
-    this.scenarioService.loadSignals(modality)
-      .subscribe(signals => this.signals = signals);
-  }
-
-  onSignalSelect(signal: Signal): void {
-    this.selectedSignal = signal;
   }
 }
