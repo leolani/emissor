@@ -1,21 +1,26 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-
-import {HttpClient} from '@angular/common/http';
 import {Scenario, Signal} from "./scenario";
+
+import {HttpClient, HttpParams} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ScenarioService {
-
   private scenarioEndpoint = "'api/scenario"
   private modalityEndpoint = "'api/"
 
   constructor(private http: HttpClient) { }
 
-  listScenarios(): Observable<Scenario[]> {
-    return this.http.get<Scenario[]>(this.scenarioEndpoint)
+  loadScenario(scenarioPath: string): Observable<Scenario> {
+    const params = new HttpParams()
+      .set('path', "1");
+      // .set('path', scenarioPath);
+
+    console.log(scenarioPath);
+
+    return this.http.get<Scenario>(this.scenarioEndpoint + "/1")//, {params})
   }
 
   loadSignals(modality: string): Observable<Signal[]> {

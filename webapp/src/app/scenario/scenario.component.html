@@ -1,12 +1,25 @@
 <h2>My Modality</h2>
 
-<ul class="overview">
-  <li *ngFor="let scenario of scenarios"
-      [class.selected]="scenario === selectedScenario"
-      (click)="onScenarioSelect(scenario)">
-    <span class="badge">{{scenario.id}}</span> {{scenario.name}}
-  </li>
-</ul>
+
+<label>Wählen Sie eine Textdatei (*.txt, *.html usw.) von Ihrem Rechner aus.
+  <input [(ngModel)]="scenarioPath" name="scenario" type="text"/>
+</label>
+<button (click)="loadScenario()">… und ab geht die Post!</button>
+
+
+{{scenarioPath}}
+
+
+<div *ngIf="scenario">
+  <h2>{{scenario.name | uppercase}} Details</h2>
+  <div><span>id: </span>{{scenario.id}}</div>
+  <div>
+    <label>name:
+      <input [(ngModel)]="scenario.name" placeholder="name"/>
+    </label>
+  </div>
+</div>
+
 
 <ul class="overview">
   <li *ngFor="let signal of signals"
@@ -16,6 +29,7 @@
   </li>
 </ul>
 
+
 <div *ngIf="selectedSignal">
   <h2>{{selectedSignal.name | uppercase}} Details</h2>
   <div><span>id: </span>{{selectedSignal.id}}</div>
@@ -24,5 +38,4 @@
       <input [(ngModel)]="selectedSignal.name" placeholder="name"/>
     </label>
   </div>
-
 </div>

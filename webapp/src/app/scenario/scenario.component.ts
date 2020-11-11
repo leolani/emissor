@@ -8,31 +8,24 @@ import {Scenario, Signal} from "./scenario";
   styleUrls: ['./scenario.component.css']
 })
 export class ScenarioComponent implements OnInit {
-
-  scenarios: Scenario[];
-  selectedScenario: Scenario;
+  scenarioPath: string;
+  scenario: Scenario;
 
   signals: Signal[];
   selectedSignal: Signal;
 
   constructor(private scenarioService: ScenarioService) { }
 
-  ngOnInit(): void {
-    this.listScenarios();
-  }
+  ngOnInit(): void {}
 
-  listScenarios(): void {
-    this.scenarioService.listScenarios()
-      .subscribe(scenarios => this.scenarios = scenarios);
+  loadScenario(): void {
+    this.scenarioService.loadScenario(this.scenarioPath)
+      .subscribe(scenario => this.scenario = scenario);
   }
 
   loadSignals(modality: string): void {
     this.scenarioService.loadSignals(modality)
       .subscribe(signals => this.signals = signals);
-  }
-
-  onScenarioSelect(scenario: Scenario) {
-    this.selectedScenario = scenario;
   }
 
   onSignalSelect(signal: Signal): void {

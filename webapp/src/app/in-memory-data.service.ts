@@ -9,7 +9,7 @@ import {printLine} from "tslint/lib/verify/lines";
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const scenario = [
-      { id: 1, name: "scenario_1", start: 0, end: 100, modalities: new Map().set("image","image")}
+      { id: 1, path: "1", name: "scenario_1", start: 0, end: 100, modalities: new Map().set("image","image")}
     ];
 
     const image = [
