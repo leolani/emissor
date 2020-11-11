@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Scenario, Signal} from "../scenario/scenario";
+import {Scenario, Signal} from "../scenario";
 import {ScenarioService} from "../scenario.service";
 import {Options} from "@angular-slider/ngx-slider";
 import {le as lowerBound} from "binary-search-bounds";

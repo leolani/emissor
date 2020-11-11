@@ -1,14 +1,22 @@
-<ul class="overview">
-  <li *ngFor="let signal of signals.entries()"
-      [class.selected]="signal[0] === selectedSignal"
-      (click)="onSignalSelect(signal[0])">
-    <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}
-  </li>
-</ul>
+<mat-expansion-panel hideToggle>
+  <mat-expansion-panel-header>
+    <mat-panel-title>Modality</mat-panel-title>
+    <mat-panel-description>{{modality}}</mat-panel-description>
+  </mat-expansion-panel-header>
 
-<ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
+  <div fxLayout="row" fxLayoutGap="5ex" class="overview">
+    <div fxFlex *ngFor="let signal of signals.entries()"
+        [class.selected]="signal[0] === selectedSignal"
+        (click)="onSignalSelect(signal[0])">
+      <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}
+    </div>
+  </div>
 
-<div *ngIf="selectedSignal">
-  <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>
-  <div>{{signals[selectedSignal] | json}}</div>
-</div>
+  <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
+
+  <div [hidden]="!selectedSignal">
+    <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>
+    <div>{{signals[selectedSignal] | json}}</div>
+  </div>
+
+</mat-expansion-panel>

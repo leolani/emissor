@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ScenarioService} from '../scenario.service';
-import {Scenario, Signal} from "./scenario";
+import {Scenario, Signal} from "../scenario";
 
 @Component({
   selector: 'app-scenario',
@@ -10,9 +10,6 @@ import {Scenario, Signal} from "./scenario";
 export class ScenarioComponent implements OnInit {
   scenarioPath: string;
   scenario: Scenario;
-
-  signals: Signal[];
-  selectedSignal: Signal;
 
   constructor(private scenarioService: ScenarioService) { }
 

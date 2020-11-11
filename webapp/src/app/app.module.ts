@@ -1,6 +1,7 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms'; // <-- NgModel lives here
+import {FlexLayoutModule} from '@angular/flex-layout';
 import {AppComponent} from './app.component';
 import {ScenarioComponent} from './scenario/scenario.component';
 import {HttpClientModule} from '@angular/common/http';
@@ -11,6 +12,7 @@ import {NgxSliderModule} from '@angular-slider/ngx-slider';
 import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -19,16 +21,19 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     ScenarioComponent,
-    ModalityComponent,
+    ModalityComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    MatExpansionModule,
+    FlexLayoutModule,
     FormsModule,
     HttpClientModule,
     // AppRoutingModule,
     NgxSliderModule,
-    BrowserAnimationsModule,
+
 
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.

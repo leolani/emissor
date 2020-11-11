@@ -1,28 +1,22 @@
-<h2>My Modality</h2>
-
-
-<label>Wählen Sie eine Textdatei (*.txt, *.html usw.) von Ihrem Rechner aus.
-  <input [(ngModel)]="scenarioPath" name="scenario" type="text"/>
-</label>
-<button (click)="loadScenario()">… und ab geht die Post!</button>
-
-
-{{scenarioPath}}
-
-
-<div *ngIf="scenario">
-  <h2>{{scenario.name | uppercase}} Details</h2>
-  <div>{{scenario | json}}</div>
-  <div><span>id: </span>{{scenario.id}}</div>
-  <div>
-    <label>name:
-      <input [(ngModel)]="scenario.name" placeholder="name"/>
-    </label>
+<div class="bounds">
+  <div class="content" fxLayout="column" fxFlexFill>
+    <div fxFlex="5" fxFlex.xs="55" class="content scenario-path">
+      <label>Scenario path
+        <input [(ngModel)]="scenarioPath" name="scenario" type="text"/>
+      </label>
+      <button (click)="loadScenario()">… und ab geht die Post!</button>
+    </div>
+    <div *ngIf="scenario" fxFlex fxLayout="column" fxFlexFill class="content scenario" >
+      <div fxFlex="5" fxLayout="row">
+        <div fxFlex>{{scenario.name}}</div>
+        <div fxFlex><span>start: </span>{{scenario.start}}</div>
+        <div fxFlex><span>end: </span>{{scenario.end}}</div>
+      </div>
+      <div fxFlex="1 1 1" fxLayout="column">
+        <div fxFlex *ngFor="let modality of scenario.modalities | keyvalue" class="content modality">
+          <app-modality [scenario]="scenario" [modality]="modality.key"></app-modality>
+        </div>
+      </div>
+    </div>
   </div>
-  <div><span>modalities: </span>{{scenario.modalities}}</div>
-  <ul class="overview">
-    <li *ngFor="let modality of scenario.modalities | keyvalue">
-      <app-modality [scenario]="scenario" [modality]="modality.key"></app-modality>
-    </li>
-  </ul>
 </div>

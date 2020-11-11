@@ -11,3 +11,11 @@ export interface Signal {
   name: string;
   timestamp: number;
 }
+
+export interface ImageSignal extends Signal {
+  image: string;
+}
+
+export interface TextSignal extends Signal {
+  text: string;
+}

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { Signal } from './scenario/scenario'
+import { Signal } from './scenario'
 import {printLine} from "tslint/lib/verify/lines";
 
 @Injectable({
@@ -9,7 +9,7 @@ import {printLine} from "tslint/lib/verify/lines";
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const scenario = [
-      { id: 1, path: "1", name: "scenario_1", start: 0, end: 110, modalities: {image: "image"}}
+      { id: 1, path: "1", name: "scenario_1", start: 0, end: 110, modalities: {image: "image", text: "text"}}
     ];
 
     const image = [

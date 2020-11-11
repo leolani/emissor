@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Scenario, Signal} from "./scenario/scenario";
+import {Scenario, Signal} from "./scenario";
 
 import {HttpClient, HttpParams} from '@angular/common/http';
 

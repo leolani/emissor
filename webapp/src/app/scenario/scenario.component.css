@@ -1,4 +1,25 @@
 /* overviewComponent's private CSS styles */
+.bounds {
+  background-color:#ddd;
+  height: 100%;
+  width: 100%;
+  border-style: solid;
+}
+
+.content {
+  border-style: solid;
+}
+
+.scenario {
+  background-color:#86989B;
+  border-style: solid;
+}
+
+.modality {
+  background-color:#3A7734;
+  border-style: solid;
+}
+
 .overview {
   margin: 0 0 2em 0;
   list-style-type: none;
