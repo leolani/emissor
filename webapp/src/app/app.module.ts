@@ -13,6 +13,7 @@ import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {CarouselComponent} from "./carousel/carousel.component";
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -21,7 +22,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
   declarations: [
     AppComponent,
     ScenarioComponent,
-    ModalityComponent
+    ModalityComponent,
+    CarouselComponent
   ],
   imports: [
     CommonModule,

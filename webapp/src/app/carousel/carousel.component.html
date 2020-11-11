@@ -1,0 +1,11 @@
+<div *ngIf="!!signals" class="row">
+  <div class="column" style="background-color:#aaa;">
+    <img *ngIf="selected > 0" src="{{signals[selected - 1].image}}">
+  </div>
+  <div class="center-column" style="background-color:#bbb;">
+    <canvas #canvas></canvas>
+  </div>
+  <div class="column" style="background-color:#ccc;">
+    <img *ngIf="selected < signals.length - 2" src="{{signals[selected + 1].image}}">
+  </div>
+</div>

@@ -1,20 +1,22 @@
-<mat-expansion-panel hideToggle>
+<mat-expansion-panel *ngIf="signals" hideToggle>
   <mat-expansion-panel-header>
     <mat-panel-title>Modality</mat-panel-title>
     <mat-panel-description>{{modality}}</mat-panel-description>
   </mat-expansion-panel-header>
 
-  <div fxLayout="row" fxLayoutGap="5ex" class="overview">
-    <div fxFlex *ngFor="let signal of signals.entries()"
+  <app-carousel *ngIf="modality === 'image'" [selected]="selectedSignal" [signals]="signals"></app-carousel>
+
+  <div *ngIf="modality === 'text'" fxLayout="row" fxLayoutGap="5ex" class="overview">
+    <div fxFlex *ngFor="let signal of signalEntries"
         [class.selected]="signal[0] === selectedSignal"
-        (click)="onSignalSelect(signal[0])">
+        (click)="onSignalSelect(signal[0])" class="overview">
       <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}
     </div>
   </div>
 
   <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
 
-  <div [hidden]="!selectedSignal">
+  <div>
     <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>
     <div>{{signals[selectedSignal] | json}}</div>
   </div>

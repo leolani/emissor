@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {Scenario, Signal} from "../scenario";
 import {ScenarioService} from "../scenario.service";
 import {Options} from "@angular-slider/ngx-slider";
@@ -26,6 +26,7 @@ export class ModalityComponent implements OnInit {
   };
 
   signals: Signal[];
+  signalEntries: Array<[number, Signal]>;
   selectedSignal: number = 0;
 
   constructor(private scenarioService: ScenarioService) { }
@@ -38,6 +39,8 @@ export class ModalityComponent implements OnInit {
     this.scenarioService.loadSignals(modality)
       .subscribe(signals => {
         this.signals = signals.sort(compareByTimestamp);
+        this.signalEntries = Array.from(this.signals.entries());
+        console.log(this.signalEntries);
         this.setupSlider();
       });
   }

@@ -1,0 +1,31 @@
+div {
+  display: inline-block;
+  width: auto;
+  height: 100%;
+  vertical-align:top;
+  text-align:center;
+}
+
+img, canvas {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  object-fit: fill;
+  height: 100%;
+  border: solid;
+  border-color: #9C1A1C;
+}
+
+.row {
+  height: 600px;
+  width: 100%;
+  position: relative;
+}
+
+.center-column {
+  width: 62%;
+}
+
+.column {
+  width: 18%;
+}
