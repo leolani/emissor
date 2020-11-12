@@ -9,7 +9,7 @@ export interface Scenario {
 export interface Signal {
   id: number;
   name: string;
-  timestamp: number;
+  time: TimeRuler;
 }
 
 export interface ImageSignal extends Signal {
@@ -18,4 +18,9 @@ export interface ImageSignal extends Signal {
 
 export interface TextSignal extends Signal {
   text: string;
+}
+
+export interface TimeRuler {
+  start: number;
+  end: number;
 }

@@ -28,6 +28,9 @@
       </div>
 
       <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
+      <ngx-slider [(value)]="signals[selectedSignal].time.start"
+                  [(highValue)]="signals[selectedSignal].time.end"
+                  [options]="rangeOptions"></ngx-slider>
 
       <div>
         <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>

@@ -13,24 +13,24 @@ export class InMemoryDataService implements InMemoryDbService {
     ];
 
     const image = [
-      { id: 11, name: 'Dr Nice', timestamp: 0, image: "assets/testimages/maxima.jpg"},
-      { id: 12, name: 'Narco', timestamp: 1, image: "assets/testimages/piek-sunglasses.jpg" },
-      { id: 13, name: 'Bombasto', timestamp: 2, image: "assets/testimages/soccer-balll.png" },
-      { id: 14, name: 'Celeritas', timestamp: 10, image: "assets/testimages/niqee-2020-10-25 at 17.30.51.png" },
-      { id: 15, name: 'Magneta', timestamp: 12, image: "assets/testimages/maxima.jpg" },
-      { id: 16, name: 'RubberMan', timestamp: 22, image: "assets/testimages/soccer-balll.png" },
-      { id: 17, name: 'Dynama', timestamp: 34, image: "assets/testimages/piek-sunglasses.jpg" },
-      { id: 18, name: 'Dr IQ', timestamp: 60, image: "assets/testimages/sam-2020-10-25 at 17.30.25.png" },
-      { id: 19, name: 'Magma', timestamp: 100, image: "assets/testimages/piek-sunglasses.jpg" },
-      { id: 20, name: 'Tornado', timestamp: 101, image: "assets/testimages/soccer-balll.png" }
+      { id: 11, name: 'Dr Nice', time: {start: 0, end: 0}, image: "assets/testimages/maxima.jpg"},
+      { id: 12, name: 'Narco', time: {start: 1, end: 1}, image: "assets/testimages/piek-sunglasses.jpg" },
+      { id: 13, name: 'Bombasto', time: {start: 2, end: 2}, image: "assets/testimages/soccer-balll.png" },
+      { id: 14, name: 'Celeritas', time: {start: 10, end: 10}, image: "assets/testimages/niqee-2020-10-25 at 17.30.51.png" },
+      { id: 15, name: 'Magneta', time: {start: 12, end: 12}, image: "assets/testimages/maxima.jpg" },
+      { id: 16, name: 'RubberMan', time: {start: 22, end: 22}, image: "assets/testimages/soccer-balll.png" },
+      { id: 17, name: 'Dynama', time: {start: 34, end: 34}, image: "assets/testimages/piek-sunglasses.jpg" },
+      { id: 18, name: 'Dr IQ', time: null, image: "assets/testimages/sam-2020-10-25 at 17.30.25.png" },
+      { id: 19, name: 'Magma', time: {start: 100, end: 100}, image: "assets/testimages/piek-sunglasses.jpg" },
+      { id: 20, name: 'Tornado', time: {start: 101, end: 101}, image: "assets/testimages/soccer-balll.png" }
     ];
 
     const text = [
-      { id: 11, text: "Bla bla bla", timestamp: 15 },
-      { id: 12, text: "Bla bla bla", timestamp: 35 },
-      { id: 13, text: "Bla bla bla", timestamp: 45 },
-      { id: 14, text: "Bla bla bla", timestamp: 75 },
-      { id: 15, text: "Bla bla bla", timestamp: 115 },
+      { id: 11, name: "One", text: "Bla bla bla", time: {start: 15, end: 25}},
+      { id: 13, name: "Two", text: "Bla bla bla", time: {start: 45, end: 70} },
+      { id: 12, name: "Three", text: "Bla bla bla", time: null},
+      { id: 14, name: "Four", text: "Bla bla bla", time: {start: 75, end: 100}},
+      { id: 15, name: "Five", text: "Bla bla bla", time: null},
     ];
 
     return {scenario, image, text};
