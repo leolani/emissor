@@ -4,21 +4,53 @@
     <mat-panel-description>{{modality}}</mat-panel-description>
   </mat-expansion-panel-header>
 
-  <app-carousel *ngIf="modality === 'image'" [selected]="selectedSignal" [signals]="signals"></app-carousel>
+  <mat-drawer-container class="example-container">
+    <mat-drawer #drawer [mode]="'side'">
+      <ul>
+        <li *ngFor="let signal of signalEntries"
+            [class.selected]="signal[0] === selectedSignal"
+            (click)="onSignalSelect(signal[0])" class="overview">
+          <span class="badge">{{signal[0]}}</span> {{signal[1].name | slice:0:50}}
+        </li>
+      </ul>
+    </mat-drawer>
+    <mat-drawer-content>
+      <button mat-raised-button (click)="drawer.toggle()">Signal List</button>
 
-  <div *ngIf="modality === 'text'" fxLayout="row" fxLayoutGap="5ex" class="overview">
-    <div fxFlex *ngFor="let signal of signalEntries"
-        [class.selected]="signal[0] === selectedSignal"
-        (click)="onSignalSelect(signal[0])" class="overview">
-      <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}
-    </div>
-  </div>
+      <app-carousel *ngIf="modality === 'image'" [selected]="selectedSignal" [signals]="signals"></app-carousel>
 
-  <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
+      <div *ngIf="modality === 'text'" fxLayout="row" fxLayoutGap="5ex" class="overview">
+        <div fxFlex *ngFor="let signal of signalEntries"
+            [class.selected]="signal[0] === selectedSignal"
+            (click)="onSignalSelect(signal[0])" class="overview">
+          <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}
+        </div>
+      </div>
 
-  <div>
-    <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>
-    <div>{{signals[selectedSignal] | json}}</div>
-  </div>
+      <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
 
+      <div>
+        <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>
+        <div>{{signals[selectedSignal] | json}}</div>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
 </mat-expansion-panel>
+
+
+<!--  <mat-form-field>-->
+<!--    <mat-label>Sidenav mode</mat-label>-->
+<!--    <mat-select #mode value="side">-->
+<!--      <mat-option value="side">Side</mat-option>-->
+<!--      <mat-option value="over">Over</mat-option>-->
+<!--      <mat-option value="push">Push</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->
+<!--  <mat-form-field>-->
+<!--    <mat-label>Has backdrop</mat-label>-->
+<!--    <mat-select #hasBackdrop>-->
+<!--      <mat-option>Unset</mat-option>-->
+<!--      <mat-option [value]="true">True</mat-option>-->
+<!--      <mat-option [value]="false">False</mat-option>-->
+<!--    </mat-select>-->
+<!--  </mat-form-field>-->

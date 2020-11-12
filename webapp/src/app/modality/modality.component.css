@@ -8,18 +8,18 @@
   border-radius: 4px;
 }
 
-.overview div:hover {
+.overview div:hover,li:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;
 }
 
-.overview div.selected {
+.overview div.selected,li.selected {
   background-color: #CFD8DC;
   color: white;
 }
 
-.overview div.selected:hover {
+.overview div.selected:hover,li.selected:hover {
   background-color: #BBD8DC;
   color: white;
 }
