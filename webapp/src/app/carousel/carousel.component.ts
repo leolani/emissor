@@ -24,7 +24,8 @@ export class CarouselComponent implements OnInit, AfterViewInit, OnChanges {
 
       let img = new Image();
       img.onload = e => this.drawImageOnCanvas(this.context, img)
-      img.src = this.signals[changes.selected.currentValue].image;
+      let selected = (changes.selected && changes.selected.currentValue) || this.selected || 0;
+      img.src = this.signals[selected].image;
     }
   }
 

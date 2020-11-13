@@ -13,11 +13,13 @@ import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
 import {InMemoryDataService} from './in-memory-data.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatInputModule} from '@angular/material/input';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {CarouselComponent} from "./carousel/carousel.component";
+import { AnnotationComponent } from './annotation/annotation.component';
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -27,7 +29,8 @@ import {CarouselComponent} from "./carousel/carousel.component";
     AppComponent,
     ScenarioComponent,
     ModalityComponent,
-    CarouselComponent
+    CarouselComponent,
+    AnnotationComponent
   ],
   imports: [
     CommonModule,
@@ -35,6 +38,7 @@ import {CarouselComponent} from "./carousel/carousel.component";
     BrowserAnimationsModule,
     MatButtonModule,
     MatExpansionModule,
+    MatInputModule,
     MatSidenavModule,
     MatSelectModule,
     MatFormFieldModule,

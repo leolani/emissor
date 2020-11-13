@@ -39,6 +39,7 @@ export class ModalityComponent implements OnInit {
   signals: Signal[];
   signalEntries: Array<[number, Signal]>;
   selectedSignal: number = 0;
+  editSignal = false;
 
   constructor(private scenarioService: ScenarioService) { }
 
@@ -52,6 +53,7 @@ export class ModalityComponent implements OnInit {
         this.signals = this.setDefaultTimes(signals.sort(compareByTimestamp));
         this.signalEntries = Array.from(this.signals.entries());
         this.setupSlider();
+        this.setupRange();
       });
   }
 
@@ -62,15 +64,17 @@ export class ModalityComponent implements OnInit {
     options.floor = 0;
     options.ceil = this.signals.length - 1;
     options.customValueToPosition = (val: number, minVal: number, maxVal: number): number => {
-        return this.indexToTimlinePercentage(val, this.scenario, this.signals);
-      };
+      return this.indexToTimlinePercentage(val, this.scenario, this.signals);
+    };
     options.customPositionToValue = (percent: number, minVal: number, maxVal: number): number => {
-        return this.timelinePercentageToIndex(percent, maxVal, minVal, this.scenario, timestamps);
-      };
+      return this.timelinePercentageToIndex(percent, maxVal, minVal, this.scenario, timestamps);
+    };
 
     this.selectedSignal = 0;
     this.sliderOptions = options;
+  }
 
+  setupRange(): void {
     let rangeOptions = Object.assign({}, this.rangeOptions);
     rangeOptions.floor = this.scenario.start;
     rangeOptions.ceil = this.scenario.end;
@@ -100,7 +104,7 @@ export class ModalityComponent implements OnInit {
         (this.scenario.start - this.scenario.end)/(signals.length - 1) : 0;
 
       return signals.map((signal, idx) => {
-        signal.time = {start: idx * equalSpacing, end: idx * equalSpacing + 1};
+        signal.time = signal.time || {start: idx * equalSpacing, end: idx * equalSpacing + 1};
         return signal;
       });
     }
@@ -112,6 +116,26 @@ export class ModalityComponent implements OnInit {
   }
 
   onSignalSelect(idx: number): void {
-    this.selectedSignal = idx;
+    if (!this.editSignal) {
+      this.selectedSignal = idx;
+    }
+  }
+
+  toggleEdit(): void {
+    this.editSignal = !this.editSignal;
+
+    let rangeOptions = Object.assign({}, this.rangeOptions);
+    rangeOptions.readOnly = !this.editSignal;
+    this.rangeOptions = rangeOptions;
+
+    let sliderOptions = Object.assign({}, this.sliderOptions);
+    sliderOptions.readOnly = this.editSignal;
+    this.sliderOptions = sliderOptions;
+
+    if (!this.editSignal) {
+      // let selectedId = this.signals[this.selectedSignal].id
+      this.signals = this.setDefaultTimes(this.signals.sort(compareByTimestamp));
+      this.setupSlider();
+    }
   }
 }

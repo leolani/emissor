@@ -37,4 +37,13 @@
   height: 1.8em;
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
+  pointer-events: none;
+}
+
+.overview.selected .badge {
+  pointer-events: auto;
+}
+
+.overview.edit.selected .badge {
+  background-color: #9C1A1C;
 }

@@ -9,8 +9,9 @@
       <ul>
         <li *ngFor="let signal of signalEntries"
             [class.selected]="signal[0] === selectedSignal"
+            [class.edit]="this.editSignal"
             (click)="onSignalSelect(signal[0])" class="overview">
-          <span class="badge">{{signal[0]}}</span> {{signal[1].name | slice:0:50}}
+          <span class="badge" (click)="toggleEdit()">{{signal[0]}}</span> {{signal[1].name | slice:0:50}}
         </li>
       </ul>
     </mat-drawer>
@@ -27,33 +28,25 @@
         </div>
       </div>
 
+
+      <form>
+        <mat-form-field>
+          <mat-label>Start</mat-label>
+          <input matInput [(ngModel)]="signals[selectedSignal].time.start"
+                 name="start" type="number" [readonly]="!editSignal">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>End</mat-label>
+          <input matInput [(ngModel)]="signals[selectedSignal].time.end"
+                 name="end" type="number" [readonly]="!editSignal">
+        </mat-form-field>
+      </form>
       <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
       <ngx-slider [(value)]="signals[selectedSignal].time.start"
                   [(highValue)]="signals[selectedSignal].time.end"
                   [options]="rangeOptions"></ngx-slider>
 
-      <div>
-        <h2>{{signals[selectedSignal].name | uppercase}} Details</h2>
-        <div>{{signals[selectedSignal] | json}}</div>
-      </div>
+      <app-annotation [signal]="signals[selectedSignal]"></app-annotation>
     </mat-drawer-content>
   </mat-drawer-container>
 </mat-expansion-panel>
-
-
-<!--  <mat-form-field>-->
-<!--    <mat-label>Sidenav mode</mat-label>-->
-<!--    <mat-select #mode value="side">-->
-<!--      <mat-option value="side">Side</mat-option>-->
-<!--      <mat-option value="over">Over</mat-option>-->
-<!--      <mat-option value="push">Push</mat-option>-->
-<!--    </mat-select>-->
-<!--  </mat-form-field>-->
-<!--  <mat-form-field>-->
-<!--    <mat-label>Has backdrop</mat-label>-->
-<!--    <mat-select #hasBackdrop>-->
-<!--      <mat-option>Unset</mat-option>-->
-<!--      <mat-option [value]="true">True</mat-option>-->
-<!--      <mat-option [value]="false">False</mat-option>-->
-<!--    </mat-select>-->
-<!--  </mat-form-field>-->

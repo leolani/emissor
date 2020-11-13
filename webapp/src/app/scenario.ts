@@ -1,3 +1,6 @@
+import {TimeRuler} from "./container";
+import {Mention} from "./annotation";
+
 export interface Scenario {
   id: number;
   name: string;
@@ -10,6 +13,7 @@ export interface Signal {
   id: number;
   name: string;
   time: TimeRuler;
+  mentions: Mention[];
 }
 
 export interface ImageSignal extends Signal {
@@ -18,9 +22,4 @@ export interface ImageSignal extends Signal {
 
 export interface TextSignal extends Signal {
   text: string;
-}
-
-export interface TimeRuler {
-  start: number;
-  end: number;
 }
