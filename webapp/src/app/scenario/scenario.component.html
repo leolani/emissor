@@ -1,22 +1,29 @@
-<div class="bounds">
-  <div class="content" fxLayout="column" fxFlexFill>
-    <div fxFlex="5" fxFlex.xs="55" class="content scenario-path">
-      <label>Scenario path
-        <input [(ngModel)]="scenarioPath" name="scenario" type="text"/>
-      </label>
-      <button (click)="loadScenario()">… und ab geht die Post!</button>
-    </div>
-    <div *ngIf="scenario" fxFlex fxLayout="column" fxFlexFill class="content scenario" >
-      <div fxFlex="5" fxLayout="row">
-        <div fxFlex>{{scenario.name}}</div>
-        <div fxFlex><span>start: </span>{{scenario.start}}</div>
-        <div fxFlex><span>end: </span>{{scenario.end}}</div>
-      </div>
-      <div fxFlex="1 1 1" fxLayout="column">
-        <div fxFlex *ngFor="let modality of scenario.modalities | keyvalue" class="content modality">
-          <app-modality [scenario]="scenario" [modality]="modality.key"></app-modality>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="bounds">-->
+<!--  <div class="content" fxLayout="column" fxFlexFill>-->
+<!--    <div fxFlex="5" fxFlex.xs="55" class="content scenario-path">-->
+<!--      <mat-form-field>-->
+<!--        <mat-label>Scenarios</mat-label>-->
+<!--        <mat-select [(value)]="selectedScenario" name="scenario" (selectionChange)="loadScenario($event.value)">-->
+<!--          <mat-option *ngFor="let scenarioName of scenarios" [value]="scenarioName">-->
+<!--            {{scenarioName}}-->
+<!--          </mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+<!--    </div>-->
+<!--    <div *ngIf="scenario" fxFlex fxLayout="column" fxFlexFill class="content scenario" >-->
+<!--      <div fxFlex="5" fxLayout="row">-->
+<!--        <div fxFlex>{{scenario.name}}</div>-->
+<!--        <div fxFlex><span>start: </span>{{scenario.start}}</div>-->
+<!--        <div fxFlex><span>end: </span>{{scenario.end}}</div>-->
+<!--      </div>-->
+<!--      <div fxFlex="1 1 1" fxLayout="column">-->
+<!--        <div fxFlex *ngFor="let modality of scenario.signals | keyvalue" class="content modality">-->
+<!--          <app-modality [scenario]="scenario" [modality]="modality.key"></app-modality>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
+<app-img-container image="/assets/scenario_1/image/maxima.jpg"></app-img-container>

@@ -3,6 +3,7 @@ import {Scenario, Signal} from "../scenario";
 import {ScenarioService} from "../scenario.service";
 import {Options} from "@angular-slider/ngx-slider";
 import {le as lowerBound} from "binary-search-bounds";
+import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 
 
 function compareByTimestamp(a: Signal, b: Signal): number {
@@ -41,14 +42,14 @@ export class ModalityComponent implements OnInit {
   selectedSignal: number = 0;
   editSignal = false;
 
-  constructor(private scenarioService: ScenarioService) { }
+  constructor(private scenarioService: ScenarioService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.loadSignals(this.modality);
   }
 
   loadSignals(modality: string): void {
-    this.scenarioService.loadSignals(modality)
+    this.scenarioService.loadSignals(this.scenario.id, modality)
       .subscribe(signals => {
         this.signals = this.setDefaultTimes(signals.sort(compareByTimestamp));
         this.signalEntries = Array.from(this.signals.entries());
@@ -137,5 +138,12 @@ export class ModalityComponent implements OnInit {
       this.signals = this.setDefaultTimes(this.signals.sort(compareByTimestamp));
       this.setupSlider();
     }
+  }
+
+  getDataUri(): SafeUrl {
+    const jsonData = JSON.stringify(this.signals);
+    const uri = 'data:application/json;charset=UTF-8,' + encodeURIComponent(jsonData);
+
+    return this.sanitizer.bypassSecurityTrustUrl(uri);
   }
 }

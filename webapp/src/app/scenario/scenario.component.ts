@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ScenarioService} from '../scenario.service';
 import {Scenario, Signal} from "../scenario";
+import {Offset} from "../container";
 
 @Component({
   selector: 'app-scenario',
@@ -8,15 +9,23 @@ import {Scenario, Signal} from "../scenario";
   styleUrls: ['./scenario.component.css']
 })
 export class ScenarioComponent implements OnInit {
-  scenarioPath: string;
+  scenarios: string[];
+  selectedScenario: string;
   scenario: Scenario;
 
   constructor(private scenarioService: ScenarioService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.listScenarios();
+  }
 
-  loadScenario(): void {
-    this.scenarioService.loadScenario(this.scenarioPath)
+  listScenarios(): void {
+    this.scenarioService.listScenarios()
+      .subscribe(scenarios => this.scenarios = scenarios);
+  }
+
+  loadScenario(selection: string): void {
+    this.scenarioService.loadScenario(selection)
       .subscribe(scenario => this.scenario = scenario);
   }
 }

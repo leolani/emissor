@@ -20,6 +20,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {CarouselComponent} from "./carousel/carousel.component";
 import { AnnotationComponent } from './annotation/annotation.component';
+import { ImgContainerComponent } from './img-container/img-container.component';
+import { BoundingboxComponent } from './boundingbox/boundingbox.component';
+import { TextContainerComponent } from './text-container/text-container.component';
+import { TokenContainerComponent } from './token-container/token-container.component';
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -30,7 +34,11 @@ import { AnnotationComponent } from './annotation/annotation.component';
     ScenarioComponent,
     ModalityComponent,
     CarouselComponent,
-    AnnotationComponent
+    AnnotationComponent,
+    ImgContainerComponent,
+    BoundingboxComponent,
+    TextContainerComponent,
+    TokenContainerComponent
   ],
   imports: [
     CommonModule,

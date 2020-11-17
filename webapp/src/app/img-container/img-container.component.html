@@ -1,0 +1,24 @@
+<div #container id="container">
+  <img [src]="image">
+  <div *ngFor="let segment of segments" class="boundingbox"
+       [style.left.px]="segment.bounds[0]"
+       [style.top.px]="segment.bounds[1]"
+       [style.width.px]="segment.bounds[2] - segment.bounds[0]"
+       [style.height.px]="segment.bounds[3] - segment.bounds[1]"
+       [class.active]="status > 0"
+       [class.selected]="segment === selected"
+       (mousedown)="setStatus($event, 2)"
+       (window:mouseup)="setStatus($event, 0)">
+    <div class="resize-action" (mousedown)="setStatus($event, 1)"></div>
+    <div class="badge label" (click)="select(segment)">P{{segment.label}}</div>
+    <span class="badge width">{{(segment.bounds[2] - segment.bounds[0]) | number:'1.0-0'}}px</span>
+    <span class="badge height">{{segment.bounds[1] - segment.bounds[3] | number:'1.0-0'}}px</span>
+    <span class="badge position">({{segment.bounds[0]}}, {{segment.bounds[1]}})</span>
+  </div>
+</div>
+<div>selected: {{selected | json}}</div>
+<div>container: {{selected && containerPos | json}}</div>
+<div>box: {{startPosition && startPosition | json}}</div>
+<div>mouseStart: {{mouseStart && mouseStart | json}}</div>
+<div>{{mouseEvent && mouseEvent | json}}</div>
+<!--       -->

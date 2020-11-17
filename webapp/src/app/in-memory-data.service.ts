@@ -9,43 +9,127 @@ import {printLine} from "tslint/lib/verify/lines";
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
     const scenario = [
-      { id: 1, path: "1", name: "scenario_1", start: 0, end: 110, modalities: {image: "image", text: "text"}}
+      {
+        "start": 1603139000,
+        "end": 1603150000,
+        "id": "scenario_1",
+        "context": {
+          "agent": "robot_agent",
+          "speaker": {
+            "id": "1007e3ef-10c4-43db-8f6d-e9635fb0173f",
+            "name": "Speaker",
+            "age": 50,
+            "gender": "UNDEFINED"
+          },
+          "persons": [],
+          "objects": []
+        },
+        "signals": {
+          "image": "./image.json",
+          "text": "./text.json"
+        }
+      },
+      {
+        "start": 0,
+        "end": 120,
+        "id": "scenario_2",
+        "ruler": {
+          "type": "TemporalRuler",
+          "container_id": "scenario_2",
+          "start": 0,
+          "end": 120
+        },
+        "context": {
+          "agent": "robot_agent",
+          "speaker": {
+            "id": "1007e3ef-10c4-43db-8f6d-e9635fb0173f",
+            "name": "Speaker",
+            "age": 50,
+            "gender": "UNDEFINED"
+          },
+          "persons": [],
+          "objects": []
+        },
+        "signals": {
+          "image": "./image.json",
+          "text": "./text.json"
+        }
+      }
     ];
 
     const image = [
-      { id: 11, name: 'Dr Nice', time: {start: 0, end: 0}, image: "assets/testimages/maxima.jpg",
-        mentions: [{
-          name: "Test mention 1",
-          ruler: {containerId: "11", start: 0, end: 0},
-          annotations: [{name: "Test annotation", source: "", timestamp:""}]
-        }, {
-          name: "Test mention 2",
-          ruler: {containerId: "11", start: 0, end: 0},
-          annotations: [{name: "Test annotation 2", source: "", timestamp: ""}]
-        }]
+      {
+        "modality": "IMAGE",
+        "time": {
+          "type": "TemporalRuler",
+          "container_id": "scenario_1",
+          "start": 1603140000,
+          "end": 1603140000
+        },
+        "files": [
+          "./image/piek-sunglasses.jpg"
+        ],
+        "mentions": [
+          {
+            "segment": {
+              "type": "MultiIndex",
+              "container_id": "c0bf19da-ee25-4f6e-bcb5-3d8f29943e31",
+              "bounds": [[10, 521], [15, 518]]
+            },
+            "annotations": [
+              {
+                "type": "Friend",
+                "value": {
+                  "id": "862c4e60-f822-47c1-94db-9eabe13f74ef",
+                  "name": "Piek",
+                  "age": 59,
+                  "gender": "MALE"
+                },
+                "source": "face_recognition",
+                "timestamp": 1605002193.87345
+              },
+              {
+                "type": "Emotion",
+                "value": "JOY",
+                "source": "annotator_1",
+                "timestamp": 1605002193.873485
+              }
+            ]
+          }
+        ],
+        "array": null,
+        "id": "c0bf19da-ee25-4f6e-bcb5-3d8f29943e31",
       },
-      { id: 12, name: 'Narco', time: {start: 1, end: 1}, image: "assets/testimages/piek-sunglasses.jpg", mentions: []},
-      { id: 13, name: 'Bombasto', time: {start: 2, end: 2}, image: "assets/testimages/soccer-balll.png", mentions: []},
-      { id: 14, name: 'Celeritas', time: {start: 10, end: 10}, image: "assets/testimages/niqee-2020-10-25 at 17.30.51.png", mentions: []},
-      { id: 15, name: 'Magneta', time: {start: 12, end: 12}, image: "assets/testimages/maxima.jpg", mentions: []},
-      { id: 16, name: 'RubberMan', time: {start: 22, end: 22}, image: "assets/testimages/soccer-balll.png", mentions: []},
-      { id: 17, name: 'Dynama', time: {start: 34, end: 34}, image: "assets/testimages/piek-sunglasses.jpg", mentions: []},
-      { id: 18, name: 'Dr IQ', time: null, image: "assets/testimages/sam-2020-10-25 at 17.30.25.png", mentions: []},
-      { id: 19, name: 'Magma', time: {start: 100, end: 100}, image: "assets/testimages/piek-sunglasses.jpg", mentions: []},
-      { id: 20, name: 'Tornado', time: {start: 101, end: 101}, image: "assets/testimages/soccer-balll.png", mentions: []}
-    ];
+      {
+        "modality": "IMAGE",
+        "time": {
+          "type": "TemporalRuler",
+          "container_id": "scenario_1",
+          "start": 1603139705,
+          "end": 1603140000
+        },
+        "files": [
+          "./image/maxima.jpg"
+        ],
+        "mentions": [],
+        "array": null,
+        "id": "163b27da-ee25-4f6e-bcb5-4d7a12236a52",
+      }];
 
     const text = [
-      { id: 11, name: "One", text: "Bla bla bla", time: {start: 15, end: 25}, mentions: []},
-      { id: 13, name: "Two", text: "Bla bla bla", time: {start: 45, end: 70}, mentions: []},
-      { id: 12, name: "Three", text: "Bla bla bla", time: null, mentions: []},
-      { id: 14, name: "Four", text: "Bla bla bla", time: {start: 75, end: 100}, mentions: []},
-      { id: 15, name: "Five", text: "Bla bla bla", time: null, mentions: []},
-      // { id: 21, name: "One", text: "Bla bla bla", time: {start: 15, end: 25}, mentions: []},
-      // { id: 23, name: "Two", text: "Bla bla bla", time: {start: 45, end: 70}, mentions: []},
-      // { id: 22, name: "Three", text: "Bla bla bla", time: null, mentions: []},
-      // { id: 24, name: "Four", text: "Bla bla bla", time: {start: 75, end: 100}, mentions: []},
-      // { id: 25, name: "Five", text: "Bla bla bla", time: null, mentions: []},
+      {
+        "modality": "TEXT",
+        "time": {
+          "type": "TemporalRuler",
+          "container_id": "scenario_1",
+          "start": 1603139705,
+          "end": 1603140000
+        },
+        "files": [],
+        "mentions": [],
+        "seq": "Hello world",
+        "id": "163b27da-ee25-4f6e-bcb5-4d7a12236a52",
+      }
     ];
 
     return {scenario, image, text};

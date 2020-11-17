@@ -1,0 +1,71 @@
+#container {
+  position: relative;
+  outline: #9C1A1C;
+}
+
+#container img {
+  pointer-events: none;
+}
+
+.boundingbox {
+  position: absolute;
+  outline: 1px dashed red;
+}
+
+.selected.boundingbox.active {
+  outline-style: solid;
+  background-color: #80ff800d;
+}
+
+.selected.boundingbox:hover {
+  cursor: all-scroll;
+}
+
+.badge {
+  background: #f2f2f2;
+  color: #177199;
+  cursor: pointer;
+}
+
+.badge.width {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, -100%, 0);
+}
+
+.badge.height {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(-100%, -50%, 0);
+}
+
+.badge.position {
+  position: absolute;
+  transform: translate3d(-100%, -100%, 0);
+}
+
+.selected .resize-action {
+  position: absolute;
+  left: 100%;
+  top: 100%;
+  border-style: solid;
+  border-width: 8px;
+  border-color: transparent transparent transparent #008000;
+}
+
+.selected .resize-action {
+  transform: translate3d(-50%, -50%, 0) rotateZ(45deg);
+}
+
+.selected .resize-action:hover, .resize-action:active {
+  cursor: nwse-resize;
+}
+
+.label {
+  position: absolute;
+  left: 0%;
+  top: 100%;
+  border-style: solid;
+  border-width: 8px;
+  border-color: transparent transparent transparent #008000;
+}

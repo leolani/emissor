@@ -1,0 +1,26 @@
+{
+  "start_time": 0,
+  "end_time": 1,
+  "id": "e84c3033-43e3-42de-bef1-447c39d8fb61",
+  "ruler": {
+    "type": "TemporalRuler",
+    "container_id": "e84c3033-43e3-42de-bef1-447c39d8fb61",
+    "start": 0,
+    "end": 1
+  },
+  "context": {
+    "agent": "robot_agent",
+    "speaker": {
+      "id": "1007e3ef-10c4-43db-8f6d-e9635fb0173f",
+      "name": "Speaker",
+      "age": 50,
+      "gender": "UNDEFINED"
+    },
+    "persons": [],
+    "objects": []
+  },
+  "signals": {
+    "image": "./image.json",
+    "text": "./text.json"
+  }
+}

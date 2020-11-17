@@ -1,12 +1,12 @@
-import {TimeRuler} from "./container";
-import {Mention} from "./annotation";
+import {Ruler, TimeRuler} from "./container";
+import {Annotation, Mention} from "./annotation";
 
 export interface Scenario {
-  id: number;
+  id: string;
   name: string;
   start: number;
   end: number;
-  modalities: Map<string, string>;
+  signals: Map<string, string>;
 }
 
 export interface Signal {

@@ -1,0 +1,11 @@
+a.selected {
+  color: #9C1A1C;
+}
+
+a.mentioned {
+  color: #30799B;
+}
+
+a.plain {
+  color: #000000;
+}
