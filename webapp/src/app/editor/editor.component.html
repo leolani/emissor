@@ -41,29 +41,13 @@
       <mat-label>Type</mat-label>
       <input matInput [value]="selectedAnnotation.type" name="type" type="text" readonly="true">
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Source</mat-label>
+      <input matInput [(ngModel)]="selectedAnnotation.src" name="source" type="text">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Timestamp</mat-label>
+      <input matInput [(ngModel)]="selectedAnnotation.timestamp" name="timestamp" type="text">
+    </mat-form-field>
   </div>
-
-<!--  <div *ngIf="selectedMention">-->
-<!--    <h3>Annotation</h3>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Segment</mat-label>-->
-<!--      <input matInput [(ngModel)]="selectedMention.segment" name="segment" type="text">-->
-<!--    </mat-form-field>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Source</mat-label>-->
-<!--      <input matInput [(ngModel)]="selectedAnnotation.src" name="source" type="text">-->
-<!--    </mat-form-field>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Timestamp</mat-label>-->
-<!--      <input matInput [(ngModel)]="selectedAnnotation.timestamp" name="timestamp" type="text">-->
-<!--    </mat-form-field>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Value</mat-label>-->
-<!--      <input matInput [(ngModel)]="selectedAnnotation.value" name="value" type="text">-->
-<!--    </mat-form-field>-->
-<!--    <mat-form-field>-->
-<!--      <mat-label>Type</mat-label>-->
-<!--      <input matInput [(ngModel)]="selectedAnnotation.type" name="type" type="text">-->
-<!--    </mat-form-field>-->
-<!--  </div>-->
 </mat-expansion-panel>
