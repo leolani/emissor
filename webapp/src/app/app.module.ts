@@ -19,11 +19,16 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {CarouselComponent} from "./carousel/carousel.component";
-import { AnnotationComponent } from './annotation/annotation.component';
-import { ImgContainerComponent } from './img-container/img-container.component';
-import { BoundingboxComponent } from './boundingbox/boundingbox.component';
-import { TextContainerComponent } from './text-container/text-container.component';
-import { TokenContainerComponent } from './token-container/token-container.component';
+import {AnnotationComponent} from './annotation/annotation.component';
+import {ImgContainerComponent} from './img-container/img-container.component';
+import {BoundingboxComponent} from './boundingbox/boundingbox.component';
+import {TextContainerComponent} from './text-container/text-container.component';
+import {TokenContainerComponent} from './token-container/token-container.component';
+import {SegmentDirective} from './segment/segment.directive';
+import {SegmentEditorComponent} from './segment-editor/segment-editor.component';
+import {SegmentsTimeComponent} from './segments-time/segments-time.component';
+import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boundingbox.component";
+import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.component";
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -38,7 +43,12 @@ import { TokenContainerComponent } from './token-container/token-container.compo
     ImgContainerComponent,
     BoundingboxComponent,
     TextContainerComponent,
-    TokenContainerComponent
+    TokenContainerComponent,
+    SegmentDirective,
+    SegmentEditorComponent,
+    SegmentsBoundingboxComponent,
+    SegmentsOffsetComponent,
+    SegmentsTimeComponent
   ],
   imports: [
     CommonModule,
@@ -63,7 +73,6 @@ import { TokenContainerComponent } from './token-container/token-container.compo
     HttpClientInMemoryWebApiModule.forRoot(
       InMemoryDataService, { dataEncapsulation: false }
     ),
-
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,18 @@
+<div *ngIf="data && data.bounds">
+  <mat-form-field>
+    <mat-label>Top</mat-label>
+    <input matInput [(ngModel)]="data.bounds[0][0]" name="timestamp" type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Top</mat-label>
+    <input matInput [(ngModel)]="data.bounds[1][0]" name="timestamp" type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Bottom</mat-label>
+    <input matInput [(ngModel)]="data.bounds[0][1]" name="type" type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Right</mat-label>
+    <input matInput [(ngModel)]="data.bounds[1][1]" name="type" type="number">
+  </mat-form-field>
+</div>

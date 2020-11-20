@@ -1,5 +1,5 @@
-import {Ruler, TimeRuler} from "./container";
-import {Annotation, Mention} from "./annotation";
+import {TimeRuler} from "./container";
+import {Mention} from "./annotation";
 
 export interface Scenario {
   id: string;
@@ -9,17 +9,34 @@ export interface Scenario {
   signals: Map<string, string>;
 }
 
-export interface Signal {
+export class Signal {
   id: number;
   name: string;
   time: TimeRuler;
-  mentions: Mention[];
+  mentions: Mention<any>[];
+
+  constructor(id: number, name: string, time: TimeRuler, mentions: Mention<any>[]) {
+    this.id = id;
+    this.name = name;
+    this.time = time;
+    this.mentions = mentions;
+  }
 }
 
-export interface ImageSignal extends Signal {
+export class ImageSignal extends Signal {
   image: string;
+
+  constructor(id: number, name: string, time: TimeRuler, mentions: Mention<any>[], image: string) {
+    super(id, name, time, mentions);
+    this.image = image;
+  }
 }
 
-export interface TextSignal extends Signal {
+export class TextSignal extends Signal {
   text: string;
+
+  constructor(id: number, name: string, time: TimeRuler, mentions: Mention<any>[], text: string) {
+  super(id, name, time, mentions);
+  this.text = text;
+}
 }

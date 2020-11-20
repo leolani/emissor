@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Offset, Ruler} from "../container";
+import {Offset} from "../container";
 
 @Component({
   selector: 'app-text-container',

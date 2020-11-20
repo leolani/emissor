@@ -1,0 +1,10 @@
+<div *ngIf="data">
+  <mat-form-field>
+    <mat-label>Start</mat-label>
+    <input matInput [(ngModel)]="data.start" name="timestamp" type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>End</mat-label>
+    <input matInput [(ngModel)]="data.end" name="timestamp" type="number">
+  </mat-form-field>
+</div>

@@ -1,7 +1,9 @@
 export interface Ruler {
+  type: string;
 }
 
 export class Offset implements Ruler {
+  type: string = "offset";
   start: number;
   end:number;
 
@@ -16,6 +18,7 @@ export class Offset implements Ruler {
 }
 
 export class BoundingBox implements Ruler {
+  type: string = "bbox";
   label: string;
   bounds: number[];
 
@@ -25,7 +28,13 @@ export class BoundingBox implements Ruler {
   }
 }
 
-export interface TimeRuler extends Ruler {
+export class TimeRuler implements Ruler {
+  type: string = "time";
   start: number;
   end: number;
+
+  constructor(start: number, end: number) {
+    this.start = start;
+    this.end = end;
+  }
 }

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ScenarioService} from '../scenario.service';
-import {Scenario, Signal} from "../scenario";
-import {Offset} from "../container";
+import {Scenario} from "../scenario";
 
 @Component({
   selector: 'app-scenario',

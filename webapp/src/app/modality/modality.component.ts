@@ -4,6 +4,7 @@ import {ScenarioService} from "../scenario.service";
 import {Options} from "@angular-slider/ngx-slider";
 import {le as lowerBound} from "binary-search-bounds";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
+import {TimeRuler} from "../container";
 
 
 function compareByTimestamp(a: Signal, b: Signal): number {
@@ -65,7 +66,7 @@ export class ModalityComponent implements OnInit {
     options.floor = 0;
     options.ceil = this.signals.length - 1;
     options.customValueToPosition = (val: number, minVal: number, maxVal: number): number => {
-      return this.indexToTimlinePercentage(val, this.scenario, this.signals);
+      return this.indexToTimelinePercentage(val, this.scenario, this.signals);
     };
     options.customPositionToValue = (percent: number, minVal: number, maxVal: number): number => {
       return this.timelinePercentageToIndex(percent, maxVal, minVal, this.scenario, timestamps);
@@ -94,7 +95,7 @@ export class ModalityComponent implements OnInit {
     return time - timestamps[lowerIdx] <= timestamps[lowerIdx + 1] - time ? lowerIdx : lowerIdx + 1;
   }
 
-  private indexToTimlinePercentage(val: number, scenario: Scenario, signals: Signal[]) {
+  private indexToTimelinePercentage(val: number, scenario: Scenario, signals: Signal[]) {
     return (signals[val].time.start - scenario.start)/(scenario.end -scenario.start);
   }
 
@@ -105,13 +106,13 @@ export class ModalityComponent implements OnInit {
         (this.scenario.start - this.scenario.end)/(signals.length - 1) : 0;
 
       return signals.map((signal, idx) => {
-        signal.time = signal.time || {start: idx * equalSpacing, end: idx * equalSpacing + 1};
+        signal.time = signal.time || new TimeRuler(idx * equalSpacing, idx * equalSpacing + 1);
         return signal;
       });
     }
 
     return signals.map((signal, idx) => {
-      signal.time = signal.time || {start: 0, end: 0};
+      signal.time = signal.time || new TimeRuler(0, 0);
       return signal;
     });
   }
