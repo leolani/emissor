@@ -8,7 +8,9 @@ import {Annotation, Mention} from "./annotation";
 import {SegmentsTimeComponent} from "./segments-time/segments-time.component";
 import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boundingbox.component";
 import {AnnotationComponent} from "./annotation/annotation.component";
-import {AnnotationsLabelComponent} from "./annotations-label/annotations-label.component";
+import {AnnotationsDisplayComponent} from "./annotations-display/annotations-display.component";
+import {SegmentComponent} from "./segment/segment.component";
+import {Ruler} from "./container";
 
 @Injectable({
   providedIn: 'root'
@@ -58,27 +60,27 @@ export class ScenarioService {
       .sort((a, b) => a.timestamp - b.timestamp);
     let display = (displayAnnotations.length && displayAnnotations[0].value) || mention.id;
     let segment = mention.segment;
-    let component;
-    switch (segment.type) {
-      case "MultiIndex":
-        component = SegmentsBoundingboxComponent
-        break;
-      case "TemporalRuler":
-        component = SegmentsTimeComponent
-        break;
-      default:
-        throw Error("Unsupported segment type: " + segment.type);
-    }
 
-    return new Mention(mention.id, display, segment, component, mention.annotations);
+    return new Mention(mention.id, display, segment, mention.annotations);
   }
 
-  getComponent(annotation: Annotation<any>): Type<AnnotationComponent<any>> {
-    switch (annotation.type) {
-      case "Label":
-        return AnnotationsLabelComponent
+  getAnnotationComponent(annotation: Annotation<any>): Type<AnnotationComponent<any>> {
+    switch (annotation.type.toLowerCase()) {
+      case "display":
+        return AnnotationsDisplayComponent
       default:
         throw Error("Unsupported annotation type: " + annotation.type);
+    }
+  }
+
+  getSegmentComponent(ruler: Ruler): Type<SegmentComponent<any>> {
+    switch (ruler.type.toLowerCase()) {
+      case "multiindex":
+        return SegmentsBoundingboxComponent
+      case "temporalruler":
+        return SegmentsTimeComponent
+      default:
+        throw Error("Unsupported segment type: " + ruler.type);
     }
   }
 }

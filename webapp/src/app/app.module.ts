@@ -31,7 +31,7 @@ import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boun
 import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.component";
 import {AnnotationEditorComponent} from "./annotation-editor/annotation-editor.component";
 import {AnnotationDirective} from "./annotation/annotation.directive";
-import {AnnotationsLabelComponent} from "./annotations-label/annotations-label.component";
+import {AnnotationsDisplayComponent} from "./annotations-display/annotations-display.component";
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -49,7 +49,7 @@ import {AnnotationsLabelComponent} from "./annotations-label/annotations-label.c
     TokenContainerComponent,
     AnnotationDirective,
     AnnotationEditorComponent,
-    AnnotationsLabelComponent,
+    AnnotationsDisplayComponent,
     SegmentDirective,
     SegmentEditorComponent,
     SegmentsBoundingboxComponent,

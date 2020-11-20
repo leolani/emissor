@@ -42,12 +42,13 @@ export class EditorComponent implements OnInit, OnChanges {
 
   selectMention(mention: Mention<any>) {
     this.selectedMention = mention;
-    this.segmentItem = mention && new SegmentItem(mention.component, mention.segment);
+    let component = this.scenarioService.getSegmentComponent(mention.segment);
+    this.segmentItem = mention && new SegmentItem(component, mention.segment);
   }
 
   selectAnnotation(annotation: Annotation<any>) {
     this.selectedAnnotation = annotation;
-    let component = this.scenarioService.getComponent(annotation);
+    let component = this.scenarioService.getAnnotationComponent(annotation);
     this.annotationItem = annotation && new AnnotationItem(component, annotation);
   }
 }

@@ -3,10 +3,10 @@ import {TimeRuler} from "../container";
 import {AnnotationComponent} from "../annotation/annotation.component";
 
 @Component({
-  templateUrl: './annotations-label.component.html',
-  styleUrls: ['./annotations-label.component.css']
+  templateUrl: './annotations-display.component.html',
+  styleUrls: ['./annotations-display.component.css']
 })
-export class AnnotationsLabelComponent implements OnInit, AnnotationComponent<TimeRuler> {
+export class AnnotationsDisplayComponent implements OnInit, AnnotationComponent<TimeRuler> {
   @Input() data: TimeRuler;
 
   constructor() { }

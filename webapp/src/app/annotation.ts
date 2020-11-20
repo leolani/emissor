@@ -6,14 +6,12 @@ import {SegmentComponent} from "./segment/segment.component";
 export class Mention<T extends Ruler> {
   id: string;
   segment: T;
-  component: Type<SegmentComponent<any>>;
   display: string;
   annotations: Annotation<any>[];
 
-  constructor(id: string, display: string, segment: T, component: Type<SegmentComponent<any>>, annotations: Annotation<any>[]) {
+  constructor(id: string, display: string, segment: T, annotations: Annotation<any>[]) {
     this.id = id;
     this.segment = segment;
-    this.component = component;
     this.display = display;
     this.annotations = annotations;
   }
