@@ -19,7 +19,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {CarouselComponent} from "./carousel/carousel.component";
-import {AnnotationComponent} from './annotation/annotation.component';
+import {EditorComponent} from './editor/editor.component';
 import {ImgContainerComponent} from './img-container/img-container.component';
 import {BoundingboxComponent} from './boundingbox/boundingbox.component';
 import {TextContainerComponent} from './text-container/text-container.component';
@@ -39,7 +39,7 @@ import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.compone
     ScenarioComponent,
     ModalityComponent,
     CarouselComponent,
-    AnnotationComponent,
+    EditorComponent,
     ImgContainerComponent,
     BoundingboxComponent,
     TextContainerComponent,

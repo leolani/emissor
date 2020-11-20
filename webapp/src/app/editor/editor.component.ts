@@ -4,11 +4,11 @@ import {Annotation, Mention} from "../annotation";
 import {SegmentItem} from "../segment/segment-item";
 
 @Component({
-  selector: 'app-annotation',
-  templateUrl: './annotation.component.html',
-  styleUrls: ['./annotation.component.css']
+  selector: 'app-editor',
+  templateUrl: './editor.component.html',
+  styleUrls: ['./editor.component.css']
 })
-export class AnnotationComponent implements OnInit, OnChanges {
+export class EditorComponent implements OnInit, OnChanges {
   @Input() signal: Signal;
 
   selectedMention: Mention<any>;

@@ -30,9 +30,18 @@
     <app-segment-editor [segment]="segmentItem"></app-segment-editor>
     <mat-form-field>
       <mat-label>Type</mat-label>
-      <input matInput [value]="selectedMention.segment.type" name="type" type="text">
+      <input matInput [value]="selectedMention.segment.type" name="type" type="text" readonly="true">
     </mat-form-field>
   </div>
+
+<!--  <div *ngIf="selectedAnnotation">-->
+<!--    <h3>Segment</h3>-->
+<!--    <app-segment-editor [editor]="annotationItem"></app-segment-editor>-->
+<!--    <mat-form-field>-->
+<!--      <mat-label>Type</mat-label>-->
+<!--      <input matInput [value]="selectedMention.segment.type" name="type" type="text" readonly="true">-->
+<!--    </mat-form-field>-->
+<!--  </div>-->
 
 <!--  <div *ngIf="selectedMention">-->
 <!--    <h3>Annotation</h3>-->
