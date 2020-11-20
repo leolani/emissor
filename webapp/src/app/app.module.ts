@@ -29,6 +29,9 @@ import {SegmentEditorComponent} from './segment-editor/segment-editor.component'
 import {SegmentsTimeComponent} from './segments-time/segments-time.component';
 import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boundingbox.component";
 import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.component";
+import {AnnotationEditorComponent} from "./annotation-editor/annotation-editor.component";
+import {AnnotationDirective} from "./annotation/annotation.directive";
+import {AnnotationsLabelComponent} from "./annotations-label/annotations-label.component";
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -44,6 +47,9 @@ import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.compone
     BoundingboxComponent,
     TextContainerComponent,
     TokenContainerComponent,
+    AnnotationDirective,
+    AnnotationEditorComponent,
+    AnnotationsLabelComponent,
     SegmentDirective,
     SegmentEditorComponent,
     SegmentsBoundingboxComponent,

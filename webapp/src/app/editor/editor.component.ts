@@ -2,6 +2,8 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {Signal} from "../scenario";
 import {Annotation, Mention} from "../annotation";
 import {SegmentItem} from "../segment/segment-item";
+import {AnnotationItem} from "../annotation/annotation-item";
+import {ScenarioService} from "../scenario.service";
 
 @Component({
   selector: 'app-editor',
@@ -14,17 +16,13 @@ export class EditorComponent implements OnInit, OnChanges {
   selectedMention: Mention<any>;
   selectedAnnotation: Annotation<any>;
   segmentItem: SegmentItem<any>;
+  annotationItem: AnnotationItem<any>;
 
-  constructor() { }
+  constructor(private scenarioService: ScenarioService) { }
 
-  ngOnInit(): void {
-    // this.selectedMention = this.signal.mentions.length && this.signal.mentions[0]
-    // this.selectedAnnotation = this.selectedMention && this.selectedMention.annotations.length
-    //                           && this.selectedMention.annotations[0]
-  }
+  ngOnInit(): void {}
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if (changes.signal.previousValue !== changes.signal.currentValue) {
       this.selectedMention = null;
       this.selectedAnnotation = null;
@@ -49,5 +47,7 @@ export class EditorComponent implements OnInit, OnChanges {
 
   selectAnnotation(annotation: Annotation<any>) {
     this.selectedAnnotation = annotation;
+    let component = this.scenarioService.getComponent(annotation);
+    this.annotationItem = annotation && new AnnotationItem(component, annotation);
   }
 }

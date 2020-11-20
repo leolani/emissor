@@ -1,14 +1,14 @@
-import {Injectable} from '@angular/core';
+import {Injectable, Type} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ImageSignal, Scenario, Signal, TextSignal} from "./scenario";
 
 import {HttpClient} from '@angular/common/http';
 import {map} from "rxjs/operators";
-import {Mention} from "./annotation";
-import {BoundingBox} from "./container";
-import {BoundingboxComponent} from "./boundingbox/boundingbox.component";
+import {Annotation, Mention} from "./annotation";
 import {SegmentsTimeComponent} from "./segments-time/segments-time.component";
 import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boundingbox.component";
+import {AnnotationComponent} from "./annotation/annotation.component";
+import {AnnotationsLabelComponent} from "./annotations-label/annotations-label.component";
 
 @Injectable({
   providedIn: 'root'
@@ -71,6 +71,15 @@ export class ScenarioService {
     }
 
     return new Mention(mention.id, display, segment, component, mention.annotations);
+  }
+
+  getComponent(annotation: Annotation<any>): Type<AnnotationComponent<any>> {
+    switch (annotation.type) {
+      case "Label":
+        return AnnotationsLabelComponent
+      default:
+        throw Error("Unsupported annotation type: " + annotation.type);
+    }
   }
 }
 

@@ -16,12 +16,10 @@ export class SegmentEditorComponent implements OnInit, OnChanges {
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    console.log("editor", this.segment);
     this.segment && this.loadComponent(this.segment);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("editor", changes.segment.currentValue, changes.segment.previousValue);
     changes.segment.currentValue
         && changes.segment.currentValue != changes.segment.previousValue
         && this.loadComponent(changes.segment.currentValue);

@@ -1,14 +1,16 @@
 import {Ruler} from "./container";
 import {Type} from "@angular/core";
+import {AnnotationComponent} from "./annotation/annotation.component";
+import {SegmentComponent} from "./segment/segment.component";
 
 export class Mention<T extends Ruler> {
   id: string;
   segment: T;
-  component: Type<any>;
+  component: Type<SegmentComponent<any>>;
   display: string;
   annotations: Annotation<any>[];
 
-  constructor(id: string, display: string, segment: T, component: Type<any>, annotations: Annotation<any>[]) {
+  constructor(id: string, display: string, segment: T, component: Type<SegmentComponent<any>>, annotations: Annotation<any>[]) {
     this.id = id;
     this.segment = segment;
     this.component = component;
