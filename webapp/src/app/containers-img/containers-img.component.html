@@ -1,0 +1,24 @@
+<div #container id="container">
+  <div #img_container id="img_container"
+       [style.left.px]="leftOffset"
+       [style.top.px]="topOffset"
+       [style.width.px]="scaledWidth"
+       [style.height.px]="scaledHeight">
+    <img #image [src]="data.image" (load)="positionImage()" [style.width.%]="imageWidth">
+    <div *ngFor="let segment of segments" class="boundingbox"
+         [style.left.px]="scale * segment.bounds[0]"
+         [style.top.px]="scale *  segment.bounds[1]"
+         [style.width.px]="scale * (segment.bounds[2] - segment.bounds[0])"
+         [style.height.px]="scale * (segment.bounds[3] - segment.bounds[1])"
+         [class.active]="status > 0"
+         [class.selected]="segment === selected"
+         (mousedown)="setStatus($event, 2)"
+         (window:mouseup)="setStatus($event, 0)">
+      <div class="resize-action" (mousedown)="setStatus($event, 1)"></div>
+      <div class="badge label" (click)="select(segment)">P{{segment.label}}</div>
+      <span class="badge width">{{(segment.bounds[2] - segment.bounds[0]) | number:'1.0-0'}}px</span>
+      <span class="badge height">{{segment.bounds[3] - segment.bounds[1] | number:'1.0-0'}}px</span>
+      <span class="badge position">({{segment.bounds[0] | number:'1.0-0'}}, {{segment.bounds[1] | number:'1.0-0'}})</span>
+    </div>
+  </div>
+</div>

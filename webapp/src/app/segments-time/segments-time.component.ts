@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SegmentComponent} from "../segment/segment.component";
-import {Mention} from "../annotation";
 import {TimeRuler} from "../container";
 
 @Component({

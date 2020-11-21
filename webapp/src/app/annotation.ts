@@ -1,10 +1,8 @@
 import {Ruler} from "./container";
-import {Type} from "@angular/core";
-import {AnnotationComponent} from "./annotation/annotation.component";
-import {SegmentComponent} from "./segment/segment.component";
 
 export class Mention<T extends Ruler> {
   id: string;
+  // TODO T[]
   segment: T;
   display: string;
   annotations: Annotation<any>[];

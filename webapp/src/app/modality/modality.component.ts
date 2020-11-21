@@ -5,6 +5,7 @@ import {Options} from "@angular-slider/ngx-slider";
 import {le as lowerBound} from "binary-search-bounds";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {TimeRuler} from "../container";
+import {ContainerItem} from "../container/container-item";
 
 
 function compareByTimestamp(a: Signal, b: Signal): number {
@@ -42,6 +43,8 @@ export class ModalityComponent implements OnInit {
   signalEntries: Array<[number, Signal]>;
   selectedSignal: number = 0;
   editSignal = false;
+
+  containerItem: ContainerItem<any, any>;
 
   constructor(private scenarioService: ScenarioService, private sanitizer: DomSanitizer) { }
 

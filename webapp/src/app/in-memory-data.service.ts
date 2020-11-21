@@ -72,7 +72,7 @@ export class InMemoryDataService implements InMemoryDbService {
             "segment": {
               "type": "MultiIndex",
               "container_id": "c0bf19da-ee25-4f6e-bcb5-3d8f29943e31",
-              "bounds": [[10, 521], [15, 518]]
+              "bounds": [10, 15, 52, 51]
             },
             "annotations": [
               {

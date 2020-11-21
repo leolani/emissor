@@ -1,9 +1,9 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {Signal} from "../scenario";
 import {Annotation, Mention} from "../annotation";
-import {SegmentItem} from "../segment/segment-item";
 import {AnnotationItem} from "../annotation/annotation-item";
 import {ScenarioService} from "../scenario.service";
+import {SegmentItem} from "../segment/segment-item";
 
 @Component({
   selector: 'app-editor',

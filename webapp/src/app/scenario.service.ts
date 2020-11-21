@@ -11,6 +11,9 @@ import {AnnotationComponent} from "./annotation/annotation.component";
 import {AnnotationsDisplayComponent} from "./annotations-display/annotations-display.component";
 import {SegmentComponent} from "./segment/segment.component";
 import {Ruler} from "./container";
+import {ContainersImgComponent} from "./containers-img/containers-img.component";
+import {ContainersTextComponent} from "./containers-text/containers-text.component";
+import {ContainerComponent} from "./container/container.component";
 
 @Injectable({
   providedIn: 'root'
@@ -81,6 +84,17 @@ export class ScenarioService {
         return SegmentsTimeComponent
       default:
         throw Error("Unsupported segment type: " + ruler.type);
+    }
+  }
+
+  getContainerComponent(selectedSignal: Signal): Type<ContainerComponent<any, any>> {
+    switch (selectedSignal.constructor.name) {
+      case TextSignal.name:
+        return ContainersTextComponent
+      case ImageSignal.name:
+        return ContainersImgComponent
+      default:
+        throw Error("Unsupported container type: " + selectedSignal.constructor.name);
     }
   }
 }

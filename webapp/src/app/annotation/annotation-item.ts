@@ -1,6 +1,6 @@
 import { Type } from '@angular/core';
-import {Ruler} from "../container";
+import {AnnotationComponent} from "./annotation.component";
 
-export class AnnotationItem<T extends Ruler> {
-  constructor(public component: Type<any>, public data: T) {}
+export class AnnotationItem<T> {
+  constructor(public component: Type<AnnotationComponent<T>>, public data: T) {}
 }

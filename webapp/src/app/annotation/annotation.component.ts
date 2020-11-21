@@ -1,6 +1,5 @@
-import {Ruler} from "../container";
-import {Mention} from "../annotation";
+import {Annotation} from "../annotation";
 
-export interface AnnotationComponent<T extends Ruler> {
-  data: T;
+export interface AnnotationComponent<T> {
+  data: Annotation<T>;
 }

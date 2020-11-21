@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SegmentComponent} from "../segment/segment.component";
-import {Mention} from "../annotation";
-import {Offset, TimeRuler} from "../container";
+import {Offset} from "../container";
 
 @Component({
   templateUrl: './segments-offset.component.html',

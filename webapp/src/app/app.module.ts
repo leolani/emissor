@@ -20,9 +20,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {CarouselComponent} from "./carousel/carousel.component";
 import {EditorComponent} from './editor/editor.component';
-import {ImgContainerComponent} from './img-container/img-container.component';
 import {BoundingboxComponent} from './boundingbox/boundingbox.component';
-import {TextContainerComponent} from './text-container/text-container.component';
 import {TokenContainerComponent} from './token-container/token-container.component';
 import {SegmentDirective} from './segment/segment.directive';
 import {SegmentEditorComponent} from './segment-editor/segment-editor.component';
@@ -32,6 +30,10 @@ import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.compone
 import {AnnotationEditorComponent} from "./annotation-editor/annotation-editor.component";
 import {AnnotationDirective} from "./annotation/annotation.directive";
 import {AnnotationsDisplayComponent} from "./annotations-display/annotations-display.component";
+import {ContainerViewComponent} from "./container-view/container-view.component";
+import {ContainerDirective} from "./container/container.directive";
+import {ContainersImgComponent} from "./containers-img/containers-img.component";
+import {ContainersTextComponent} from "./containers-text/containers-text.component";
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -43,13 +45,15 @@ import {AnnotationsDisplayComponent} from "./annotations-display/annotations-dis
     ModalityComponent,
     CarouselComponent,
     EditorComponent,
-    ImgContainerComponent,
+    ContainersImgComponent,
     BoundingboxComponent,
-    TextContainerComponent,
+    ContainersTextComponent,
     TokenContainerComponent,
     AnnotationDirective,
     AnnotationEditorComponent,
     AnnotationsDisplayComponent,
+    ContainerDirective,
+    ContainerViewComponent,
     SegmentDirective,
     SegmentEditorComponent,
     SegmentsBoundingboxComponent,

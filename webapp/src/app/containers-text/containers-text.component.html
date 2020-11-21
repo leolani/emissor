@@ -1,0 +1,3 @@
+<div class="container" [id]="data.id">
+  <a *ngFor="let idx of counter(data.text.length)" [class]="characterClass(idx)">{{data.text.charAt(idx)}}</a>
+</div>
