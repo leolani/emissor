@@ -1,3 +1,11 @@
+div {
+  display: inline-block;
+}
+
+span {
+  border: solid #9C1A1C;
+}
+
 a.selected {
   color: #9C1A1C;
 }

@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Offset} from "../container";
 import {ContainerComponent} from "../container/container.component";
 import {TextSignal} from "../scenario";
+import {Mention} from "../annotation";
 
 @Component({
   templateUrl: './containers-text.component.html',
@@ -11,9 +12,16 @@ export class ContainersTextComponent implements OnInit, ContainerComponent<TextS
   @Input() data: TextSignal;
   @Input() selected: Offset;
 
+  tokens: Mention<any>[];
+
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.tokens = this.data.mentions.filter(mention =>
+        mention.segment.container_id === this.data.id
+        && mention.annotations.length
+        && mention.annotations[0].type.toLowerCase() === "token");
+  }
 
   characterClass(idx: number) {
     if (this.selected && this.selected.contains(idx)) {

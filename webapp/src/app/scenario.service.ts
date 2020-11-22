@@ -87,7 +87,7 @@ export class ScenarioService {
     }
   }
 
-  getContainerComponent(selectedSignal: Signal): Type<ContainerComponent<any, any>> {
+  getContainerComponent(selectedSignal: Signal | Annotation<any>): Type<ContainerComponent<any, any>> {
     switch (selectedSignal.constructor.name) {
       case TextSignal.name:
         return ContainersTextComponent

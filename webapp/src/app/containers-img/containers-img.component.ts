@@ -58,8 +58,6 @@ export class ContainersImgComponent implements OnInit, ContainerComponent<ImageS
     this.leftOffset = Math.floor((canvasWidth - this.scaledWidth) / 2);
     this.topOffset = Math.floor((canvasHeight - this.scaledHeight) / 2);
     this.imageWidth = 100;
-
-    console.log(this.segments);
   }
 
   private loadContainer() {
