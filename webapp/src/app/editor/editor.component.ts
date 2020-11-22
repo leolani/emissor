@@ -40,13 +40,30 @@ export class EditorComponent implements OnInit {
     });
   }
 
+  addSegment() {
+    let mention = this.signal.mention;
+    let len = mention.segment.length;
+    let previous = len && mention.segment[len - 1];
+    mention.segment.push(previous && JSON.parse(JSON.stringify(previous)));
+  }
+
   selectMention(mention: Mention<any>) {
-    this.signal = this.signal.withMention(mention).withSegment(mention.segment);
+    let changedSignal = this.signal.withMention(mention);
+    if (mention.segment.length) {
+      changedSignal = changedSignal.withSegment(changedSignal.mention.segment[0]);
+    }
+    this.signal = changedSignal;
+    this.signalChange.emit(changedSignal);
+  }
+
+  selectSegment(segment: any) {
+    this.signal = this.signal.withSegment(segment);
     this.signalChange.emit(this.signal);
   }
 
   selectAnnotation(annotation: Annotation<any>) {
     this.signal = this.signal.withAnnotation(annotation);
+    console.log("anntotation", annotation, this.signal);
     this.signalChange.emit(this.signal);
   }
 }

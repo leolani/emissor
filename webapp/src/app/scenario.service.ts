@@ -58,10 +58,10 @@ export class ScenarioService {
     }
   }
 
-  convertMention(mention: any): Mention<any> {
+  convertMention(mention: any, idx: number): Mention<any> {
     let displayAnnotations = mention.annotations.filter(ann => ann.type.toLowerCase() === "display")
       .sort((a, b) => a.timestamp - b.timestamp);
-    let display = (displayAnnotations.length && displayAnnotations[0].value) || mention.id;
+    let display = (displayAnnotations.length && displayAnnotations[0].value) || mention.id || idx;
     let segment = mention.segment;
 
     return new Mention(mention.id, display, segment, mention.annotations);

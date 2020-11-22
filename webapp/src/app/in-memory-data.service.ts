@@ -69,11 +69,11 @@ export class InMemoryDataService implements InMemoryDbService {
         ],
         "mentions": [
           {
-            "segment": {
+            "segment": [{
               "type": "MultiIndex",
               "container_id": "c0bf19da-ee25-4f6e-bcb5-3d8f29943e31",
               "bounds": [10, 15, 52, 51]
-            },
+            }],
             "annotations": [
               {
                 "type": "Friend",
@@ -132,12 +132,12 @@ export class InMemoryDataService implements InMemoryDbService {
         "files": [],
         "mentions": [
           {
-            "segment": {
+            "segment": [{
               "type": "Index",
               "container_id": "a6ecd306-e78a-4dd5-ba55-aa9827050e07",
               "start": 0,
               "stop": 4
-            },
+            }],
             "annotations": [
               {
                 "type": "Token",
@@ -155,12 +155,12 @@ export class InMemoryDataService implements InMemoryDbService {
             ]
           },
           {
-            "segment": {
+            "segment": [{
               "type": "Index",
               "container_id": "a6ecd306-e78a-4dd5-ba55-aa9827050e07",
               "start": 5,
               "stop": 7
-            },
+            }],
             "annotations": [
               {
                 "type": "Token",
@@ -178,12 +178,12 @@ export class InMemoryDataService implements InMemoryDbService {
             ]
           },
           {
-            "segment": {
+            "segment": [{
               "type": "Index",
               "container_id": "a6ecd306-e78a-4dd5-ba55-aa9827050e07",
               "start": 8,
               "stop": 10
-            },
+            }],
             "annotations": [
               {
                 "type": "Token",
@@ -201,12 +201,12 @@ export class InMemoryDataService implements InMemoryDbService {
             ]
           },
           {
-            "segment": {
+            "segment": [{
               "type": "Index",
               "container_id": "a6ecd306-e78a-4dd5-ba55-aa9827050e07",
               "start": 11,
               "stop": 18
-            },
+            }],
             "annotations": [
               {
                 "type": "Token",
@@ -224,12 +224,12 @@ export class InMemoryDataService implements InMemoryDbService {
             ]
           },
           {
-            "segment": {
+            "segment": [{
               "type": "Index",
               "container_id": "a6ecd306-e78a-4dd5-ba55-aa9827050e07",
               "start": 19,
               "stop": 22
-            },
+            }],
             "annotations": [
               {
                 "type": "Token",
@@ -348,12 +348,12 @@ export class InMemoryDataService implements InMemoryDbService {
             ]
           },
           {
-            "segment": {
+            "segment": [{
               "type": "Index",
               "container_id": "6b4fdee4-f29a-49e4-852e-4dd817132f28",
               "start": 4,
               "stop": 4
-            },
+            }],
             "annotations": [
               {
                 "type": "Friend",

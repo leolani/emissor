@@ -19,7 +19,8 @@ export class ContainersTextComponent implements OnInit, ContainerComponent<TextS
 
   ngOnInit(): void {
     this.tokens = this.data.mentions.filter(mention =>
-        mention.segment.container_id === this.data.id
+        mention.segment.length === 1
+        && mention.segment[0].container_id === this.data.id
         && mention.annotations.length
         && mention.annotations[0].type.toLowerCase() === "token");
   }
@@ -29,7 +30,7 @@ export class ContainersTextComponent implements OnInit, ContainerComponent<TextS
       return "selected";
     }
 
-    if (this.data.mentions.some(mention => mention.segment.contains(idx))) {
+    if (this.data.mentions.flatMap(men => men.segment).some(seg => seg.contains(idx))) {
       return "mentioned";
     }
 

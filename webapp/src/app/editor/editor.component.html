@@ -15,6 +15,16 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field *ngIf="signal.mention">
+    <mat-label>Segments</mat-label>
+    <mat-select [value]="signal.segment" (valueChange)="selectSegment($event)" name="segment">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let segment of signal.mention.segment; let idx = index" [value]="segment">
+        {{idx}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="addSegment()">Add Segment</button>
+  <mat-form-field *ngIf="signal.mention">
     <mat-label>Annotations</mat-label>
     <mat-select [value]="signal.annotation" (valueChange)="selectAnnotation($event)" name="annotation">
       <mat-option></mat-option>
@@ -25,17 +35,17 @@
   </mat-form-field>
   <button mat-button (click)="addAnnotation()">Add Annotation</button>
 
-  <div *ngIf="signal.mention">
+  <div *ngIf="signal.segment">
     <h3>Segment</h3>
     <app-segment-editor [segment]="signal.segmentItem"></app-segment-editor>
     <mat-form-field>
       <mat-label>Type</mat-label>
-      <input matInput [value]="signal.mention.segment.type" name="type" type="text" readonly="true">
+      <input matInput [value]="signal.segment.type" name="type" type="text" readonly="true">
     </mat-form-field>
   </div>
 
   <div *ngIf="signal.annotation">
-    <h3>Segment</h3>
+    <h3>Annotation</h3>
     <app-annotation-editor [annotation]="signal.annotationItem"></app-annotation-editor>
     <mat-form-field>
       <mat-label>Type</mat-label>

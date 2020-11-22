@@ -56,7 +56,7 @@ export class SignalSelection {
     let selection = new SignalSelection(this.idx, this.signal, this.scenarioService);
     selection.mention = this.mention;
     selection.segment = this.segment;
-    selection.annotation = this.annotation;
+    selection.annotation = annotation;
 
     selection.annotationItem = new AnnotationItem<any>(this.scenarioService.getAnnotationComponent(annotation), annotation);
 

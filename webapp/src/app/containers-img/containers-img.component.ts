@@ -51,7 +51,7 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
   constructor() { }
 
   ngOnInit() {
-    this.segments = this.data.mentions.map(mention => mention.segment);
+    this.segments = this.data.mentions.flatMap(mention => mention.segment);
   }
 
   ngOnChanges(changes: SimpleChanges) {

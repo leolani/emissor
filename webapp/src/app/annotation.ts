@@ -2,15 +2,14 @@ import {Ruler} from "./container";
 
 export class Mention<T extends Ruler> {
   id: string;
-  // TODO T[]
-  segment: T;
+  segment: T[];
   display: string;
   annotations: Annotation<any>[];
 
-  constructor(id: string, display: string, segment: T, annotations: Annotation<any>[]) {
+  constructor(id: string, display: string, segment: T[], annotations: Annotation<any>[]) {
     this.id = id;
     this.segment = segment;
-    this.display = display;
+    this.display = display || id;
     this.annotations = annotations;
   }
 }
