@@ -1,5 +1,10 @@
-import {TimeRuler} from "./container";
-import {Mention} from "./annotation";
+import {Ruler, TimeRuler} from "./container";
+import {Annotation, Mention} from "./annotation";
+import {ScenarioService} from "./scenario.service";
+import {ContainerComponent} from "./container/container.component";
+import {Type} from "@angular/core";
+import {SegmentComponent} from "./segment/segment.component";
+import {ContainerItem} from "./container/container-item";
 
 export interface Scenario {
   id: string;
@@ -36,7 +41,8 @@ export class TextSignal extends Signal {
   text: string;
 
   constructor(id: number, name: string, time: TimeRuler, mentions: Mention<any>[], text: string) {
-  super(id, name, time, mentions);
-  this.text = text;
+    super(id, name, time, mentions);
+    this.text = text;
+  }
 }
-}
+

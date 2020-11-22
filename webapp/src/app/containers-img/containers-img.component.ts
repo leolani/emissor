@@ -1,7 +1,18 @@
-import {AfterViewInit, Component, ElementRef, HostListener, Input, OnInit, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {BoundingBox} from "../container";
 import {ImageSignal} from "../scenario";
 import {ContainerComponent} from "../container/container.component";
+import {SignalSelection} from "../signal-selection";
 
 const enum Status {
   OFF = 0,
@@ -13,11 +24,12 @@ const enum Status {
   templateUrl: './containers-img.component.html',
   styleUrls: ['./containers-img.component.css']
 })
-export class ContainersImgComponent implements OnInit, ContainerComponent<ImageSignal, BoundingBox> {
+export class ContainersImgComponent implements OnInit, OnChanges, ContainerComponent<ImageSignal, BoundingBox> {
   @Input() data: ImageSignal;
-  @Input() selected: BoundingBox;
+  @Input() selection: SignalSelection;
 
   segments: BoundingBox[];
+  selected: BoundingBox;
 
   status: number = 0;
 
@@ -40,6 +52,13 @@ export class ContainersImgComponent implements OnInit, ContainerComponent<ImageS
 
   ngOnInit() {
     this.segments = this.data.mentions.map(mention => mention.segment);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes.selection) {
+      this.selected = changes.selection.currentValue.segment;
+      console.log("selected", this.selected);
+    }
   }
 
   positionImage(): void {
@@ -67,12 +86,19 @@ export class ContainersImgComponent implements OnInit, ContainerComponent<ImageS
     const right = left + width;
     const bottom = top + height;
     this.containerPos = { left, top, right, bottom, width, height };
-    console.log(left, top, right, bottom, width, height);
   }
 
   select(segment: BoundingBox) {
-    this.selected = this.selected ? null : segment;
-    this.status = Status.OFF;
+    if (segment === this.selection.segment) {
+      this.selected = this.selected ? null : segment;
+      this.status = Status.OFF;
+    } else {
+      this.selected = null;
+    }
+  }
+
+  private setSelection() {
+    this.selection = this.selection.withSegment(this.selected);
   }
 
   setStatus(event: MouseEvent, status: number) {
@@ -104,6 +130,7 @@ export class ContainersImgComponent implements OnInit, ContainerComponent<ImageS
     bounds[2] = Math.min(this.containerPos.width, Math.max(bounds[0], event.x - this.containerPos.left));
     bounds[3] = Math.min(this.containerPos.height, Math.max(bounds[1], event.y - this.containerPos.top));
     this.selected.bounds = this.unscaleArray(bounds);
+    this.setSelection();
   }
 
   private move(event: MouseEvent){
@@ -118,6 +145,7 @@ export class ContainersImgComponent implements OnInit, ContainerComponent<ImageS
 
     if (this.insideContainer(bounds)) {
       this.selected.bounds = this.unscaleArray(bounds);
+      this.setSelection();
     }
   }
 

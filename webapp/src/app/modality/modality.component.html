@@ -1,7 +1,7 @@
 <mat-expansion-panel *ngIf="signals" hideToggle>
   <mat-expansion-panel-header>
     <mat-panel-title>Modality</mat-panel-title>
-    <mat-panel-description>{{modality}}</mat-panel-description>
+    <mat-panel-description>{{modality}} (Click to expand/collaps)</mat-panel-description>
   </mat-expansion-panel-header>
 
   <mat-drawer-container class="example-container">
@@ -18,7 +18,7 @@
     <mat-drawer-content>
       <button mat-raised-button (click)="drawer.toggle()">Signal List</button>
 
-      <app-carousel *ngIf="modality === 'image'" [selected]="selectedSignal" [signals]="signals"></app-carousel>
+      <app-carousel *ngIf="modality === 'image'" [selection]="selection" [signals]="signals"></app-carousel>
 
       <div *ngIf="modality === 'text'" fxLayout="row" fxLayoutGap="5ex" class="overview">
         <app-text-view [signals]="signals" [selected]="selectedSignal"></app-text-view>
@@ -28,8 +28,6 @@
 <!--          <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}-->
 <!--        </div>-->
       </div>
-
-<!--      <app-annotation-containers [signal] = "signals[selectedSignal]"></app-annotation-containers>-->
 
       <form>
         <mat-form-field>
@@ -43,12 +41,12 @@
                  name="end" type="number" [readonly]="!editSignal">
         </mat-form-field>
       </form>
-      <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions"></ngx-slider>
+      <ngx-slider [(value)]="selectedSignal" [options]="sliderOptions" (valueChange)="onSliderSelection($event)"></ngx-slider>
       <ngx-slider [(value)]="signals[selectedSignal].time.start"
                   [(highValue)]="signals[selectedSignal].time.end"
                   [options]="rangeOptions"></ngx-slider>
 
-      <app-editor [signal]="signals[selectedSignal]"></app-editor>
+      <app-editor [(signal)]="selection"></app-editor>
     </mat-drawer-content>
   </mat-drawer-container>
 </mat-expansion-panel>

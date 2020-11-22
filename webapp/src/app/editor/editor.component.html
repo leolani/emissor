@@ -7,47 +7,47 @@
 
   <mat-form-field>
     <mat-label>Mentions</mat-label>
-    <mat-select [value]="selectedMention" (valueChange)="selectMention($event)" name="mention">
+    <mat-select [value]="signal.mention" (valueChange)="selectMention($event)" name="mention">
       <mat-option></mat-option>
-      <mat-option *ngFor="let mention of signal.mentions" [value]="mention">
+      <mat-option *ngFor="let mention of signal.signal.mentions" [value]="mention">
         {{mention.display}}
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field *ngIf="selectedMention">
+  <mat-form-field *ngIf="signal.mention">
     <mat-label>Annotations</mat-label>
-    <mat-select [value]="selectedAnnotation" (valueChange)="selectAnnotation($event)" name="annotation">
+    <mat-select [value]="signal.annotation" (valueChange)="selectAnnotation($event)" name="annotation">
       <mat-option></mat-option>
-      <mat-option *ngFor="let annotation of selectedMention.annotations" [value]="annotation">
+      <mat-option *ngFor="let annotation of signal.mention.annotations" [value]="annotation">
         {{annotation.type}}
       </mat-option>
     </mat-select>
   </mat-form-field>
   <button mat-button (click)="addAnnotation()">Add Annotation</button>
 
-  <div *ngIf="selectedMention">
+  <div *ngIf="signal.mention">
     <h3>Segment</h3>
-    <app-segment-editor [segment]="segmentItem"></app-segment-editor>
+    <app-segment-editor [segment]="signal.segmentItem"></app-segment-editor>
     <mat-form-field>
       <mat-label>Type</mat-label>
-      <input matInput [value]="selectedMention.segment.type" name="type" type="text" readonly="true">
+      <input matInput [value]="signal.mention.segment.type" name="type" type="text" readonly="true">
     </mat-form-field>
   </div>
 
-  <div *ngIf="selectedAnnotation">
+  <div *ngIf="signal.annotation">
     <h3>Segment</h3>
-    <app-annotation-editor [annotation]="annotationItem"></app-annotation-editor>
+    <app-annotation-editor [annotation]="signal.annotationItem"></app-annotation-editor>
     <mat-form-field>
       <mat-label>Type</mat-label>
-      <input matInput [value]="selectedAnnotation.type" name="type" type="text" readonly="true">
+      <input matInput [value]="signal.annotation.type" name="type" type="text" readonly="true">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Source</mat-label>
-      <input matInput [(ngModel)]="selectedAnnotation.src" name="source" type="text">
+      <input matInput [(ngModel)]="signal.annotation.src" name="source" type="text">
     </mat-form-field>
     <mat-form-field>
       <mat-label>Timestamp</mat-label>
-      <input matInput [(ngModel)]="selectedAnnotation.timestamp" name="timestamp" type="text">
+      <input matInput [(ngModel)]="signal.annotation.timestamp" name="timestamp" type="text">
     </mat-form-field>
   </div>
 </mat-expansion-panel>

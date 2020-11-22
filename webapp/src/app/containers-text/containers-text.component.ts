@@ -3,6 +3,7 @@ import {Offset} from "../container";
 import {ContainerComponent} from "../container/container.component";
 import {TextSignal} from "../scenario";
 import {Mention} from "../annotation";
+import {SignalSelection} from "../signal-selection";
 
 @Component({
   templateUrl: './containers-text.component.html',
@@ -10,7 +11,7 @@ import {Mention} from "../annotation";
 })
 export class ContainersTextComponent implements OnInit, ContainerComponent<TextSignal, Offset> {
   @Input() data: TextSignal;
-  @Input() selected: Offset;
+  @Input() selection: SignalSelection;
 
   tokens: Mention<any>[];
 
@@ -24,7 +25,7 @@ export class ContainersTextComponent implements OnInit, ContainerComponent<TextS
   }
 
   characterClass(idx: number) {
-    if (this.selected && this.selected.contains(idx)) {
+    if (this.selection.segment && (<Offset> this.selection.segment).contains(idx)) {
       return "selected";
     }
 

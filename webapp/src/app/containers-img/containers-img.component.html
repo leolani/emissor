@@ -11,7 +11,7 @@
          [style.width.px]="scale * (segment.bounds[2] - segment.bounds[0])"
          [style.height.px]="scale * (segment.bounds[3] - segment.bounds[1])"
          [class.active]="status > 0"
-         [class.selected]="segment === selected"
+         [class.selected]="!!selected && selected === segment"
          (mousedown)="setStatus($event, 2)"
          (window:mouseup)="setStatus($event, 0)">
       <div class="resize-action" (mousedown)="setStatus($event, 1)"></div>

@@ -1,38 +1,38 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
-import {Signal} from "../scenario";
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {Annotation, Mention} from "../annotation";
-import {AnnotationItem} from "../annotation/annotation-item";
 import {ScenarioService} from "../scenario.service";
-import {SegmentItem} from "../segment/segment-item";
+import {SignalSelection} from "../signal-selection";
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
-export class EditorComponent implements OnInit, OnChanges {
-  @Input() signal: Signal;
+export class EditorComponent implements OnInit {
+  @Input() signal: SignalSelection;
+  @Output() signalChange = new EventEmitter<SignalSelection>();;
 
-  selectedMention: Mention<any>;
-  selectedAnnotation: Annotation<any>;
-  segmentItem: SegmentItem<any>;
-  annotationItem: AnnotationItem<any>;
+  // selectedMention: Mention<any>;
+  // selectedAnnotation: Annotation<any>;
+  // segmentItem: SegmentItem<any>;
+  // annotationItem: AnnotationItem<any>;
 
   constructor(private scenarioService: ScenarioService) { }
 
   ngOnInit(): void {}
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes.signal.previousValue !== changes.signal.currentValue) {
-      this.selectedMention = null;
-      this.selectedAnnotation = null;
-    }
-  }
+  // ngOnChanges(changes: SimpleChanges) {
+  //   if (changes.signal.previousValue !== changes.signal.currentValue) {
+  //     this.selectedMention = null;
+  //     this.selectedAnnotation = null;
+  //   }
+  // }
 
   addAnnotation() {
-    let len = this.selectedMention.annotations.length;
-    let previous = len && this.selectedMention.annotations[len - 1];
-    this.selectedMention.annotations.push({
+    let mention = this.signal.mention;
+    let len = mention.annotations.length;
+    let previous = len && mention.annotations[len - 1];
+    mention.annotations.push({
       src: (previous && previous.src) || "",
       timestamp: new Date().getTime(),
       value: "",
@@ -41,14 +41,12 @@ export class EditorComponent implements OnInit, OnChanges {
   }
 
   selectMention(mention: Mention<any>) {
-    this.selectedMention = mention;
-    let component = this.scenarioService.getSegmentComponent(mention.segment);
-    this.segmentItem = mention && new SegmentItem(component, mention.segment);
+    this.signal = this.signal.withMention(mention).withSegment(mention.segment);
+    this.signalChange.emit(this.signal);
   }
 
   selectAnnotation(annotation: Annotation<any>) {
-    this.selectedAnnotation = annotation;
-    let component = this.scenarioService.getAnnotationComponent(annotation);
-    this.annotationItem = annotation && new AnnotationItem(component, annotation);
+    this.signal = this.signal.withAnnotation(annotation);
+    this.signalChange.emit(this.signal);
   }
 }

@@ -33,6 +33,6 @@ export class ContainerViewComponent implements OnInit, OnChanges {
 
     const componentRef = viewContainerRef.createComponent<ContainerComponent<any, any>>(componentFactory);
     componentRef.instance.data = containerItem.data;
-    componentRef.instance.selected = containerItem.selected;
+    componentRef.instance.selection = containerItem.selection;
   }
 }

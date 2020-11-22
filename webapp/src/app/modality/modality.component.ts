@@ -6,6 +6,7 @@ import {le as lowerBound} from "binary-search-bounds";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {TimeRuler} from "../container";
 import {ContainerItem} from "../container/container-item";
+import {SignalSelection} from "../signal-selection";
 
 
 function compareByTimestamp(a: Signal, b: Signal): number {
@@ -42,14 +43,19 @@ export class ModalityComponent implements OnInit {
   signals: Signal[];
   signalEntries: Array<[number, Signal]>;
   selectedSignal: number = 0;
-  editSignal = false;
+  editSignal: boolean = false;
 
-  containerItem: ContainerItem<any, any>;
+  selection: SignalSelection;
 
   constructor(private scenarioService: ScenarioService, private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.loadSignals(this.modality);
+  }
+
+  onSliderSelection(idx: number) {
+    this.selection = new SignalSelection(idx, this.signals[idx], this.scenarioService);
+    console.log("signal", idx);
   }
 
   loadSignals(modality: string): void {
@@ -77,6 +83,7 @@ export class ModalityComponent implements OnInit {
 
     this.selectedSignal = 0;
     this.sliderOptions = options;
+    this.onSliderSelection(0);
   }
 
   setupRange(): void {
@@ -87,7 +94,7 @@ export class ModalityComponent implements OnInit {
     this.rangeOptions = rangeOptions;
   }
 
-  private timelinePercentageToIndex(percent: number, maxVal: number, minVal: number, scenario: Scenario, timestamps: number[]) {
+  private timelinePercentageToIndex(percent: number, maxVal: number, minVal: number, scenario: Scenario, timestamps: number[]): number {
     let time: number = percent * (scenario.end - scenario.start) + scenario.start;
     let lowerIdx = lowerBound(timestamps, time);
 
@@ -98,7 +105,7 @@ export class ModalityComponent implements OnInit {
     return time - timestamps[lowerIdx] <= timestamps[lowerIdx + 1] - time ? lowerIdx : lowerIdx + 1;
   }
 
-  private indexToTimelinePercentage(val: number, scenario: Scenario, signals: Signal[]) {
+  private indexToTimelinePercentage(val: number, scenario: Scenario, signals: Signal[]): number {
     return (signals[val].time.start - scenario.start)/(scenario.end -scenario.start);
   }
 
