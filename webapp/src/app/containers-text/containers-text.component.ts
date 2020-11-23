@@ -26,18 +26,24 @@ export class ContainersTextComponent implements OnInit, ContainerComponent<TextS
   }
 
   characterClass(idx: number) {
-    if (this.selection.segment && (<Offset> this.selection.segment).contains(idx)) {
-      return "selected";
-    }
-
-    if (this.data.mentions.flatMap(men => men.segment).some(seg => seg.contains(idx))) {
-      return "mentioned";
-    }
+    // if (this.selection.segment && (<Offset> this.selection.segment).contains(idx)) {
+    //   return "selected";
+    // }
+    //
+    // if (this.data.mentions.flatMap(men => men.segment).some(seg => seg.contains(idx))) {
+    //   return "mentioned";
+    // }
 
     return "plain";
   }
 
   counter(range: number) {
     return Array.from(Array(range).keys());
+  }
+
+  tokenClass(idx: number) {
+    if (this.selection.segment && (<Offset> this.selection.segment).contains(idx)) {
+      return "selected";
+    }
   }
 }

@@ -10,23 +10,16 @@ import {SignalSelection} from "../signal-selection";
 })
 export class EditorComponent implements OnInit {
   @Input() signal: SignalSelection;
-  @Output() signalChange = new EventEmitter<SignalSelection>();;
-
-  // selectedMention: Mention<any>;
-  // selectedAnnotation: Annotation<any>;
-  // segmentItem: SegmentItem<any>;
-  // annotationItem: AnnotationItem<any>;
+  @Output() signalChange = new EventEmitter<SignalSelection>();
 
   constructor(private scenarioService: ScenarioService) { }
 
   ngOnInit(): void {}
 
-  // ngOnChanges(changes: SimpleChanges) {
-  //   if (changes.signal.previousValue !== changes.signal.currentValue) {
-  //     this.selectedMention = null;
-  //     this.selectedAnnotation = null;
-  //   }
-  // }
+  addMention() {
+    this.signal.signal.mentions.push(new Mention<any>("", "new", [], [
+      new Annotation<any>("new", "display", "new", "", new Date().getTime())]));
+  }
 
   addAnnotation() {
     let mention = this.signal.mention;

@@ -2,18 +2,23 @@ div {
   display: inline-block;
 }
 
-span {
-  border: solid #9C1A1C;
+div.container {
+  display: block;
 }
 
-a.selected {
+span {
+  border: solid #9C1A1C;
+  padding-right: 3em;
+}
+
+.selected {
   color: #9C1A1C;
 }
 
-a.mentioned {
+.mentioned {
   color: #30799B;
 }
 
-a.plain {
+.plain {
   color: #000000;
 }

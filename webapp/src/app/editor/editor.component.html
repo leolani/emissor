@@ -14,6 +14,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <button mat-button (click)="addMention()">Add Mention</button>
   <mat-form-field *ngIf="signal.mention">
     <mat-label>Segments</mat-label>
     <mat-select [value]="signal.segment" (valueChange)="selectSegment($event)" name="segment">
