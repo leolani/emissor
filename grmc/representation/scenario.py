@@ -4,7 +4,7 @@ import os
 
 import json
 import uuid
-from typing import Iterable, Union, Dict, Optional, Tuple, TypeVar
+from typing import Iterable, Union, Dict, Tuple, TypeVar
 
 from grmc.representation.container import Container, TemporalContainer, Ruler, TemporalRuler, Sequence, ArrayContainer
 from grmc.representation.entity import Person, Object
@@ -27,7 +27,7 @@ class Annotation:
 
 
 class Mention:
-    def __init__(self, segment: Union[Ruler, Iterable[Ruler]], annotations: Iterable[Annotation]):
+    def __init__(self, segment: Iterable[Ruler], annotations: Iterable[Annotation]):
         self.segment = segment
         self.annotations = annotations
 
@@ -45,10 +45,10 @@ class Signal(Container[R, T]):
 
 class TextSignal(Signal[Sequence, str], Sequence[str]):
     def __init__(self, id_: Identifier, time: TemporalRuler, files: Iterable[str],
-                 length, mentions: Iterable[Mention]=None):
+                 length, mentions: Iterable[Mention]=None, seq=None):
         id_ = id_ if id_ else uuid.uuid4()
         Signal.__init__(self, Modality.TEXT, time, files, mentions)
-        Sequence.__init__(self, id_=id_, stop=length)
+        Sequence.__init__(self, id_=id_, seq=seq, stop=length)
 
 
 class ImageSignal(Signal[ArrayContainer, float], ArrayContainer[float]):

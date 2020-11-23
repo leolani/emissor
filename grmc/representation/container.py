@@ -27,6 +27,7 @@ class BaseContainer(Container[R, T]):
     def __init__(self, id_: Identifier, ruler: R) -> None:
         self.id = id_
         self.ruler = ruler
+        self.type = self.__class__.__name__
 
 
 class Index(Ruler):
@@ -53,30 +54,31 @@ class Sequence(BaseContainer[Index, T]):
 
 
 class MultiIndex(Ruler):
-    def __init__(self, container_id: Identifier, bounds: Tuple[Tuple[int,int], ...]) -> None:
+    def __init__(self, container_id: Identifier, bounds: Tuple[int, ...]) -> None:
         super().__init__(container_id)
         if len(bounds) < 2:
             raise ValueError("MultiIndex must have at least two dimensions, was " + str(len(bounds)))
         self.bounds = bounds
 
     def get_area_bounding_box(self, x_min: int, y_min: int, x_max: int, y_max: int) -> MultiIndex:
-        if x_min < self.bounds[0][0] or x_max >= self.bounds[0][1] \
-                or y_min < self.bounds[1][0] or y_max >= self.bounds[1][1]:
+        if x_min < self.bounds[0] or x_max >= self.bounds[2] \
+                or y_min < self.bounds[1] or y_max >= self.bounds[3]:
             raise ValueError("start and end must be within [%s, %s), was " + str(self.bounds))
 
-        return MultiIndex(self.container_id, ((x_min, x_max), (y_min, y_max)) + self.bounds[2:])
+        return MultiIndex(self.container_id, (x_min, y_min, x_max, y_max))
 
 
 class ArrayContainer(BaseContainer[MultiIndex, T]):
     def __init__(self, array: Union[tuple, list, np.ndarray] = None, id_: Identifier = None,
-                 bounds: Tuple[Tuple[int,int], ...] = None) -> None:
+                 bounds: Tuple[int, ...] = None) -> None:
         self.array = np.array(array) if array is not None else None
         id_ = id_ if id_ else uuid.uuid4()
-        bounds = bounds if bounds else tuple((0, upper) for upper in array.shape)
+        bounds = bounds if bounds else (0,0,0,0)
         super().__init__(id_, MultiIndex(id_, bounds))
 
     def __getitem__(self, bounding_box: MultiIndex) -> T:
-        return self.array[tuple(slice(b[0], b[1], 1) for b in bounding_box.bounds)]
+        b = bounding_box.bounds
+        return self.array[tuple(slice((b[0], b[1]), (b[1], b[3]), 1))]
 
 
 class TemporalRuler(Ruler):

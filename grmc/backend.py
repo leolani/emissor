@@ -77,9 +77,12 @@ def _ensure_modality_metadata(modality_metadata, scenario, modality):
     if modality.lower() == "text":
         text_path = get_path(scenario, modality)[:-5]
         csv_files = glob(os.path.join(text_path, "*.csv"))
-        utterances = pd.concat([pd.read_csv(f, quotechar='"', sep=',',skipinitialspace=True) for f in csv_files])
-        signals = [TextSignal(uuid.uuid4(), get_start_ruler(scenarioMeta), [], len(utt), [], seq=utt)
-                   for utt in utterances["utterance"]]
+        if len(csv_files):
+            utterances = pd.concat([pd.read_csv(f, quotechar='"', sep=',',skipinitialspace=True) for f in csv_files])
+            signals = [TextSignal(uuid.uuid4(), get_start_ruler(scenarioMeta), [], len(utt), [], seq=utt)
+                       for utt in utterances["utterance"]]
+        else:
+            signals = []
 
     if not os.path.isfile(modality_metadata):
         with open(modality_metadata, 'w') as json_file:
