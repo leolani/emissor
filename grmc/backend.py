@@ -1,13 +1,19 @@
 import os
-import uuid
 from glob import glob
+import pandas as pd
 
 import json
 import sys
+import uuid
+import jsonpickle
 
+from grmc.representation.container import TemporalRuler
 from grmc.representation.entity import Person, Gender
-from grmc.representation.scenario import Scenario, ScenarioContext, Modality
+from grmc.representation.scenario import Scenario, ScenarioContext, Modality, Signal, ImageSignal, TextSignal
 from grmc.representation.util import serializer
+
+jsonpickle.set_encoder_options('simplejson', sort_keys=True, indent=4)
+jsonpickle.set_preferred_backend('simplejson')
 
 base_path = sys.argv[0]
 
@@ -38,31 +44,50 @@ def list_scenarios():
 
 def load_scenario(scenario):
     scenario_metadata = get_path(scenario)
-    _ensure_scenario_metadata(scenario_metadata)
+    _ensure_scenario_metadata(scenario, scenario_metadata)
     with open(scenario_metadata) as json_file:
-        return json.load(json_file)
+        json_string = json_file.read()
+        return jsonpickle.decode(json_string)
 
 
-def _ensure_scenario_metadata(scenario_metadata):
+def _ensure_scenario_metadata(scenario, scenario_metadata):
     if not os.path.isfile(scenario_metadata):
-        scenario = Scenario(uuid.uuid4(), 0, 1,
+        scenario = Scenario(scenario, 0, 1,
                             ScenarioContext("robot_agent", _SPEAKER, [], []),
                             _DEFAULT_SIGNAL_METADATA)
         with open(scenario_metadata, 'w') as json_file:
-            json.dump(scenario, json_file, default=serializer, indent=2)
+            json_string = jsonpickle.encode(scenario, make_refs=False)
+            json_file.write(json_string)
 
 
 def load_modality(scenario, modality):
     modality_metadata = get_path(scenario, modality)
-    _ensure_modality_metadata(modality_metadata)
+    _ensure_modality_metadata(modality_metadata, scenario, modality)
     with open(modality_metadata) as json_file:
-        return json.load(json_file)
+        return jsonpickle.decode(json_file.read())
 
 
-def _ensure_modality_metadata(modality_metadata):
+def _ensure_modality_metadata(modality_metadata, scenario, modality):
+    scenarioMeta = load_scenario(scenario)
+    if modality.lower() == "image":
+        image_path = get_path(scenario, modality)[:-5]
+        images = glob(os.path.join(image_path, "*"))
+        signals = [ImageSignal(uuid.uuid4(), get_start_ruler(scenarioMeta), ["image/" + os.path.basename(image)], ((0, 0, 0, 0)))
+                   for image in images]
+    if modality.lower() == "text":
+        text_path = get_path(scenario, modality)[:-5]
+        csv_files = glob(os.path.join(text_path, "*.csv"))
+        utterances = pd.concat([pd.read_csv(f, quotechar='"', sep=',',skipinitialspace=True) for f in csv_files])
+        signals = [TextSignal(uuid.uuid4(), get_start_ruler(scenarioMeta), [], len(utt), [], seq=utt)
+                   for utt in utterances["utterance"]]
+
     if not os.path.isfile(modality_metadata):
         with open(modality_metadata, 'w') as json_file:
-            json.dump([], json_file, default=serializer, indent=2)
+            json_file.write(jsonpickle.encode(signals, make_refs=False))
+
+
+def get_start_ruler(scenarioMeta):
+    return TemporalRuler(scenarioMeta.id, scenarioMeta.start, scenarioMeta.start)
 
 
 def add_annotation(scenario, modality):

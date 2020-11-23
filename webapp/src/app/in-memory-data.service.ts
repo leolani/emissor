@@ -247,7 +247,7 @@ export class InMemoryDataService implements InMemoryDbService {
             ]
           }
         ],
-        "seq": "That is my brother Jim",
+        "seq": "That is my brother Jim".split(''),
         "id": "a6ecd306-e78a-4dd5-ba55-aa9827050e07"
       }
     ];

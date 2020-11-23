@@ -1,5 +1,6 @@
 <div class="container">
-    <a *ngFor="let idx of counter(data.text.length)" [class]="characterClass(idx)">{{data.text.charAt(idx)}}</a>
+  {{data.text}}
+    <a *ngFor="let idx = index" [class]="characterClass(idx)">{{data.text.charAt(idx)}}</a>
 </div>
 <div class="container">
   <span *ngFor="let token of tokens; let idx = index" [class]="tokenClass(idx)">

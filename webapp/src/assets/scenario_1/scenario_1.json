@@ -1,26 +1,44 @@
 {
-  "start_time": 0,
-  "end_time": 1,
-  "id": "1d6ce949-cbbf-4c0a-bcfc-8c619c9ec1bd",
-  "ruler": {
-    "type": "TemporalRuler",
-    "container_id": "1d6ce949-cbbf-4c0a-bcfc-8c619c9ec1bd",
-    "start": 0,
-    "end": 1
-  },
-  "context": {
-    "agent": "robot_agent",
-    "speaker": {
-      "id": "1007e3ef-10c4-43db-8f6d-e9635fb0173f",
-      "name": "Speaker",
-      "age": 50,
-      "gender": "UNDEFINED"
+    "context": {
+        "agent": "robot_agent",
+        "objects": [],
+        "persons": [],
+        "py/object": "grmc.representation.scenario.ScenarioContext",
+        "speaker": {
+            "age": 50,
+            "gender": {
+                "py/reduce": [
+                    {
+                        "py/type": "grmc.representation.entity.Gender"
+                    },
+                    {
+                        "py/tuple": [
+                            0
+                        ]
+                    }
+                ]
+            },
+            "id": {
+                "hex": "57a0df12d4614aa8a76745eb036a076c",
+                "py/object": "uuid.UUID"
+            },
+            "name": "Speaker",
+            "py/object": "grmc.representation.entity.Person"
+        }
     },
-    "persons": [],
-    "objects": []
-  },
-  "signals": {
-    "image": "./image.json",
-    "text": "./text.json"
-  }
+    "end": 1,
+    "id": "scenario_1",
+    "py/object": "grmc.representation.scenario.Scenario",
+    "ruler": {
+        "container_id": "scenario_1",
+        "end": 1,
+        "py/object": "grmc.representation.container.TemporalRuler",
+        "start": 0,
+        "type": "TemporalRuler"
+    },
+    "signals": {
+        "image": "./image.json",
+        "text": "./text.json"
+    },
+    "start": 0
 }

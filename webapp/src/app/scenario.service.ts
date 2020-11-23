@@ -19,15 +19,14 @@ import {ContainerComponent} from "./container/container.component";
   providedIn: 'root'
 })
 export class ScenarioService {
-  private scenarioEndpoint = "/api/scenario"
+  // private scenarioEndpoint = "/api/scenario"
+  private scenarioEndpoint = "https://localhost:5000/api/scenario"
   private resourcePath = "/assets"
 
   constructor(private http: HttpClient) { }
 
   listScenarios(): Observable<string[]> {
-    return this.http.get<Scenario[]>(this.scenarioEndpoint).pipe(
-      map((scenarios: Scenario[]) => scenarios.map(scenario => scenario.id))
-    );
+    return this.http.get<string[]>(this.scenarioEndpoint);
   }
 
   loadScenario(scenarioName: string): Observable<Scenario> {
@@ -35,8 +34,8 @@ export class ScenarioService {
   }
 
   loadSignals(scenarioName, modality: string): Observable<Signal[]> {
-    // return this.http.get<Signal[]>(this.scenarioEndpoint + "/" + scenarioName + "/" + modality)
-    return this.http.get<any[]>("/api/" + modality).pipe(
+    // return this.http.get<any[]>("/api/" + modality).pipe(
+    return this.http.get<Signal[]>(this.scenarioEndpoint + "/" + scenarioName + "/" + modality).pipe(
       map((signals: any[]) => signals.map(signal =>
         this.convertSignal(scenarioName, modality, signal, this.resourcePath)))
     );
@@ -52,7 +51,8 @@ export class ScenarioService {
         return new ImageSignal(signal.id, fileName, signal.time, imageMentions, imagePath);
       case "text":
         let textMentions = signal.mentions.map(this.convertMention);
-        return new TextSignal(signal.id, signal.seq, signal.time, textMentions, signal.seq);
+        let text = signal.seq.join('');
+        return new TextSignal(signal.id, text, signal.time, textMentions, text);
       default:
         throw Error("Unknown modality: " + modality);
     }

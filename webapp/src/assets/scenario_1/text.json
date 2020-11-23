@@ -1,0 +1,1260 @@
+[
+    {
+        "files": [],
+        "id": {
+            "hex": "73779bfc7c8645689d737d8245247fc1",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": {
+            "py/reduce": [
+                {
+                    "py/type": "grmc.representation.scenario.Modality"
+                },
+                {
+                    "py/tuple": [
+                        1
+                    ]
+                }
+            ]
+        },
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('73779bfc-7c86-4568-9d73-7d8245247fc1')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 39,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "T",
+                "h",
+                "i",
+                "s",
+                " ",
+                "i",
+                "s",
+                " ",
+                "a",
+                " ",
+                "p",
+                "i",
+                "c",
+                "t",
+                "u",
+                "r",
+                "e",
+                " ",
+                "o",
+                "f",
+                " ",
+                "m",
+                "e",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "m",
+                "y",
+                " ",
+                "s",
+                "o",
+                "n",
+                " ",
+                "S",
+                "a",
+                "m",
+                "."
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "a23d1182802a4368b7ed4d287fdc6357",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('a23d1182-802a-4368-b7ed-4d287fdc6357')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 58,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "I",
+                " ",
+                "a",
+                "m",
+                " ",
+                "n",
+                "o",
+                "t",
+                "e",
+                " ",
+                "s",
+                "u",
+                "r",
+                "e",
+                " ",
+                "w",
+                "h",
+                "e",
+                "n",
+                " ",
+                "t",
+                "h",
+                "i",
+                "s",
+                " ",
+                "p",
+                "i",
+                "c",
+                "t",
+                "u",
+                "r",
+                "e",
+                " ",
+                "w",
+                "a",
+                "s",
+                " ",
+                "t",
+                "a",
+                "k",
+                "e",
+                "n",
+                ".",
+                " ",
+                "M",
+                "a",
+                "y",
+                "b",
+                "e",
+                " ",
+                "i",
+                "n",
+                " ",
+                "2",
+                "0",
+                "0",
+                "2",
+                "."
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "c2cacae4bcf84440bd8553b88f889850",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('c2cacae4-bcf8-4440-bd85-53b88f889850')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "H",
+                "i"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "43fb3eec667e407aa0355386eb20a169",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('43fb3eec-667e-407a-a035-5386eb20a169')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 27,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "H",
+                "i",
+                " ",
+                "P",
+                "i",
+                "e",
+                "k",
+                ",",
+                " ",
+                "h",
+                "o",
+                "w",
+                " ",
+                "a",
+                "r",
+                "e",
+                " ",
+                "y",
+                "o",
+                "u",
+                " ",
+                "d",
+                "o",
+                "i",
+                "n",
+                "g",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "05c33856db3e4930ae31d6dbbd603514",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('05c33856-db3e-4930-ae31-d6dbbd603514')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 29,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "I",
+                " ",
+                "a",
+                "m",
+                " ",
+                "d",
+                "o",
+                "i",
+                "n",
+                "g",
+                " ",
+                "f",
+                "i",
+                "n",
+                "e",
+                ",",
+                " ",
+                "h",
+                "o",
+                "w",
+                " ",
+                "a",
+                "r",
+                "e",
+                " ",
+                "y",
+                "o",
+                "u",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "060aed6b78c94070babcb6926b5ffbab",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('060aed6b-78c9-4070-babc-b6926b5ffbab')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 26,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "T",
+                "e",
+                "l",
+                "l",
+                " ",
+                "m",
+                "e",
+                " ",
+                "a",
+                "b",
+                "o",
+                "u",
+                "t",
+                " ",
+                "y",
+                "o",
+                "u",
+                "r",
+                " ",
+                "f",
+                "a",
+                "m",
+                "i",
+                "l",
+                "y",
+                "."
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "6e09b09985bc40639d59646021c55083",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('6e09b099-85bc-4063-9d59-646021c55083')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 36,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "I",
+                " ",
+                "a",
+                "m",
+                " ",
+                "m",
+                "a",
+                "r",
+                "r",
+                "i",
+                "e",
+                "d",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "I",
+                " ",
+                "h",
+                "a",
+                "v",
+                "e",
+                " ",
+                "t",
+                "w",
+                "o",
+                " ",
+                "c",
+                "h",
+                "i",
+                "l",
+                "d",
+                "r",
+                "e",
+                "n"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "5543bfcf06e1477e9431ed85e4331374",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('5543bfcf-06e1-477e-9431-ed85e4331374')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 21,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "W",
+                "h",
+                "a",
+                "t",
+                " ",
+                "a",
+                "r",
+                "e",
+                " ",
+                "t",
+                "h",
+                "e",
+                "i",
+                "r",
+                " ",
+                "n",
+                "a",
+                "m",
+                "e",
+                "s",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "cea5d43844554d87a3547a6e45c93587",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('cea5d438-4455-4d87-a354-7a6e45c93587')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 42,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "M",
+                "y",
+                " ",
+                "d",
+                "a",
+                "u",
+                "g",
+                "h",
+                "t",
+                "e",
+                "r",
+                " ",
+                "i",
+                "s",
+                " ",
+                "c",
+                "a",
+                "l",
+                "l",
+                "e",
+                "d",
+                " ",
+                "N",
+                "i",
+                "q",
+                "e",
+                "e",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "m",
+                "y",
+                " ",
+                "s",
+                "o",
+                "n",
+                " ",
+                "S",
+                "a",
+                "m"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "c2d28f80aaf940caa4328ad90f044169",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('c2d28f80-aaf9-40ca-a432-8ad90f044169')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 32,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "W",
+                "h",
+                "a",
+                "t",
+                " ",
+                "i",
+                "s",
+                " ",
+                "t",
+                "h",
+                "e",
+                " ",
+                "n",
+                "a",
+                "m",
+                "e",
+                " ",
+                "o",
+                "f",
+                " ",
+                "y",
+                "o",
+                "u",
+                "r",
+                " ",
+                "s",
+                "p",
+                "o",
+                "u",
+                "s",
+                "e",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "b8cfdfd34a084de184fad47a052215d2",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('b8cfdfd3-4a08-4de1-84fa-d47a052215d2')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 10,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "1",
+                "6",
+                "0",
+                "3",
+                "1",
+                "3",
+                "9",
+                "0",
+                "0",
+                "8"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "d4925048fdbd430ab8416278d0e6fe51",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('d4925048-fdbd-430a-b841-6278d0e6fe51')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 75,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "T",
+                "h",
+                "a",
+                "t",
+                " ",
+                "i",
+                "s",
+                " ",
+                "m",
+                "e",
+                " ",
+                "h",
+                "o",
+                "l",
+                "d",
+                "i",
+                "n",
+                "g",
+                " ",
+                "a",
+                " ",
+                "s",
+                "o",
+                "c",
+                "c",
+                "e",
+                "r",
+                " ",
+                "b",
+                "a",
+                "l",
+                "l",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "m",
+                "y",
+                " ",
+                "d",
+                "a",
+                "u",
+                "g",
+                "h",
+                "t",
+                "e",
+                "r",
+                " ",
+                "N",
+                "i",
+                "q",
+                "e",
+                "e",
+                " ",
+                "i",
+                "n",
+                " ",
+                "a",
+                " ",
+                "s",
+                "w",
+                "i",
+                "m",
+                "m",
+                "i",
+                "n",
+                "g",
+                " ",
+                "p",
+                "o",
+                "o",
+                "l",
+                "."
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "eb8113081ee44aaab2b92c5110785fe1",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('eb811308-1ee4-4aaa-b2b9-2c5110785fe1')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 15,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "H",
+                "o",
+                "w",
+                " ",
+                "o",
+                "l",
+                "d",
+                " ",
+                "i",
+                "s",
+                " ",
+                "s",
+                "h",
+                "e",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "e1a34aeba20041d5a48c77654baea6fd",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('e1a34aeb-a200-41d5-a48c-77654baea6fd')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 43,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "T",
+                "h",
+                "i",
+                "s",
+                " ",
+                "p",
+                "i",
+                "c",
+                "t",
+                "u",
+                "r",
+                "e",
+                " ",
+                "w",
+                "a",
+                "s",
+                " ",
+                "t",
+                "a",
+                "k",
+                "e",
+                "n",
+                " ",
+                "i",
+                "n",
+                " ",
+                "2",
+                "0",
+                "1",
+                "0",
+                " ",
+                "i",
+                "n",
+                " ",
+                "P",
+                "o",
+                "r",
+                "t",
+                "u",
+                "g",
+                "a",
+                "l",
+                "."
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "255d49ed321b46fd8c32a4c9e1361d7b",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('255d49ed-321b-46fd-8c32-a4c9e1361d7b')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 25,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "S",
+                "h",
+                "e",
+                " ",
+                "w",
+                "a",
+                "s",
+                " ",
+                "1",
+                "6",
+                " ",
+                "y",
+                "e",
+                "a",
+                "r",
+                "s",
+                " ",
+                "o",
+                "l",
+                "d",
+                " ",
+                "t",
+                "h",
+                "e",
+                "n"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "c95e0328c5094381b5d2f5698d6b3ea3",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('c95e0328-c509-4381-b5d2-f5698d6b3ea3')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 24,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "S",
+                "o",
+                " ",
+                "s",
+                "h",
+                "e",
+                " ",
+                "i",
+                "s",
+                " ",
+                "n",
+                "o",
+                "w",
+                " ",
+                "2",
+                "7",
+                ",",
+                " ",
+                "r",
+                "i",
+                "g",
+                "h",
+                "t",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "cd6266edcccd490d85aea97c42e52cf1",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('cd6266ed-cccd-490d-85ae-a97c42e52cf1')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 37,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "H",
+                "e",
+                "h",
+                ",",
+                " ",
+                "t",
+                "h",
+                "e",
+                "r",
+                "e",
+                " ",
+                "i",
+                "s",
+                " ",
+                "t",
+                "h",
+                "a",
+                "t",
+                " ",
+                "s",
+                "o",
+                "c",
+                "c",
+                "e",
+                "r",
+                " ",
+                "b",
+                "a",
+                "l",
+                "l",
+                " ",
+                "a",
+                "g",
+                "a",
+                "i",
+                "n",
+                "."
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "2717690922e84bf184b9d540eb183293",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('27176909-22e8-4bf1-84b9-d540eb183293')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 37,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "D",
+                "o",
+                " ",
+                "y",
+                "o",
+                "u",
+                " ",
+                "h",
+                "a",
+                "v",
+                "e",
+                " ",
+                "a",
+                "n",
+                "y",
+                " ",
+                "b",
+                "r",
+                "o",
+                "t",
+                "h",
+                "e",
+                "r",
+                "s",
+                " ",
+                "a",
+                "n",
+                "d",
+                " ",
+                "s",
+                "i",
+                "s",
+                "t",
+                "e",
+                "r",
+                "s",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "174f47f82e0f46edb05ab68fd66e9929",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('174f47f8-2e0f-46ed-b05a-b68fd66e9929')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 27,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "I",
+                " ",
+                "s",
+                "h",
+                "o",
+                "w",
+                " ",
+                "y",
+                "o",
+                "u",
+                " ",
+                "a",
+                " ",
+                "f",
+                "a",
+                "m",
+                "i",
+                "l",
+                "y",
+                " ",
+                "p",
+                "i",
+                "c",
+                "t",
+                "u",
+                "r",
+                "e"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "d35251217a1a4c978f0b83e995e390e4",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('d3525121-7a1a-4c97-8f0b-83e995e390e4')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 39,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "W",
+                "h",
+                "o",
+                " ",
+                "i",
+                "s",
+                " ",
+                "t",
+                "h",
+                "a",
+                "t",
+                " ",
+                "o",
+                "l",
+                "d",
+                "e",
+                "r",
+                " ",
+                "w",
+                "o",
+                "m",
+                "a",
+                "n",
+                " ",
+                "w",
+                "i",
+                "t",
+                "h",
+                " ",
+                "g",
+                "r",
+                "e",
+                "y",
+                " ",
+                "h",
+                "a",
+                "i",
+                "r",
+                "?"
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "files": [],
+        "id": {
+            "hex": "57d8195ce0a74d109f4a5f482a1ac572",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.TEXT: 1>",
+        "py/object": "grmc.representation.scenario.TextSignal",
+        "ruler": {
+            "container_id": "UUID('57d8195c-e0a7-4d10-9f4a-5f482a1ac572')",
+            "py/object": "grmc.representation.container.Index",
+            "start": 0,
+            "stop": 15,
+            "type": "Index"
+        },
+        "seq": {
+            "py/tuple": [
+                "T",
+                "h",
+                "i",
+                "s",
+                " ",
+                "i",
+                "s",
+                " ",
+                "M",
+                "a",
+                "x",
+                "i",
+                "m",
+                "a",
+                "."
+            ]
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    }
+]

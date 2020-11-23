@@ -56,7 +56,6 @@ export class EditorComponent implements OnInit {
 
   selectAnnotation(annotation: Annotation<any>) {
     this.signal = this.signal.withAnnotation(annotation);
-    console.log("anntotation", annotation, this.signal);
     this.signalChange.emit(this.signal);
   }
 }

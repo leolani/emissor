@@ -1,0 +1,178 @@
+[
+    {
+        "array": null,
+        "files": [
+            "image/maxima.jpg"
+        ],
+        "id": {
+            "hex": "ca0449d2eadc4d2387158060b6688b61",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": {
+            "py/reduce": [
+                {
+                    "py/type": "grmc.representation.scenario.Modality"
+                },
+                {
+                    "py/tuple": [
+                        0
+                    ]
+                }
+            ]
+        },
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            "container_id": "UUID('ca0449d2-eadc-4d23-8715-8060b6688b61')",
+            "py/object": "grmc.representation.container.MultiIndex",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/niqee-2020-10-25 at 17.30.51.png"
+        ],
+        "id": {
+            "hex": "f3cee956b41c4d00b4373221721752be",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.IMAGE: 0>",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            "container_id": "UUID('f3cee956-b41c-4d00-b437-3221721752be')",
+            "py/object": "grmc.representation.container.MultiIndex",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/soccer-balll.png"
+        ],
+        "id": {
+            "hex": "6f69e596d5544d998b0ae578f9e8e8b8",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.IMAGE: 0>",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            "container_id": "UUID('6f69e596-d554-4d99-8b0a-e578f9e8e8b8')",
+            "py/object": "grmc.representation.container.MultiIndex",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/sam-2020-10-25 at 17.30.25.png"
+        ],
+        "id": {
+            "hex": "98c35827729d439c9803b6b18c482ad9",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.IMAGE: 0>",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            "container_id": "UUID('98c35827-729d-439c-9803-b6b18c482ad9')",
+            "py/object": "grmc.representation.container.MultiIndex",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/piek-sunglasses.jpg"
+        ],
+        "id": {
+            "hex": "bc598fcebd1b42aba463561c21f9ce5e",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [],
+        "modality": "<Modality.IMAGE: 0>",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            "container_id": "UUID('bc598fce-bd1b-42ab-a463-561c21f9ce5e')",
+            "py/object": "grmc.representation.container.MultiIndex",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 0,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 0,
+            "type": "TemporalRuler"
+        }
+    }
+]
