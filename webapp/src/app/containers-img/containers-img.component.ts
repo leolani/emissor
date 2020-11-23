@@ -55,6 +55,7 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
     if (changes.selection) {
       this.selected = changes.selection.currentValue.segment;
     }

@@ -22,11 +22,6 @@
 
       <div *ngIf="modality === 'text'" fxLayout="row" fxLayoutGap="5ex" class="overview">
         <app-text-view [signals]="signals" [selection]="selection"></app-text-view>
-<!--        <div fxFlex *ngFor="let signal of signalEntries"-->
-<!--            [class.selected]="signal[0] === selectedSignal"-->
-<!--            (click)="onSignalSelect(signal[0])" class="overview">-->
-<!--          <span class="badge">{{signal[1].id}}</span> {{signal[1].name}}-->
-<!--        </div>-->
       </div>
 
       <form>

@@ -19,6 +19,8 @@ export class EditorComponent implements OnInit {
   addMention() {
     this.signal.signal.mentions.push(new Mention<any>("", "new", [], [
       new Annotation<any>("new", "display", "new", "", new Date().getTime())]));
+    this.signal = this.signal.withMention(this.signal.signal.mentions.slice(-1)[0])
+    this.signalChange.emit(this.signal);
   }
 
   addAnnotation() {
@@ -31,13 +33,25 @@ export class EditorComponent implements OnInit {
       value: "",
       type: (previous && previous.type) || ""
     });
+    this.signal = this.signal.withAnnotation(mention.annotations.slice(-1)[0]);
+    this.signalChange.emit(this.signal);
   }
 
   addSegment() {
     let mention = this.signal.mention;
     let len = mention.segment.length;
     let previous = len && mention.segment[len - 1];
-    mention.segment.push(previous && JSON.parse(JSON.stringify(previous)));
+
+    let newSegment: any;
+    if (previous) {
+      newSegment = JSON.parse(JSON.stringify(previous));
+    } else {
+      newSegment = this.scenarioService.getSegmentFor(this.signal.signal)
+    }
+
+    mention.segment.push(newSegment);
+    this.signal = this.signal.withSegment(mention.segment.slice(-1)[0]);
+    this.signalChange.emit(this.signal);
   }
 
   selectMention(mention: Mention<any>) {

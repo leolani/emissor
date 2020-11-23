@@ -16,12 +16,14 @@ export interface Scenario {
 
 export class Signal {
   id: number;
+  type: string;
   name: string;
   time: TimeRuler;
   mentions: Mention<any>[];
 
-  constructor(id: number, name: string, time: TimeRuler, mentions: Mention<any>[]) {
+  constructor(id: number, type: string, name: string, time: TimeRuler, mentions: Mention<any>[]) {
     this.id = id;
+    this.type = type;
     this.name = name;
     this.time = time;
     this.mentions = mentions;
@@ -31,8 +33,8 @@ export class Signal {
 export class ImageSignal extends Signal {
   image: string;
 
-  constructor(id: number, name: string, time: TimeRuler, mentions: Mention<any>[], image: string) {
-    super(id, name, time, mentions);
+  constructor(id: number, type: string, name: string, time: TimeRuler, mentions: Mention<any>[], image: string) {
+    super(id, type, name, time, mentions);
     this.image = image;
   }
 }
@@ -40,8 +42,8 @@ export class ImageSignal extends Signal {
 export class TextSignal extends Signal {
   text: string;
 
-  constructor(id: number, name: string, time: TimeRuler, mentions: Mention<any>[], text: string) {
-    super(id, name, time, mentions);
+  constructor(id: number, type: string, name: string, time: TimeRuler, mentions: Mention<any>[], text: string) {
+    super(id, type, name, time, mentions);
     this.text = text;
   }
 }

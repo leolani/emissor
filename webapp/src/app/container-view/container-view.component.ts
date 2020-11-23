@@ -2,6 +2,7 @@ import {Component, ComponentFactoryResolver, Input, OnChanges, OnInit, SimpleCha
 import {ContainerDirective} from "../container/container.directive";
 import {ContainerComponent} from "../container/container.component";
 import {ContainerItem} from "../container/container-item";
+import {SignalSelection} from "../signal-selection";
 
 @Component({
   selector: 'app-container-view',
@@ -9,30 +10,30 @@ import {ContainerItem} from "../container/container-item";
   styleUrls: ['./container-view.component.css']
 })
 export class ContainerViewComponent implements OnInit, OnChanges {
-  @Input() container: ContainerItem<any, any>;
+  @Input() selection: SignalSelection;
 
   @ViewChild(ContainerDirective, {static: true}) containerHost: ContainerDirective;
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver) { }
 
   ngOnInit() {
-    this.container && this.loadComponent(this.container);
+    this.selection.containerItem && this.loadComponent(this.selection);
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    changes.container.currentValue
-        && changes.container.currentValue != changes.container.previousValue
-        && this.loadComponent(changes.container.currentValue);
+    changes.selection
+        && changes.selection.currentValue.containerItem
+        && this.loadComponent(changes.selection.currentValue);
   }
 
-  private loadComponent(containerItem: ContainerItem<any, any>) {
-    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(containerItem.component);
+  private loadComponent(selection: SignalSelection) {
+    const componentFactory = this.componentFactoryResolver.resolveComponentFactory(selection.containerItem.component);
 
     const viewContainerRef = this.containerHost.viewContainerRef;
     viewContainerRef.clear();
 
     const componentRef = viewContainerRef.createComponent<ContainerComponent<any, any>>(componentFactory);
-    componentRef.instance.data = containerItem.data;
-    componentRef.instance.selection = containerItem.selection;
+    componentRef.instance.data = selection.signal;
+    componentRef.instance.selection = selection;
   }
 }

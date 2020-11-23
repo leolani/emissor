@@ -10,10 +10,11 @@ import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boun
 import {AnnotationComponent} from "./annotation/annotation.component";
 import {AnnotationsDisplayComponent} from "./annotations-display/annotations-display.component";
 import {SegmentComponent} from "./segment/segment.component";
-import {Ruler} from "./container";
+import {BoundingBox, Offset, Ruler} from "./container";
 import {ContainersImgComponent} from "./containers-img/containers-img.component";
 import {ContainersTextComponent} from "./containers-text/containers-text.component";
 import {ContainerComponent} from "./container/container.component";
+
 
 @Injectable({
   providedIn: 'root'
@@ -48,11 +49,11 @@ export class ScenarioService {
         let imagePath = signal.files.length && (basePath + "/" + scenarioName + "/" + signal.files[0]);
         let imageMentions = signal.mentions.map(this.convertMention);
 
-        return new ImageSignal(signal.id, fileName, signal.time, imageMentions, imagePath);
+        return new ImageSignal(signal.id, signal.type, fileName, signal.time, imageMentions, imagePath);
       case "text":
         let textMentions = signal.mentions.map(this.convertMention);
         let text = signal.seq.join('');
-        return new TextSignal(signal.id, text, signal.time, textMentions, text);
+        return new TextSignal(signal.id, signal.type, text, signal.time, textMentions, text);
       default:
         throw Error("Unknown modality: " + modality);
     }
@@ -78,7 +79,7 @@ export class ScenarioService {
 
   getSegmentComponent(ruler: Ruler): Type<SegmentComponent<any>> {
     switch (ruler.type.toLowerCase()) {
-      case "multiindex":
+      case "bbox":
         return SegmentsBoundingboxComponent
       case "temporalruler":
         return SegmentsTimeComponent
@@ -95,6 +96,31 @@ export class ScenarioService {
         return ContainersImgComponent
       default:
         throw Error("Unsupported container type: " + selectedSignal.constructor.name);
+    }
+  }
+
+  getMentionFor(signal: Signal): Mention<any> {
+    return new Mention<any>("", "new", [], [
+      new Annotation<any>("new", "display", "new", "", new Date().getTime())]);
+  }
+
+  getAnnotationFor(type: string, signal: Signal): Annotation<any> {
+    switch (type.toLowerCase()) {
+      case "display":
+        return new Annotation<string>("new", "display", "new", "", new Date().getTime());
+      default:
+        throw Error("Unsupported type: " + signal.type);
+    }
+  }
+
+  getSegmentFor(signal: Signal): Ruler {
+    switch (signal.type.toLowerCase()) {
+      case "imagesignal":
+        return new BoundingBox("new", 0,0,0,0);
+      case "textsignal":
+        return new Offset(0, 0);
+      default:
+        throw Error("Unsupported type: " + signal.type);
     }
   }
 }

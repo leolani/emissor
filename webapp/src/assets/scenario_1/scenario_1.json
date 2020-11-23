@@ -19,7 +19,7 @@
                 ]
             },
             "id": {
-                "hex": "57a0df12d4614aa8a76745eb036a076c",
+                "hex": "aef6b085c82c4f578c97f6be8badc2c8",
                 "py/object": "uuid.UUID"
             },
             "name": "Speaker",
@@ -40,5 +40,6 @@
         "image": "./image.json",
         "text": "./text.json"
     },
-    "start": 0
+    "start": 0,
+    "type": "Scenario"
 }

@@ -32,8 +32,20 @@ export class SignalSelection {
         signal, this);
   }
 
-  withMention(mention: Mention<any>): SignalSelection {
+  private clone() {
     let selection = new SignalSelection(this.idx, this.signal, this.scenarioService);
+    selection.mention = this.mention;
+    selection.segment = this.segment;
+    selection.annotation = this.annotation;
+    selection.containerItem = this.containerItem;
+    selection.segmentItem = this.segmentItem;
+    selection.annotationItem = this.annotationItem;
+
+    return selection;
+  }
+
+  withMention(mention: Mention<any>): SignalSelection {
+    let selection = this.clone();
     selection.mention = mention;
     selection.segment = null;
     selection.annotation = null;
@@ -42,7 +54,7 @@ export class SignalSelection {
   }
 
   withSegment(segment: Ruler): SignalSelection {
-    let selection = new SignalSelection(this.idx, this.signal, this.scenarioService);
+    let selection = this.clone();
     selection.mention = this.mention;
     selection.segment = segment;
     selection.annotation = this.annotation;
@@ -53,12 +65,61 @@ export class SignalSelection {
   }
 
   withAnnotation(annotation: Annotation<any>): SignalSelection {
-    let selection = new SignalSelection(this.idx, this.signal, this.scenarioService);
+    let selection = this.clone();
     selection.mention = this.mention;
     selection.segment = this.segment;
     selection.annotation = annotation;
 
     selection.annotationItem = new AnnotationItem<any>(this.scenarioService.getAnnotationComponent(annotation), annotation);
+
+    return selection;
+  }
+
+  addMention(select = true): SignalSelection {
+    let selection = this.clone();
+    let newMention = this.scenarioService.getMentionFor(selection.signal);
+    selection.signal.mentions.push(newMention);
+
+    if (select) {
+      selection = selection.withMention(newMention);
+    }
+
+    return selection;
+  }
+
+  addAnnotation(type, select = true): SignalSelection {
+    let selection = this.clone();
+
+    let newAnnotation = this.scenarioService.getAnnotationFor(type, selection.signal);
+    selection.mention.annotations.push(newAnnotation);
+
+    if (select) {
+      selection = selection.withAnnotation(newAnnotation);
+    }
+
+    return selection;
+  }
+
+  addSegment(type = null, select = true): SignalSelection {
+    let selection = this.clone();
+
+    let mention = selection.mention;
+    let len = mention.segment.length;
+    let previous = mention.segment.length && mention.segment.slice(-1)[0];
+
+    let newSegment: any;
+    if (type) {
+      throw Error();
+    } else if (previous) {
+      newSegment = JSON.parse(JSON.stringify(previous));
+    } else {
+      newSegment = this.scenarioService.getSegmentFor(selection.signal)
+    }
+
+    mention.segment.push(newSegment);
+    if (select) {
+      selection = selection.withSegment(newSegment);
+    }
 
     return selection;
   }
