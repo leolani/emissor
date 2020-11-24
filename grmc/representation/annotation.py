@@ -1,6 +1,7 @@
 # Define Annotation Class
 from __future__ import annotations
 import enum
+from dataclasses import dataclass
 
 import uuid
 from rdflib import URIRef, Namespace
@@ -16,7 +17,6 @@ friends_namespace = Namespace("http://cltl.nl/leolani/friends/")
 data_namespace = Namespace("http://cltl.nl/combot/signal/")
 predicate_namespace = Namespace("http://cltl.nl/combot/predicate/")
 
-
 class ImageLabel(enum.Enum):
     FACE = 0
 
@@ -27,17 +27,17 @@ class EntityType(enum.Enum):
     OBJECT = 2
 
 
+@dataclass
 class Entity:
-    def __init__(self, id: URIRef, type: EntityType) -> None:
-        self.id = id
-        self.type = type
+    id: URIRef
+    type: EntityType
 
 
+@dataclass
 class Triple:
-    def __init__(self, subject: Entity, predicate: URIRef, object_: Entity) -> None:
-        self.subject = subject
-        self.predicate = predicate
-        self.object = object_
+    subject: Entity
+    predicate: URIRef
+    object: Entity
 
     # TODO make this more generic
     @classmethod
@@ -47,13 +47,14 @@ class Triple:
                    Entity(friends_namespace.term(object_id), EntityType.FRIEND))
 
 
+@dataclass
 class Token(AtomicContainer):
-    def __init__(self, value: str) -> None:
-        AtomicContainer.__init__(self, value)
+    pass
 
 
+@dataclass
 class Utterance(Sequence):
-    def __init__(self, chat_id: Identifier, utterance: str, tokens: Iterable[Token], id_: Identifier = None) -> None:
-        self.chat_id = chat_id if chat_id else uuid.uuid4()
-        self.utterance = utterance
-        Sequence.__init__(self, tuple(tokens))
+    chat_id: Identifier
+    utterance: str
+    tokens: Tuple[Token]
+    id_: Identifier

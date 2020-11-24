@@ -156,4 +156,9 @@ export class ModalityComponent implements OnInit {
 
     return this.sanitizer.bypassSecurityTrustUrl(uri);
   }
+
+  save() {
+    this.scenarioService.saveSignal(this.scenario.id, this.selection.signal);
+  }
+
 }

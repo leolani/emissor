@@ -1,6 +1,7 @@
 # Define Annotation Class
 import enum
 import os
+from dataclasses import dataclass
 
 import json
 import uuid
@@ -18,76 +19,65 @@ class Modality(enum.Enum):
     VIDEO = 3
 
 
+@dataclass
 class Annotation:
-    def __init__(self, value: object, source: Identifier, timestamp: int):
-        self.type = value.__class__.__name__
-        self.value = value
-        self.source = source
-        self.timestamp = timestamp
+    value: object
+    source: Identifier
+    timestamp: int
 
+    @property
+    def type(self):
+        return value.__class__.__name__
 
+@dataclass
 class Mention:
-    def __init__(self, segment: Iterable[Ruler], annotations: Iterable[Annotation]):
-        self.segment = segment
-        self.annotations = annotations
+    segment: Iterable[Ruler]
+    annotations: Iterable[Annotation]
 
 
 R = TypeVar('R', bound=Ruler)
 T = TypeVar('T')
+@dataclass
 class Signal(Container[R, T]):
-    def __init__(self, modality: Modality, time: TemporalRuler, files: Iterable[str],
-                 mentions: Iterable[Mention]=None) -> None:
-        self.modality = modality
-        self.time = time
-        self.files = files
-        self.mentions = mentions if mentions is not None else []
+    modality: Modality
+    time: TemporalRuler
+    files: Iterable[str]
+    mentions: Iterable[Mention]
 
 
+@dataclass
 class TextSignal(Signal[Sequence, str], Sequence[str]):
-    def __init__(self, id_: Identifier, time: TemporalRuler, files: Iterable[str],
-                 length, mentions: Iterable[Mention]=None, seq=None):
-        id_ = id_ if id_ else uuid.uuid4()
-        Signal.__init__(self, Modality.TEXT, time, files, mentions)
-        Sequence.__init__(self, id_=id_, seq=seq, stop=length)
+    pass
 
 
+@dataclass
 class ImageSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
-    def __init__(self, id_: Identifier, time: TemporalRuler, files: Iterable[str],
-                 bounds: Tuple[Tuple[int,int], ...], mentions: Iterable[Mention]=None) -> None:
-        id_ = id_ if id_ else uuid.uuid4()
-        Signal.__init__(self, Modality.IMAGE, time, files, mentions)
-        ArrayContainer.__init__(self, id_=id_, bounds=bounds)
+    pass
 
 
+@dataclass
 class AudioSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
-    def __init__(self, id_: Identifier, time: TemporalRuler, files: Iterable[str],
-                 mentions: Iterable[Mention]=None) -> None:
-        id_ = id_ if id_ else uuid.uuid4()
-        Signal.__init__(self, Modality.AUDIO, time, files, mentions)
-        ArrayContainer.__init__(self, id_=id_, bounds=None)
+    pass
 
 
+@dataclass
 class VideoSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
-    def __init__(self, id_: Identifier, time: TemporalRuler, files: Iterable[str],
-                 mentions: Iterable[Mention]=None) -> None:
-        id_ = id_ if id_ else uuid.uuid4()
-        Signal.__init__(self, Modality.VIDEO, time, files, mentions)
-        ArrayContainer.__init__(self, id_=id_, bounds=None)
+    pass
 
-
+@dataclass
 class ScenarioContext:
-    def __init__(self, agent: Identifier, speaker: Person, persons: Iterable[Person], objects: Iterable[Object]) -> None:
-        self.agent = agent
-        self.speaker = speaker
-        self.persons = persons
-        self.objects = objects
+    agent: Identifier
+    speaker: Person
+    persons: Iterable[Person]
+    objects: Iterable[Object]
 
-
+@dataclass
 class Scenario(TemporalContainer):
-    def __init__(self, id_: Identifier, start: int, end: int, context: ScenarioContext, signals: Dict[Modality, str]) -> None:
-        super().__init__(start, end, id_=id_)
-        self.context = context
-        self.signals = {key.name.lower(): val for key, val in signals.items()}
+    identifier: Identifier
+    start: int
+    end: int
+    context: ScenarioContext
+    signals: Dict[Modality, str]
 
 
 # TODO Just a list or with some structure, e.g. relate the ruler in the file (dict: time -> event)

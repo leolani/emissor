@@ -8,6 +8,12 @@ from typing import Union
 Identifier = Union[URIRef, uuid.UUID, str, None]
 
 
+class Typed:
+    @property
+    def type(self) -> str:
+        return self.__class__.__name__
+
+
 def serializer(object):
     if isinstance(object, enum.Enum):
         return object.name

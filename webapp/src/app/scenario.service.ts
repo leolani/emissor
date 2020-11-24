@@ -2,7 +2,7 @@ import {Injectable, Type} from '@angular/core';
 import {Observable} from 'rxjs';
 import {ImageSignal, Scenario, Signal, TextSignal} from "./scenario";
 
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from "rxjs/operators";
 import {Annotation, Mention} from "./annotation";
 import {SegmentsTimeComponent} from "./segments-time/segments-time.component";
@@ -40,6 +40,11 @@ export class ScenarioService {
       map((signals: any[]) => signals.map(signal =>
         this.convertSignal(scenarioName, modality, signal, this.resourcePath)))
     );
+  }
+
+  saveSignal(scenario: string, signal :Signal) {
+    this.http.post(this.scenarioEndpoint + "/" + scenario + "/" + signal.type + "/" + signal.id,
+      JSON.stringify(signal), this.getJSONHeaders()).subscribe();
   }
 
   convertSignal(scenarioName: string, modality: string, signal: any, basePath: string) {
@@ -122,6 +127,14 @@ export class ScenarioService {
       default:
         throw Error("Unsupported type: " + signal.type);
     }
+  }
+
+  private getJSONHeaders(): any {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    });
+
+    return {headers};
   }
 }
 

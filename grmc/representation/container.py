@@ -1,19 +1,20 @@
 # Define Annotation Class
 from __future__ import annotations
 
+from dataclasses import dataclass
+
 import json
 import numpy as np
 import uuid
-from typing import Union, TypeVar, Generic, Iterable, Tuple
+from typing import Union, TypeVar, Generic, Iterable, Tuple, Type
 
-from grmc.representation.util import serializer, Identifier
+from grmc.representation.util import serializer, Identifier, Typed
 
 
-class Ruler:
+@dataclass
+class Ruler(Typed):
     """Base type of Rulers that allow to identify a segment relative to a ruler in a signal"""
-    def __init__(self, container_id: Identifier):
-        self.type = self.__class__.__name__
-        self.container_id = container_id
+    container_id: Identifier
 
 
 R = TypeVar('R', bound=Ruler)
@@ -23,18 +24,16 @@ class Container(Generic[R, T]):
         raise NotImplementedError()
 
 
-class BaseContainer(Container[R, T]):
-    def __init__(self, id_: Identifier, ruler: R) -> None:
-        self.id = id_
-        self.ruler = ruler
-        self.type = self.__class__.__name__
+@dataclass
+class BaseContainer(Container[R, T], Typed):
+    identifier: Identifier
+    ruler: R
 
 
+@dataclass
 class Index(Ruler):
-    def __init__(self, container_id: Identifier, start: int, stop: int):
-        super().__init__(container_id)
-        self.start = start
-        self.stop = stop
+    start: int
+    stop: int
 
     def get_offset(self, start: int, end: int) -> Index:
         if start < self.start or end > self.stop:
@@ -43,22 +42,24 @@ class Index(Ruler):
         return Index(self.container_id, start, end)
 
 
+@dataclass
 class Sequence(BaseContainer[Index, T]):
-    def __init__(self, seq: Iterable[T] = None, id_: Identifier = None, start=0, stop=None) -> None:
-        self.seq = tuple(seq) if seq is not None else None
-        id_ = id_ if id_ else uuid.uuid4()
-        super().__init__(id_, Index(id_, start, stop if stop is not None else len(self.seq)))
+    seq: Tuple[T]
+    start: int = 0
+    stop: int = 0
+
+    @classmethod
+    def from_seq(cls: Type[T], seq: Iterable[object]) -> T:
+        seq_tuple = tuple(seq)
+        return cls(uuid.uuid4(), Index(None, 0, len(seq_tuple)), seq_tuple)
 
     def __getitem__(self, offset: Index) -> T:
         return self.seq[offset.start:offset.stop]
 
 
+@dataclass
 class MultiIndex(Ruler):
-    def __init__(self, container_id: Identifier, bounds: Tuple[int, ...]) -> None:
-        super().__init__(container_id)
-        if len(bounds) < 2:
-            raise ValueError("MultiIndex must have at least two dimensions, was " + str(len(bounds)))
-        self.bounds = bounds
+    bounds: Tuple[int, int, int, int]
 
     def get_area_bounding_box(self, x_min: int, y_min: int, x_max: int, y_max: int) -> MultiIndex:
         if x_min < self.bounds[0] or x_max >= self.bounds[2] \
@@ -68,24 +69,29 @@ class MultiIndex(Ruler):
         return MultiIndex(self.container_id, (x_min, y_min, x_max, y_max))
 
 
+@dataclass
 class ArrayContainer(BaseContainer[MultiIndex, T]):
-    def __init__(self, array: Union[tuple, list, np.ndarray] = None, id_: Identifier = None,
-                 bounds: Tuple[int, ...] = None) -> None:
-        self.array = np.array(array) if array is not None else None
-        id_ = id_ if id_ else uuid.uuid4()
-        bounds = bounds if bounds else (0,0,0,0)
-        super().__init__(id_, MultiIndex(id_, bounds))
+    array: Union[tuple, list, np.ndarray]
+
+    @classmethod
+    def from_array(cls: Type[T], array: Union[tuple, list, np.ndarray]) -> T:
+        value = np.array(array)
+        ruler = MultiIndex(None, (0, 0, value.shape[0], value.shape[1]))
+        return cls(uuid.uuid4(), ruler, value)
+
+    @property
+    def bounds(self):
+        return self.ruler.bounds
 
     def __getitem__(self, bounding_box: MultiIndex) -> T:
         b = bounding_box.bounds
-        return self.array[tuple(slice((b[0], b[1]), (b[1], b[3]), 1))]
+        return self.array[b[0]:b[1], b[1]:b[3]]
 
 
+@dataclass
 class TemporalRuler(Ruler):
-    def __init__(self, container_id: Identifier, start: int, end: int) -> None:
-        super().__init__(container_id)
-        self.start = start
-        self.end = end
+    start: int
+    end: int
 
     def get_time_segment(self, start: int, end: int) -> TemporalRuler:
         if start < self.start or end >= self.end:
@@ -94,26 +100,32 @@ class TemporalRuler(Ruler):
         return TemporalRuler(self.container_id, start, end)
 
 
+@dataclass
 class TemporalContainer(BaseContainer[TemporalRuler, TemporalRuler]):
-    def __init__(self, start: int, end: int, id_: Identifier = None) -> None:
-        id_ = id_ if id_ else uuid.uuid4()
-        self.start = start
-        self.end = end
-        super().__init__(id_, TemporalRuler(id_, start, end))
+    @classmethod
+    def from_range(cls: Type[T], start: int, end: int) -> T:
+        return cls(uuid.uuid4(), TemporalRuler(None, start, end))
+
+    @property
+    def start(self):
+        return self.ruler.start
+
+    @property
+    def end(self):
+        return self.ruler.end
 
     def __getitem__(self, segment: TemporalRuler) -> TemporalRuler:
         return segment
 
 
+@dataclass
 class AtomicRuler(Ruler):
     pass
 
 
+@dataclass
 class AtomicContainer(BaseContainer[AtomicRuler, T]):
-    def __init__(self, value: T, id_: Identifier = None) -> None:
-        self.value = value
-        id_ = id_ if id_ else uuid.uuid4()
-        super().__init__(id_, AtomicRuler(id_))
+    value: T
 
     def __getitem__(self, segment: AtomicRuler) -> T:
         if not segment.container_id == self.id:
@@ -125,19 +137,19 @@ class AtomicContainer(BaseContainer[AtomicRuler, T]):
 if __name__ == "__main__":
     from pprint import pprint
 
-    tokens = Sequence(["I", "am", "in", "Amsterdam"])
+    tokens = Sequence.from_seq(["I", "am", "in", "Amsterdam"])
     token_offset = tokens.ruler.get_offset(0, 1)
     token_segment = tokens[token_offset]
     pprint(token_segment)
     print(json.dumps(tokens, default=serializer, indent=2))
 
-    array = ArrayContainer(np.zeros((5,5,3), dtype=int))
+    array = ArrayContainer.from_array(np.zeros((5,5,3), dtype=int))
     bbox = array.ruler.get_area_bounding_box(0,0,2,2)
     area = array[bbox]
     pprint(area)
     print(json.dumps(array, default=serializer, indent=2))
 
-    period = TemporalContainer(0, 1000)
+    period = TemporalContainer.from_range(0, 1000)
     time_segment = period.ruler.get_time_segment(10,100)
     sub_period = period[time_segment]
     print(sub_period)

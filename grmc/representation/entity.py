@@ -25,27 +25,23 @@ class Gender(enum.Enum):
     OTHER = 3
 
 
+@dataclass
 class Instance:
-    def __init__(self, id: Identifier):
-        self.id = id if id else uuid.uuid4()
-        ### in GRaSP instances have a list of mentions which are all the segments that have been annotated with "reference" to this mention, these all get the grasp:denotedBy relation
-        ### Do we want to do the same thing here? This would be a reverse index of (a subset of) the annotations.
+    identifier: Identifier
 
 
+@dataclass
 class Object(Instance):
-    def __init__(self, id: Identifier, label: str):
-        super().__init__(id)
-        self.label = label
+    label: str
 
 
+@dataclass
 class Person(Instance):
-    def __init__(self, id: Identifier, name: str, age: int, gender: Gender):
-        super().__init__(id)
-        self.name = name  # this could be a list of names
-        #self.pronoun = pronoun # this could be a list of pronouns
-        self.age = age # this should be changed to day of birth
-        self.gender = gender
+    name: str
+    age: int
+    gender: Gender
 
 
+@dataclass
 class Friend(Person):
     pass

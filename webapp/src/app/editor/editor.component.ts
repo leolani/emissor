@@ -12,6 +12,8 @@ export class EditorComponent implements OnInit {
   @Input() signal: SignalSelection;
   @Output() signalChange = new EventEmitter<SignalSelection>();
 
+  annotationType: string;
+
   constructor(private scenarioService: ScenarioService) { }
 
   ngOnInit(): void {}
@@ -24,16 +26,7 @@ export class EditorComponent implements OnInit {
   }
 
   addAnnotation() {
-    let mention = this.signal.mention;
-    let len = mention.annotations.length;
-    let previous = len && mention.annotations[len - 1];
-    mention.annotations.push({
-      src: (previous && previous.src) || "",
-      timestamp: new Date().getTime(),
-      value: "",
-      type: (previous && previous.type) || ""
-    });
-    this.signal = this.signal.withAnnotation(mention.annotations.slice(-1)[0]);
+    this.signal = this.signal.addAnnotation(this.annotationType);
     this.signalChange.emit(this.signal);
   }
 
