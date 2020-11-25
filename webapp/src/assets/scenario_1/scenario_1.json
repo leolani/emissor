@@ -1,0 +1,41 @@
+{
+    "context": {
+        "agent": "robot_agent",
+        "objects": [],
+        "persons": [],
+        "py/object": "grmc.representation.scenario.ScenarioContext",
+        "speaker": {
+            "age": 50,
+            "gender": {
+                "py/reduce": [
+                    {
+                        "py/type": "grmc.representation.entity.Gender"
+                    },
+                    {
+                        "py/tuple": [
+                            0
+                        ]
+                    }
+                ]
+            },
+            "id": {
+                "hex": "73e3de79ea7c4347bbcc192d157aa2fc",
+                "py/object": "uuid.UUID"
+            },
+            "name": "Speaker",
+            "py/object": "grmc.representation.entity.Person"
+        }
+    },
+    "id": "scenario_1",
+    "py/object": "grmc.representation.scenario.Scenario",
+    "ruler": {
+        "container_id": null,
+        "end": 1603139040,
+        "py/object": "grmc.representation.container.TemporalRuler",
+        "start": 1603139000
+    },
+    "signals": {
+        "image": "./image.json",
+        "text": "./text.json"
+    }
+}

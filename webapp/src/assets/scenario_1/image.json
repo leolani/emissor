@@ -1,0 +1,287 @@
+[
+    {
+        "array": null,
+        "files": [
+            "image/maxima.jpg"
+        ],
+        "id": {
+            "hex": "3e6c987491f145af8ac8838f5b6a1149",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "py/object": "grmc.representation.scenario.Annotation",
+                        "source": "annotation_tool",
+                        "timestamp": 1606327126,
+                        "value": "maxima"
+                    }
+                ],
+                "py/object": "grmc.representation.scenario.Mention",
+                "segment": [
+                    {
+                        "bounds": {
+                            "py/tuple": [
+                                0,
+                                0,
+                                250,
+                                131
+                            ]
+                        },
+                        "container_id": null,
+                        "py/object": "grmc.representation.container.MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    250,
+                    131
+                ]
+            },
+            "container_id": null,
+            "py/object": "grmc.representation.container.MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 1603139000,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 1603139000
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/niqee-2020-10-25 at 17.30.51.png"
+        ],
+        "id": {
+            "hex": "1cbcc306a34a40809cb9de120932c16b",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "py/object": "grmc.representation.scenario.Annotation",
+                        "source": "annotation_tool",
+                        "timestamp": 1606327126,
+                        "value": "niqee-2020-10-25 at 17.30.51"
+                    }
+                ],
+                "py/object": "grmc.representation.scenario.Mention",
+                "segment": [
+                    {
+                        "bounds": {
+                            "py/tuple": [
+                                0,
+                                0,
+                                1158,
+                                775
+                            ]
+                        },
+                        "container_id": null,
+                        "py/object": "grmc.representation.container.MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    1158,
+                    775
+                ]
+            },
+            "container_id": null,
+            "py/object": "grmc.representation.container.MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 1603139000,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 1603139000
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/soccer-balll.png"
+        ],
+        "id": {
+            "hex": "95d6f9c56a7d49b9879fa90b20aca959",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "py/object": "grmc.representation.scenario.Annotation",
+                        "source": "annotation_tool",
+                        "timestamp": 1606327126,
+                        "value": "soccer-balll"
+                    }
+                ],
+                "py/object": "grmc.representation.scenario.Mention",
+                "segment": [
+                    {
+                        "bounds": {
+                            "py/tuple": [
+                                0,
+                                0,
+                                196,
+                                194
+                            ]
+                        },
+                        "container_id": null,
+                        "py/object": "grmc.representation.container.MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    196,
+                    194
+                ]
+            },
+            "container_id": null,
+            "py/object": "grmc.representation.container.MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 1603139000,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 1603139000
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/sam-2020-10-25 at 17.30.25.png"
+        ],
+        "id": {
+            "hex": "d1fd59386a184cb39c9e3e9060b90bb2",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "py/object": "grmc.representation.scenario.Annotation",
+                        "source": "annotation_tool",
+                        "timestamp": 1606327126,
+                        "value": "sam-2020-10-25 at 17.30.25"
+                    }
+                ],
+                "py/object": "grmc.representation.scenario.Mention",
+                "segment": [
+                    {
+                        "bounds": {
+                            "py/tuple": [
+                                0,
+                                0,
+                                838,
+                                492
+                            ]
+                        },
+                        "container_id": null,
+                        "py/object": "grmc.representation.container.MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    838,
+                    492
+                ]
+            },
+            "container_id": null,
+            "py/object": "grmc.representation.container.MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 1603139000,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 1603139000
+        }
+    },
+    {
+        "array": null,
+        "files": [
+            "image/piek-sunglasses.jpg"
+        ],
+        "id": {
+            "hex": "3f93ce911d11437aa925d14895267a57",
+            "py/object": "uuid.UUID"
+        },
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "py/object": "grmc.representation.scenario.Annotation",
+                        "source": "annotation_tool",
+                        "timestamp": 1606327126,
+                        "value": "piek-sunglasses"
+                    }
+                ],
+                "py/object": "grmc.representation.scenario.Mention",
+                "segment": [
+                    {
+                        "bounds": {
+                            "py/tuple": [
+                                0,
+                                0,
+                                188,
+                                250
+                            ]
+                        },
+                        "container_id": null,
+                        "py/object": "grmc.representation.container.MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "py/object": "grmc.representation.scenario.ImageSignal",
+        "ruler": {
+            "bounds": {
+                "py/tuple": [
+                    0,
+                    0,
+                    188,
+                    250
+                ]
+            },
+            "container_id": null,
+            "py/object": "grmc.representation.container.MultiIndex"
+        },
+        "time": {
+            "container_id": "scenario_1",
+            "end": 1603139000,
+            "py/object": "grmc.representation.container.TemporalRuler",
+            "start": 1603139000
+        }
+    }
+]
