@@ -1,26 +1,23 @@
 import os
 from glob import glob
-from typing import Iterable
 
-import jsonpickle
 import pandas as pd
 import sys
 import time
 import uuid
 from PIL import Image
+from typing import Iterable, Optional
 
 from grmc.cache import ScenarioCache
 from grmc.representation.container import TemporalRuler
 from grmc.representation.entity import Person, Gender
 from grmc.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation
-
-jsonpickle.set_encoder_options('simplejson', sort_keys=True, indent=4)
-jsonpickle.set_preferred_backend('simplejson')
+from grmc.representation.util import unmarshal, marshal
 
 base_path = sys.argv[0]
 
-_SPEAKER = Person(uuid.uuid4(), "Speaker", 50, Gender.UNDEFINED)
+_SPEAKER = Person(str(uuid.uuid4()), "Speaker", 50, Gender.UNDEFINED)
 _DEFAULT_SIGNALS = {
     Modality.IMAGE.name.lower(): "./image.json",
     Modality.TEXT.name.lower(): "./text.json"
@@ -31,7 +28,7 @@ def _get_base():
     return "webapp/src/assets"
 
 
-def _get_path(scenario_name, modality: str = None, file: str = None, extension=".json"):
+def _get_path(scenario_name, modality: str = None, file: str = None, extension: Optional[str] = ".json"):
     path = os.path.join(_get_base(), scenario_name)
     if modality:
         path = os.path.join(path, modality)
@@ -79,7 +76,7 @@ def _load_image(image, scenario_meta):
 
 def _create_text_signal(utt, scenario_meta: Scenario, file: str, idx: int):
     timestamp = utt['time'] if 'time' in utt else scenario_meta.start
-    file_idx = file #+ "#" + str(idx)
+    file_idx = file + "#" + str(idx)
 
     mentions = []
 
@@ -123,7 +120,7 @@ class Backend:
         self._ensure_scenario(scenario_id, scenario_path)
         with open(scenario_path) as json_file:
             json_string = json_file.read()
-            scenario = jsonpickle.decode(json_string)
+            scenario = unmarshal(json_string)
 
         self._cache = ScenarioCache()
 
@@ -137,17 +134,17 @@ class Backend:
                                                 ScenarioContext("robot_agent", _SPEAKER, [], []),
                                                 _DEFAULT_SIGNALS)
             with open(scenario_meta_path, 'w') as json_file:
-                json_string = jsonpickle.encode(scenario_id, make_refs=False)
+                json_string = marshal(scenario_id)
                 json_file.write(json_string)
 
     def load_modality(self, scenario_id, modality):
-        # if modality in self._cache:
-        #     return self._cache[modality].values()
+        if modality in self._cache:
+            return self._cache[modality].values()
 
         modality_meta_path = _get_path(scenario_id, modality)
         self._ensure_modality_metadata(modality_meta_path, scenario_id, modality)
         with open(modality_meta_path) as json_file:
-            signals = jsonpickle.decode(json_file.read())
+            signals = unmarshal(json_file.read())
 
         self._cache[modality] = signals
 
@@ -172,9 +169,9 @@ class Backend:
 
         if not os.path.isfile(modality_meta_path):
             with open(modality_meta_path, 'w') as json_file:
-                json_file.write(jsonpickle.encode(signals, make_refs=False))
+                json_file.write(marshal(signals))
 
     def save_signal(self, name, signal):
         self._cache[signal.modality][signal.id] = signal
         with open(_get_path(name, signal.modality), 'w') as json_file:
-            json_file.write(jsonpickle.encode(self._cache[signal.modality].values(), make_refs=False))
+            json_file.write(marshal(self._cache[signal.modality].values()))

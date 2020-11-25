@@ -1,7 +1,5 @@
 # Define Annotation Class
-import dataclasses
 import enum
-import inspect
 import os
 from abc import ABC
 from dataclasses import dataclass
@@ -11,7 +9,7 @@ import uuid
 from typing import Iterable, Dict, TypeVar, Type, Generic, Any, List
 
 from grmc.representation.container import Container, TemporalContainer, Ruler, TemporalRuler, Sequence, \
-    ArrayContainer, Index, MultiIndex
+    ArrayContainer, Index, MultiIndex, BaseContainer
 from grmc.representation.entity import Person, Object
 from grmc.representation.util import Identifier, serializer, Typed
 
@@ -57,8 +55,8 @@ class TextSignal(Signal[Sequence, str], Sequence[str]):
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str, text: str = None,
                      mentions: Iterable[Mention] = None) -> U:
-        return cls(uuid.uuid4(), Index.from_range(start, stop), start, stop, tuple(text) if text else text,
-                   Modality.TEXT.name.lower(), TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
+        return cls(str(uuid.uuid4()), Index.from_range(start, stop), start, stop, tuple(text) if text else text,
+                   Modality.TEXT, TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
 
 
 @dataclass
@@ -66,7 +64,7 @@ class ImageSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str,
                      bounds: Iterable[int], mentions: Iterable[Mention] = None) -> U:
-        return cls(uuid.uuid4(), MultiIndex(None, bounds), None, Modality.IMAGE.name.lower(),
+        return cls(str(uuid.uuid4()), MultiIndex(None, tuple(bounds)), None, Modality.IMAGE,
                    TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
 
 

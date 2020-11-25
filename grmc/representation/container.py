@@ -59,7 +59,7 @@ class Sequence(BaseContainer[Index, T]):
     def from_seq(cls: Type[T], seq: Iterable[Any]) -> T:
         seq_tuple = tuple(seq)
         ruler = Index.from_range(0, len(seq_tuple))
-        return cls(uuid.uuid4(), ruler, ruler.start, ruler.stop, seq_tuple)
+        return cls(str(uuid.uuid4()), ruler, ruler.start, ruler.stop, seq_tuple)
 
     def __getitem__(self, offset: Index) -> T:
         return self.seq[offset.start:offset.stop]
@@ -79,13 +79,13 @@ class MultiIndex(Ruler):
 
 @dataclass
 class ArrayContainer(BaseContainer[MultiIndex, T]):
-    array: Union[tuple, list, np.ndarray]
+    array: np.ndarray
 
     @classmethod
     def from_array(cls: Type[T], array_: Union[tuple, list, np.ndarray]) -> T:
         value = np.array(array_)
         ruler = MultiIndex(None, (0, 0, value.shape[0], value.shape[1]))
-        return cls(uuid.uuid4(), ruler, value)
+        return cls(str(uuid.uuid4()), ruler, value)
 
     @property
     def bounds(self):
@@ -112,7 +112,7 @@ class TemporalRuler(Ruler):
 class TemporalContainer(BaseContainer[TemporalRuler, TemporalRuler]):
     @classmethod
     def from_range(cls: Type[T], start: int, end: int) -> T:
-        return cls(uuid.uuid4(), TemporalRuler(None, start, end))
+        return cls(str(uuid.uuid4()), TemporalRuler(None, start, end))
 
     @property
     def start(self):
