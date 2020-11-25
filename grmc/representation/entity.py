@@ -1,8 +1,6 @@
 # Define Annotation Class
 import enum
-from datetime import date
-
-import uuid
+from dataclasses import dataclass
 
 from grmc.representation.util import Identifier
 
@@ -27,7 +25,7 @@ class Gender(enum.Enum):
 
 @dataclass
 class Instance:
-    identifier: Identifier
+    id: Identifier
 
 
 @dataclass

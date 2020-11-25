@@ -1,21 +1,19 @@
 # Define Annotation Class
 from __future__ import annotations
+
 import enum
 from dataclasses import dataclass
 
-import uuid
 from rdflib import URIRef, Namespace
-from typing import Iterable, Tuple, Generic, TypeVar
+from typing import Tuple
 
-from grmc.representation.container import Sequence, AtomicContainer, Ruler, Index
-from grmc.representation.entity import Person, Emotion
-from grmc.representation.scenario import Mention, Annotation
+from grmc.representation.container import Sequence, AtomicContainer
 from grmc.representation.util import Identifier
-
 
 friends_namespace = Namespace("http://cltl.nl/leolani/friends/")
 data_namespace = Namespace("http://cltl.nl/combot/signal/")
 predicate_namespace = Namespace("http://cltl.nl/combot/predicate/")
+
 
 class ImageLabel(enum.Enum):
     FACE = 0
@@ -57,4 +55,8 @@ class Utterance(Sequence):
     chat_id: Identifier
     utterance: str
     tokens: Tuple[Token]
-    id_: Identifier
+
+
+@dataclass
+class Display:
+    display: str

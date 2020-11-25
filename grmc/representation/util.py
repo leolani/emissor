@@ -14,11 +14,15 @@ class Typed:
         return self.__class__.__name__
 
 
-def serializer(object):
-    if isinstance(object, enum.Enum):
-        return object.name
-    if isinstance(object, (URIRef, uuid.UUID)):
-        return str(object)
-    if isinstance(object, np.ndarray):
-        return object.tolist()
-    return vars(object)
+def serializer(obj):
+    if isinstance(obj, enum.Enum):
+        return obj.name.lower()
+    if isinstance(obj, (URIRef, uuid.UUID)):
+        return str(obj)
+    if isinstance(obj, np.ndarray):
+        return obj.tolist()
+
+    # Include @property
+    keys = [k for k in dir(obj) if not k.startswith("_")]
+
+    return {k: getattr(obj, k) for k in keys if not callable(getattr(obj, k))}

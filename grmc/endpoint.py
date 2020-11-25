@@ -27,7 +27,10 @@ def load_scenario(name):
 
 @app.route('/api/scenario/<name>/<modality>')
 def load_signals(name, modality):
-    return json.dumps(backend.load_modality(name, modality), default=serializer)
+    load_modality = backend.load_modality(name, modality)
+    dumps = json.dumps(load_modality, default=serializer)
+    print(dumps)
+    return dumps
 
 
 @app.route('/api/scenario/<scenario_id>/<modality>/<signal>', methods=['POST'])
@@ -36,16 +39,3 @@ def save_signal(scenario_id, modality, signal):
     backend.save_signal(scenario_id, unmarshal(signal_json, Signal(None, None, None)))
 
     return {}, 200
-
-
-def unmarshal(json: Union[dict, list, int, float, bool, str, None], obj: object) -> object:
-    if isinstance(json, list):
-        return [unmarshal(entry, obj) for entry in json]
-    if isinstance(json, (int, float, bool, str)) or None:
-        return json
-    if isinstance(json, dict):
-        for key, value in json:
-            try:
-                setattr(object, key, unmarshal(value, obj))
-            except AttributeError:
-                pass
