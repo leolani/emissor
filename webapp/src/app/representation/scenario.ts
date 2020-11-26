@@ -24,6 +24,7 @@ export interface Annotation<T> extends Typed {
 export interface Mention {
   segment: Ruler[];
   annotations: Annotation<any>[];
+  display?: string;
 }
 
 

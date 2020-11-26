@@ -49,7 +49,7 @@ export class EditorComponent implements OnInit {
 
   selectMention(mention: Mention) {
     let changedSignal = this.signal.withMention(mention);
-    if (mention.segment.length) {
+    if (mention && mention.segment.length) {
       changedSignal = changedSignal.withSegment(changedSignal.mention.segment[0]);
     }
     this.signal = changedSignal;

@@ -22,7 +22,7 @@ export class ContainerViewComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     changes.selection
-        && changes.selection.currentValue.containerItem
+        && changes.selection.currentValue.containerComponent
         && this.loadComponent(changes.selection.currentValue);
   }
 

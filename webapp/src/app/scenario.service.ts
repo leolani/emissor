@@ -67,10 +67,22 @@ export class ScenarioService {
   }
 
   setDisplayValue(signal: Signal<any>): void {
+    signal.mentions.forEach(mention => {
+      mention.display = this.getMentionDisplayValue(mention);
+      mention.segment.forEach(seg => seg.display = mention.display);
+    });
     let displayAnnotations = signal.mentions.flatMap(mention => mention.annotations)
         .filter(ann => ann.type.toLowerCase() === "display")
         .sort((a, b) => a.timestamp - b.timestamp);
     signal.display = (displayAnnotations.length && displayAnnotations[0].value) || signal.display || signal.id;
+  }
+
+  getMentionDisplayValue(mention: Mention) {
+    let displayAnnotations = mention.annotations
+      .filter(ann => ann.type === "display")
+      .sort((a, b) => b.timestamp - a.timestamp);
+
+    return displayAnnotations.length && displayAnnotations[0].value;
   }
 
   getAnnotationComponent(annotation: Annotation<any>): Type<AnnotationComponent<any>> {

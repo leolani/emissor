@@ -30,7 +30,6 @@ export class SignalSelection<S extends Signal<any>> {
   }
 
   private clone() {
-    // TODO return JSON.parse(JSON.stringify(this));
     let selection = new SignalSelection(this.idx, this.signal, this.scenarioService);
     selection.mention = this.mention;
     selection.segment = this.segment;
@@ -133,4 +132,3 @@ export class SignalSelection<S extends Signal<any>> {
     return this.scenarioService.getSegmentComponent(this.segment);
   }
 }
-

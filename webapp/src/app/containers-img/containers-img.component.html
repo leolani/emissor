@@ -15,7 +15,7 @@
          (mousedown)="setStatus($event, 2)"
          (window:mouseup)="setStatus($event, 0)">
       <div class="resize-action" (mousedown)="setStatus($event, 1)"></div>
-      <div class="badge label" (click)="select(segment)">P{{segment.display}}</div>
+      <div class="badge label" (click)="select(segment)">{{segment.display}}</div>
       <span class="badge width">{{(segment.bounds[2] - segment.bounds[0]) | number:'1.0-0'}}px</span>
       <span class="badge height">{{segment.bounds[3] - segment.bounds[1] | number:'1.0-0'}}px</span>
       <span class="badge position">({{segment.bounds[0] | number:'1.0-0'}}, {{segment.bounds[1] | number:'1.0-0'}})</span>
