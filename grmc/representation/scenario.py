@@ -26,14 +26,11 @@ class Modality(enum.Enum):
 
 
 @dataclass
-class Annotation(Generic[T], Typed):
+class Annotation(Generic[T]):
+    type: str
     value: T
     source: Identifier
     timestamp: int
-
-    @property
-    def type(self) -> str:
-        return self.value.__class__.__name__
 
 
 @dataclass
@@ -117,4 +114,4 @@ def append_signal(path: str, signal: object, terminate: bool = False, indent: in
 
 
 if __name__ == "__main__":
-    print(json.dumps(Annotation("test", "text", 123), default=serializer))
+    print(json.dumps(Annotation("str", "test", "text", 123), default=serializer))

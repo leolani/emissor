@@ -15,6 +15,13 @@ data_namespace = Namespace("http://cltl.nl/combot/signal/")
 predicate_namespace = Namespace("http://cltl.nl/combot/predicate/")
 
 
+class AnnotationType(enum.Enum):
+    DISPLAY = 0
+    PERSON = 1
+    FRIEND = 2
+    OBJECT = 3
+
+
 class ImageLabel(enum.Enum):
     FACE = 0
 

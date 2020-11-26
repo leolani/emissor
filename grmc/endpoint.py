@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 
-from grmc.backend import Backend
+from grmc.backend.backend import Backend
 from grmc.representation.util import unmarshal, marshal
 
 app = Flask(__name__)
