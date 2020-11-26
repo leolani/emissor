@@ -172,6 +172,7 @@ class Backend:
                 json_file.write(marshal(signals))
 
     def save_signal(self, name, signal):
-        self._cache[signal.modality][signal.id] = signal
-        with open(_get_path(name, signal.modality), 'w') as json_file:
-            json_file.write(marshal(self._cache[signal.modality].values()))
+        modality = signal.modality
+        self._cache[modality][signal.id] = signal
+        with open(_get_path(name, modality), 'w') as json_file:
+            json_file.write(marshal(self._cache[modality].values()))

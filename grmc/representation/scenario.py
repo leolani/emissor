@@ -6,6 +6,7 @@ from dataclasses import dataclass
 
 import json
 import uuid
+import numpy as np
 from typing import Iterable, Dict, TypeVar, Type, Generic, Any, List
 
 from grmc.representation.container import Container, TemporalContainer, Ruler, TemporalRuler, Sequence, \
@@ -51,7 +52,7 @@ class Signal(BaseContainer[R, T], ABC):
 
 
 @dataclass
-class TextSignal(Signal[Sequence, str], Sequence[str]):
+class TextSignal(Signal[Index, str], Sequence[str]):
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str, text: str = None,
                      mentions: Iterable[Mention] = None) -> U:
@@ -60,7 +61,7 @@ class TextSignal(Signal[Sequence, str], Sequence[str]):
 
 
 @dataclass
-class ImageSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
+class ImageSignal(Signal[MultiIndex, np.array], ArrayContainer):
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str,
                      bounds: Iterable[int], mentions: Iterable[Mention] = None) -> U:
@@ -69,13 +70,13 @@ class ImageSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
 
 
 @dataclass
-class AudioSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
+class AudioSignal(Signal[MultiIndex, np.array], ArrayContainer):
     # TODO factory
     pass
 
 
 @dataclass
-class VideoSignal(Signal[ArrayContainer, float], ArrayContainer[float]):
+class VideoSignal(Signal[MultiIndex, np.array], ArrayContainer):
     # TODO factory
     pass
 

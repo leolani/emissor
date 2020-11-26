@@ -23,10 +23,7 @@ def load_scenario(name):
 
 @app.route('/api/scenario/<name>/<modality>')
 def load_signals(name, modality):
-    load_modality = backend.load_modality(name, modality)
-    dumps = marshal(load_modality)
-    print(dumps)
-    return dumps
+    return marshal(backend.load_modality(name, modality))
 
 
 @app.route('/api/scenario/<scenario_id>/<modality>/<signal>', methods=['POST'])

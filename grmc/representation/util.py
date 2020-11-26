@@ -1,17 +1,14 @@
 import enum
-from collections import namedtuple
-from types import SimpleNamespace
-
-# import json
-import simplejson as json
+from collections import namedtuple, Iterable
 
 import numpy as np
+# import json
+import simplejson as json
 import uuid
 from rdflib import URIRef
 from typing import Optional, Any
 
 Identifier = Optional[str]
-
 
 class Typed:
     @property
@@ -28,11 +25,13 @@ def serializer(obj):
         return obj.tolist()
     if isinstance(obj, tuple) and hasattr(obj, '_asdict'):
         return obj._asdict()
+    if isinstance(obj, Iterable):
+        return list(obj)
 
     # Include @property
-    keys = [k for k in dir(obj) if not k.startswith("_")]
+    fields = [key for key in dir(obj) if not key.startswith("_") and not callable(getattr(obj, key))]
 
-    return {k: getattr(obj, k) for k in keys if not callable(getattr(obj, k))}
+    return {k: getattr(obj, k) for k in fields}
 
 
 def marshal(obj: Any) -> str:

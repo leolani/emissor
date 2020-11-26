@@ -1,15 +1,15 @@
 # Define Annotation Class
 from __future__ import annotations
 
+import dataclasses
 from abc import ABC
 from dataclasses import dataclass
 
-import json
 import numpy as np
 import uuid
 from typing import Union, TypeVar, Generic, Iterable, Tuple, Type, Any
 
-from grmc.representation.util import serializer, Identifier, Typed
+from grmc.representation.util import Identifier, Typed, marshal
 
 
 @dataclass
@@ -78,7 +78,7 @@ class MultiIndex(Ruler):
 
 
 @dataclass
-class ArrayContainer(BaseContainer[MultiIndex, T]):
+class ArrayContainer(BaseContainer[MultiIndex, np.array]):
     array: np.ndarray
 
     @classmethod
@@ -91,7 +91,7 @@ class ArrayContainer(BaseContainer[MultiIndex, T]):
     def bounds(self):
         return self.ruler.bounds
 
-    def __getitem__(self, bounding_box: MultiIndex) -> T:
+    def __getitem__(self, bounding_box: MultiIndex) -> np.array:
         b = bounding_box.bounds
         return self.array[b[0]:b[1], b[1]:b[3]]
 
@@ -149,16 +149,16 @@ if __name__ == "__main__":
     token_offset = tokens.ruler.get_offset(0, 1)
     token_segment = tokens[token_offset]
     pprint(token_segment)
-    print(json.dumps(tokens, default=serializer, indent=2))
+    print(marshal(tokens))
 
     array = ArrayContainer.from_array(np.zeros((5, 5, 3), dtype=int))
     bbox = array.ruler.get_area_bounding_box(0, 0, 2, 2)
     area = array[bbox]
     pprint(area)
-    print(json.dumps(array, default=serializer, indent=2))
+    print(marshal(array))
 
     period = TemporalContainer.from_range(0, 1000)
     time_segment = period.ruler.get_time_segment(10, 100)
     sub_period = period[time_segment]
     print(sub_period)
-    print(json.dumps(period, default=serializer, indent=2))
+    print(marshal(period))
