@@ -1,50 +1,59 @@
-import {Ruler, TimeRuler} from "./container";
-import {Annotation, Mention} from "./annotation";
-import {ScenarioService} from "./scenario.service";
-import {ContainerComponent} from "./container/container.component";
-import {Type} from "@angular/core";
-import {SegmentComponent} from "./segment/segment.component";
-import {ContainerItem} from "./container/container-item";
+import {
+  ArrayContainer,
+  Container,
+  Index,
+  MultiIndex,
+  Ruler,
+  Sequence,
+  TemporalContainer,
+  TemporalRuler
+} from "./container";
+import {Typed} from "./util";
+import {Obj, Person} from "./entity";
 
-export interface Scenario {
-  id: string;
-  name: string;
-  start: number;
-  end: number;
-  signals: Map<string, string>;
+export enum Modality {
+  IMAGE, TEXT
 }
 
-export class Signal {
-  id: number;
-  type: string;
-  name: string;
-  time: TimeRuler;
-  mentions: Mention<any>[];
-
-  constructor(id: number, type: string, name: string, time: TimeRuler, mentions: Mention<any>[]) {
-    this.id = id;
-    this.type = type;
-    this.name = name;
-    this.time = time;
-    this.mentions = mentions;
-  }
+export interface Annotation<T> extends Typed {
+  value: T;
+  source: string;
+  timestamp: number;
 }
 
-export class ImageSignal extends Signal {
+export interface Mention {
+  segment: Ruler[];
+  annotations: Annotation<any>[];
+}
+
+
+export interface Signal<R extends Ruler> extends Container<R> {
+  modality: Modality;
+  time: TemporalRuler;
+  files: string[];
+  mentions: Mention[];
+  display?: string;
+}
+
+
+export interface TextSignal extends Signal<Index>, Sequence<string> {
+  text: string
+}
+
+export interface ImageSignal extends Signal<MultiIndex>, ArrayContainer {
   image: string;
-
-  constructor(id: number, type: string, name: string, time: TimeRuler, mentions: Mention<any>[], image: string) {
-    super(id, type, name, time, mentions);
-    this.image = image;
-  }
 }
 
-export class TextSignal extends Signal {
-  text: string;
 
-  constructor(id: number, type: string, name: string, time: TimeRuler, mentions: Mention<any>[], text: string) {
-    super(id, type, name, time, mentions);
-    this.text = text;
-  }
+export interface ScenarioContext {
+  agent: string;
+  speaker: Person
+  persons: Person[]
+  objects: Obj[]
 }
 
+
+export interface Scenario extends TemporalContainer {
+  context: ScenarioContext;
+  signals: Record<string, string>;
+}

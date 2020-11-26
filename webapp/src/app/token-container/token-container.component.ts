@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Offset} from "../container";
+import {Index} from "../container";
 
 @Component({
   selector: 'app-token-container',
@@ -9,8 +9,8 @@ import {Offset} from "../container";
 export class TokenContainerComponent implements OnInit {
   @Input() containerId: string;
   @Input() tokens: string[];
-  @Input() segments: Offset[];
-  @Input() selected: Offset;
+  @Input() segments: Index[];
+  @Input() selected: Index;
 
   constructor() {}
 
@@ -18,11 +18,11 @@ export class TokenContainerComponent implements OnInit {
   }
 
   tokenClass(idx: number) {
-    if (this.selected && this.selected.contains(idx)) {
+    if (this.selected && this.selected.start <= idx && idx < this.selected.stop) {
       return "selected";
     }
 
-    if (this.segments.some(seg => seg.contains(idx))) {
+    if (this.segments.some(seg => seg.start <= idx && idx < seg.stop)) {
       return "mentioned";
     }
 

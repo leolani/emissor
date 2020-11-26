@@ -9,8 +9,6 @@ import {ModalityComponent} from './modality/modality.component';
 import {CommonModule} from "@angular/common";
 import {NgxSliderModule} from '@angular-slider/ngx-slider';
 // Testing
-import {HttpClientInMemoryWebApiModule} from 'angular-in-memory-web-api';
-import {InMemoryDataService} from './in-memory-data.service';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatInputModule} from '@angular/material/input';

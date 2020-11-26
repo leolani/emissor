@@ -1,7 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Signal} from "../scenario";
+import {TextSignal} from "../scenario";
 import {ScenarioService} from "../scenario.service";
-import {ContainerItem} from "../container/container-item";
 import {SignalSelection} from "../signal-selection";
 
 
@@ -11,7 +10,7 @@ import {SignalSelection} from "../signal-selection";
   styleUrls: ['./text-view.component.css']
 })
 export class TextViewComponent implements OnInit {
-  @Input() signals: Signal[];
+  @Input() signals: TextSignal[];
   @Input() selection: SignalSelection;
 
   constructor(private scenarioService: ScenarioService) {}

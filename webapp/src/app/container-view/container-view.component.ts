@@ -1,7 +1,6 @@
 import {Component, ComponentFactoryResolver, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {ContainerDirective} from "../container/container.directive";
 import {ContainerComponent} from "../container/container.component";
-import {ContainerItem} from "../container/container-item";
 import {SignalSelection} from "../signal-selection";
 
 @Component({

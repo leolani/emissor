@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
-import {Annotation, Mention} from "../annotation";
 import {ScenarioService} from "../scenario.service";
 import {SignalSelection} from "../signal-selection";
+import {Annotation, Mention} from "../scenario";
 
 @Component({
   selector: 'app-editor',
@@ -19,10 +19,10 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {}
 
   addMention() {
-    this.signal.signal.mentions.push(new Mention<any>("", "new", [], [
-      new Annotation<any>("new", "display", "new", "", new Date().getTime())]));
-    this.signal = this.signal.withMention(this.signal.signal.mentions.slice(-1)[0])
-    this.signalChange.emit(this.signal);
+    // this.signal.signal.mentions.push(new Mention("", "new", [], [
+    //   new Annotation<any>("new", "display", "new", "", new Date().getTime())]));
+    // this.signal = this.signal.withMention(this.signal.signal.mentions.slice(-1)[0])
+    // this.signalChange.emit(this.signal);
   }
 
   addAnnotation() {
@@ -47,7 +47,7 @@ export class EditorComponent implements OnInit {
     this.signalChange.emit(this.signal);
   }
 
-  selectMention(mention: Mention<any>) {
+  selectMention(mention: Mention) {
     let changedSignal = this.signal.withMention(mention);
     if (mention.segment.length) {
       changedSignal = changedSignal.withSegment(changedSignal.mention.segment[0]);

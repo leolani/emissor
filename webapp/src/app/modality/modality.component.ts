@@ -1,15 +1,13 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Scenario, Signal} from "../scenario";
 import {ScenarioService} from "../scenario.service";
 import {Options} from "@angular-slider/ngx-slider";
 import {le as lowerBound} from "binary-search-bounds";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
-import {TimeRuler} from "../container";
-import {ContainerItem} from "../container/container-item";
 import {SignalSelection} from "../signal-selection";
 
 
-function compareByTimestamp(a: Signal, b: Signal): number {
+function compareByTimestamp(a: Signal<any>, b: Signal<any>): number {
   if (a.time && b.time) {
     return a.time.start - b.time.start;
   }
@@ -40,8 +38,8 @@ export class ModalityComponent implements OnInit {
     readOnly: true
   };
 
-  signals: Signal[];
-  signalEntries: Array<[number, Signal]>;
+  signals: Signal<any>[];
+  signalEntries: Array<[number, Signal<any>]>;
   selectedSignal: number = 0;
   editSignal: boolean = false;
 
@@ -60,7 +58,7 @@ export class ModalityComponent implements OnInit {
   loadSignals(modality: string): void {
     this.scenarioService.loadSignals(this.scenario.id, modality)
       .subscribe(signals => {
-        this.signals = this.setDefaultTimes(signals.sort(compareByTimestamp));
+        this.signals = signals.sort(compareByTimestamp);
         this.signalEntries = Array.from(this.signals.entries());
         this.setupSlider();
         this.setupRange();
@@ -87,14 +85,14 @@ export class ModalityComponent implements OnInit {
 
   setupRange(): void {
     let rangeOptions = Object.assign({}, this.rangeOptions);
-    rangeOptions.floor = this.scenario.start;
-    rangeOptions.ceil = this.scenario.end;
+    rangeOptions.floor = this.scenario.ruler.start;
+    rangeOptions.ceil = this.scenario.ruler.end;
 
     this.rangeOptions = rangeOptions;
   }
 
   private timelinePercentageToIndex(percent: number, maxVal: number, minVal: number, scenario: Scenario, timestamps: number[]): number {
-    let time: number = percent * (scenario.end - scenario.start) + scenario.start;
+    let time: number = percent * (scenario.ruler.end - scenario.ruler.start) + scenario.ruler.start;
     let lowerIdx = lowerBound(timestamps, time);
 
     if (lowerIdx === timestamps.length - 1) {
@@ -104,26 +102,8 @@ export class ModalityComponent implements OnInit {
     return time - timestamps[lowerIdx] <= timestamps[lowerIdx + 1] - time ? lowerIdx : lowerIdx + 1;
   }
 
-  private indexToTimelinePercentage(val: number, scenario: Scenario, signals: Signal[]): number {
-    return (signals[val].time.start - scenario.start)/(scenario.end -scenario.start);
-  }
-
-  setDefaultTimes(signals: Signal[]) {
-    let noTimestampsPresent = signals.every(signal => !signal.time);
-    if (noTimestampsPresent) {
-      let equalSpacing = signals.length > 1 ?
-        (this.scenario.start - this.scenario.end)/(signals.length - 1) : 0;
-
-      return signals.map((signal, idx) => {
-        signal.time = signal.time || new TimeRuler(idx * equalSpacing, idx * equalSpacing + 1);
-        return signal;
-      });
-    }
-
-    return signals.map((signal, idx) => {
-      signal.time = signal.time || new TimeRuler(0, 0);
-      return signal;
-    });
+  private indexToTimelinePercentage(val: number, scenario: Scenario, signals: Signal<any>[]): number {
+    return (signals[val].time.start - scenario.ruler.start)/(scenario.ruler.end -scenario.ruler.start);
   }
 
   onSignalSelect(idx: number): void {
@@ -145,7 +125,8 @@ export class ModalityComponent implements OnInit {
 
     if (!this.editSignal) {
       // let selectedId = this.signals[this.selectedSignal].id
-      this.signals = this.setDefaultTimes(this.signals.sort(compareByTimestamp));
+      // TODO reset selection
+      this.signals = this.signals.sort(compareByTimestamp);
       this.setupSlider();
     }
   }

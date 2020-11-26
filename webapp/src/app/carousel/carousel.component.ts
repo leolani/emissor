@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ImageSignal} from "../scenario";
 import {ContainerItem} from "../container/container-item";
 import {ScenarioService} from "../scenario.service";

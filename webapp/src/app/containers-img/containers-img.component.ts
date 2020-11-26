@@ -1,15 +1,5 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  HostListener,
-  Input,
-  OnChanges,
-  OnInit,
-  SimpleChanges,
-  ViewChild
-} from '@angular/core';
-import {BoundingBox} from "../container";
+import {Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {MultiIndex} from "../container";
 import {ImageSignal} from "../scenario";
 import {ContainerComponent} from "../container/container.component";
 import {SignalSelection} from "../signal-selection";
@@ -24,12 +14,12 @@ const enum Status {
   templateUrl: './containers-img.component.html',
   styleUrls: ['./containers-img.component.css']
 })
-export class ContainersImgComponent implements OnInit, OnChanges, ContainerComponent<ImageSignal, BoundingBox> {
+export class ContainersImgComponent implements OnInit, OnChanges, ContainerComponent<ImageSignal, MultiIndex> {
   @Input() data: ImageSignal;
   @Input() selection: SignalSelection;
 
-  segments: BoundingBox[];
-  selected: BoundingBox;
+  segments: MultiIndex[];
+  selected: MultiIndex;
 
   status: number = 0;
 
@@ -51,7 +41,8 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
   constructor() { }
 
   ngOnInit() {
-    this.segments = this.data.mentions.flatMap(mention => mention.segment);
+    this.segments = <MultiIndex[]> this.data.mentions.flatMap(mention => mention.segment)
+      .filter(seg => seg.type.toLowerCase() === "multiindex");
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -88,7 +79,7 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
     this.containerPos = { left, top, right, bottom, width, height };
   }
 
-  select(segment: BoundingBox) {
+  select(segment: MultiIndex) {
     if (segment === this.selection.segment) {
       this.selected = this.selected ? null : segment;
       this.status = Status.OFF;
@@ -156,11 +147,11 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
       bounds[3] <= this.containerPos.height;
   }
 
-  private scaleArray(arr: number[]): number[] {
+  private scaleArray(arr) {
     return arr.map(x => x * this.scale);
   }
 
-  private unscaleArray(arr: number[]): number[] {
+  private unscaleArray(arr) {
     return arr.map(x => Math.max(3, Math.round(x / this.scale)));
   }
 }

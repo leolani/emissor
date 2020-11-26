@@ -1,18 +1,17 @@
 import {Ruler} from "./container";
-import {Annotation, Mention} from "./annotation";
 import {ScenarioService} from "./scenario.service";
 import {ContainerComponent} from "./container/container.component";
 import {Type} from "@angular/core";
 import {SegmentComponent} from "./segment/segment.component";
 import {ContainerItem} from "./container/container-item";
-import {Signal} from "./scenario";
+import {Annotation, Mention, Signal} from "./scenario";
 import {SegmentItem} from "./segment/segment-item";
 import {AnnotationItem} from "./annotation/annotation-item";
 
 export class SignalSelection {
   idx: number;
-  signal: Signal;
-  mention: Mention<any>;
+  signal: Signal<any>;
+  mention: Mention;
   segment: Ruler;
   annotation: Annotation<any>;
 
@@ -22,17 +21,17 @@ export class SignalSelection {
 
   private readonly scenarioService: ScenarioService;
 
-  constructor(idx: number, signal: Signal, scenarioService: ScenarioService) {
+  constructor(idx: number, signal: Signal<any>, scenarioService: ScenarioService) {
     this.scenarioService = scenarioService;
 
     this.idx = idx;
     this.signal = signal;
 
-    this.containerItem = new ContainerItem<any, any>(scenarioService.getContainerComponent(signal),
-        signal, this);
+    this.containerItem = new ContainerItem<any, any>(scenarioService.getContainerComponent(signal), signal, this);
   }
 
   private clone() {
+    // TODO return JSON.parse(JSON.stringify(this));
     let selection = new SignalSelection(this.idx, this.signal, this.scenarioService);
     selection.mention = this.mention;
     selection.segment = this.segment;
@@ -44,7 +43,7 @@ export class SignalSelection {
     return selection;
   }
 
-  withMention(mention: Mention<any>): SignalSelection {
+  withMention(mention: Mention): SignalSelection {
     let selection = this.clone();
     selection.mention = mention;
     selection.segment = null;
@@ -104,7 +103,6 @@ export class SignalSelection {
     let selection = this.clone();
 
     let mention = selection.mention;
-    let len = mention.segment.length;
     let previous = mention.segment.length && mention.segment.slice(-1)[0];
 
     let newSegment: any;

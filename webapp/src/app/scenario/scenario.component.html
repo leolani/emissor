@@ -12,9 +12,9 @@
     </div>
     <div *ngIf="scenario" fxFlex fxLayout="column" fxFlexFill class="content scenario" >
       <div fxFlex="5" fxLayout="row">
-        <div fxFlex>{{scenario.name}}</div>
-        <div fxFlex><span>start: </span>{{scenario.start}}</div>
-        <div fxFlex><span>end: </span>{{scenario.end}}</div>
+        <div fxFlex>{{scenario.id}}</div>
+        <div fxFlex><span>start: </span>{{scenario.ruler.start}}</div>
+        <div fxFlex><span>end: </span>{{scenario.ruler.end}}</div>
       </div>
       <div fxFlex="1 1 1" fxLayout="column">
         <div fxFlex *ngFor="let modality of scenario.signals | keyvalue" class="content modality">

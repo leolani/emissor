@@ -1,19 +1,18 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Offset} from "../container";
+import {Index} from "../container";
 import {ContainerComponent} from "../container/container.component";
-import {TextSignal} from "../scenario";
-import {Mention} from "../annotation";
+import {Mention, TextSignal} from "../scenario";
 import {SignalSelection} from "../signal-selection";
 
 @Component({
   templateUrl: './containers-text.component.html',
   styleUrls: ['./containers-text.component.css']
 })
-export class ContainersTextComponent implements OnInit, ContainerComponent<TextSignal, Offset> {
+export class ContainersTextComponent implements OnInit, ContainerComponent<TextSignal, Index> {
   @Input() data: TextSignal;
   @Input() selection: SignalSelection;
 
-  tokens: Mention<any>[];
+  tokens: Mention[];
 
   constructor() {}
 
@@ -42,8 +41,12 @@ export class ContainersTextComponent implements OnInit, ContainerComponent<TextS
   }
 
   tokenClass(idx: number) {
-    if (this.selection.segment && (<Offset> this.selection.segment).contains(idx)) {
+    if (this.selection.segment && this.contains((<Index> this.selection.segment), idx)) {
       return "selected";
     }
+  }
+
+  private contains(segment: Index, idx: number) {
+    return segment.start < idx && idx < segment.stop;
   }
 }

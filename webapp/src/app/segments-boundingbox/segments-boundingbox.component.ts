@@ -1,13 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SegmentComponent} from "../segment/segment.component";
-import {BoundingBox} from "../container";
+import {MultiIndex} from "../container";
 
 @Component({
   templateUrl: './segments-boundingbox.component.html',
   styleUrls: ['./segments-boundingbox.component.css']
 })
-export class SegmentsBoundingboxComponent implements OnInit, SegmentComponent<BoundingBox> {
-  @Input() data: BoundingBox;
+export class SegmentsBoundingboxComponent implements OnInit, SegmentComponent<MultiIndex> {
+  @Input() data: MultiIndex;
 
   constructor() { }
 
