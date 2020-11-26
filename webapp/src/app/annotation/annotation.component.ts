@@ -1,4 +1,4 @@
-import {Annotation} from "../scenario";
+import {Annotation} from "../representation/scenario";
 
 export interface AnnotationComponent<T> {
   data: Annotation<T>;

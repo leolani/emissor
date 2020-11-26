@@ -1,5 +1,5 @@
 import { Type } from '@angular/core';
-import {Ruler} from "../container";
+import {Ruler} from "../representation/container";
 import {ContainerComponent} from "./container.component";
 import {SignalSelection} from "../signal-selection";
 

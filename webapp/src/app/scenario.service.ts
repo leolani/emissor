@@ -1,6 +1,6 @@
 import {Injectable, Type} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Annotation, ImageSignal, Mention, Scenario, Signal, TextSignal} from "./scenario";
+import {Annotation, ImageSignal, Mention, Scenario, Signal, TextSignal} from "./representation/scenario";
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {map} from "rxjs/operators";
@@ -9,7 +9,7 @@ import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boun
 import {AnnotationComponent} from "./annotation/annotation.component";
 import {AnnotationsDisplayComponent} from "./annotations-display/annotations-display.component";
 import {SegmentComponent} from "./segment/segment.component";
-import {Ruler} from "./container";
+import {Ruler} from "./representation/container";
 import {ContainersImgComponent} from "./containers-img/containers-img.component";
 import {ContainersTextComponent} from "./containers-text/containers-text.component";
 import {ContainerComponent} from "./container/container.component";

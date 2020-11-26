@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SegmentComponent} from "../segment/segment.component";
-import {MultiIndex} from "../container";
+import {MultiIndex} from "../representation/container";
 
 @Component({
   templateUrl: './segments-boundingbox.component.html',

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {AnnotationComponent} from "../annotation/annotation.component";
-import {Annotation} from "../scenario";
+import {Annotation} from "../representation/scenario";
 
 @Component({
   templateUrl: './annotations-display.component.html',

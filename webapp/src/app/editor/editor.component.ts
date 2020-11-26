@@ -1,7 +1,7 @@
 import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {ScenarioService} from "../scenario.service";
 import {SignalSelection} from "../signal-selection";
-import {Annotation, Mention} from "../scenario";
+import {Annotation, Mention} from "../representation/scenario";
 
 @Component({
   selector: 'app-editor',

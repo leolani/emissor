@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TextSignal} from "../scenario";
+import {TextSignal} from "../representation/scenario";
 import {ScenarioService} from "../scenario.service";
 import {SignalSelection} from "../signal-selection";
 

@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SegmentComponent} from "../segment/segment.component";
-import {TemporalRuler} from "../container";
+import {TemporalRuler} from "../representation/container";
 
 @Component({
   templateUrl: './segments-time.component.html',

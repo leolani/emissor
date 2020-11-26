@@ -3,7 +3,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat3.csv#0"
     ],
-    "id": "2be57961-4f02-4f65-ba7b-56cba4067626",
+    "id": "105b787b-e38b-41a5-bfc4-eff0ae498be3",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -67,7 +67,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat3.csv#0"
     ],
-    "id": "3ef9fe80-7b9d-4529-a327-f8317c428cf2",
+    "id": "1011cdc0-969e-4bac-9627-ed296f8097bf",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -150,7 +150,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "85abef90-2bf1-412c-956d-27e7e6520692",
+    "id": "299fc66d-dd36-470f-bfaa-b19e0ba38128",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -177,7 +177,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "985ebedc-9306-46f9-a98f-320b3add4bde",
+    "id": "9ca13138-4f3d-4b00-9970-29da70390709",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -229,7 +229,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "48597598-4e3a-4251-aa5b-e139f5a65340",
+    "id": "8f6eada9-f1fd-4af7-90a3-ff2e23627c7d",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -283,7 +283,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "8be9314f-b74b-4b8a-8864-43ea9e51f97f",
+    "id": "31c386ec-3be2-4715-9248-610c91a69376",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -334,7 +334,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "9bacd2b7-b196-4e35-89bd-7a3503973754",
+    "id": "ef8de3a2-ddde-4646-aed1-347a1cfe8aee",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -395,7 +395,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "75a5e606-39a8-442d-b9bf-c862b7d1fe1e",
+    "id": "bc81d99b-419b-402b-855a-2f8315a60fb6",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -441,7 +441,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "1da786e6-7532-42fd-b4e0-c01a37bb0314",
+    "id": "0ae92c7a-02a2-4677-a0f6-e9c56cf202c9",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -508,7 +508,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "53440ae5-d907-4de0-84ed-05c77e6c76be",
+    "id": "48e08a8c-95a8-405f-b1ff-e21f8f25a92e",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -565,7 +565,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "ac113de1-39f1-446a-8146-b846247f017c",
+    "id": "8cc752cf-462f-4e54-9d9c-cda48a09205b",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -613,7 +613,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "f970919e-864f-4d79-8bb8-d4bec19d4b87",
+    "id": "c77feb64-6bfe-4ee5-88d6-6431bb705744",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -713,7 +713,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "d1896446-bafc-477a-8146-f25bb6de7071",
+    "id": "94b6bc8c-3296-415e-9c02-05d98b33bd89",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -753,7 +753,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "5b361f79-450d-408d-b761-c008ec23f850",
+    "id": "b8bee518-06ed-4ee8-9466-09eb53e998bb",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -821,7 +821,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "9daca5e2-667a-4bfa-ae0b-73743a4c336a",
+    "id": "83a6c0ad-b6a9-48a2-a76f-dbd4b99bfa0c",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -871,7 +871,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "a62fd978-05d3-4143-ab9c-e2bc80930034",
+    "id": "11252c91-0db9-4c7b-8dd9-aa9d9855c99a",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -920,7 +920,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "8787987e-b3f0-4b3c-a19b-6f7976dff9e1",
+    "id": "dbf80aab-1cd5-4537-8f56-615fcfc6773c",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -982,7 +982,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "768aa5ff-9d14-49e5-b104-f033011b9955",
+    "id": "cbb432b5-93de-4c0b-a0fd-8bdfa8041b72",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -1044,7 +1044,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "42d699b9-711b-4389-8a77-39316fdf9fe7",
+    "id": "d6e9cd96-a757-46bd-bafe-25b494a5857f",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -1096,7 +1096,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat2.csv#1"
     ],
-    "id": "5b331210-8ee6-4303-8d00-a77514da0942",
+    "id": "90c88970-d057-433f-9903-d46eb3ded39f",
     "mentions": [],
     "modality": "text",
     "ruler": {
@@ -1160,7 +1160,7 @@
     "files": [
       "webapp/src/assets/scenario_1/text/chat1.csv#2"
     ],
-    "id": "73553cfe-77d7-49c6-87b9-b0b9e44962bb",
+    "id": "f03a3485-ff97-449b-82a1-4bb3f1041427",
     "mentions": [],
     "modality": "text",
     "ruler": {

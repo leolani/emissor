@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ImageSignal} from "../scenario";
+import {ImageSignal} from "../representation/scenario";
 import {ContainerItem} from "../container/container-item";
 import {ScenarioService} from "../scenario.service";
 import {SignalSelection} from "../signal-selection";

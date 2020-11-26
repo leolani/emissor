@@ -1,4 +1,4 @@
-import {Ruler} from "../container";
+import {Ruler} from "../representation/container";
 import {SignalSelection} from "../signal-selection";
 
 // TODO Remove ContainerItem

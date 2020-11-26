@@ -1,6 +1,6 @@
 import {Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MultiIndex} from "../container";
-import {ImageSignal} from "../scenario";
+import {MultiIndex} from "../representation/container";
+import {ImageSignal} from "../representation/scenario";
 import {ContainerComponent} from "../container/container.component";
 import {SignalSelection} from "../signal-selection";
 

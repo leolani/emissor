@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Index} from "../container";
+import {Index} from "../representation/container";
 
 @Component({
   selector: 'app-token-container',

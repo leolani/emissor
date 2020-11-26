@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SegmentComponent} from "../segment/segment.component";
-import {Index} from "../container";
+import {Index} from "../representation/container";
 
 @Component({
   templateUrl: './segments-offset.component.html',

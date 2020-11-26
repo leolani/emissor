@@ -1,10 +1,10 @@
-import {Ruler} from "./container";
+import {Ruler} from "./representation/container";
 import {ScenarioService} from "./scenario.service";
 import {ContainerComponent} from "./container/container.component";
 import {Type} from "@angular/core";
 import {SegmentComponent} from "./segment/segment.component";
 import {ContainerItem} from "./container/container-item";
-import {Annotation, Mention, Signal} from "./scenario";
+import {Annotation, Mention, Signal} from "./representation/scenario";
 import {SegmentItem} from "./segment/segment-item";
 import {AnnotationItem} from "./annotation/annotation-item";
 
