@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {ImageSignal} from "../representation/scenario";
-import {ContainerItem} from "../container/container-item";
 import {ScenarioService} from "../scenario.service";
 import {SignalSelection} from "../signal-selection";
+import {MultiIndex} from "../representation/container";
 
 @Component({
   selector: 'app-carousel',
@@ -11,9 +11,7 @@ import {SignalSelection} from "../signal-selection";
 })
 export class CarouselComponent implements OnInit {
   @Input() signals: ImageSignal[];
-  @Input() selection: SignalSelection;
-
-  containerItem: ContainerItem<any, any>;
+  @Input() selection: SignalSelection<ImageSignal>;
 
   constructor(private scenarioService: ScenarioService) { }
 

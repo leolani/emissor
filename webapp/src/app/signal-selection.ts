@@ -3,31 +3,30 @@ import {ScenarioService} from "./scenario.service";
 import {ContainerComponent} from "./container/container.component";
 import {Type} from "@angular/core";
 import {SegmentComponent} from "./segment/segment.component";
-import {ContainerItem} from "./container/container-item";
 import {Annotation, Mention, Signal} from "./representation/scenario";
 import {SegmentItem} from "./segment/segment-item";
 import {AnnotationItem} from "./annotation/annotation-item";
 
-export class SignalSelection {
+export class SignalSelection<S extends Signal<any>> {
   idx: number;
-  signal: Signal<any>;
+  signal: S;
   mention: Mention;
   segment: Ruler;
   annotation: Annotation<any>;
 
-  containerItem: ContainerItem<any, any>;
+  containerComponent: Type<ContainerComponent<any>>;
   segmentItem: SegmentItem<any>;
   annotationItem: AnnotationItem<any>;
 
   private readonly scenarioService: ScenarioService;
 
-  constructor(idx: number, signal: Signal<any>, scenarioService: ScenarioService) {
+  constructor(idx: number, signal: S, scenarioService: ScenarioService) {
     this.scenarioService = scenarioService;
 
     this.idx = idx;
     this.signal = signal;
 
-    this.containerItem = new ContainerItem<any, any>(scenarioService.getContainerComponent(signal), signal, this);
+    this.containerComponent = scenarioService.getContainerComponent(signal);
   }
 
   private clone() {
@@ -36,14 +35,14 @@ export class SignalSelection {
     selection.mention = this.mention;
     selection.segment = this.segment;
     selection.annotation = this.annotation;
-    selection.containerItem = this.containerItem;
+    selection.containerComponent = this.containerComponent;
     selection.segmentItem = this.segmentItem;
     selection.annotationItem = this.annotationItem;
 
     return selection;
   }
 
-  withMention(mention: Mention): SignalSelection {
+  withMention(mention: Mention): SignalSelection<S> {
     let selection = this.clone();
     selection.mention = mention;
     selection.segment = null;
@@ -52,7 +51,7 @@ export class SignalSelection {
     return selection;
   }
 
-  withSegment(segment: Ruler): SignalSelection {
+  withSegment(segment: Ruler): SignalSelection<S> {
     let selection = this.clone();
     selection.mention = this.mention;
     selection.segment = segment;
@@ -63,7 +62,7 @@ export class SignalSelection {
     return selection;
   }
 
-  withAnnotation(annotation: Annotation<any>): SignalSelection {
+  withAnnotation(annotation: Annotation<any>): SignalSelection<S> {
     let selection = this.clone();
     selection.mention = this.mention;
     selection.segment = this.segment;
@@ -74,7 +73,7 @@ export class SignalSelection {
     return selection;
   }
 
-  addMention(select = true): SignalSelection {
+  addMention(select = true): SignalSelection<S> {
     let selection = this.clone();
     let newMention = this.scenarioService.getMentionFor(selection.signal);
     selection.signal.mentions.push(newMention);
@@ -86,7 +85,7 @@ export class SignalSelection {
     return selection;
   }
 
-  addAnnotation(type, select = true): SignalSelection {
+  addAnnotation(type, select = true): SignalSelection<S> {
     let selection = this.clone();
 
     let newAnnotation = this.scenarioService.getAnnotationFor(type, selection.signal);
@@ -99,7 +98,7 @@ export class SignalSelection {
     return selection;
   }
 
-  addSegment(type = null, select = true): SignalSelection {
+  addSegment(type = null, select = true): SignalSelection<S> {
     let selection = this.clone();
 
     let mention = selection.mention;
@@ -122,7 +121,7 @@ export class SignalSelection {
     return selection;
   }
 
-  getContainerComponent(): Type<ContainerComponent<any, any>> {
+  getContainerComponent(): Type<ContainerComponent<any>> {
     return this.scenarioService.getContainerComponent(this.signal);
   }
 

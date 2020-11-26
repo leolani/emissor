@@ -43,7 +43,7 @@ export class ModalityComponent implements OnInit {
   selectedSignal: number = 0;
   editSignal: boolean = false;
 
-  selection: SignalSelection;
+  selection: SignalSelection<any>;
 
   constructor(private scenarioService: ScenarioService, private sanitizer: DomSanitizer) { }
 

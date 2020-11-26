@@ -43,7 +43,7 @@ class Mention:
 
 R = TypeVar('R', bound=Ruler)
 @dataclass
-class Signal(Container[R, T], ABC):
+class Signal(BaseContainer[R, T], ABC):
     modality: Modality
     time: TemporalRuler
     files: List[str]

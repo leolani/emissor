@@ -1,6 +1,6 @@
 <div class="container">
-  {{data.text}}
-    <a *ngFor="let idx = index" [class]="characterClass(idx)">{{data.text.charAt(idx)}}</a>
+  {{selection.signal.text}}
+    <a *ngFor="let idx = index" [class]="characterClass(idx)">{{selection.signal.text.charAt(idx)}}</a>
 </div>
 <div class="container">
   <span *ngFor="let token of tokens; let idx = index" [class]="tokenClass(idx)">

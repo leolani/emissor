@@ -14,9 +14,8 @@ const enum Status {
   templateUrl: './containers-img.component.html',
   styleUrls: ['./containers-img.component.css']
 })
-export class ContainersImgComponent implements OnInit, OnChanges, ContainerComponent<ImageSignal, MultiIndex> {
-  @Input() data: ImageSignal;
-  @Input() selection: SignalSelection;
+export class ContainersImgComponent implements OnInit, OnChanges, ContainerComponent<ImageSignal> {
+  @Input() selection: SignalSelection<ImageSignal>;
 
   segments: MultiIndex[];
   selected: MultiIndex;
@@ -41,7 +40,7 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
   constructor() { }
 
   ngOnInit() {
-    this.segments = <MultiIndex[]> this.data.mentions.flatMap(mention => mention.segment)
+    this.segments = <MultiIndex[]> this.selection.signal.mentions.flatMap(mention => mention.segment)
       .filter(seg => seg.type.toLowerCase() === "multiindex");
   }
 

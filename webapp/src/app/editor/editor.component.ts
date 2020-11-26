@@ -9,8 +9,8 @@ import {Annotation, Mention} from "../representation/scenario";
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
-  @Input() signal: SignalSelection;
-  @Output() signalChange = new EventEmitter<SignalSelection>();
+  @Input() signal: SignalSelection<any>;
+  @Output() signalChange = new EventEmitter<SignalSelection<any>>();
 
   annotationType: string;
 

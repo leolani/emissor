@@ -93,7 +93,7 @@ export class ScenarioService {
     }
   }
 
-  getContainerComponent(selectedSignal: Signal<any> | Annotation<any>): Type<ContainerComponent<any, any>> {
+  getContainerComponent(selectedSignal: Signal<any> | Annotation<any>): Type<ContainerComponent<any>> {
     switch (selectedSignal.type.toLowerCase()) {
       case "textsignal":
         return ContainersTextComponent

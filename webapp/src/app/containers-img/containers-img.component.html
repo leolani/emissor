@@ -4,7 +4,7 @@
        [style.top.px]="topOffset"
        [style.width.px]="scaledWidth"
        [style.height.px]="scaledHeight">
-    <img #image [src]="data.image" (load)="positionImage()" [style.width.%]="imageWidth">
+    <img #image [src]="selection.signal.image" (load)="positionImage()" [style.width.%]="imageWidth">
     <div *ngFor="let segment of segments" class="boundingbox"
          [style.left.px]="scale * segment.bounds[0]"
          [style.top.px]="scale *  segment.bounds[1]"

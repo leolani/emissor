@@ -8,18 +8,17 @@ import {SignalSelection} from "../signal-selection";
   templateUrl: './containers-text.component.html',
   styleUrls: ['./containers-text.component.css']
 })
-export class ContainersTextComponent implements OnInit, ContainerComponent<TextSignal, Index> {
-  @Input() data: TextSignal;
-  @Input() selection: SignalSelection;
+export class ContainersTextComponent implements OnInit, ContainerComponent<TextSignal> {
+  @Input() selection: SignalSelection<TextSignal>;
 
   tokens: Mention[];
 
   constructor() {}
 
   ngOnInit(): void {
-    this.tokens = this.data.mentions.filter(mention =>
+    this.tokens = this.selection.signal.mentions.filter(mention =>
         mention.segment.length === 1
-        && mention.segment[0].container_id === this.data.id
+        && mention.segment[0].container_id === this.selection.signal.id
         && mention.annotations.length
         && mention.annotations[0].type.toLowerCase() === "token");
   }

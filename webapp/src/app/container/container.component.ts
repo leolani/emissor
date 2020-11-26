@@ -1,9 +1,7 @@
 import {Ruler} from "../representation/container";
 import {SignalSelection} from "../signal-selection";
+import {Signal} from "../representation/scenario";
 
-// TODO Remove ContainerItem
-// TODO Remove data (= signal)
-export interface ContainerComponent<T, R extends Ruler> {
-  data: T;
-  selection: SignalSelection;
+export interface ContainerComponent<S extends Signal<any>> {
+  selection: SignalSelection<S>;
 }
