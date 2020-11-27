@@ -2,12 +2,13 @@
 from __future__ import annotations
 
 import enum
+import uuid
 from dataclasses import dataclass
 
 from rdflib import URIRef, Namespace
 from typing import Tuple
 
-from grmc.representation.container import Sequence, AtomicContainer
+from grmc.representation.container import Sequence, AtomicContainer, AtomicRuler
 from grmc.representation.util import Identifier
 
 friends_namespace = Namespace("http://cltl.nl/leolani/friends/")
@@ -20,6 +21,7 @@ class AnnotationType(enum.Enum):
     PERSON = 1
     FRIEND = 2
     OBJECT = 3
+    TOKEN = 4
 
 
 class ImageLabel(enum.Enum):
@@ -53,8 +55,10 @@ class Triple:
 
 
 @dataclass
-class Token(AtomicContainer):
-    pass
+class Token(AtomicContainer[str]):
+    @classmethod
+    def for_string(cls, value: str):
+        return cls(str(uuid.uuid4()), AtomicRuler(None), value)
 
 
 @dataclass
