@@ -7,6 +7,10 @@ import {Annotation, Mention, Signal} from "./representation/scenario";
 import {SegmentItem} from "./segment/segment-item";
 import {AnnotationItem} from "./annotation/annotation-item";
 
+function byId(obj) {
+  return other => other.id === obj.id;
+}
+
 export class SignalSelection<S extends Signal<any>> {
   idx: number;
   signal: S;
@@ -18,9 +22,11 @@ export class SignalSelection<S extends Signal<any>> {
   segmentItem: SegmentItem<any>;
   annotationItem: AnnotationItem<any>;
 
+  private readonly scenarioId: string;
   private readonly scenarioService: ScenarioService;
 
-  constructor(idx: number, signal: S, scenarioService: ScenarioService) {
+  constructor(idx: number, signal: S, scenarioId: string, scenarioService: ScenarioService) {
+    this.scenarioId = scenarioId;
     this.scenarioService = scenarioService;
 
     this.idx = idx;
@@ -30,7 +36,7 @@ export class SignalSelection<S extends Signal<any>> {
   }
 
   private clone() {
-    let selection = new SignalSelection(this.idx, this.signal, this.scenarioService);
+    let selection = new SignalSelection(this.idx, this.signal, this.scenarioId, this.scenarioService);
     selection.mention = this.mention;
     selection.segment = this.segment;
     selection.annotation = this.annotation;
@@ -56,7 +62,9 @@ export class SignalSelection<S extends Signal<any>> {
     selection.segment = segment;
     selection.annotation = this.annotation;
 
-    selection.segmentItem = new SegmentItem<any>(this.scenarioService.getSegmentComponent(segment), segment);
+    selection.segmentItem = segment ?
+        new SegmentItem<any>(this.scenarioService.getSegmentComponent(segment), segment) :
+        null;
 
     return selection;
   }
@@ -67,64 +75,64 @@ export class SignalSelection<S extends Signal<any>> {
     selection.segment = this.segment;
     selection.annotation = annotation;
 
-    selection.annotationItem = new AnnotationItem<any>(this.scenarioService.getAnnotationComponent(annotation), annotation);
+    selection.annotationItem = annotation ?
+        new AnnotationItem<any>(this.scenarioService.getAnnotationComponent(annotation), annotation):
+        null;
 
     return selection;
   }
 
-  addMention(select = true): SignalSelection<S> {
+  addMention(select = true): Promise<SignalSelection<S>> {
     let selection = this.clone();
-    let newMention = this.scenarioService.getMentionFor(selection.signal);
-    selection.signal.mentions.push(newMention);
 
-    if (select) {
-      selection = selection.withMention(newMention);
-    }
+    return this.scenarioService.getMentionFor(this.scenarioId, this.signal)
+        .then(signal => {
+          selection.signal = <S> signal;
+          if (select) {
+            selection = selection.withMention(signal.mentions.slice(-1)[0]);
+          }
 
-    return selection;
+          return selection;
+        });
   }
 
-  addAnnotation(type, select = true): SignalSelection<S> {
+  addAnnotation(type: string, select = true): Promise<SignalSelection<S>> {
     let selection = this.clone();
 
-    let newAnnotation = this.scenarioService.getAnnotationFor(type, selection.signal);
-    selection.mention.annotations.push(newAnnotation);
+    return this.scenarioService.getAnnotationFor(this.scenarioId, this.signal, this.mention, type)
+        .then(signal => {
+          selection.signal = <S> signal;
+          if (select) {
+            let newAnnotation = signal.mentions.find(byId(this.mention))
+                .annotations.slice(-1)[0];
+            selection = selection.withAnnotation(newAnnotation);
+          }
 
-    if (select) {
-      selection = selection.withAnnotation(newAnnotation);
-    }
-
-    return selection;
+          return selection;
+        });
   }
 
-  addSegment(type = null, select = true): SignalSelection<S> {
+  addSegment(type = null, select = true): Promise<SignalSelection<S>> {
     let selection = this.clone();
 
-    let mention = selection.mention;
-    let previous = mention.segment.length && mention.segment.slice(-1)[0];
+    return this.scenarioService.getSegmentFor(this.scenarioId, this.signal, this.mention, type)
+        .then(signal => {
+          selection.signal = <S> signal;
+          if (select) {
+            let newSegment = signal.mentions.find(byId(this.mention))
+              .segment.slice(-1)[0];
+            selection = selection.withSegment(newSegment);
+          }
 
-    let newSegment: any;
-    if (type) {
-      throw Error();
-    } else if (previous) {
-      newSegment = JSON.parse(JSON.stringify(previous));
-    } else {
-      newSegment = this.scenarioService.getSegmentFor(selection.signal)
-    }
-
-    mention.segment.push(newSegment);
-    if (select) {
-      selection = selection.withSegment(newSegment);
-    }
-
-    return selection;
+          return selection;
+        });
   }
 
   getContainerComponent(): Type<ContainerComponent<any>> {
     return this.scenarioService.getContainerComponent(this.signal);
   }
 
-  getSegemntComponent(): Type<SegmentComponent<any>> {
+  getSegmentComponent(): Type<SegmentComponent<any>> {
     return this.scenarioService.getSegmentComponent(this.segment);
   }
 

@@ -52,7 +52,7 @@ export class ModalityComponent implements OnInit {
   }
 
   onSliderSelection(idx: number) {
-    this.selection = new SignalSelection(idx, this.signals[idx], this.scenarioService);
+    this.selection = new SignalSelection(idx, this.signals[idx], this.scenario.id, this.scenarioService);
   }
 
   loadSignals(modality: string): void {

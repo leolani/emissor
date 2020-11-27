@@ -9,6 +9,7 @@ import {Annotation, Mention} from "../representation/scenario";
   styleUrls: ['./editor.component.css']
 })
 export class EditorComponent implements OnInit {
+  // TODO rename to selection
   @Input() signal: SignalSelection<any>;
   @Output() signalChange = new EventEmitter<SignalSelection<any>>();
 
@@ -19,35 +20,41 @@ export class EditorComponent implements OnInit {
   ngOnInit(): void {}
 
   addMention() {
-    // this.signal.signal.mentions.push(new Mention("", "new", [], [
-    //   new Annotation<any>("new", "display", "new", "", new Date().getTime())]));
-    // this.signal = this.signal.withMention(this.signal.signal.mentions.slice(-1)[0])
-    // this.signalChange.emit(this.signal);
+    this.signal.addMention().then(selection => {
+      this.signal = selection;
+      this.signalChange.emit(this.signal);
+    });
   }
 
   addAnnotation() {
-    this.signal = this.signal.addAnnotation(this.annotationType);
-    this.signalChange.emit(this.signal);
+    this.signal.addAnnotation(this.annotationType).then(selection => {
+      this.signal = selection;
+      this.signalChange.emit(this.signal);
+    });
   }
 
   addSegment() {
-    let mention = this.signal.mention;
-    let len = mention.segment.length;
-    let previous = len && mention.segment[len - 1];
-
-    let newSegment: any;
-    if (previous) {
-      newSegment = JSON.parse(JSON.stringify(previous));
-    } else {
-      newSegment = this.scenarioService.getSegmentFor(this.signal.signal)
+    let type = null;
+    switch (this.signal.signal.type.toLowerCase()) {
+      case "imagesignal":
+        type = "multiindex";
+        break;
+      case "textsignal":
+        type = "index";
+        break;
+      default:
+        // pass
     }
 
-    mention.segment.push(newSegment);
-    this.signal = this.signal.withSegment(mention.segment.slice(-1)[0]);
-    this.signalChange.emit(this.signal);
+    this.signal.addSegment(type).then(selection => {
+      this.signal = selection;
+      this.signalChange.emit(this.signal);
+    });
   }
 
-  selectMention(mention: Mention) {
+  selectMention(mentionId: string) {
+    let mention = this.signal.signal.mentions.find(mention => mention.id === mentionId);
+
     let changedSignal = this.signal.withMention(mention);
     if (mention && mention.segment.length) {
       changedSignal = changedSignal.withSegment(changedSignal.mention.segment[0]);

@@ -2,6 +2,7 @@ import os
 from glob import glob
 
 import pandas as pd
+import pkg_resources
 from PIL import Image
 from pandas import DataFrame
 from typing import Iterable, Optional, Any, Tuple, Union
@@ -16,7 +17,7 @@ _MAX_GUESS_RANGE = 60 * 60 * 24 * 365 * 100
 
 
 def _get_base():
-    return "webapp/src/assets"
+    return pkg_resources.resource_filename('grmc', 'static/')
 
 
 def file_name(path):
@@ -158,12 +159,18 @@ class ScenarioStorage:
 
         return signals
 
-    def save_signals(self, scenario_id: str, modality: Modality, signals: Iterable[Signal[Any, Any]]):
+    def load_signal(self, scenario_id: str, modality: Modality, signal_id: str) -> Signal[Any, Any]:
+        if modality not in self._cache:
+            self.load_modality(scenario_id, modality)
+
+        return self._cache[modality][signal_id]
+
+    def save_signals(self, scenario_id: str, modality: Modality, signals: Iterable[Signal[Any, Any]]) -> None:
         self._cache[modality] = signals
         self._save_signals(_get_path(scenario_id, modality), signals)
 
-    def save_signal(self, scenario_id: str, signal: Signal[Any, Any]):
-        modality = signal.modality
+    def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
+        modality = signal.modality if isinstance(signal.modality, Modality) else Modality[signal.modality.upper()]
         self._cache[modality][signal.id] = signal
         self._save_signals(_get_path(scenario_id, modality), self._cache[modality].values())
 

@@ -2,7 +2,7 @@ import {Injectable, Type} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Annotation, ImageSignal, Mention, Scenario, Signal, TextSignal} from "./representation/scenario";
 
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {map} from "rxjs/operators";
 import {SegmentsTimeComponent} from "./segments-time/segments-time.component";
 import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boundingbox.component";
@@ -21,7 +21,7 @@ import {ContainerComponent} from "./container/container.component";
 export class ScenarioService {
   // private scenarioEndpoint = "/api/scenario"
   private scenarioEndpoint = "https://localhost:5000/api/scenario"
-  private resourcePath = "/assets"
+  private resourcePath = "https://localhost:5000/data"
 
   constructor(private http: HttpClient) { }
 
@@ -116,32 +116,34 @@ export class ScenarioService {
     }
   }
 
-  getMentionFor(signal: Signal<any>): Mention {
-    // return new Mention("", "new", [], [
-    //   new Annotation<any>("new", "display", "new", "", new Date().getTime())]);
-    return null;
+  getMentionFor(scenarioId: string, signal: Signal<any>): Promise<Signal<any>> {
+    let path = `/${scenarioId}/${signal.modality}/${signal.id}/mention`
+
+    return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null).pipe(
+      map(signal => this.setSignalValue(scenarioId, signal, this.resourcePath))
+    ).toPromise();
   }
 
-  getAnnotationFor(type: string, signal: Signal<any>): Annotation<any> {
-    // switch (type.toLowerCase()) {
-    //   case "display":
-    //     return new Annotation<string>("new", "display", "new", "", new Date().getTime());
-    //   default:
-    //     throw Error("Unsupported type: " + signal.type);
-    // }
-    return null;
+  getAnnotationFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string): Promise<Signal<any>> {
+    let path = `/${scenarioId}/${signal.modality}/${signal.id}/${mention.id}/annotation`
+
+    let params = new HttpParams();
+    params = params.append('type', type);
+
+    return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null, {params}).pipe(
+      map(signal => this.setSignalValue(scenarioId, signal, this.resourcePath))
+    ).toPromise();
   }
 
-  getSegmentFor(signal: Signal<any>): Ruler {
-    // switch (signal.type.toLowerCase()) {
-    //   case "imagesignal":
-    //     return new BoundingBox("new", 0,0,0,0);
-    //   case "textsignal":
-    //     return new Offset(0, 0);
-    //   default:
-    //     throw Error("Unsupported type: " + signal.type);
-    // }
-    return null;
+  getSegmentFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string): Promise<Signal<any>> {
+    let path = `/${scenarioId}/${signal.modality}/${signal.id}/${mention.id}/segment`
+
+    let params = new HttpParams();
+    params = params.append('type', type);
+
+    return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null, {params}).pipe(
+      map(signal => this.setSignalValue(scenarioId, signal, this.resourcePath))
+    ).toPromise();
   }
 
   private getJSONHeaders(): any {

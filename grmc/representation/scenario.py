@@ -35,6 +35,7 @@ class Annotation(Generic[T]):
 
 @dataclass
 class Mention:
+    id: Identifier
     segment: List[Ruler]
     annotations: List[Annotation[Any]]
 
