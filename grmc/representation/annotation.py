@@ -41,6 +41,13 @@ class Entity:
 
 
 @dataclass
+class Token(AtomicContainer[str]):
+    @classmethod
+    def for_string(cls, value: str):
+        return cls(str(uuid.uuid4()), AtomicRuler(None), value)
+
+
+@dataclass
 class Triple:
     subject: Entity
     predicate: URIRef
@@ -52,13 +59,6 @@ class Triple:
         return cls(Entity(friends_namespace.term(subject_id), EntityType.FRIEND),
                    predicate_namespace.term(predicate_id),
                    Entity(friends_namespace.term(object_id), EntityType.FRIEND))
-
-
-@dataclass
-class Token(AtomicContainer[str]):
-    @classmethod
-    def for_string(cls, value: str):
-        return cls(str(uuid.uuid4()), AtomicRuler(None), value)
 
 
 @dataclass

@@ -11,10 +11,15 @@ function byId(obj) {
   return other => other.id === obj.id;
 }
 
+function eqId(id: string) {
+  return other => other.id === id;
+}
+
 export class SignalSelection<S extends Signal<any>> {
   idx: number;
   signal: S;
   mention: Mention;
+  // TODO segments + selectedSegment, same for annotations
   segment: Ruler;
   annotation: Annotation<any>;
 
@@ -22,10 +27,13 @@ export class SignalSelection<S extends Signal<any>> {
   segmentItem: SegmentItem<any>;
   annotationItem: AnnotationItem<any>;
 
-  private readonly scenarioId: string;
+  segments: SegmentItem<any>[];
+  annotations: AnnotationItem<any>[];
+
+  readonly scenarioId: string;
   private readonly scenarioService: ScenarioService;
 
-  constructor(idx: number, signal: S, scenarioId: string, scenarioService: ScenarioService) {
+  constructor(idx: number, signal: S, scenarioId: string, scenarioService: ScenarioService, init: boolean = true) {
     this.scenarioId = scenarioId;
     this.scenarioService = scenarioService;
 
@@ -33,16 +41,24 @@ export class SignalSelection<S extends Signal<any>> {
     this.signal = signal;
 
     this.containerComponent = scenarioService.getContainerComponent(signal);
+
+    if (init) {
+      this.segments = this.allSegments();
+      this.annotations = this.allAnnotations();
+      console.log("Initialized selection");
+    }
   }
 
   private clone() {
-    let selection = new SignalSelection(this.idx, this.signal, this.scenarioId, this.scenarioService);
+    let selection = new SignalSelection(this.idx, this.signal, this.scenarioId, this.scenarioService, false);
     selection.mention = this.mention;
     selection.segment = this.segment;
     selection.annotation = this.annotation;
     selection.containerComponent = this.containerComponent;
     selection.segmentItem = this.segmentItem;
     selection.annotationItem = this.annotationItem;
+    selection.segments = this.segments;
+    selection.annotations = this.annotations;
 
     return selection;
   }
@@ -56,27 +72,32 @@ export class SignalSelection<S extends Signal<any>> {
     return selection;
   }
 
-  withSegment(segment: Ruler): SignalSelection<S> {
+  withSegment(segment: Ruler, mentionId: string = null): SignalSelection<S> {
+    let mention = (mentionId && this.signal.mentions.find(eqId(mentionId))) || this.mention;
+
     let selection = this.clone();
-    selection.mention = this.mention;
+    selection.mention = mention;
     selection.segment = segment;
     selection.annotation = this.annotation;
 
     selection.segmentItem = segment ?
-        new SegmentItem<any>(this.scenarioService.getSegmentComponent(segment), segment) :
+        new SegmentItem<any>(this.scenarioService.getSegmentComponent(segment), mention.id, segment) :
         null;
 
     return selection;
   }
 
-  withAnnotation(annotation: Annotation<any>): SignalSelection<S> {
+  // TODO AnnotationItem
+  withAnnotation(annotation: Annotation<any>, mentionId: string = null): SignalSelection<S> {
+    let mention = (mentionId && this.signal.mentions.find(eqId(mentionId))) || this.mention;
+
     let selection = this.clone();
-    selection.mention = this.mention;
+    selection.mention = mention;
     selection.segment = this.segment;
     selection.annotation = annotation;
 
     selection.annotationItem = annotation ?
-        new AnnotationItem<any>(this.scenarioService.getAnnotationComponent(annotation), annotation):
+        new AnnotationItem<any>(this.scenarioService.getAnnotationComponent(annotation), mention.id, annotation):
         null;
 
     return selection;
@@ -128,15 +149,23 @@ export class SignalSelection<S extends Signal<any>> {
         });
   }
 
-  getContainerComponent(): Type<ContainerComponent<any>> {
-    return this.scenarioService.getContainerComponent(this.signal);
+  private getSegmentComponent(segment: Ruler): Type<SegmentComponent<any>> {
+    return this.scenarioService.getSegmentComponent(segment);
   }
 
-  getSegmentComponent(): Type<SegmentComponent<any>> {
-    return this.scenarioService.getSegmentComponent(this.segment);
+  private getAnnotationComponent(annotation: Annotation<any>): Type<SegmentComponent<any>> {
+    return this.scenarioService.getAnnotationComponent(annotation);
   }
 
-  getAnnotationComponent(): Type<SegmentComponent<any>> {
-    return this.scenarioService.getSegmentComponent(this.segment);
+  private allSegments(): SegmentItem<any>[] {
+    return this.signal.mentions.flatMap(mention => mention.segment.map(seg => {
+      return new SegmentItem(this.getSegmentComponent(seg), mention.id, seg);
+    }));
+  }
+
+  private allAnnotations(): AnnotationItem<any>[] {
+    return this.signal.mentions.flatMap(mention => mention.annotations.map(ann => {
+      return new AnnotationItem<any>(this.getAnnotationComponent(ann), mention.id, ann);
+    }));
   }
 }

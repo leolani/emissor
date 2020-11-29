@@ -35,4 +35,9 @@ app-container-view {
 
 .column {
   width: 18%;
+  overflow: scroll;
+}
+
+.mat-expansion-panel {
+  margin-bottom: 10px;
 }

@@ -62,6 +62,7 @@ export class ModalityComponent implements OnInit {
         this.signalEntries = Array.from(this.signals.entries());
         this.setupSlider();
         this.setupRange();
+        console.log("Initialized modality" + this.modality + " with " + this.signals.length + " signals");
       });
   }
 

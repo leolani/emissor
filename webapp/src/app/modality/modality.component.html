@@ -4,7 +4,7 @@
     <mat-panel-description>{{modality}} (Click to expand/collaps)</mat-panel-description>
   </mat-expansion-panel-header>
 
-  <mat-drawer-container class="example-container">
+  <mat-drawer-container *ngIf="selection" class="example-container">
     <mat-drawer #drawer [mode]="'side'">
       <ul>
         <li *ngFor="let signal of signalEntries"
@@ -18,8 +18,7 @@
     <mat-drawer-content>
       <button mat-raised-button (click)="drawer.toggle()">Signal List</button>
 
-      {{selection.signal.display}}
-      <app-carousel *ngIf="modality === 'image'" [selection]="selection" [signals]="signals"></app-carousel>
+      <app-carousel *ngIf="modality === 'image'" [(selection)]="selection" [signals]="signals"></app-carousel>
 
       <div *ngIf="modality === 'text'" fxLayout="row" fxLayoutGap="5ex" class="overview">
         <app-text-view [signals]="signals" [selection]="selection"></app-text-view>

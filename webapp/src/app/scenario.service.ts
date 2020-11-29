@@ -13,6 +13,7 @@ import {Ruler} from "./representation/container";
 import {ContainersImgComponent} from "./containers-img/containers-img.component";
 import {ContainersTextComponent} from "./containers-text/containers-text.component";
 import {ContainerComponent} from "./container/container.component";
+import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.component";
 
 
 @Injectable({
@@ -89,6 +90,8 @@ export class ScenarioService {
     switch (annotation.type.toLowerCase()) {
       case "display":
         return AnnotationsDisplayComponent
+      case "token":
+        return AnnotationsDisplayComponent
       default:
         throw Error("Unsupported annotation type: " + annotation.type);
     }
@@ -100,6 +103,8 @@ export class ScenarioService {
         return SegmentsBoundingboxComponent
       case "temporalruler":
         return SegmentsTimeComponent
+      case "index":
+        return SegmentsOffsetComponent
       default:
         throw Error("Unsupported segment type: " + ruler.type);
     }
