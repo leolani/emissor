@@ -17,12 +17,19 @@
 
 .boundingbox {
   position: absolute;
-  outline: 1px dashed red;
+  outline: 1px dashed #f2f2f2;
   color: black;
 }
 
+.top.boundingbox {
+  z-index: 9999;
+}
+
+.selected.boundingbox {
+  outline: 1px solid red;
+}
+
 .selected.boundingbox.active {
-  outline-style: solid;
   background-color: #80ff800d;
 }
 

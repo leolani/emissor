@@ -10,6 +10,7 @@
          [style.top.px]="scale *  segment.bounds[1]"
          [style.width.px]="scale * (segment.bounds[2] - segment.bounds[0])"
          [style.height.px]="scale * (segment.bounds[3] - segment.bounds[1])"
+         [class.top]="selection.segment === segment"
          [class.active]="status > 0"
          [class.selected]="!!selected && selected === segment"
          (mousedown)="setStatus($event, 2)"

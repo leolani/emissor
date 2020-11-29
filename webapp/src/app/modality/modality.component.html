@@ -18,11 +18,7 @@
     <mat-drawer-content>
       <button mat-raised-button (click)="drawer.toggle()">Signal List</button>
 
-      <app-carousel *ngIf="modality === 'image'" [(selection)]="selection" [signals]="signals"></app-carousel>
-
-      <div *ngIf="modality === 'text'" fxLayout="row" fxLayoutGap="5ex" class="overview">
-        <app-text-view [signals]="signals" [selection]="selection"></app-text-view>
-      </div>
+      <app-carousel [(selection)]="selection" [signals]="signals"></app-carousel>
 
       <form>
         <mat-form-field>
