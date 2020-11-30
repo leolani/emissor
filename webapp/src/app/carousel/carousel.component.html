@@ -2,7 +2,7 @@
   <div class="column" style="background-color:#aaa;">
     <h5>Segments</h5>
     <mat-accordion multi>
-      <mat-expansion-panel *ngFor="let mention of selection.signal.mentions">
+      <mat-expansion-panel *ngFor="let mention of selection.signal.mentions.slice().reverse()">
         <mat-expansion-panel-header [ngClass]="{'selected': selection.mention && mention.id === selection.mention.id}">
           <mat-panel-title>
             {{segmentDisplayValue(mention.segment.length && mention.segment[0]) | slice:0:6}}
