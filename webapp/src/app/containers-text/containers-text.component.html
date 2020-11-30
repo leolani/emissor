@@ -8,16 +8,6 @@
     {{token.annotations[0].value.value}}
   </span>
 </div>
-<div class="container">
-  <span *ngFor="let token of tokens">
-    {{token.annotations[0].value.id | slice:0:6}}
-  </span>
-</div>
-<div class="container">
-  <span *ngFor="let id of selectedContainerIds">
-    {{id | slice:0:6}}
-  </span>
-</div>
 <div>
   <button mat-raised-button (click)="save()">Save</button>
   <button mat-raised-button (click)="addMention()">Add Mention</button>
