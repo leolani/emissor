@@ -1922,7 +1922,37 @@
       {
         "annotations": [],
         "id": "d2e738b7-f2a4-49a7-bcd5-26792ae46b72",
-        "segment": []
+        "segment": [],
+        "display": 0
+      },
+      {
+        "annotations": [
+          {
+            "source": "",
+            "timestamp": 1606750709,
+            "type": "pos",
+            "value": "POS-TAG"
+          }
+        ],
+        "id": "856472ee-bf95-4876-9081-fea94b710a29",
+        "segment": [
+          {
+            "container_id": "e7c7312b-33b8-4b3d-86e4-57a6b4dc2f1c",
+            "type": "AtomicRuler",
+            "display": 0
+          },
+          {
+            "container_id": "48e58e3c-b743-49ca-a40b-171eb9254875",
+            "type": "AtomicRuler",
+            "display": 0
+          },
+          {
+            "container_id": "81672eb7-4a8b-4fae-b5a4-64609335d4c5",
+            "type": "AtomicRuler",
+            "display": 0
+          }
+        ],
+        "display": 0
       }
     ],
     "modality": "text",
@@ -2011,9 +2041,11 @@
             "container_id": "c1edd1e4-170e-4633-8679-207d81bfb944",
             "start": 0,
             "stop": 4,
-            "type": "Index"
+            "type": "Index",
+            "display": 0
           }
-        ]
+        ],
+        "display": 0
       },
       {
         "annotations": [
@@ -2038,9 +2070,11 @@
             "container_id": "c1edd1e4-170e-4633-8679-207d81bfb944",
             "start": 5,
             "stop": 8,
-            "type": "Index"
+            "type": "Index",
+            "display": 0
           }
-        ]
+        ],
+        "display": 0
       },
       {
         "annotations": [
@@ -2065,9 +2099,11 @@
             "container_id": "c1edd1e4-170e-4633-8679-207d81bfb944",
             "start": 9,
             "stop": 14,
-            "type": "Index"
+            "type": "Index",
+            "display": 0
           }
-        ]
+        ],
+        "display": 0
       },
       {
         "annotations": [
@@ -2092,9 +2128,11 @@
             "container_id": "c1edd1e4-170e-4633-8679-207d81bfb944",
             "start": 15,
             "stop": 20,
-            "type": "Index"
+            "type": "Index",
+            "display": 0
           }
-        ]
+        ],
+        "display": 0
       },
       {
         "annotations": [
@@ -2119,7 +2157,27 @@
             "container_id": "c1edd1e4-170e-4633-8679-207d81bfb944",
             "start": 20,
             "stop": 21,
-            "type": "Index"
+            "type": "Index",
+            "display": 0
+          }
+        ],
+        "display": 0
+      },
+      {
+        "annotations": [],
+        "id": "cc31d6c4-f191-4ada-9eb1-e765fa2d10e8",
+        "segment": [
+          {
+            "container_id": "f9a515e9-d4bc-403c-92ad-794ccceb6321",
+            "type": "AtomicRuler"
+          },
+          {
+            "container_id": "c0620cc5-5289-4ce6-a887-144da12a5aba",
+            "type": "AtomicRuler"
+          },
+          {
+            "container_id": "289a3dfd-3143-4130-bdc2-854220c01cc7",
+            "type": "AtomicRuler"
           }
         ]
       }
@@ -2162,7 +2220,9 @@
       "start": 1603139005,
       "type": "TemporalRuler"
     },
-    "type": "TextSignal"
+    "type": "TextSignal",
+    "text": "What are their names?",
+    "display": "What are their names?"
   },
   {
     "files": [
@@ -3686,9 +3746,19 @@
         "segment": [
           {
             "container_id": "b8555a6e-4c6d-405c-87a9-72c89e48f7e0",
+            "type": "AtomicRuler",
+            "display": 0
+          },
+          {
+            "container_id": "a1b70d82-8e8c-4c79-ac3e-efb71e45258f",
+            "type": "AtomicRuler"
+          },
+          {
+            "container_id": "b89fb3b5-4ee1-4b2a-aa24-91d27b5a708a",
             "type": "AtomicRuler"
           }
-        ]
+        ],
+        "display": 0
       }
     ],
     "modality": "text",

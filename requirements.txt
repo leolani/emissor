@@ -1,6 +1,5 @@
 Flask==1.1.2
 Flask-Cors==3.0.9
-importlib-metadata==3.0.0
 nltk==3.5
 numpy==1.19.4
 pandas==1.1.4

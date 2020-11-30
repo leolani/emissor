@@ -4,8 +4,7 @@ from nltk import TreebankWordTokenizer
 from pandas import Series
 from typing import Iterable, Any
 
-from grmc.backend.persistence import ScenarioStorage, guess_scenario_range, load_images, ANNOTATION_TOOL_ID, \
-    file_name, load_text
+from grmc.backend.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
 from grmc.representation.annotation import AnnotationType, Token
 from grmc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
 from grmc.representation.entity import Person, Gender, Emotion
@@ -53,8 +52,8 @@ def _create_text_signal(scenario: Scenario, utterance_data: Series):
 
 
 class Backend:
-    def __init__(self):
-        self._storage = ScenarioStorage()
+    def __init__(self, data_path):
+        self._storage = ScenarioStorage(data_path)
 
     def list_scenarios(self) -> Iterable[str]:
         return self._storage.list_scenarios()
@@ -68,7 +67,7 @@ class Backend:
         return scenario
 
     def _create_scenario(self, scenario_id: str) -> Scenario:
-        start, end = guess_scenario_range(scenario_id, _DEFAULT_SIGNALS.keys())
+        start, end = self._storage.guess_scenario_range(scenario_id, _DEFAULT_SIGNALS.keys())
 
         return Scenario.new_instance(scenario_id, start, end,
                                      ScenarioContext("robot_agent", _SPEAKER, [], []),
@@ -88,10 +87,10 @@ class Backend:
     def _create_modality_metadata(self, scenario_id, modality: Modality) -> Iterable[Signal[Any, Any]]:
         scenario = self.load_scenario(scenario_id)
         if modality.name.lower() == "image":
-            image_meta = load_images(self._storage.load_scenario(scenario_id))
+            image_meta = self._storage.load_images(self._storage.load_scenario(scenario_id))
             return [create_image_signal(scenario, meta) for _, meta in image_meta.iterrows()]
         elif modality.name.lower() == "text":
-            texts = load_text(scenario_id)
+            texts = self._storage.load_text(scenario_id)
             return [_create_text_signal(scenario, utt) for _, utt in texts.iterrows()]
         else:
             raise ValueError("Unsupported modality " + modality.name)
@@ -101,8 +100,6 @@ class Backend:
 
     def create_mention(self, scenario_id: str, modality: Modality, signal_id: str):
         return Mention(str(uuid.uuid4()), [], [])
-
-        return signal
 
     def create_annotation(self, type_: str):
         if type_.lower() == "person":

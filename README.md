@@ -19,9 +19,9 @@
         source venv/bin/activate
         pip install -r requirements.txt
 
-* Run the webserver
+* Run the webserver, optionally with a path to the folder containing the scenario data (default is *data/*)
 
-        python app.py
+        python app.py -d /path/to/my/scenarios
         
   When starting the webserver for the first time, visit `https://localhost:5000/api/scenario` in the browser and accept
   the risk. After this the browser accepts the certificate.
@@ -30,10 +30,10 @@
   
 # Add data
 
-Expected folder structure
+By default the *data/* folder in this repository is used, any other folder can be specified when running `app.py`.
+Expected folder structure:
 
-        grmc/
-        |- static/
+        |- data/
           |- scenario_name_1/
             |- image
               |- pic_1603139010.jpg
@@ -101,3 +101,8 @@ For step 1. - 5. follow the instructions for images.
 1. Expand segment or annotation for editing (to be improved).
 1. Add annotations to the mention after selecting an annotation type.
 1. Save after modifications (use any *Save* button you can find)
+
+### Version Control
+
+Save as often as possible. Setup version control in your data folder and commit the JSON files to version control, as currently there is no *Undo*
+functionality!
