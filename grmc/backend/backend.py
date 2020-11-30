@@ -7,7 +7,7 @@ from typing import Iterable, Any
 from grmc.backend.persistence import ScenarioStorage, guess_scenario_range, load_images, ANNOTATION_TOOL_ID, \
     file_name, load_text
 from grmc.representation.annotation import AnnotationType, Token
-from grmc.representation.container import TemporalRuler, MultiIndex, Index
+from grmc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
 from grmc.representation.entity import Person, Gender
 from grmc.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation, Signal
@@ -125,19 +125,21 @@ class Backend:
 
         return Annotation(type_, value, "", int(time.time()))
 
-    def add_segment(self, scenario_id, modality, signal_id, mention_id: str, type_: str):
+    def add_segment(self, scenario_id, modality, signal_id, mention_id: str, type_: str, container_id: str) -> Signal:
         signal = self.load_signal(scenario_id, modality, signal_id)
-        segment = self._create_segment(signal, type_)
+        segment = self._create_segment(signal, type_, container_id)
         mention = next(m for m in signal.mentions if m.id == mention_id)
         mention.segment.append(segment)
         self.save_signal(scenario_id, signal)
 
         return signal
 
-    def _create_segment(self, signal: Signal[Any, Any], type_: str):
+    def _create_segment(self, signal: Signal[Any, Any], type_: str, container_id: str) -> Ruler:
         if type_.lower() == "multiindex":
             return MultiIndex(signal.ruler.container_id, signal.ruler.bounds)
         if type_.lower() == "index":
             return Index(signal.ruler.container_id, signal.ruler.start, signal.ruler.stop)
+        if type_.lower() == "atomic":
+            return AtomicRuler(container_id)
 
-        raise ValueError()
+        raise ValueError("Unsupported type: " + type_.lower())

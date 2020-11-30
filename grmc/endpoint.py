@@ -53,7 +53,10 @@ def create_annotation(scenario_id: str, modality: str, signal_id: str, mention_i
 @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/<mention_id>/segment', methods=['PUT'])
 def create_segment(scenario_id: str, modality: str, signal_id: str, mention_id: str):
     type_ = request.args.get("type")
-    return marshal(backend.add_segment(scenario_id, Modality[modality.upper()], signal_id, mention_id, type_))
+    container_id = request.args.get("container")
+
+    return marshal(
+        backend.add_segment(scenario_id, Modality[modality.upper()], signal_id, mention_id, type_, container_id))
 
 
 @app.route('/test')
