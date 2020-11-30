@@ -10,18 +10,18 @@
     "files": [
       "image/maxima.jpg"
     ],
-    "id": "93858f49-b96e-479a-9c62-9611fc05f0f0",
+    "id": "033332c5-5775-446e-8470-2e3b5cba6a8c",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606721693,
+            "timestamp": 1606723138,
             "type": "display",
             "value": "maxima"
           }
         ],
-        "id": "c7c24d66-3f5c-4d58-9fd7-b7595447972a",
+        "id": "7c7aa8dc-31b4-4e1b-b309-b880986fe624",
         "segment": [
           {
             "bounds": [
@@ -34,53 +34,6 @@
             "type": "MultiIndex"
           }
         ]
-      },
-      {
-        "annotations": [],
-        "id": "3ceb047d-922b-418c-bf91-70ca2fdb1065",
-        "segment": []
-      },
-      {
-        "annotations": [],
-        "id": "d214c748-d480-4977-a90a-43d6a12f3ce8",
-        "segment": []
-      },
-      {
-        "annotations": [],
-        "id": "e1e93d80-305b-4094-8161-fc13c4d2edf1",
-        "segment": []
-      },
-      {
-        "annotations": [],
-        "id": "433b29ef-45e7-4d5b-a7fc-9394fc42a785",
-        "segment": []
-      },
-      {
-        "annotations": [],
-        "id": "58f5f396-68de-4ffa-bc6f-d25189cb9a7d",
-        "segment": []
-      },
-      {
-        "annotations": [],
-        "id": "72aa1d60-5379-492f-aa64-9473cc8206bd",
-        "segment": []
-      },
-      {
-        "annotations": [],
-        "id": "b1b264f3-2d12-478a-9a51-032e1ff1e1f9",
-        "segment": []
-      },
-      {
-        "annotations": [
-          {
-            "source": "",
-            "timestamp": 1606722013,
-            "type": "display",
-            "value": "new"
-          }
-        ],
-        "id": "72ef5287-7f2c-4874-99b7-f56b4e5e8a3c",
-        "segment": []
       }
     ],
     "modality": "image",
@@ -113,18 +66,18 @@
     "files": [
       "image/niqee-2020-10-25 at 17.30.51.png"
     ],
-    "id": "f72e791a-0e5a-424b-9c2c-8547d32bcb22",
+    "id": "429781c5-90b2-4a5b-afdf-39df163c599e",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606721693,
+            "timestamp": 1606723138,
             "type": "display",
             "value": "niqee-2020-10-25 at 17.30.51"
           }
         ],
-        "id": "51ff7aaf-3ff1-40f0-8d66-aca90d5c6987",
+        "id": "208d0565-6582-42b0-a038-e6f4f1378cb3",
         "segment": [
           {
             "bounds": [
@@ -169,18 +122,18 @@
     "files": [
       "image/soccer-balll.png"
     ],
-    "id": "2ed78173-4736-4274-901a-475baf3b7ddf",
+    "id": "9fec738d-05af-4759-a200-d595f750cebc",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606721693,
+            "timestamp": 1606723138,
             "type": "display",
             "value": "soccer-balll"
           }
         ],
-        "id": "abe63651-90cf-45a9-a189-39c233a374fd",
+        "id": "b7fe6c29-1210-4edf-8dfa-882fcd6ed864",
         "segment": [
           {
             "bounds": [
@@ -225,18 +178,18 @@
     "files": [
       "image/sam-2020-10-25 at 17.30.25.png"
     ],
-    "id": "9c18377a-9c46-43eb-a918-e430c4ba3c71",
+    "id": "ec3694bc-8d4b-4d54-8e07-c87cce09d810",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606721693,
+            "timestamp": 1606723138,
             "type": "display",
             "value": "sam-2020-10-25 at 17.30.25"
           }
         ],
-        "id": "bd604d60-272b-4dec-8baa-45c5e28e1ff9",
+        "id": "c104cf2f-4d3b-4c8f-bd95-88779785bd1a",
         "segment": [
           {
             "bounds": [
@@ -281,18 +234,18 @@
     "files": [
       "image/piek-sunglasses.jpg"
     ],
-    "id": "82a9e956-4c61-4761-84d8-1782bd524dd6",
+    "id": "eca01f06-aa4b-4d2d-bb88-c965df653ffc",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606721693,
+            "timestamp": 1606723138,
             "type": "display",
             "value": "piek-sunglasses"
           }
         ],
-        "id": "17d2e9c1-c353-48f3-a46d-bdec1b1d9608",
+        "id": "b721ba88-303e-427f-9443-231022ab8a87",
         "segment": [
           {
             "bounds": [

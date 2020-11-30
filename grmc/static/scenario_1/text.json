@@ -1,0 +1,5648 @@
+[
+  {
+    "files": [
+      "text/chat3.csv#0"
+    ],
+    "id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "cdf7ab77-6d91-4caf-a777-a51153de7e8f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "This"
+            }
+          }
+        ],
+        "id": "ba7ade7a-c395-48d5-83a9-7a15a1ebcd3d",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 0,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "23e6aea9-3e9e-4b9a-8e43-0f292a53d1f0",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "988d7835-4206-4197-acaf-009ddab140a9",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 5,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "78a91723-508c-4f4a-94c1-65f0d6fe5fa0",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "a"
+            }
+          }
+        ],
+        "id": "7eb2a2c8-7648-4add-a028-440b25abf70c",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 8,
+            "stop": 9,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "ed1bdbb4-5ed1-44a9-aa7d-a4f9827d8012",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "picture"
+            }
+          }
+        ],
+        "id": "e303a037-c480-463a-b8ff-088567f6819d",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 10,
+            "stop": 17,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "b36cd9a4-2eec-4fe2-9e70-6334eee40684",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "of"
+            }
+          }
+        ],
+        "id": "eb6ba716-0106-460b-99b8-1b18988645c4",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 18,
+            "stop": 20,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f5ca9969-d780-422d-aa75-e2333cda70c3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "me"
+            }
+          }
+        ],
+        "id": "46aa018e-5a52-42b4-a8c4-f88ea8212721",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 21,
+            "stop": 23,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "1dae2140-9faa-4040-ba72-1a4af7038673",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "and"
+            }
+          }
+        ],
+        "id": "4a03db4a-0373-4dc0-97c4-14cc027cb263",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 24,
+            "stop": 27,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9890d5ec-0fa6-4a2c-b0eb-90762da97539",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "my"
+            }
+          }
+        ],
+        "id": "a0a16c1b-f860-4ac3-bf46-9c4227ffc580",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 28,
+            "stop": 30,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9b4a6c29-8021-47d5-969b-5320cf907e71",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "son"
+            }
+          }
+        ],
+        "id": "19b26fa1-fc25-471a-b247-cca04043d262",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 31,
+            "stop": 34,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d9f1bfff-3913-4c02-b937-4cc63fcb19bf",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Sam"
+            }
+          }
+        ],
+        "id": "31bd9930-ec3a-45e9-9045-45bfeb7a9940",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 35,
+            "stop": 38,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "43a296a3-9f2a-433c-8b57-6dbdc6bf29ad",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "c9e687f8-d7fb-440c-90a4-60f139e0dba4",
+        "segment": [
+          {
+            "container_id": "23af08b2-cd65-488d-81d8-e4ec4bcf9de6",
+            "start": 38,
+            "stop": 39,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139020,
+      "stop": 1603139020,
+      "type": "Index"
+    },
+    "seq": [
+      "T",
+      "h",
+      "i",
+      "s",
+      " ",
+      "i",
+      "s",
+      " ",
+      "a",
+      " ",
+      "p",
+      "i",
+      "c",
+      "t",
+      "u",
+      "r",
+      "e",
+      " ",
+      "o",
+      "f",
+      " ",
+      "m",
+      "e",
+      " ",
+      "a",
+      "n",
+      "d",
+      " ",
+      "m",
+      "y",
+      " ",
+      "s",
+      "o",
+      "n",
+      " ",
+      "S",
+      "a",
+      "m",
+      "."
+    ],
+    "start": 1603139020,
+    "stop": 1603139020,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139020,
+      "start": 1603139020,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat3.csv#1"
+    ],
+    "id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "71448334-26df-4ca7-86aa-a163f388394f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "I"
+            }
+          }
+        ],
+        "id": "65828eb4-7b47-4bb8-810d-2f7f3b4b7581",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 0,
+            "stop": 1,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f6d8740c-6fb4-4445-bda3-d9e8f6e4e39e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "am"
+            }
+          }
+        ],
+        "id": "10454511-58bd-459c-a5ae-0d87e396e93b",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 2,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9a803ec9-b600-43dd-b3de-8e0977a43669",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "note"
+            }
+          }
+        ],
+        "id": "2e3752d0-9247-43b9-9414-9fc96d8f4374",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 5,
+            "stop": 9,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "efb844cc-43d5-4e26-a893-3e140f3e324f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "sure"
+            }
+          }
+        ],
+        "id": "a26440c7-4344-4ede-a8b4-a33a086b8874",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 10,
+            "stop": 14,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "829710da-f75c-450e-b5c4-fb95fcc917a1",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "when"
+            }
+          }
+        ],
+        "id": "1efa251b-b897-4593-9a60-b10c0074f741",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 15,
+            "stop": 19,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9c456fea-00fe-41ce-9706-9a9a4d50b868",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "this"
+            }
+          }
+        ],
+        "id": "9e9637d4-2b0b-4860-97c3-08ffb4a0714f",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 20,
+            "stop": 24,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "28d619fe-8dff-41ca-b5f6-e7f331431254",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "picture"
+            }
+          }
+        ],
+        "id": "2fa1503f-4e3c-4b20-897f-df814d95fce9",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 25,
+            "stop": 32,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "7a30684a-5e2c-49ec-a317-319fea46b4f0",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "was"
+            }
+          }
+        ],
+        "id": "5544e822-d86c-4995-ab6c-479e7e0c6c69",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 33,
+            "stop": 36,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "798c7d83-8a3d-4ccd-9b86-86bbbac9a5be",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "taken."
+            }
+          }
+        ],
+        "id": "52876aab-bf1c-4db6-909f-5b9273c6b9c8",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 37,
+            "stop": 43,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "29479078-76e3-4c35-b6ff-950b4606508f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Maybe"
+            }
+          }
+        ],
+        "id": "f31c3041-afa9-4eee-ba6d-3019319c6b14",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 44,
+            "stop": 49,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "e879fb06-960c-433a-be7c-ae4f65a4f6b4",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "in"
+            }
+          }
+        ],
+        "id": "45b957ad-0339-4d3d-b330-122c0bd5db86",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 50,
+            "stop": 52,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9613cbcf-7f27-4739-a7a6-16b5b7ddafc8",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "2002"
+            }
+          }
+        ],
+        "id": "2a31cd12-08ce-427c-9da3-8e9d45e00477",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 53,
+            "stop": 57,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "fd37ba90-ff3c-41f1-a3aa-6ec0bb7ce07a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "fcb61b6f-67ae-428e-a7ff-84b152952306",
+        "segment": [
+          {
+            "container_id": "6584fe6d-85c5-488e-bb81-8a6b670b2da8",
+            "start": 57,
+            "stop": 58,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139040,
+      "stop": 1603139040,
+      "type": "Index"
+    },
+    "seq": [
+      "I",
+      " ",
+      "a",
+      "m",
+      " ",
+      "n",
+      "o",
+      "t",
+      "e",
+      " ",
+      "s",
+      "u",
+      "r",
+      "e",
+      " ",
+      "w",
+      "h",
+      "e",
+      "n",
+      " ",
+      "t",
+      "h",
+      "i",
+      "s",
+      " ",
+      "p",
+      "i",
+      "c",
+      "t",
+      "u",
+      "r",
+      "e",
+      " ",
+      "w",
+      "a",
+      "s",
+      " ",
+      "t",
+      "a",
+      "k",
+      "e",
+      "n",
+      ".",
+      " ",
+      "M",
+      "a",
+      "y",
+      "b",
+      "e",
+      " ",
+      "i",
+      "n",
+      " ",
+      "2",
+      "0",
+      "0",
+      "2",
+      "."
+    ],
+    "start": 1603139040,
+    "stop": 1603139040,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139040,
+      "start": 1603139040,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#0"
+    ],
+    "id": "e321f8db-05fa-4608-80b0-d930f5ab04f1",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "99420693-eb94-406a-9542-8f7c7517788b",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Hi"
+            }
+          }
+        ],
+        "id": "931711d1-2b23-4e8d-8292-e316d1d5b965",
+        "segment": [
+          {
+            "container_id": "e321f8db-05fa-4608-80b0-d930f5ab04f1",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139000,
+      "stop": 1603139000,
+      "type": "Index"
+    },
+    "seq": [
+      "H",
+      "i"
+    ],
+    "start": 1603139000,
+    "stop": 1603139000,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139000,
+      "start": 1603139000,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#1"
+    ],
+    "id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "955dc79a-02a6-46b5-a360-5163621fdce7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Hi"
+            }
+          }
+        ],
+        "id": "1fe12aaf-999e-4d4e-b909-6acd45e12a3f",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "1415c7bc-9a3e-4c29-a4b7-5b903ab072e8",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Piek"
+            }
+          }
+        ],
+        "id": "cd2fd585-6c04-4c3a-9f18-f92916949b17",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 3,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "ddf5b7f9-9908-4568-ac3b-220a97c63fb7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": ","
+            }
+          }
+        ],
+        "id": "580ac4df-1b43-4bc9-bcd2-4d7fd6dea96e",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 7,
+            "stop": 8,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "207e8567-0644-4b8c-bbfe-36e2a8a77e84",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "how"
+            }
+          }
+        ],
+        "id": "ab92522c-8a1c-4358-a993-6e71492eb955",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 9,
+            "stop": 12,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "3d7c88bf-a5d7-438f-99a8-7c759044144d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "are"
+            }
+          }
+        ],
+        "id": "a25392c0-16b4-4211-865f-d0d91ef74044",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 13,
+            "stop": 16,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "051b9912-5bf8-48ef-824e-8efe17a98db2",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "you"
+            }
+          }
+        ],
+        "id": "5edf4ded-7d14-47c3-92e5-fc38fa004b0f",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 17,
+            "stop": 20,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a5d0f472-dbeb-4b7e-b1f7-a718ba1ae09e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "doing"
+            }
+          }
+        ],
+        "id": "b766f68a-86c4-4c2b-9d06-ef44a1855b22",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 21,
+            "stop": 26,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a8fa3a4b-af53-4d46-aee3-244f93f3b153",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "177cb307-6834-40a8-bd98-7eee60d9d26e",
+        "segment": [
+          {
+            "container_id": "97f05668-56b7-48ea-b7d4-87f6b2ceba02",
+            "start": 26,
+            "stop": 27,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139001,
+      "stop": 1603139001,
+      "type": "Index"
+    },
+    "seq": [
+      "H",
+      "i",
+      " ",
+      "P",
+      "i",
+      "e",
+      "k",
+      ",",
+      " ",
+      "h",
+      "o",
+      "w",
+      " ",
+      "a",
+      "r",
+      "e",
+      " ",
+      "y",
+      "o",
+      "u",
+      " ",
+      "d",
+      "o",
+      "i",
+      "n",
+      "g",
+      "?"
+    ],
+    "start": 1603139001,
+    "stop": 1603139001,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139001,
+      "start": 1603139001,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#2"
+    ],
+    "id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "c17edc5d-828e-432e-b443-e17013d6fad5",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "I"
+            }
+          }
+        ],
+        "id": "de6af5b6-30fc-4476-8ba8-59724b89fa39",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 0,
+            "stop": 1,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "bf13640c-2db5-41e3-b912-42167e8a3829",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "am"
+            }
+          }
+        ],
+        "id": "76a95a7d-8331-4a94-8f23-bc436b7b2340",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 2,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d49d51cc-4d82-4c06-ad7d-d5b31d945fc3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "doing"
+            }
+          }
+        ],
+        "id": "8a24ee68-c988-4993-bdff-592c1b704e71",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 5,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "53933247-8f98-4d87-81b9-3f704a485810",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "fine"
+            }
+          }
+        ],
+        "id": "1a8eae90-b371-435f-9255-06f3217a3cdd",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 11,
+            "stop": 15,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9e5aefdf-da85-433e-9a56-a0f2674a4f8a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": ","
+            }
+          }
+        ],
+        "id": "fbbf4d38-cde8-4586-b9ea-d763f88be988",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 15,
+            "stop": 16,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "ba285c11-757e-4615-ab77-67fbfe7252d9",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "how"
+            }
+          }
+        ],
+        "id": "c33d5fea-4a65-47de-ac43-20765bcd5eb2",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 17,
+            "stop": 20,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "6156df6d-c4da-4c28-9c6f-59cb889b5397",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "are"
+            }
+          }
+        ],
+        "id": "ea3188c0-277d-44f5-9c2c-0e8eb0fb564b",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 21,
+            "stop": 24,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "53d67641-353f-4ac4-afd5-b9f04988a04f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "you"
+            }
+          }
+        ],
+        "id": "c321d2f8-933f-4b6d-86bf-7297448d0a80",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 25,
+            "stop": 28,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "ca86dfe9-ede3-4a86-8075-fba47f29355d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "1baa627e-9b97-4e42-ba30-ab3301f1b674",
+        "segment": [
+          {
+            "container_id": "ed03f12b-e872-41c4-a68c-5727f83d1719",
+            "start": 28,
+            "stop": 29,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139002,
+      "stop": 1603139002,
+      "type": "Index"
+    },
+    "seq": [
+      "I",
+      " ",
+      "a",
+      "m",
+      " ",
+      "d",
+      "o",
+      "i",
+      "n",
+      "g",
+      " ",
+      "f",
+      "i",
+      "n",
+      "e",
+      ",",
+      " ",
+      "h",
+      "o",
+      "w",
+      " ",
+      "a",
+      "r",
+      "e",
+      " ",
+      "y",
+      "o",
+      "u",
+      "?"
+    ],
+    "start": 1603139002,
+    "stop": 1603139002,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139002,
+      "start": 1603139002,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#3"
+    ],
+    "id": "5efc6277-db51-43d8-affa-bcbc3def1f9c",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a04a554d-b0e4-452e-9f51-cf87b315af2f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Tell"
+            }
+          }
+        ],
+        "id": "e5d83907-9317-4a00-ae7b-96bdda90677f",
+        "segment": [
+          {
+            "container_id": "5efc6277-db51-43d8-affa-bcbc3def1f9c",
+            "start": 0,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "8fffbbcf-3560-4d33-8627-53d2490ea6e7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "me"
+            }
+          }
+        ],
+        "id": "799e9b49-f126-480a-a351-0eba2c991e26",
+        "segment": [
+          {
+            "container_id": "5efc6277-db51-43d8-affa-bcbc3def1f9c",
+            "start": 5,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "b4043bde-ef49-4986-a151-bbe67dc8ea2e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "about"
+            }
+          }
+        ],
+        "id": "76875048-2ca3-4537-ba7e-364f51b09dd8",
+        "segment": [
+          {
+            "container_id": "5efc6277-db51-43d8-affa-bcbc3def1f9c",
+            "start": 8,
+            "stop": 13,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "c9c2897b-474f-4081-98d1-c688f8cdf6f3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "your"
+            }
+          }
+        ],
+        "id": "4ba4369e-5b9c-46dd-9281-2ed15ed9a392",
+        "segment": [
+          {
+            "container_id": "5efc6277-db51-43d8-affa-bcbc3def1f9c",
+            "start": 14,
+            "stop": 18,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d03a287b-08d8-4248-a4c6-a35fede9497a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "family"
+            }
+          }
+        ],
+        "id": "a11ab17a-38b1-4801-870a-c566721097ef",
+        "segment": [
+          {
+            "container_id": "5efc6277-db51-43d8-affa-bcbc3def1f9c",
+            "start": 19,
+            "stop": 25,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "4bff98e0-1832-48b6-b6d3-c8dc8a39bfbe",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "c8fb1b0e-bc11-4da2-8ec7-789bf287f80b",
+        "segment": [
+          {
+            "container_id": "5efc6277-db51-43d8-affa-bcbc3def1f9c",
+            "start": 25,
+            "stop": 26,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139003,
+      "stop": 1603139003,
+      "type": "Index"
+    },
+    "seq": [
+      "T",
+      "e",
+      "l",
+      "l",
+      " ",
+      "m",
+      "e",
+      " ",
+      "a",
+      "b",
+      "o",
+      "u",
+      "t",
+      " ",
+      "y",
+      "o",
+      "u",
+      "r",
+      " ",
+      "f",
+      "a",
+      "m",
+      "i",
+      "l",
+      "y",
+      "."
+    ],
+    "start": 1603139003,
+    "stop": 1603139003,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139003,
+      "start": 1603139003,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#4"
+    ],
+    "id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "178ae33c-db55-4b69-9aaf-8dd19cdfb1c5",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "I"
+            }
+          }
+        ],
+        "id": "e9cb6ac0-c4e5-4f95-b8b2-2980fcb775b4",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 0,
+            "stop": 1,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "6c9f7b67-c622-4205-ac67-33f71fbbe63e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "am"
+            }
+          }
+        ],
+        "id": "9689a0af-5eff-41a0-a6d3-5e163969b457",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 2,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "e83fc052-75ee-4e20-a45c-6d1c0a6fd087",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "married"
+            }
+          }
+        ],
+        "id": "dd969aec-b9e2-40e9-a0be-a13648258fb5",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 5,
+            "stop": 12,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "8f8b2741-9d8b-4e9a-9dc3-e49f3f21bc70",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "and"
+            }
+          }
+        ],
+        "id": "24db3a68-3ac7-4fb1-ba04-3e1676815f2b",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 13,
+            "stop": 16,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "15d1e9ae-40b3-4080-8ddb-9c0e5e485a77",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "I"
+            }
+          }
+        ],
+        "id": "ec60735d-fe50-42ea-9450-2c00f1ea788d",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 17,
+            "stop": 18,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f6ef110c-a453-426d-a61f-311ad1e83863",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "have"
+            }
+          }
+        ],
+        "id": "25cfa145-96de-4a5b-b8f1-577a82b41ad1",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 19,
+            "stop": 23,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "091c5ab3-c55b-4ee7-bc31-afa3e226ba42",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "two"
+            }
+          }
+        ],
+        "id": "4d9409c9-9492-43b6-84c9-c58de714d63e",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 24,
+            "stop": 27,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "2a15dc0b-7442-4421-a80b-f917ffbb9666",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "children"
+            }
+          }
+        ],
+        "id": "221731fb-26bc-4ea8-8cc9-d175789437e5",
+        "segment": [
+          {
+            "container_id": "1027ca00-45fc-45c6-aa2a-cdf67bbac683",
+            "start": 28,
+            "stop": 36,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139004,
+      "stop": 1603139004,
+      "type": "Index"
+    },
+    "seq": [
+      "I",
+      " ",
+      "a",
+      "m",
+      " ",
+      "m",
+      "a",
+      "r",
+      "r",
+      "i",
+      "e",
+      "d",
+      " ",
+      "a",
+      "n",
+      "d",
+      " ",
+      "I",
+      " ",
+      "h",
+      "a",
+      "v",
+      "e",
+      " ",
+      "t",
+      "w",
+      "o",
+      " ",
+      "c",
+      "h",
+      "i",
+      "l",
+      "d",
+      "r",
+      "e",
+      "n"
+    ],
+    "start": 1603139004,
+    "stop": 1603139004,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139004,
+      "start": 1603139004,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#5"
+    ],
+    "id": "c155028a-5750-4672-a65f-e6e5112ab3ec",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "744273f3-234a-4e24-b0dc-9578882fde9b",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "What"
+            }
+          }
+        ],
+        "id": "cda6743f-9a0a-43bf-b982-f361ca9ef7e7",
+        "segment": [
+          {
+            "container_id": "c155028a-5750-4672-a65f-e6e5112ab3ec",
+            "start": 0,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "1e5e542e-4bc9-4d6c-b0d1-6d473b67c2ae",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "are"
+            }
+          }
+        ],
+        "id": "5dd24a31-8c34-4930-b24e-6283e0adf6d7",
+        "segment": [
+          {
+            "container_id": "c155028a-5750-4672-a65f-e6e5112ab3ec",
+            "start": 5,
+            "stop": 8,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "cc8e8462-c5bf-450a-83ee-fbebb266469c",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "their"
+            }
+          }
+        ],
+        "id": "21863248-119f-43b7-9a50-9dfd8bd9d2f7",
+        "segment": [
+          {
+            "container_id": "c155028a-5750-4672-a65f-e6e5112ab3ec",
+            "start": 9,
+            "stop": 14,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "2eead7ae-6ea4-4c29-bc30-46a301eb3898",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "names"
+            }
+          }
+        ],
+        "id": "1fa8a4db-8fec-4734-aaa6-14bdc90dc052",
+        "segment": [
+          {
+            "container_id": "c155028a-5750-4672-a65f-e6e5112ab3ec",
+            "start": 15,
+            "stop": 20,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "00c2be23-35e9-48d5-8b2b-8ead193539dd",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "63aded9f-2e97-4881-8d85-f69c8180e82e",
+        "segment": [
+          {
+            "container_id": "c155028a-5750-4672-a65f-e6e5112ab3ec",
+            "start": 20,
+            "stop": 21,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139005,
+      "stop": 1603139005,
+      "type": "Index"
+    },
+    "seq": [
+      "W",
+      "h",
+      "a",
+      "t",
+      " ",
+      "a",
+      "r",
+      "e",
+      " ",
+      "t",
+      "h",
+      "e",
+      "i",
+      "r",
+      " ",
+      "n",
+      "a",
+      "m",
+      "e",
+      "s",
+      "?"
+    ],
+    "start": 1603139005,
+    "stop": 1603139005,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139005,
+      "start": 1603139005,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#6"
+    ],
+    "id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "875f92c9-3ab1-4c29-8062-3ff5760b0aa0",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "My"
+            }
+          }
+        ],
+        "id": "7128f749-5e02-4a91-a36a-cc68466bb254",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "46d42c20-9594-4e09-a5df-1760b1262b71",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "daughter"
+            }
+          }
+        ],
+        "id": "eeadc1cf-9f2a-4a34-9228-f125101c14dc",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 3,
+            "stop": 11,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "5c3781a2-1c49-46d0-a27e-145499e4c4a2",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "b1793d9f-2c1b-4307-9edf-0378967a0b04",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 12,
+            "stop": 14,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "1391d448-85c0-4cb6-90d9-97d20942f735",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "called"
+            }
+          }
+        ],
+        "id": "31557718-4a82-4735-931e-4f3bf894e74a",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 15,
+            "stop": 21,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "059a3e96-7ffd-41fa-bdb6-58a8713c6c3a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Niqee"
+            }
+          }
+        ],
+        "id": "963550ab-40a8-4dbe-b749-feb7d31ba33c",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 22,
+            "stop": 27,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "6bb7ceb9-b4ba-40fc-a1f8-8b0240e3366c",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "and"
+            }
+          }
+        ],
+        "id": "dd11900c-75c6-4f1a-8c00-52ed8182e44b",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 28,
+            "stop": 31,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "ee316eb9-6b02-4594-b4ff-8f91bf92172b",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "my"
+            }
+          }
+        ],
+        "id": "07a565ab-86f0-499d-8220-07b95ac2ba2d",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 32,
+            "stop": 34,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "7ca57c82-1fe7-4800-bd9f-13dda5ff7d2f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "son"
+            }
+          }
+        ],
+        "id": "899fe9e2-9d9d-4f0b-93ea-e16b76565aa5",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 35,
+            "stop": 38,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "2f4669d9-6904-4f5a-bbd0-c6277836aafc",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Sam"
+            }
+          }
+        ],
+        "id": "8914358a-1ff5-49d9-bd0d-41416d73672c",
+        "segment": [
+          {
+            "container_id": "55cb4aed-9bb0-4bdd-ade1-e4e1bd9a2208",
+            "start": 39,
+            "stop": 42,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139006,
+      "stop": 1603139006,
+      "type": "Index"
+    },
+    "seq": [
+      "M",
+      "y",
+      " ",
+      "d",
+      "a",
+      "u",
+      "g",
+      "h",
+      "t",
+      "e",
+      "r",
+      " ",
+      "i",
+      "s",
+      " ",
+      "c",
+      "a",
+      "l",
+      "l",
+      "e",
+      "d",
+      " ",
+      "N",
+      "i",
+      "q",
+      "e",
+      "e",
+      " ",
+      "a",
+      "n",
+      "d",
+      " ",
+      "m",
+      "y",
+      " ",
+      "s",
+      "o",
+      "n",
+      " ",
+      "S",
+      "a",
+      "m"
+    ],
+    "start": 1603139006,
+    "stop": 1603139006,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139006,
+      "start": 1603139006,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#7"
+    ],
+    "id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "961e59d6-a60c-487e-9922-d1cee3f6557e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "What"
+            }
+          }
+        ],
+        "id": "3483f77d-d699-47df-9db7-41564349c669",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 0,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "2e4e736d-3628-4fd8-8f93-83adaff045d5",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "b33475cf-eb5b-41db-8446-74c305225459",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 5,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d9fb3996-b756-43b3-ac58-107b041fe4a8",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "the"
+            }
+          }
+        ],
+        "id": "c85799e4-1983-48e8-a108-6b4eacaedfe3",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 8,
+            "stop": 11,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "348d373d-0b00-4e0b-bdf9-eb13d27ff5a7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "name"
+            }
+          }
+        ],
+        "id": "d66f90fd-dccf-4721-a266-03b7aa7f166c",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 12,
+            "stop": 16,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "1240bcb0-e1a9-476c-8674-a3949e65a542",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "of"
+            }
+          }
+        ],
+        "id": "046f6e58-cea7-46b7-b661-e54838a64031",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 17,
+            "stop": 19,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d54e22f9-7449-4834-9acf-fd4817258e69",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "your"
+            }
+          }
+        ],
+        "id": "6d86282d-bec6-4486-981b-3d26566cabf6",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 20,
+            "stop": 24,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d75602a7-747c-43dc-98b3-0e975b502cf2",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "spouse"
+            }
+          }
+        ],
+        "id": "11bf9d10-7da2-4cff-ac2a-cf9976cede9e",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 25,
+            "stop": 31,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "13703421-792d-4c96-a1b2-ec808b7aa43b",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "fffcae99-fafc-4bc4-938d-05ffc4dcb99e",
+        "segment": [
+          {
+            "container_id": "19df2c99-bca4-4f2c-bb49-54921fa6c9af",
+            "start": 31,
+            "stop": 32,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139007,
+      "stop": 1603139007,
+      "type": "Index"
+    },
+    "seq": [
+      "W",
+      "h",
+      "a",
+      "t",
+      " ",
+      "i",
+      "s",
+      " ",
+      "t",
+      "h",
+      "e",
+      " ",
+      "n",
+      "a",
+      "m",
+      "e",
+      " ",
+      "o",
+      "f",
+      " ",
+      "y",
+      "o",
+      "u",
+      "r",
+      " ",
+      "s",
+      "p",
+      "o",
+      "u",
+      "s",
+      "e",
+      "?"
+    ],
+    "start": 1603139007,
+    "stop": 1603139007,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139007,
+      "start": 1603139007,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#8"
+    ],
+    "id": "8ddf25b2-ca6c-45d9-b901-f0e0e2c819d4",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "2a3ea49f-7b2f-4672-b126-f01eb8723cc1",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "My"
+            }
+          }
+        ],
+        "id": "bbf13c81-9a2e-46da-bec7-acc1b3a63925",
+        "segment": [
+          {
+            "container_id": "8ddf25b2-ca6c-45d9-b901-f0e0e2c819d4",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "ad856a9f-8c87-4af2-b2fc-c840dafdc865",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "wife"
+            }
+          }
+        ],
+        "id": "a47c445d-2c9a-4f8c-9e54-862c20ec6038",
+        "segment": [
+          {
+            "container_id": "8ddf25b2-ca6c-45d9-b901-f0e0e2c819d4",
+            "start": 3,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "bd7e8aba-04e4-427e-9139-15a095fc8c2b",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "06f374f7-fa68-4d4b-bf42-73df82c9222a",
+        "segment": [
+          {
+            "container_id": "8ddf25b2-ca6c-45d9-b901-f0e0e2c819d4",
+            "start": 8,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "75ed1cf1-7a32-4f19-9ef2-41c0eefde38d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "called"
+            }
+          }
+        ],
+        "id": "fc63bf52-1765-40e0-ab9c-daa7ff832007",
+        "segment": [
+          {
+            "container_id": "8ddf25b2-ca6c-45d9-b901-f0e0e2c819d4",
+            "start": 11,
+            "stop": 17,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f5db969a-dfff-49e2-a84a-6a90d9d6ad7d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Anja"
+            }
+          }
+        ],
+        "id": "7b9023b5-3ac8-4a6c-91dd-90b29a4079de",
+        "segment": [
+          {
+            "container_id": "8ddf25b2-ca6c-45d9-b901-f0e0e2c819d4",
+            "start": 18,
+            "stop": 22,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "35d996b4-169f-4127-9d48-af62714418d1",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "efe7f27a-6e6e-46f7-ba46-e7a0a3e154c9",
+        "segment": [
+          {
+            "container_id": "8ddf25b2-ca6c-45d9-b901-f0e0e2c819d4",
+            "start": 22,
+            "stop": 23,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139008,
+      "stop": 1603139008,
+      "type": "Index"
+    },
+    "seq": [
+      "M",
+      "y",
+      " ",
+      "w",
+      "i",
+      "f",
+      "e",
+      " ",
+      "i",
+      "s",
+      " ",
+      "c",
+      "a",
+      "l",
+      "l",
+      "e",
+      "d",
+      " ",
+      "A",
+      "n",
+      "j",
+      "a",
+      "."
+    ],
+    "start": 1603139008,
+    "stop": 1603139008,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139008,
+      "start": 1603139008,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#9"
+    ],
+    "id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9e808632-dabf-4b7f-9111-2c1b6caa29e4",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "That"
+            }
+          }
+        ],
+        "id": "715400d4-18e8-48ac-88bd-9879e2b79798",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 0,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "b3ad6a30-2dd5-4061-9ce7-8c6169893290",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "b27dc3b6-d1a0-4d9b-b163-f81974ed19ca",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 5,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "75b8ace3-7fd2-4f5a-876d-3da0824a1613",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "me"
+            }
+          }
+        ],
+        "id": "76cabcbf-0c78-4c68-88c9-021e6c8dab72",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 8,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "bf57bf90-743e-4a7b-bca5-455d9c9edeac",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "holding"
+            }
+          }
+        ],
+        "id": "c546226d-8a68-4e97-b812-166824ca37df",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 11,
+            "stop": 18,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "2e7f280d-f9f8-4565-8f2c-3a6eae34bcf3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "a"
+            }
+          }
+        ],
+        "id": "8eeda266-7545-405b-8ecd-85d0c0e1c14a",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 19,
+            "stop": 20,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "90f60ad9-e616-4610-b3c3-ac6618405f8c",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "soccer"
+            }
+          }
+        ],
+        "id": "a28f09e0-ab0f-4349-ba77-149faee21016",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 21,
+            "stop": 27,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f100980c-aa6e-4d2d-871f-bf156f7a0a26",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "ball"
+            }
+          }
+        ],
+        "id": "f228fb65-ff4b-417a-854f-0f8dbeb8104d",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 28,
+            "stop": 32,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f75fa7d2-4daf-4b0c-8261-17c5d3ee12c6",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "with"
+            }
+          }
+        ],
+        "id": "b9976968-27ce-4027-b12f-c0a8558dfc7b",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 33,
+            "stop": 37,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "6bd3dec6-ab4c-4653-8e8a-0b86c5bc5189",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "my"
+            }
+          }
+        ],
+        "id": "92f706b5-5642-4e5e-83c4-a800a450bed3",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 38,
+            "stop": 40,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9f2a15b2-d595-473b-9cdd-14daa5e15bc5",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "daughter"
+            }
+          }
+        ],
+        "id": "341680fd-9395-4ad2-a76a-903e0b2f78f6",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 41,
+            "stop": 49,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d13a7919-b214-4098-a21c-0534668b6a87",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Niqee"
+            }
+          }
+        ],
+        "id": "ac38e316-8836-480a-a7a8-ea99c6e55977",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 50,
+            "stop": 55,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "323f5874-c0b0-4f57-8785-88bea99ec418",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "in"
+            }
+          }
+        ],
+        "id": "5ee3c21b-8a03-46a9-bf53-d2a73163ceb4",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 56,
+            "stop": 58,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "c21a2535-dacd-48b6-8d88-2fc56abc1385",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "a"
+            }
+          }
+        ],
+        "id": "e499b366-50b6-4036-8162-592aa6efba63",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 59,
+            "stop": 60,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "bd1b6fd2-a159-4978-b1d9-494bb6cef008",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "swimming"
+            }
+          }
+        ],
+        "id": "26904310-cc18-4423-a11a-1b7a5582f562",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 61,
+            "stop": 69,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "68f3ce12-417e-4b38-b861-21ec453aff02",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "pool"
+            }
+          }
+        ],
+        "id": "1678fd20-a3a9-4178-a0bf-8491bcb25793",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 70,
+            "stop": 74,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "6d8e45c0-98fc-4d9a-a0e9-fadf9509cc6c",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "723f93d8-944a-4ac4-b1e3-f937407ac4f6",
+        "segment": [
+          {
+            "container_id": "276424a6-e98b-419b-827a-7f5e5671a4bd",
+            "start": 74,
+            "stop": 75,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139009,
+      "stop": 1603139009,
+      "type": "Index"
+    },
+    "seq": [
+      "T",
+      "h",
+      "a",
+      "t",
+      " ",
+      "i",
+      "s",
+      " ",
+      "m",
+      "e",
+      " ",
+      "h",
+      "o",
+      "l",
+      "d",
+      "i",
+      "n",
+      "g",
+      " ",
+      "a",
+      " ",
+      "s",
+      "o",
+      "c",
+      "c",
+      "e",
+      "r",
+      " ",
+      "b",
+      "a",
+      "l",
+      "l",
+      " ",
+      "w",
+      "i",
+      "t",
+      "h",
+      " ",
+      "m",
+      "y",
+      " ",
+      "d",
+      "a",
+      "u",
+      "g",
+      "h",
+      "t",
+      "e",
+      "r",
+      " ",
+      "N",
+      "i",
+      "q",
+      "e",
+      "e",
+      " ",
+      "i",
+      "n",
+      " ",
+      "a",
+      " ",
+      "s",
+      "w",
+      "i",
+      "m",
+      "m",
+      "i",
+      "n",
+      "g",
+      " ",
+      "p",
+      "o",
+      "o",
+      "l",
+      "."
+    ],
+    "start": 1603139009,
+    "stop": 1603139009,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139009,
+      "start": 1603139009,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#10"
+    ],
+    "id": "ad16bf6b-96de-48b8-aab0-0c010573ef6b",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "c1e8033a-4cdf-4922-b6c8-f5abf2ba9328",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "How"
+            }
+          }
+        ],
+        "id": "273a5d80-9b0b-4e8e-851c-620a6e0515b1",
+        "segment": [
+          {
+            "container_id": "ad16bf6b-96de-48b8-aab0-0c010573ef6b",
+            "start": 0,
+            "stop": 3,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "0748e544-6de9-4992-a785-7e13428141e6",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "old"
+            }
+          }
+        ],
+        "id": "e4d83bc2-8d41-450c-a687-ac49ee1bfb3d",
+        "segment": [
+          {
+            "container_id": "ad16bf6b-96de-48b8-aab0-0c010573ef6b",
+            "start": 4,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "507fa58f-b902-4a0b-ab25-e944513bdfe4",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "0b8b829b-bcbc-470a-b5be-306aed636c61",
+        "segment": [
+          {
+            "container_id": "ad16bf6b-96de-48b8-aab0-0c010573ef6b",
+            "start": 8,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "e1e99a96-8edd-4627-b2a9-d6cdb7628f83",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "she"
+            }
+          }
+        ],
+        "id": "4852dd44-f7cf-4f09-936c-6f0e1fcc8d13",
+        "segment": [
+          {
+            "container_id": "ad16bf6b-96de-48b8-aab0-0c010573ef6b",
+            "start": 11,
+            "stop": 14,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "65b43e75-8dc9-415d-8097-cc525436a34a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "ba40a23d-903a-4ba1-bc7b-9a4bbd5154ab",
+        "segment": [
+          {
+            "container_id": "ad16bf6b-96de-48b8-aab0-0c010573ef6b",
+            "start": 14,
+            "stop": 15,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139001,
+      "stop": 1603139001,
+      "type": "Index"
+    },
+    "seq": [
+      "H",
+      "o",
+      "w",
+      " ",
+      "o",
+      "l",
+      "d",
+      " ",
+      "i",
+      "s",
+      " ",
+      "s",
+      "h",
+      "e",
+      "?"
+    ],
+    "start": 1603139001,
+    "stop": 1603139001,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139001,
+      "start": 1603139001,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#11"
+    ],
+    "id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "1eeb9a52-fc32-4c76-91e9-0aeaebe2c2be",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "This"
+            }
+          }
+        ],
+        "id": "97bb2336-f2aa-4011-851d-1685bf28fb35",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 0,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "9c90a2e3-2a9d-4e11-8db2-08236de29e5a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "picture"
+            }
+          }
+        ],
+        "id": "8871932d-c60f-4f68-a4c9-87403a43862b",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 5,
+            "stop": 12,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "7946c741-f787-485f-8562-989fce38ab12",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "was"
+            }
+          }
+        ],
+        "id": "5d4f0d7f-ff6f-4d78-aef7-2c5d185977c4",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 13,
+            "stop": 16,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "75fbc5e4-cf9c-4e7a-b86d-9c59919d7e64",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "taken"
+            }
+          }
+        ],
+        "id": "5af7ad41-198c-4823-ab95-3ca05c0c91df",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 17,
+            "stop": 22,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "012fffda-8863-4aa1-b5d3-fb88fd593207",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "in"
+            }
+          }
+        ],
+        "id": "11920906-d82e-46ec-9695-b2cb2e12dcb0",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 23,
+            "stop": 25,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "95a5edd1-10b7-4894-ba7a-55b1e409c2db",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "2010"
+            }
+          }
+        ],
+        "id": "7a7ca695-da98-45dc-96ec-e6a767a5e58c",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 26,
+            "stop": 30,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "ccb4eab4-9c2f-45ee-99e2-7132bf76bcd9",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "in"
+            }
+          }
+        ],
+        "id": "26c21ca1-69c1-4314-b5c5-843383af9069",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 31,
+            "stop": 33,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "5bc84ce7-6037-4c05-b368-84fbc83a48ca",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Portugal"
+            }
+          }
+        ],
+        "id": "7b631341-23d4-41eb-8ce5-749e1a5cb9cb",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 34,
+            "stop": 42,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "2a91c792-90bd-4186-83ab-0182fb28ba39",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "d8375a82-6973-411e-917c-ebbdbcbf8a9f",
+        "segment": [
+          {
+            "container_id": "b8c22f72-994b-4b9e-9421-1d3032ffeb7d",
+            "start": 42,
+            "stop": 43,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139011,
+      "stop": 1603139011,
+      "type": "Index"
+    },
+    "seq": [
+      "T",
+      "h",
+      "i",
+      "s",
+      " ",
+      "p",
+      "i",
+      "c",
+      "t",
+      "u",
+      "r",
+      "e",
+      " ",
+      "w",
+      "a",
+      "s",
+      " ",
+      "t",
+      "a",
+      "k",
+      "e",
+      "n",
+      " ",
+      "i",
+      "n",
+      " ",
+      "2",
+      "0",
+      "1",
+      "0",
+      " ",
+      "i",
+      "n",
+      " ",
+      "P",
+      "o",
+      "r",
+      "t",
+      "u",
+      "g",
+      "a",
+      "l",
+      "."
+    ],
+    "start": 1603139011,
+    "stop": 1603139011,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139011,
+      "start": 1603139011,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#12"
+    ],
+    "id": "3e5b24f5-c787-464a-afca-5332e9e06b6b",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "c50481ec-dfd3-4d13-8027-34b57d5bf95e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "She"
+            }
+          }
+        ],
+        "id": "9ce57342-4242-4a80-98ad-335ce43353b3",
+        "segment": [
+          {
+            "container_id": "3e5b24f5-c787-464a-afca-5332e9e06b6b",
+            "start": 0,
+            "stop": 3,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a33a9e36-2e6d-4330-a84e-4b736f95f183",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "was"
+            }
+          }
+        ],
+        "id": "f2767fa1-faeb-46c4-9b7b-64284b8c6ca4",
+        "segment": [
+          {
+            "container_id": "3e5b24f5-c787-464a-afca-5332e9e06b6b",
+            "start": 4,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "61a80674-6aa2-4a9b-b529-bca40303d33e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "16"
+            }
+          }
+        ],
+        "id": "eb12d569-ce72-4081-b283-52f1202e82ea",
+        "segment": [
+          {
+            "container_id": "3e5b24f5-c787-464a-afca-5332e9e06b6b",
+            "start": 8,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "772b6805-5f9c-4854-87af-fccdd6efefe5",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "years"
+            }
+          }
+        ],
+        "id": "9062d60b-a525-417a-83ce-56a5d4b080cf",
+        "segment": [
+          {
+            "container_id": "3e5b24f5-c787-464a-afca-5332e9e06b6b",
+            "start": 11,
+            "stop": 16,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "96ed59ed-9662-4c17-bdc4-4c446561da64",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "old"
+            }
+          }
+        ],
+        "id": "d22890e3-7ab9-4827-83eb-639fb27fb9ec",
+        "segment": [
+          {
+            "container_id": "3e5b24f5-c787-464a-afca-5332e9e06b6b",
+            "start": 17,
+            "stop": 20,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a9efdfcf-3cfd-43e5-9da0-e650e9bbc65d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "then"
+            }
+          }
+        ],
+        "id": "ea80e96b-c1b2-4759-bd51-4eca478d2228",
+        "segment": [
+          {
+            "container_id": "3e5b24f5-c787-464a-afca-5332e9e06b6b",
+            "start": 21,
+            "stop": 25,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139012,
+      "stop": 1603139012,
+      "type": "Index"
+    },
+    "seq": [
+      "S",
+      "h",
+      "e",
+      " ",
+      "w",
+      "a",
+      "s",
+      " ",
+      "1",
+      "6",
+      " ",
+      "y",
+      "e",
+      "a",
+      "r",
+      "s",
+      " ",
+      "o",
+      "l",
+      "d",
+      " ",
+      "t",
+      "h",
+      "e",
+      "n"
+    ],
+    "start": 1603139012,
+    "stop": 1603139012,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139012,
+      "start": 1603139012,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#13"
+    ],
+    "id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "c271798e-96b4-4782-97fb-8e3c773fef73",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "So"
+            }
+          }
+        ],
+        "id": "2fdf2d42-7301-49a8-ad71-899fed4d81d7",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a95489b7-3339-4c6a-86c6-34371609b6a8",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "she"
+            }
+          }
+        ],
+        "id": "b9a0d9c4-6c08-4023-966c-7708ff497a99",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 3,
+            "stop": 6,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "c24f2089-445c-4dd1-a5b5-841e28711b6d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "4cb5b69b-dcc7-4bac-bf47-c6313929d4bf",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 7,
+            "stop": 9,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "b489c586-fd8b-4648-a1fc-92d542fe2fc8",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "now"
+            }
+          }
+        ],
+        "id": "f34243b2-1689-4652-bbae-fc6972996b1a",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 10,
+            "stop": 13,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "062d64c7-5106-42ef-a9cc-88eb0316bfdd",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "27"
+            }
+          }
+        ],
+        "id": "28105683-c3bc-4b4b-ad1d-553c2c55ace8",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 14,
+            "stop": 16,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "0d778712-248f-4621-b49e-714cc21e3b58",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": ","
+            }
+          }
+        ],
+        "id": "51273448-a326-4b32-ab19-eed30d3a609f",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 16,
+            "stop": 17,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "0cf5c8bf-4a53-4112-92ca-70ab16a657d3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "right"
+            }
+          }
+        ],
+        "id": "1f385b23-7911-405a-8786-66f99e1d6ed6",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 18,
+            "stop": 23,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "5a2e7518-3ba1-4742-bd83-9703677f7a9a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "3d3b76f0-7cf6-494c-88ad-8a0052bbf8a1",
+        "segment": [
+          {
+            "container_id": "f1d7499c-7c9a-41e0-95d2-39b01586403e",
+            "start": 23,
+            "stop": 24,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139013,
+      "stop": 1603139013,
+      "type": "Index"
+    },
+    "seq": [
+      "S",
+      "o",
+      " ",
+      "s",
+      "h",
+      "e",
+      " ",
+      "i",
+      "s",
+      " ",
+      "n",
+      "o",
+      "w",
+      " ",
+      "2",
+      "7",
+      ",",
+      " ",
+      "r",
+      "i",
+      "g",
+      "h",
+      "t",
+      "?"
+    ],
+    "start": 1603139013,
+    "stop": 1603139013,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139013,
+      "start": 1603139013,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#14"
+    ],
+    "id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a911477a-66aa-4419-8512-60cbf8298c54",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Heh"
+            }
+          }
+        ],
+        "id": "783571f2-5ee1-4a40-ade4-4647c6748130",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 0,
+            "stop": 3,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "b437a452-e51f-430e-9b3b-750984dff6fb",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": ","
+            }
+          }
+        ],
+        "id": "88badff8-e95f-4e31-b17d-ef3cd8918669",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 3,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "44c97602-644e-4a9c-aec3-50ce72d0a6e5",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "there"
+            }
+          }
+        ],
+        "id": "c23978d3-5537-4e5f-83d8-7c731997ca72",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 5,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "1d0d32ac-ecbe-452c-b4b5-59948294210f",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "5fb70d81-23df-47df-9981-db1cbc601d04",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 11,
+            "stop": 13,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "a74c75a5-3e86-4bc2-8215-96d4bf8e4a4d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "that"
+            }
+          }
+        ],
+        "id": "5180e2bf-ba05-4246-bc90-9516a3ab920b",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 14,
+            "stop": 18,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f0b7606c-4c76-4958-b6f0-ac86a097e2bc",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "soccer"
+            }
+          }
+        ],
+        "id": "10c97db2-82cf-4b5e-8740-2117e22d7d6b",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 19,
+            "stop": 25,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "dad8e7f8-442d-4d7b-929a-e032b8b6b137",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "ball"
+            }
+          }
+        ],
+        "id": "a6c1cb6f-5ddb-4bf4-b866-63e81a3d9b76",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 26,
+            "stop": 30,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "471c9c04-4287-4ed5-9cd7-5509838e81ef",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "again"
+            }
+          }
+        ],
+        "id": "6074edfc-e53e-4518-b6b9-d414f6235ee8",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 31,
+            "stop": 36,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "18d6da13-5cd4-44cf-b98b-1c4178f9c753",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "06f9ed93-fdd4-40f3-942a-c367d266caa3",
+        "segment": [
+          {
+            "container_id": "4bf6c9d3-78aa-4e05-8fa5-6277a3fe1226",
+            "start": 36,
+            "stop": 37,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139014,
+      "stop": 1603139014,
+      "type": "Index"
+    },
+    "seq": [
+      "H",
+      "e",
+      "h",
+      ",",
+      " ",
+      "t",
+      "h",
+      "e",
+      "r",
+      "e",
+      " ",
+      "i",
+      "s",
+      " ",
+      "t",
+      "h",
+      "a",
+      "t",
+      " ",
+      "s",
+      "o",
+      "c",
+      "c",
+      "e",
+      "r",
+      " ",
+      "b",
+      "a",
+      "l",
+      "l",
+      " ",
+      "a",
+      "g",
+      "a",
+      "i",
+      "n",
+      "."
+    ],
+    "start": 1603139014,
+    "stop": 1603139014,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139014,
+      "start": 1603139014,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#15"
+    ],
+    "id": "3d27657e-032f-4815-b011-6cee465d977c",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "25188330-1c18-4d82-bbd5-c278cb1ce186",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Do"
+            }
+          }
+        ],
+        "id": "2e40cbe4-2d6d-43cb-b03f-94410eefc339",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "5610b7a4-f39f-40a6-aea8-63281a151b75",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "you"
+            }
+          }
+        ],
+        "id": "076f508e-bc62-4bf2-8497-5dcaa3791a56",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 3,
+            "stop": 6,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "175d4207-b317-4d0e-9eb8-c27fd8a02483",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "have"
+            }
+          }
+        ],
+        "id": "55ee8536-6257-4ead-87f2-7a00580886ce",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 7,
+            "stop": 11,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d80c5acd-95d1-4aa2-9f61-1ebf4efd6464",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "any"
+            }
+          }
+        ],
+        "id": "5c7871d7-f553-4f5d-9854-abe984b21e6f",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 12,
+            "stop": 15,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "b21aa7d9-9187-4a01-8c14-b1bb20d35c8e",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "brothers"
+            }
+          }
+        ],
+        "id": "4b6dbb71-9484-4aea-a8db-9222a5707d71",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 16,
+            "stop": 24,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "49efe5af-f4ac-4b69-bdc2-dcd5ddb63669",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "and"
+            }
+          }
+        ],
+        "id": "4c8d96e9-1832-4aaa-bfae-3cdc5f709245",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 25,
+            "stop": 28,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "59b81163-c576-4678-ab49-5acbefe273e1",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "sisters"
+            }
+          }
+        ],
+        "id": "43009472-88b9-4201-91cd-6535ce02f494",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 29,
+            "stop": 36,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "e413e4de-a5dc-46d3-bb7c-28a0ce82bdba",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "6f83c80f-4c3d-4865-b636-5bf349f93336",
+        "segment": [
+          {
+            "container_id": "3d27657e-032f-4815-b011-6cee465d977c",
+            "start": 36,
+            "stop": 37,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139015,
+      "stop": 1603139015,
+      "type": "Index"
+    },
+    "seq": [
+      "D",
+      "o",
+      " ",
+      "y",
+      "o",
+      "u",
+      " ",
+      "h",
+      "a",
+      "v",
+      "e",
+      " ",
+      "a",
+      "n",
+      "y",
+      " ",
+      "b",
+      "r",
+      "o",
+      "t",
+      "h",
+      "e",
+      "r",
+      "s",
+      " ",
+      "a",
+      "n",
+      "d",
+      " ",
+      "s",
+      "i",
+      "s",
+      "t",
+      "e",
+      "r",
+      "s",
+      "?"
+    ],
+    "start": 1603139015,
+    "stop": 1603139015,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139015,
+      "start": 1603139015,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#16"
+    ],
+    "id": "c8765bd2-41d6-444f-bdf4-1d1db4050cad",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "453072a5-9e51-4f0d-91c7-b15179a61ff9",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "I"
+            }
+          }
+        ],
+        "id": "a79800e9-5afe-487c-a331-38119d693e6a",
+        "segment": [
+          {
+            "container_id": "c8765bd2-41d6-444f-bdf4-1d1db4050cad",
+            "start": 0,
+            "stop": 1,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "22aaedc2-8105-40cb-a8e3-5a2bdb307bb3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "show"
+            }
+          }
+        ],
+        "id": "2777c1d5-16ff-45f4-b53a-55b15dcd3cd9",
+        "segment": [
+          {
+            "container_id": "c8765bd2-41d6-444f-bdf4-1d1db4050cad",
+            "start": 2,
+            "stop": 6,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "7e94e0c9-26e9-466f-aa26-84c78fb9c8cd",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "you"
+            }
+          }
+        ],
+        "id": "ab8a739d-0aef-4f16-a4b7-3d7cac5e5b70",
+        "segment": [
+          {
+            "container_id": "c8765bd2-41d6-444f-bdf4-1d1db4050cad",
+            "start": 7,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "35a3023b-11c8-4ebb-a2d8-1b193100fd9a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "a"
+            }
+          }
+        ],
+        "id": "ec88d9a9-2de1-41a6-bf9b-78c970cb246b",
+        "segment": [
+          {
+            "container_id": "c8765bd2-41d6-444f-bdf4-1d1db4050cad",
+            "start": 11,
+            "stop": 12,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "f2b5f089-643a-4012-8b36-38814c6796f3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "family"
+            }
+          }
+        ],
+        "id": "82149774-f98e-44f6-bdda-f0ed0371f7e3",
+        "segment": [
+          {
+            "container_id": "c8765bd2-41d6-444f-bdf4-1d1db4050cad",
+            "start": 13,
+            "stop": 19,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "3d0c1ed5-bac8-46a3-8d13-d28a91f40ee3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "picture"
+            }
+          }
+        ],
+        "id": "1a741659-4892-4e92-99da-bfc2a2139eda",
+        "segment": [
+          {
+            "container_id": "c8765bd2-41d6-444f-bdf4-1d1db4050cad",
+            "start": 20,
+            "stop": 27,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139016,
+      "stop": 1603139016,
+      "type": "Index"
+    },
+    "seq": [
+      "I",
+      " ",
+      "s",
+      "h",
+      "o",
+      "w",
+      " ",
+      "y",
+      "o",
+      "u",
+      " ",
+      "a",
+      " ",
+      "f",
+      "a",
+      "m",
+      "i",
+      "l",
+      "y",
+      " ",
+      "p",
+      "i",
+      "c",
+      "t",
+      "u",
+      "r",
+      "e"
+    ],
+    "start": 1603139016,
+    "stop": 1603139016,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139016,
+      "start": 1603139016,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat2.csv#17"
+    ],
+    "id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "625fd9ef-82bd-45d0-8866-5a1b968d11cc",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Who"
+            }
+          }
+        ],
+        "id": "0f04a537-39c5-4b3f-aa8a-c30271413b5d",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 0,
+            "stop": 3,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "687a9b50-a5fc-471d-838b-496821c26d12",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "1d2a32d3-7770-43ae-9be7-2e3b43e98981",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 4,
+            "stop": 6,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "210cdc6c-08d0-4d13-901e-4e35a42fa041",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "that"
+            }
+          }
+        ],
+        "id": "a93b2728-9f95-4547-a56c-f0235be07948",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 7,
+            "stop": 11,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "3b9350f0-75ac-42b9-966f-40578bcaa135",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "older"
+            }
+          }
+        ],
+        "id": "44963078-3efa-4497-b644-6c2601c70614",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 12,
+            "stop": 17,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "e02653b9-af99-438e-877a-663b1c863d5d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "woman"
+            }
+          }
+        ],
+        "id": "8ee004d2-08a2-4da8-b182-3d63b5a3d1b4",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 18,
+            "stop": 23,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "40d30be6-5764-4648-9858-5d02198187a7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "with"
+            }
+          }
+        ],
+        "id": "a1b3ce05-b16c-4262-b54e-36a12e0d7c7e",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 24,
+            "stop": 28,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "969f794c-7402-4cb2-98de-03932cd53588",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "grey"
+            }
+          }
+        ],
+        "id": "373fa862-786c-4d3f-90ef-cd0c04b9453f",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 29,
+            "stop": 33,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "d987d7fc-9442-49af-86fc-a47a37b12ec9",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "hair"
+            }
+          }
+        ],
+        "id": "1d7feea9-0739-4611-9526-05245f829d12",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 34,
+            "stop": 38,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "8a9ef0d4-a60f-4e71-bd46-9a579f027db9",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "a5556381-3cc1-4111-aa56-e0c06967c39a",
+        "segment": [
+          {
+            "container_id": "811fc7cc-236f-4105-b1f0-fee1cd192d20",
+            "start": 38,
+            "stop": 39,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139017,
+      "stop": 1603139017,
+      "type": "Index"
+    },
+    "seq": [
+      "W",
+      "h",
+      "o",
+      " ",
+      "i",
+      "s",
+      " ",
+      "t",
+      "h",
+      "a",
+      "t",
+      " ",
+      "o",
+      "l",
+      "d",
+      "e",
+      "r",
+      " ",
+      "w",
+      "o",
+      "m",
+      "a",
+      "n",
+      " ",
+      "w",
+      "i",
+      "t",
+      "h",
+      " ",
+      "g",
+      "r",
+      "e",
+      "y",
+      " ",
+      "h",
+      "a",
+      "i",
+      "r",
+      "?"
+    ],
+    "start": 1603139017,
+    "stop": 1603139017,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139017,
+      "start": 1603139017,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/chat1.csv#0"
+    ],
+    "id": "68be2c5d-50fa-4d44-a65e-586ee8e32bf1",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "39e29d4a-b0e7-4f46-a409-0ea5b0e211d7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "This"
+            }
+          }
+        ],
+        "id": "685bffac-8680-4346-b014-86b266075136",
+        "segment": [
+          {
+            "container_id": "68be2c5d-50fa-4d44-a65e-586ee8e32bf1",
+            "start": 0,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "99cad582-2f14-415b-a477-be68fe437799",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "is"
+            }
+          }
+        ],
+        "id": "ea26e4eb-1b29-44fd-9a49-7af8c3d461d2",
+        "segment": [
+          {
+            "container_id": "68be2c5d-50fa-4d44-a65e-586ee8e32bf1",
+            "start": 5,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "020e3d46-1173-4519-86d3-9410300ab175",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Maxima"
+            }
+          }
+        ],
+        "id": "ba0a708e-780c-44a1-b84a-37c9d8f203f2",
+        "segment": [
+          {
+            "container_id": "68be2c5d-50fa-4d44-a65e-586ee8e32bf1",
+            "start": 8,
+            "stop": 14,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606723138,
+            "type": "token",
+            "value": {
+              "id": "052ce831-02d1-481b-99ba-1f613f5eb861",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "d2408b2a-6049-4184-b66e-d39f2a76ad80",
+        "segment": [
+          {
+            "container_id": "68be2c5d-50fa-4d44-a65e-586ee8e32bf1",
+            "start": 14,
+            "stop": 15,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 1603139010,
+      "stop": 1603139010,
+      "type": "Index"
+    },
+    "seq": [
+      "T",
+      "h",
+      "i",
+      "s",
+      " ",
+      "i",
+      "s",
+      " ",
+      "M",
+      "a",
+      "x",
+      "i",
+      "m",
+      "a",
+      "."
+    ],
+    "start": 1603139010,
+    "stop": 1603139010,
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139010,
+      "start": 1603139010,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  }
+]
