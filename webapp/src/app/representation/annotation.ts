@@ -5,7 +5,7 @@ enum ImageLabel {
   FACE
 }
 
-enum EntityType {
+export enum EntityType {
   PERSON, FRIEND, OBJECT = 2
 }
 
@@ -41,6 +41,8 @@ export function annotationDisplayValue(annotation: Annotation<any>): string {
     case "pos":
     case "emotion":
       return annotation.value;
+    case "triple":
+      return annotation.value.subject.id + annotation.value.predicate + annotation.value.object.id;
     case "utterance":
       return annotation.value.utterance;
     case "entity":

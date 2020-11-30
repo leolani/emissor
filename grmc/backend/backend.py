@@ -5,7 +5,7 @@ from pandas import Series
 from typing import Iterable, Any
 
 from grmc.backend.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
-from grmc.representation.annotation import AnnotationType, Token
+from grmc.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
 from grmc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
 from grmc.representation.entity import Person, Gender, Emotion
 from grmc.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
@@ -110,6 +110,8 @@ class Backend:
             value = "POS-TAG"
         elif type_.lower() == "emotion":
             value = Emotion.NEUTRAL.name.lower()
+        elif type_.lower() == "triple":
+            value = Triple(Entity("", EntityType.PERSON), "", Entity("", EntityType.PERSON))
         else:
             raise ValueError("Unsupported annotation type: " + type_)
 

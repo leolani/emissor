@@ -1,0 +1,32 @@
+<div *ngIf="data">
+  <mat-form-field>
+    <mat-label>Subject</mat-label>
+    <input matInput [(ngModel)]="data.value.subject.id" name="subjectId" type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Entity Type</mat-label>
+    <mat-select [(value)]="data.value.subject.type" name="subjectType">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let type of entityTypes" [value]="type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Predicate</mat-label>
+    <input matInput [(ngModel)]="data.value.predicate" name="predicate" type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Object</mat-label>
+    <input matInput [(ngModel)]="data.value.object.id" name="objectId" type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Entity Type</mat-label>
+    <mat-select [(value)]="data.value.object.type" name="objectType">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let type of entityTypes" [value]="type">
+        {{type}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

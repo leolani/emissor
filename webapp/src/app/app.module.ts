@@ -38,6 +38,7 @@ import { AnnotationsPersonComponent } from './annotations-person/annotations-per
 import { AnnotationsEmotionComponent } from './annotations-emotion/annotations-emotion.component';
 import { AnnotationsPosComponent } from './annotations-pos/annotations-pos.component';
 import { AnnotationsTokenComponent } from './annotations-token/annotations-token.component';
+import { AnnotationsTripleComponent } from './annotations-triple/annotations-triple.component';
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -67,7 +68,8 @@ import { AnnotationsTokenComponent } from './annotations-token/annotations-token
     AnnotationsPersonComponent,
     AnnotationsEmotionComponent,
     AnnotationsPosComponent,
-    AnnotationsTokenComponent
+    AnnotationsTokenComponent,
+    AnnotationsTripleComponent
   ],
   imports: [
     CommonModule,

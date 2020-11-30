@@ -15,9 +15,10 @@ import {AnnotationsTokenComponent} from "./annotations-token/annotations-token.c
 import {AnnotationsPosComponent} from "./annotations-pos/annotations-pos.component";
 import {AnnotationsPersonComponent} from "./annotations-person/annotations-person.component";
 import {AnnotationsEmotionComponent} from "./annotations-emotion/annotations-emotion.component";
+import {AnnotationsTripleComponent} from "./annotations-triple/annotations-triple.component";
 
 
-const ANNOTATION_TYPES = ["display", "emotion", "pos", "person", "token"];
+const ANNOTATION_TYPES = ["display", "emotion", "pos", "person", "token", "triple"];
 
 
 @Injectable({
@@ -44,6 +45,8 @@ export class ComponentService {
         return AnnotationsPersonComponent
       case "token":
         return AnnotationsTokenComponent
+      case "triple":
+        return AnnotationsTripleComponent
       default:
         throw Error("Unsupported annotation type: " + annotation.type);
     }
