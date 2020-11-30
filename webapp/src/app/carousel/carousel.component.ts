@@ -36,20 +36,6 @@ export class CarouselComponent implements OnInit {
     this.selectionChange.emit(this.selection);
   }
 
-  addMention() {
-    this.selection.addMention().then(selection => {
-      this.selection = selection;
-      this.selectionChange.emit(this.selection);
-    });
-  }
-
-  addAnnotation() {
-    this.selection.addAnnotation(this.annotationType).then(selection => {
-      this.selection = selection;
-      this.selectionChange.emit(this.selection);
-    });
-  }
-
   save() {
     this.scenarioService.saveSignal(this.selection.scenarioId, this.selection.signal);
   }

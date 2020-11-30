@@ -1,8 +1,19 @@
-import {Component, ElementRef, HostListener, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {
+  Component,
+  ElementRef, EventEmitter,
+  HostListener,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild
+} from '@angular/core';
 import {MultiIndex} from "../representation/container";
 import {ImageSignal} from "../representation/scenario";
 import {ContainerComponent} from "../container/container.component";
 import {SignalSelection} from "../signal-selection";
+import {ScenarioService} from "../scenario.service";
 
 const enum Status {
   OFF = 0,
@@ -16,6 +27,9 @@ const enum Status {
 })
 export class ContainersImgComponent implements OnInit, OnChanges, ContainerComponent<ImageSignal> {
   @Input() selection: SignalSelection<ImageSignal>;
+  @Output() selectionChange = new EventEmitter<SignalSelection<any>>();
+
+  annotationType: string;
 
   segments: MultiIndex[];
   selected: MultiIndex;
@@ -37,7 +51,7 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
   private startPosition: number[];
   private mouseStart: {x: number, y: number};
 
-  constructor() { }
+  constructor(private scenarioService: ScenarioService) { }
 
   ngOnInit() {
     this.segments = <MultiIndex[]> this.selection.signal.mentions.flatMap(mention => mention.segment)
@@ -45,7 +59,6 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log(changes);
     if (changes.selection) {
       this.selected = changes.selection.currentValue.segment;
     }
@@ -152,6 +165,26 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
 
   private unscaleArray(arr) {
     return arr.map(x => Math.max(3, Math.round(x / this.scale)));
+  }
+
+  addMention() {
+    this.selection.addMention().then(selection => {
+      return selection.addSegment("multiindex");
+    }).then(selection => {
+      this.selection = selection;
+      this.selectionChange.emit(this.selection);
+    });
+  }
+
+  addAnnotation() {
+    this.selection.addAnnotation(this.annotationType).then(selection => {
+      this.selection = selection;
+      this.selectionChange.emit(this.selection);
+    });
+  }
+
+  save() {
+    this.scenarioService.saveSignal(this.selection.scenarioId, this.selection.signal);
   }
 }
 

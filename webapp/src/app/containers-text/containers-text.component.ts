@@ -68,21 +68,21 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
     this.selectionChange.emit(this.selection);
   }
 
-  // addMention() {
-  //   this.selection.addMention().then(selection => {
-  //     this.selection = selection;
-  //     this.selectionChange.emit(this.selection);
-  //   });
-  // }
-  //
-  // addAnnotation() {
-  //   this.selection.addAnnotation(this.annotationType).then(selection => {
-  //     this.selection = selection;
-  //     this.selectionChange.emit(this.selection);
-  //   });
-  // }
-  //
-  // save() {
-  //   this.scenarioService.saveSignal(this.selection.scenarioId, this.selection.signal);
-  // }
+  addMention() {
+    this.selection.addMention().then(selection => {
+      this.selection = selection;
+      this.selectionChange.emit(this.selection);
+    });
+  }
+
+  addAnnotation() {
+    this.selection.addAnnotation(this.annotationType).then(selection => {
+      this.selection = selection;
+      this.selectionChange.emit(this.selection);
+    });
+  }
+
+  save() {
+    this.scenarioService.saveSignal(this.selection.scenarioId, this.selection.signal);
+  }
 }

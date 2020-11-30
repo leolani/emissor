@@ -73,9 +73,6 @@ export class SignalSelection<S extends Signal<any>> {
     selection.segment = null;
     selection.annotation = null;
 
-    selection.segments = selection.allSegments();
-    selection.annotations = selection.allAnnotations();
-
     return selection;
   }
 
@@ -86,9 +83,6 @@ export class SignalSelection<S extends Signal<any>> {
     selection.mention = mention;
     selection.segment = segment;
     selection.annotation = this.annotation;
-
-    selection.segments = selection.allSegments();
-    selection.annotations = selection.allAnnotations();
 
     selection.segmentItem = segment ?
         new SegmentItem<any>(this.componentService.getSegmentComponent(segment), mention.id, segment) :
@@ -105,9 +99,6 @@ export class SignalSelection<S extends Signal<any>> {
     selection.mention = mention;
     selection.segment = this.segment;
     selection.annotation = annotation;
-
-    selection.segments = selection.allSegments();
-    selection.annotations = selection.allAnnotations();
 
     selection.annotationItem = annotation ?
         new AnnotationItem<any>(this.componentService.getAnnotationComponent(annotation), mention.id, annotation):

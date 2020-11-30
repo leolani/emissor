@@ -22,4 +22,18 @@
       <span class="badge position">({{segment.bounds[0] | number:'1.0-0'}}, {{segment.bounds[1] | number:'1.0-0'}})</span>
     </div>
   </div>
+  <div>
+    <button mat-raised-button (click)="save()">Save</button>
+    <button mat-raised-button (click)="addMention()">Add Mention</button>
+    <button mat-raised-button (click)="addAnnotation()" [disabled]="!annotationType">Add Annotation</button>
+    <mat-form-field *ngIf="selection.mention">
+      <mat-label>Annotation Type</mat-label>
+      <mat-select [(value)]="annotationType" name="type">
+        <mat-option></mat-option>
+        <mat-option *ngFor="let type of ['display', 'person', 'label']" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 </div>

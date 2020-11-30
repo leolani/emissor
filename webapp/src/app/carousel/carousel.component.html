@@ -1,4 +1,4 @@
-{{selection.mention && selection.segments | json}}
+{{selection.segments | json}}
 <div *ngIf="!!signals" class="row">
   <div class="column" style="background-color:#aaa;">
     <mat-accordion multi>
@@ -25,21 +25,7 @@
 
 
   <div class="center-column" style="background-color:#bbb;">
-    <app-container-view [selection]="selection"></app-container-view>
-    <div>
-      <button mat-raised-button (click)="save()">Save</button>
-      <button mat-raised-button (click)="addMention()">Add Mention</button>
-      <button mat-raised-button (click)="addAnnotation()" [disabled]="!annotationType">Add Annotation</button>
-      <mat-form-field *ngIf="selection.mention">
-        <mat-label>Annotation Type</mat-label>
-        <mat-select [(value)]="annotationType" name="type">
-          <mat-option></mat-option>
-          <mat-option *ngFor="let type of ['display', 'person', 'label']" [value]="type">
-            {{type}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-    </div>
+    <app-container-view [(selection)]="selection"></app-container-view>
   </div>
 
 
