@@ -135,10 +135,11 @@ class Backend:
         return signal
 
     def _create_segment(self, signal: Signal[Any, Any], type_: str, container_id: str) -> Ruler:
+        container_id = container_id if container_id else signal.id
         if type_.lower() == "multiindex":
-            return MultiIndex(signal.ruler.container_id, signal.ruler.bounds)
+            return MultiIndex(container_id, signal.ruler.bounds)
         if type_.lower() == "index":
-            return Index(signal.ruler.container_id, signal.ruler.start, signal.ruler.stop)
+            return Index(container_id, signal.ruler.start, signal.ruler.stop)
         if type_.lower() == "atomic":
             return AtomicRuler(container_id)
 
