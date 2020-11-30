@@ -11,7 +11,9 @@ export class AnnotationsEmotionComponent implements OnInit {
   @Input() data: Annotation<Emotion>;
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  emotions: string[];
 
+  ngOnInit(): void {
+    this.emotions = Object.keys(Emotion).filter(k => !isNaN(Emotion[k]));
+  }
 }

@@ -39,6 +39,7 @@ export function annotationDisplayValue(annotation: Annotation<any>): string {
     case "display":
     case "label":
     case "pos":
+    case "emotion":
       return annotation.value;
     case "utterance":
       return annotation.value.utterance;

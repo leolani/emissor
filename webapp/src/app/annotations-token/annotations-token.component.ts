@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Annotation} from "../representation/scenario";
+import {Token} from "../representation/annotation";
 
 @Component({
   selector: 'app-annotations-token',
@@ -7,7 +8,7 @@ import {Annotation} from "../representation/scenario";
   styleUrls: ['./annotations-token.component.css']
 })
 export class AnnotationsTokenComponent implements OnInit {
-  @Input() data: Annotation<string>;
+  @Input() data: Annotation<Token>;
 
   constructor() { }
 

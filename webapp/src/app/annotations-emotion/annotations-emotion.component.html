@@ -1,6 +1,11 @@
 <div *ngIf="data">
   <mat-form-field>
-    <mat-label>Emotion</mat-label>
-    <input matInput [(ngModel)]="data.value" name="emotion" type="text">
+    <mat-label>Annotation Type</mat-label>
+    <mat-select [(value)]="data.value" name="emotion">
+      <mat-option></mat-option>
+      <mat-option *ngFor="let emotion of emotions" [value]="emotion">
+        {{emotion}}
+      </mat-option>
+    </mat-select>
   </mat-form-field>
 </div>
