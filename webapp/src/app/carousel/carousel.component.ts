@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Annotation, ImageSignal} from "../representation/scenario";
+import {Annotation, ImageSignal, Mention} from "../representation/scenario";
 import {SignalSelection} from "../signal-selection";
 import {SegmentItem} from "../segment/segment-item";
 import {AnnotationItem} from "../annotation/annotation-item";
@@ -18,6 +18,16 @@ export class CarouselComponent implements OnInit {
   constructor(private scenarioService: ScenarioService) { }
 
   ngOnInit(): void {}
+
+  selectMention(mention: Mention, $event: MouseEvent) {
+    let selection = this.selection.withMention(mention);
+    if (mention.segment.length) {
+      selection = selection.withSegment(mention.segment[0]);
+    }
+    this.selection = selection
+    $event.stopPropagation();
+    this.selectionChange.emit(this.selection);
+  }
 
   selectSegment(segment: SegmentItem<any>, $event: MouseEvent) {
     this.selection = this.selection.withSegment(segment.data, segment.mentionId);
@@ -40,12 +50,12 @@ export class CarouselComponent implements OnInit {
   }
 
 
-  segmentDisplayValue(segment: SegmentItem<any>) {
-    return segmentDisplayValue(segment.data);
+  segmentDisplayValue(segment: Ruler) {
+    return (segment && segmentDisplayValue(segment)) || "";
   }
 }
 
 import {ScenarioService} from "../scenario.service";
 import {annotationDisplayValue}  from "../representation/annotation";
 
-import {segmentDisplayValue}  from "../representation/container";
+import {Ruler, segmentDisplayValue} from "../representation/container";

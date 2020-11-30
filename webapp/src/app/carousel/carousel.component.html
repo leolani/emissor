@@ -2,19 +2,20 @@
   <div class="column" style="background-color:#aaa;">
     <h5>Segments</h5>
     <mat-accordion multi>
-      <mat-expansion-panel *ngFor="let segment of selection.segments.slice().reverse()" [disabled]="segment.data !== selection.segment">
-        <mat-expansion-panel-header>
+      <mat-expansion-panel *ngFor="let mention of selection.signal.mentions">
+        <mat-expansion-panel-header [ngClass]="{'selected': selection.mention && mention.id === selection.mention.id}">
           <mat-panel-title>
-            {{segmentDisplayValue(segment) | slice:0:6}} - {{segment.data.display}}
+            {{segmentDisplayValue(mention.segment.length && mention.segment[0]) | slice:0:6}}
+            - {{mention.segment.length && mention.segment[0].display}}
           </mat-panel-title>
           <mat-panel-description>
-            <button mat-icon-button (click)="selectSegment(segment, $event)"><mat-icon>select_all</mat-icon></button>
+            <button mat-icon-button (click)="selectMention(mention, $event)"><mat-icon>select_all</mat-icon></button>
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <app-segment-editor [segment]="segment"></app-segment-editor>
-        <mat-form-field>
+        <app-segment-editor *ngIf="selection.segment && selection.mention && mention.id === selection.mention.id" [segment]="selection.segmentItem"></app-segment-editor>
+        <mat-form-field *ngIf="selection.segment && selection.mention && mention.id === selection.mention.id">
           <mat-label>Type</mat-label>
-          <input matInput [value]="segment.data.type" name="type" type="text" readonly="true">
+          <input matInput [value]="selection.segment.type" name="type" type="text" readonly="true">
         </mat-form-field>
         <mat-action-row>
           <button mat-raised-button (click)="save()">Save</button>
@@ -32,9 +33,8 @@
   <div class="column" style="background-color:#ccc;">
     <h5>Annotations</h5>
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let annotation of selection.annotations.slice().reverse()"
-                           [disabled]="annotation.data !== selection.annotation">
-        <mat-expansion-panel-header>
+      <mat-expansion-panel *ngFor="let annotation of selection.annotations.slice().reverse()">
+        <mat-expansion-panel-header [ngClass]="{'selected': selection.mention && annotation.mentionId === selection.mention.id}">
           <mat-panel-title>
             {{annotationDisplayValue(annotation) | json}}
           </mat-panel-title>

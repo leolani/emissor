@@ -41,3 +41,7 @@ app-container-view {
 .mat-expansion-panel {
   margin-bottom: 10px;
 }
+
+.selected {
+  background-color: #3B666B;
+}
