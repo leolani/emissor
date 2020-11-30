@@ -19,9 +19,11 @@ predicate_namespace = Namespace("http://cltl.nl/combot/predicate/")
 class AnnotationType(enum.Enum):
     DISPLAY = 0
     PERSON = 1
+    EMOTION = 2
     FRIEND = 2
     OBJECT = 3
     TOKEN = 4
+    POS = 4
 
 
 class ImageLabel(enum.Enum):

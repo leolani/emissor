@@ -99,23 +99,12 @@ class Backend:
     def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
         self._storage.save_signal(scenario_id, signal)
 
-    def add_mention(self, scenario_id: str, modality: Modality, signal_id: str):
-        signal = self.load_signal(scenario_id, modality, signal_id)
-        signal.mentions.append(Mention(str(uuid.uuid4()), [], []))
-        self.save_signal(scenario_id, signal)
+    def create_mention(self, scenario_id: str, modality: Modality, signal_id: str):
+        return Mention(str(uuid.uuid4()), [], [])
 
         return signal
 
-    def add_annotation(self, scenario_id, modality, signal_id, mention_id: str, type_: str):
-        signal = self.load_signal(scenario_id, modality, signal_id)
-        annotation = self._create_annotation(type_)
-        mention = next(m for m in signal.mentions if m.id == mention_id)
-        mention.annotations.append(annotation)
-        self.save_signal(scenario_id, signal)
-
-        return signal
-
-    def _create_annotation(self, type_: str):
+    def create_annotation(self, type_: str):
         if type_.lower() == "person":
             value = Person(str(uuid.uuid4()), "", 0, Gender.UNDEFINED)
         elif type_.lower() == "display":
@@ -129,16 +118,9 @@ class Backend:
 
         return Annotation(type_, value, "", int(time.time()))
 
-    def add_segment(self, scenario_id, modality, signal_id, mention_id: str, type_: str, container_id: str) -> Signal:
+    def create_segment(self, scenario_id, modality, signal_id, mention_id: str, type_: str, container_id: str) -> Ruler:
         signal = self.load_signal(scenario_id, modality, signal_id)
-        segment = self._create_segment(signal, type_, container_id)
-        mention = next(m for m in signal.mentions if m.id == mention_id)
-        mention.segment.append(segment)
-        self.save_signal(scenario_id, signal)
 
-        return signal
-
-    def _create_segment(self, signal: Signal[Any, Any], type_: str, container_id: str) -> Ruler:
         container_id = container_id if container_id else signal.id
         if type_.lower() == "multiindex":
             return MultiIndex(container_id, signal.ruler.bounds)

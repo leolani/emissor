@@ -1,20 +1,10 @@
-import {Injectable, Type} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {Annotation, ImageSignal, Mention, Scenario, Signal, TextSignal} from "./representation/scenario";
 
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {map} from "rxjs/operators";
-import {SegmentsTimeComponent} from "./segments-time/segments-time.component";
-import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boundingbox.component";
-import {AnnotationComponent} from "./annotation/annotation.component";
-import {AnnotationsDisplayComponent} from "./annotations-display/annotations-display.component";
-import {SegmentComponent} from "./segment/segment.component";
 import {Ruler} from "./representation/container";
-import {ContainersImgComponent} from "./containers-img/containers-img.component";
-import {ContainersTextComponent} from "./containers-text/containers-text.component";
-import {ContainerComponent} from "./container/container.component";
-import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.component";
-import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.component";
 
 
 @Injectable({
@@ -87,27 +77,23 @@ export class ScenarioService {
     return displayAnnotations.length && displayAnnotations[0].value;
   }
 
-  addMentionFor(scenarioId: string, signal: Signal<any>): Promise<Signal<any>> {
+  createMentionFor(scenarioId: string, signal: Signal<any>): Promise<Mention> {
     let path = `/${scenarioId}/${signal.modality}/${signal.id}/mention`
 
-    return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null).pipe(
-      map(signal => this.setSignalValue(scenarioId, signal, this.resourcePath))
-    ).toPromise();
+    return this.http.put<Mention>(this.scenarioEndpoint + path, null).toPromise();
   }
 
-  addAnnotationFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string): Promise<Signal<any>> {
+  createAnnotationFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string): Promise<Annotation<any>> {
     let path = `/${scenarioId}/${signal.modality}/${signal.id}/${mention.id}/annotation`
 
     let params = new HttpParams();
     params = params.append('type', type);
 
-    return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null, {params}).pipe(
-      map(signal => this.setSignalValue(scenarioId, signal, this.resourcePath))
-    ).toPromise();
+    return this.http.put<Annotation<any>>(this.scenarioEndpoint + path, null, {params}).toPromise();
   }
 
-  addSegmentFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string,
-                containerId: string = null): Promise<Signal<any>> {
+  createSegmentFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string,
+                containerId: string = null): Promise<Ruler> {
     let path = `/${scenarioId}/${signal.modality}/${signal.id}/${mention.id}/segment`
 
     let params = new HttpParams();
@@ -116,9 +102,7 @@ export class ScenarioService {
       params = params.append('container', containerId);
     }
 
-    return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null, {params}).pipe(
-      map(signal => this.setSignalValue(scenarioId, signal, this.resourcePath))
-    ).toPromise();
+    return this.http.put<Ruler>(this.scenarioEndpoint + path, null, {params}).toPromise();
   }
 
   private getJSONHeaders(): any {

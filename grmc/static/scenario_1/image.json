@@ -10,29 +10,18 @@
     "files": [
       "image/maxima.jpg"
     ],
-    "id": "033332c5-5775-446e-8470-2e3b5cba6a8c",
+    "id": "abcd9efd-6dcd-4644-a076-99c13f7e9a4e",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606723138,
+            "timestamp": 1606740197,
             "type": "display",
             "value": "maxima"
-          },
-          {
-            "source": "",
-            "timestamp": 1606725858,
-            "type": "person",
-            "value": {
-              "age": 0,
-              "gender": "undefined",
-              "id": "2ebbc0fa-41fb-448f-8570-f576067b0116",
-              "name": ""
-            }
           }
         ],
-        "id": "7c7aa8dc-31b4-4e1b-b309-b880986fe624",
+        "id": "e5c6fbaf-1e38-42cb-8936-03413870fc14",
         "segment": [
           {
             "bounds": [
@@ -42,11 +31,9 @@
               131
             ],
             "container_id": null,
-            "type": "MultiIndex",
-            "display": "maxima"
+            "type": "MultiIndex"
           }
-        ],
-        "display": "maxima"
+        ]
       }
     ],
     "modality": "image",
@@ -66,9 +53,7 @@
       "start": 1603139000,
       "type": "TemporalRuler"
     },
-    "type": "ImageSignal",
-    "image": "https://localhost:5000/data/scenario_1/image/maxima.jpg",
-    "display": "maxima"
+    "type": "ImageSignal"
   },
   {
     "array": null,
@@ -81,18 +66,18 @@
     "files": [
       "image/niqee-2020-10-25 at 17.30.51.png"
     ],
-    "id": "429781c5-90b2-4a5b-afdf-39df163c599e",
+    "id": "d9279083-6340-4894-90b9-7eb409ab1c85",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606723138,
+            "timestamp": 1606740197,
             "type": "display",
             "value": "niqee-2020-10-25 at 17.30.51"
           }
         ],
-        "id": "208d0565-6582-42b0-a038-e6f4f1378cb3",
+        "id": "deec605f-04f0-4969-97fe-3c7bd672cd9a",
         "segment": [
           {
             "bounds": [
@@ -137,18 +122,18 @@
     "files": [
       "image/soccer-balll.png"
     ],
-    "id": "9fec738d-05af-4759-a200-d595f750cebc",
+    "id": "03242c06-4ac9-42d3-8a41-37b95c881cf3",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606723138,
+            "timestamp": 1606740197,
             "type": "display",
             "value": "soccer-balll"
           }
         ],
-        "id": "b7fe6c29-1210-4edf-8dfa-882fcd6ed864",
+        "id": "0d27f2c2-09e0-4ee9-939e-8462cf623842",
         "segment": [
           {
             "bounds": [
@@ -193,18 +178,18 @@
     "files": [
       "image/sam-2020-10-25 at 17.30.25.png"
     ],
-    "id": "ec3694bc-8d4b-4d54-8e07-c87cce09d810",
+    "id": "9982197a-5381-4fd2-a49c-83fe86b1910a",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606723138,
+            "timestamp": 1606740197,
             "type": "display",
             "value": "sam-2020-10-25 at 17.30.25"
           }
         ],
-        "id": "c104cf2f-4d3b-4c8f-bd95-88779785bd1a",
+        "id": "630bc7ad-bf85-44e0-a650-718adac1ded6",
         "segment": [
           {
             "bounds": [
@@ -249,18 +234,18 @@
     "files": [
       "image/piek-sunglasses.jpg"
     ],
-    "id": "eca01f06-aa4b-4d2d-bb88-c965df653ffc",
+    "id": "54a599aa-f055-4ad7-9bfc-946a056e0776",
     "mentions": [
       {
         "annotations": [
           {
             "source": "annotation_tool",
-            "timestamp": 1606723138,
+            "timestamp": 1606740197,
             "type": "display",
             "value": "piek-sunglasses"
           }
         ],
-        "id": "b721ba88-303e-427f-9443-231022ab8a87",
+        "id": "b7793fd5-227d-4d02-abed-f8035aeb5897",
         "segment": [
           {
             "bounds": [

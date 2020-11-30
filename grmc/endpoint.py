@@ -41,13 +41,13 @@ def save_signal(scenario_id, modality, signal):
 
 @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/mention', methods=['PUT'])
 def create_mention(scenario_id: str, modality: str, signal_id: str):
-    return marshal(backend.add_mention(scenario_id, Modality[modality.upper()], signal_id))
+    return marshal(backend.create_mention(scenario_id, Modality[modality.upper()], signal_id))
 
 
 @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/<mention_id>/annotation', methods=['PUT'])
 def create_annotation(scenario_id: str, modality: str, signal_id: str, mention_id: str):
     type_ = request.args.get("type")
-    return marshal(backend.add_annotation(scenario_id, Modality[modality.upper()], signal_id, mention_id, type_))
+    return marshal(backend.create_annotation(type_))
 
 
 @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/<mention_id>/segment', methods=['PUT'])
@@ -56,7 +56,7 @@ def create_segment(scenario_id: str, modality: str, signal_id: str, mention_id: 
     container_id = request.args.get("container")
 
     return marshal(
-        backend.add_segment(scenario_id, Modality[modality.upper()], signal_id, mention_id, type_, container_id))
+        backend.create_segment(scenario_id, Modality[modality.upper()], signal_id, mention_id, type_, container_id))
 
 
 @app.route('/test')

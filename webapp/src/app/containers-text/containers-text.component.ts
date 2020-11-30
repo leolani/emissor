@@ -1,5 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
-import {Index} from "../representation/container";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, AfterViewInit} from '@angular/core';
 import {ContainerComponent} from "../container/container.component";
 import {Mention, TextSignal} from "../representation/scenario";
 import {SignalSelection} from "../signal-selection";
@@ -16,23 +15,24 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
 
   tokens: Mention[];
   annotationType: string;
-  private selectedContainerIds: Set<any>;
+  selectedContainerIds: Set<any>;
 
   constructor(private scenarioService: ScenarioService, private componentService: ComponentService) {}
 
   ngOnInit(): void {
+    this.setContainerIds(this.selection);
+
     this.tokens = this.selection.signal.mentions.filter(mention =>
         mention.segment.length === 1
         && mention.segment[0].container_id === this.selection.signal.id
         && mention.annotations.length
         && mention.annotations[0].type.toLowerCase() === "token");
-    this.setContainerIds(this.selection);
   }
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.selection
-        && changes.selection.currentValue.mention !== changes.selection.previousValue.mention) {
-        this.setContainerIds(changes.selection.currentValue);
+      && changes.selection.currentValue.mention !== changes.selection.previousValue.mention) {
+      this.setContainerIds(changes.selection.currentValue);
     }
   }
 
@@ -46,29 +46,25 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
     return Array.from(Array(range).keys());
   }
 
-  tokenClass(idx: number) {
-    if (this.selectedContainerIds.has(this.tokens[idx].annotations[0].value.id)) {
-      return "selected";
-    }
-  }
-
   select(idx: number, token: Mention, $event: MouseEvent) {
-    if (this.tokenClass(idx) === "selected") {
-      this.selectedContainerIds.delete(token.annotations[0].value.id);
-      this.selection.mention.segment = this.selection.mention.segment
-          .filter(seg => seg.container_id !== token.annotations[0].value.id)
+    if (!this.selection.mention) {
+      return;
+    }
+
+    let token_container = token.annotations[0].value.id;
+    if (this.selectedContainerIds.has(token_container)) {
+      this.selectedContainerIds.delete(token_container);
+      this.selection = this.selection.removeSegment(token_container);
     } else {
-      this.selectedContainerIds.add(token.annotations[0].value.id);
-      this.selection.addSegment("atomic", token.annotations[0].value.id).then(selection => {
+      this.selectedContainerIds.add(token_container);
+      this.selection.addSegment("atomic", token_container).then(selection => {
         this.selection = selection;
-        this.selectionChange.emit(this.selection);
       });
     }
-    this.selection = this.selection.withMention(this.selection.mention);
-    this.selectionChange.emit(this.selection);
   }
 
   addMention() {
+    this.save();
     this.selection.addMention().then(selection => {
       this.selection = selection;
       this.selectionChange.emit(this.selection);
@@ -76,6 +72,7 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
   }
 
   addAnnotation() {
+    this.save();
     this.selection.addAnnotation(this.annotationType).then(selection => {
       this.selection = selection;
       this.selectionChange.emit(this.selection);
@@ -88,5 +85,6 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
 
   save() {
     this.scenarioService.saveSignal(this.selection.scenarioId, this.selection.signal);
+    this.selectionChange.emit(this.selection);
   }
 }

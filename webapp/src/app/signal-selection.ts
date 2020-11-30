@@ -85,7 +85,7 @@ export class SignalSelection<S extends Signal<any>> {
     selection.annotation = this.annotation;
 
     selection.segmentItem = segment ?
-        new SegmentItem<any>(this.componentService.getSegmentComponent(segment), mention.id, segment) :
+        this.segments.find(seg => seg.data === segment) :
         null;
 
     return selection;
@@ -101,7 +101,7 @@ export class SignalSelection<S extends Signal<any>> {
     selection.annotation = annotation;
 
     selection.annotationItem = annotation ?
-        new AnnotationItem<any>(this.componentService.getAnnotationComponent(annotation), mention.id, annotation):
+        this.annotations.find(ann => ann.data === annotation) :
         null;
 
     return selection;
@@ -110,14 +110,12 @@ export class SignalSelection<S extends Signal<any>> {
   addMention(select = true): Promise<SignalSelection<S>> {
     let selection = this.clone();
 
-    return this.scenarioService.addMentionFor(this.scenarioId, this.signal)
-        .then(signal => {
-          selection.signal = <S> signal;
-          selection.segments = selection.allSegments();
-          selection.annotations = selection.allAnnotations();
+    return this.scenarioService.createMentionFor(this.scenarioId, this.signal)
+        .then(mention => {
+          selection.signal.mentions.push(mention);
 
           if (select) {
-            selection = selection.withMention(signal.mentions.slice(-1)[0]);
+            selection = selection.withMention(selection.signal.mentions.slice(-1)[0]);
           }
 
           return selection;
@@ -127,15 +125,14 @@ export class SignalSelection<S extends Signal<any>> {
   addAnnotation(type: string, select = true): Promise<SignalSelection<S>> {
     let selection = this.clone();
 
-    return this.scenarioService.addAnnotationFor(this.scenarioId, this.signal, this.mention, type)
-        .then(signal => {
-          selection.signal = <S> signal;
-          selection.segments = selection.allSegments();
+    return this.scenarioService.createAnnotationFor(this.scenarioId, this.signal, this.mention, type)
+        .then(annotation => {
+          let mention = selection.signal.mentions.find(byId(this.mention));
+          mention.annotations.push(annotation);
           selection.annotations = selection.allAnnotations();
 
           if (select) {
-            let newAnnotation = signal.mentions.find(byId(this.mention))
-                .annotations.slice(-1)[0];
+            let newAnnotation = mention.annotations.slice(-1)[0];
             selection = selection.withAnnotation(newAnnotation);
           }
 
@@ -146,20 +143,31 @@ export class SignalSelection<S extends Signal<any>> {
   addSegment(type = null, containerId: string = null, select = true): Promise<SignalSelection<S>> {
     let selection = this.clone();
 
-    return this.scenarioService.addSegmentFor(this.scenarioId, this.signal, this.mention, type, containerId)
-        .then(signal => {
-          selection.signal = <S> signal;
+    return this.scenarioService.createSegmentFor(this.scenarioId, this.signal, this.mention, type, containerId)
+        .then(segment => {
+          let mention = selection.signal.mentions.find(byId(this.mention));
+          mention.segment.push(segment);
           selection.segments = selection.allSegments();
-          selection.annotations = selection.allAnnotations();
 
           if (select) {
-            let newSegment = signal.mentions.find(byId(this.mention))
-              .segment.slice(-1)[0];
+            let newSegment = mention.segment.slice(-1)[0];
             selection = selection.withSegment(newSegment);
           }
 
           return selection;
         });
+  }
+
+  removeSegment(containerId: string): SignalSelection<S> {
+    let selection = this.clone();
+    selection.mention.segment = selection.mention.segment.filter(seg => seg.container_id !== containerId);
+    selection.segments = selection.allSegments();
+
+    if (selection.segment && selection.segment.container_id === containerId) {
+      selection = selection.withSegment(null);
+    }
+
+    return selection;
   }
 
   private getSegmentComponent(segment: Ruler): Type<SegmentComponent<any>> {
