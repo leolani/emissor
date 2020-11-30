@@ -1,10 +1,11 @@
+{{selection.mention && selection.segments | json}}
 <div *ngIf="!!signals" class="row">
   <div class="column" style="background-color:#aaa;">
     <mat-accordion multi>
-      <mat-expansion-panel *ngFor="let segment of selection.segments" [disabled]="segment.data !== selection.segment">
+      <mat-expansion-panel *ngFor="let segment of selection.segments.slice().reverse()" [disabled]="segment.data !== selection.segment">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{segment.data.display}}
+            {{segmentDisplayValue(segment)}} - {{segment.data.display}}
           </mat-panel-title>
           <mat-panel-description>
             <button mat-icon-button (click)="selectSegment(segment, $event)"><mat-icon>select_all</mat-icon></button>
@@ -25,16 +26,30 @@
 
   <div class="center-column" style="background-color:#bbb;">
     <app-container-view [selection]="selection"></app-container-view>
+    <div>
+      <button mat-raised-button (click)="save()">Save</button>
+      <button mat-raised-button (click)="addMention()">Add Mention</button>
+      <button mat-raised-button (click)="addAnnotation()" [disabled]="!annotationType">Add Annotation</button>
+      <mat-form-field *ngIf="selection.mention">
+        <mat-label>Annotation Type</mat-label>
+        <mat-select [(value)]="annotationType" name="type">
+          <mat-option></mat-option>
+          <mat-option *ngFor="let type of ['display', 'person', 'label']" [value]="type">
+            {{type}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </div>
 
 
   <div class="column" style="background-color:#ccc;">
     <mat-accordion>
-      <mat-expansion-panel *ngFor="let annotation of selection.annotations"
+      <mat-expansion-panel *ngFor="let annotation of selection.annotations.slice().reverse()"
                            [disabled]="annotation.data !== selection.annotation">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{annotation.data.type}}
+            {{annotationDisplayValue(annotation)}}
           </mat-panel-title>
           <mat-panel-description>
             <button mat-icon-button (click)="selectAnnotation(annotation, $event)"><mat-icon>select_all</mat-icon></button>
@@ -53,9 +68,6 @@
           <mat-label>Timestamp</mat-label>
           <input matInput [(ngModel)]="annotation.data.timestamp" name="timestamp" type="text">
         </mat-form-field>
-        <mat-action-row>
-          <button mat-raised-button (click)="save()">Save</button>
-        </mat-action-row>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

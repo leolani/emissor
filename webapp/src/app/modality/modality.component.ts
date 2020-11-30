@@ -5,6 +5,7 @@ import {Options} from "@angular-slider/ngx-slider";
 import {le as lowerBound} from "binary-search-bounds";
 import {DomSanitizer, SafeUrl} from "@angular/platform-browser";
 import {SignalSelection} from "../signal-selection";
+import {ComponentService} from "../component.service";
 
 
 function compareByTimestamp(a: Signal<any>, b: Signal<any>): number {
@@ -45,14 +46,15 @@ export class ModalityComponent implements OnInit {
 
   selection: SignalSelection<any>;
 
-  constructor(private scenarioService: ScenarioService, private sanitizer: DomSanitizer) { }
+  constructor(private scenarioService: ScenarioService, private componentService: ComponentService,
+              private sanitizer: DomSanitizer) { }
 
   ngOnInit(): void {
     this.loadSignals(this.modality);
   }
 
   onSliderSelection(idx: number) {
-    this.selection = new SignalSelection(idx, this.signals[idx], this.scenario.id, this.scenarioService);
+    this.selection = new SignalSelection(idx, this.signals[idx], this.scenario.id, this.scenarioService, this.componentService);
   }
 
   loadSignals(modality: string): void {

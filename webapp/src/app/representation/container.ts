@@ -1,4 +1,5 @@
 import {Typed} from "./util";
+import {Annotation} from "./scenario";
 
 export interface Ruler extends Typed {
   container_id: string;
@@ -42,4 +43,17 @@ export interface AtomicRuler extends Ruler {
 
 export interface AtomicContainer<T> extends Container<AtomicRuler> {
   value: T;
+}
+
+export function segmentDisplayValue(ruler: Ruler): string {
+  switch (ruler.type.toLowerCase()) {
+    case "index":
+      return "" + [(<Index> ruler).start, (<Index> ruler).stop];
+    case "multiindex":
+      return "" + (<MultiIndex> ruler).bounds;
+    case "atomicruler":
+      return "" + (<AtomicRuler> ruler).container_id;
+    case "temporalruler":
+      return "" + [(<TemporalRuler> ruler).start, (<TemporalRuler> ruler).end];
+  }
 }

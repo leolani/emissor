@@ -14,6 +14,7 @@ import {ContainersImgComponent} from "./containers-img/containers-img.component"
 import {ContainersTextComponent} from "./containers-text/containers-text.component";
 import {ContainerComponent} from "./container/container.component";
 import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.component";
+import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.component";
 
 
 @Injectable({
@@ -86,42 +87,7 @@ export class ScenarioService {
     return displayAnnotations.length && displayAnnotations[0].value;
   }
 
-  getAnnotationComponent(annotation: Annotation<any>): Type<AnnotationComponent<any>> {
-    switch (annotation.type.toLowerCase()) {
-      case "display":
-        return AnnotationsDisplayComponent
-      case "token":
-        return AnnotationsDisplayComponent
-      default:
-        throw Error("Unsupported annotation type: " + annotation.type);
-    }
-  }
-
-  getSegmentComponent(ruler: Ruler): Type<SegmentComponent<any>> {
-    switch (ruler.type.toLowerCase()) {
-      case "multiindex":
-        return SegmentsBoundingboxComponent
-      case "temporalruler":
-        return SegmentsTimeComponent
-      case "index":
-        return SegmentsOffsetComponent
-      default:
-        throw Error("Unsupported segment type: " + ruler.type);
-    }
-  }
-
-  getContainerComponent(selectedSignal: Signal<any> | Annotation<any>): Type<ContainerComponent<any>> {
-    switch (selectedSignal.type.toLowerCase()) {
-      case "textsignal":
-        return ContainersTextComponent
-      case "imagesignal":
-        return ContainersImgComponent
-      default:
-        throw Error("Unsupported container type: " + selectedSignal.type);
-    }
-  }
-
-  getMentionFor(scenarioId: string, signal: Signal<any>): Promise<Signal<any>> {
+  addMentionFor(scenarioId: string, signal: Signal<any>): Promise<Signal<any>> {
     let path = `/${scenarioId}/${signal.modality}/${signal.id}/mention`
 
     return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null).pipe(
@@ -129,7 +95,7 @@ export class ScenarioService {
     ).toPromise();
   }
 
-  getAnnotationFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string): Promise<Signal<any>> {
+  addAnnotationFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string): Promise<Signal<any>> {
     let path = `/${scenarioId}/${signal.modality}/${signal.id}/${mention.id}/annotation`
 
     let params = new HttpParams();
@@ -140,11 +106,15 @@ export class ScenarioService {
     ).toPromise();
   }
 
-  getSegmentFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string): Promise<Signal<any>> {
+  addSegmentFor(scenarioId: string, signal: Signal<any>, mention: Mention, type: string,
+                containerId: string = null): Promise<Signal<any>> {
     let path = `/${scenarioId}/${signal.modality}/${signal.id}/${mention.id}/segment`
 
     let params = new HttpParams();
     params = params.append('type', type);
+    if (containerId) {
+      params = params.append('container', containerId);
+    }
 
     return this.http.put<Signal<any>>(this.scenarioEndpoint + path, null, {params}).pipe(
       map(signal => this.setSignalValue(scenarioId, signal, this.resourcePath))

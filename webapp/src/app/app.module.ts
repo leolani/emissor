@@ -33,7 +33,7 @@ import {ContainerViewComponent} from "./container-view/container-view.component"
 import {ContainerDirective} from "./container/container.directive";
 import {ContainersImgComponent} from "./containers-img/containers-img.component";
 import {ContainersTextComponent} from "./containers-text/containers-text.component";
-import {TextViewComponent} from "./modality/text-view.component";
+import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.component";
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -52,11 +52,11 @@ import {TextViewComponent} from "./modality/text-view.component";
     AnnotationDirective,
     AnnotationEditorComponent,
     AnnotationsDisplayComponent,
-    TextViewComponent,
     ContainerDirective,
     ContainerViewComponent,
     SegmentDirective,
     SegmentEditorComponent,
+    SegmentsAtomicComponent,
     SegmentsBoundingboxComponent,
     SegmentsOffsetComponent,
     SegmentsTimeComponent
