@@ -3,11 +3,6 @@ import {Annotation, ImageSignal} from "../representation/scenario";
 import {SignalSelection} from "../signal-selection";
 import {SegmentItem} from "../segment/segment-item";
 import {AnnotationItem} from "../annotation/annotation-item";
-import {ScenarioService} from "../scenario.service";
-
-import {annotationDisplayValue}  from "../representation/annotation";
-import {segmentDisplayValue}  from "../representation/container";
-
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
@@ -44,7 +39,13 @@ export class CarouselComponent implements OnInit {
     return annotationDisplayValue(annotation.data);
   }
 
+
   segmentDisplayValue(segment: SegmentItem<any>) {
     return segmentDisplayValue(segment.data);
   }
 }
+
+import {ScenarioService} from "../scenario.service";
+import {annotationDisplayValue}  from "../representation/annotation";
+
+import {segmentDisplayValue}  from "../representation/container";

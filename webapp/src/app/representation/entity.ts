@@ -1,4 +1,4 @@
-enum Emotion {
+export enum Emotion {
   NEUTRAL,
   ANGER,
   DISGUST,
@@ -9,7 +9,7 @@ enum Emotion {
   SURPRISE,
 }
 
-enum Gender {
+export enum Gender {
   UNDEFINED,
   FEMALE,
   MALE,

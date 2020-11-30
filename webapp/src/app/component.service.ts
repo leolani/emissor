@@ -15,6 +15,10 @@ import {ContainersTextComponent} from "./containers-text/containers-text.compone
 import {ContainerComponent} from "./container/container.component";
 import {SegmentsOffsetComponent} from "./segments-offset/segments-offset.component";
 import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.component";
+import {AnnotationsTokenComponent} from "./annotations-token/annotations-token.component";
+import {AnnotationsPosComponent} from "./annotations-pos/annotations-pos.component";
+import {AnnotationsPersonComponent} from "./annotations-person/annotations-person.component";
+import {AnnotationsEmotionComponent} from "./annotations-emotion/annotations-emotion.component";
 
 
 @Injectable({
@@ -28,8 +32,14 @@ export class ComponentService {
     switch (annotation.type.toLowerCase()) {
       case "display":
         return AnnotationsDisplayComponent
+      case "emotion":
+        return AnnotationsEmotionComponent
+      case "pos":
+        return AnnotationsPosComponent
+      case "person":
+        return AnnotationsPersonComponent
       case "token":
-        return AnnotationsDisplayComponent
+        return AnnotationsTokenComponent
       default:
         throw Error("Unsupported annotation type: " + annotation.type);
     }

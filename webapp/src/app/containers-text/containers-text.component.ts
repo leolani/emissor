@@ -29,7 +29,6 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    console.log("changes", changes);
     if (changes.selection
         && changes.selection.currentValue.mention !== changes.selection.previousValue.mention) {
         this.setContainerIds(changes.selection.currentValue);

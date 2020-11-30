@@ -36,15 +36,18 @@ export interface Display {
 
 export function annotationDisplayValue(annotation: Annotation<any>): string {
   switch (annotation.type.toLowerCase()) {
-    case "token":
-    case "diaplay":
+    case "display":
     case "label":
-      return annotation.value.value;
-    case "Utterance":
-      return annotation.value.utterance;
-    case "Entity":
-      return annotation.value.id + " - "+ annotation.value.type;
-    case "token":
       return annotation.value;
+    case "utterance":
+      return annotation.value.utterance;
+    case "entity":
+      return annotation.value.id + " - "+ annotation.value.type;
+    case "person":
+      return annotation.value.name
+    case "token":
+      return annotation.value.value || annotation.value
+    default:
+      throw Error("Unknown type: " + annotation.type);
   }
 }

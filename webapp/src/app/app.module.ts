@@ -34,6 +34,10 @@ import {ContainerDirective} from "./container/container.directive";
 import {ContainersImgComponent} from "./containers-img/containers-img.component";
 import {ContainersTextComponent} from "./containers-text/containers-text.component";
 import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.component";
+import { AnnotationsPersonComponent } from './annotations-person/annotations-person.component';
+import { AnnotationsEmotionComponent } from './annotations-emotion/annotations-emotion.component';
+import { AnnotationsPosComponent } from './annotations-pos/annotations-pos.component';
+import { AnnotationsTokenComponent } from './annotations-token/annotations-token.component';
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -59,7 +63,11 @@ import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.compone
     SegmentsAtomicComponent,
     SegmentsBoundingboxComponent,
     SegmentsOffsetComponent,
-    SegmentsTimeComponent
+    SegmentsTimeComponent,
+    AnnotationsPersonComponent,
+    AnnotationsEmotionComponent,
+    AnnotationsPosComponent,
+    AnnotationsTokenComponent
   ],
   imports: [
     CommonModule,

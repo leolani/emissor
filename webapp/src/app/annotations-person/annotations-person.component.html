@@ -1,0 +1,14 @@
+<div *ngIf="data">
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput [(ngModel)]="data.value.name" name="name" type="text">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Age</mat-label>
+    <input matInput [(ngModel)]="data.value.age" name="age" type="number">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Gender</mat-label>
+    <input matInput [(ngModel)]="data.value.gender" name="gender" type="text">
+  </mat-form-field>
+</div>

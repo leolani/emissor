@@ -1,4 +1,3 @@
-{{selection.segments | json}}
 <div *ngIf="!!signals" class="row">
   <div class="column" style="background-color:#aaa;">
     <mat-accordion multi>
@@ -35,7 +34,7 @@
                            [disabled]="annotation.data !== selection.annotation">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            {{annotationDisplayValue(annotation)}}
+            {{annotationDisplayValue(annotation) | json}}
           </mat-panel-title>
           <mat-panel-description>
             <button mat-icon-button (click)="selectAnnotation(annotation, $event)"><mat-icon>select_all</mat-icon></button>
