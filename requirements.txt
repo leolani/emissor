@@ -1,0 +1,11 @@
+Flask==1.1.2
+Flask-Cors==3.0.9
+importlib-metadata==3.0.0
+nltk==3.5
+numpy==1.19.4
+pandas==1.1.4
+Pillow==8.0.1
+pyparsing==2.4.7
+rdflib==5.0.0
+simplejson==3.17.2
+typing==3.7.4.3
