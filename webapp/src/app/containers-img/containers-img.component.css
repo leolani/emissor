@@ -23,6 +23,7 @@
 
 .top.boundingbox {
   z-index: 9999;
+  outline: 1px solid darkgreen;
 }
 
 .selected.boundingbox {
