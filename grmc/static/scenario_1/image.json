@@ -19,6 +19,17 @@
             "timestamp": 1606723138,
             "type": "display",
             "value": "maxima"
+          },
+          {
+            "source": "",
+            "timestamp": 1606725858,
+            "type": "person",
+            "value": {
+              "age": 0,
+              "gender": "undefined",
+              "id": "2ebbc0fa-41fb-448f-8570-f576067b0116",
+              "name": ""
+            }
           }
         ],
         "id": "7c7aa8dc-31b4-4e1b-b309-b880986fe624",
@@ -31,9 +42,11 @@
               131
             ],
             "container_id": null,
-            "type": "MultiIndex"
+            "type": "MultiIndex",
+            "display": "maxima"
           }
-        ]
+        ],
+        "display": "maxima"
       }
     ],
     "modality": "image",
@@ -53,7 +66,9 @@
       "start": 1603139000,
       "type": "TemporalRuler"
     },
-    "type": "ImageSignal"
+    "type": "ImageSignal",
+    "image": "https://localhost:5000/data/scenario_1/image/maxima.jpg",
+    "display": "maxima"
   },
   {
     "array": null,
