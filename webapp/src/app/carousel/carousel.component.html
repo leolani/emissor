@@ -1,5 +1,6 @@
 <div *ngIf="!!signals" class="row">
   <div class="column" style="background-color:#aaa;">
+    <h5>Segments</h5>
     <mat-accordion multi>
       <mat-expansion-panel *ngFor="let segment of selection.segments.slice().reverse()" [disabled]="segment.data !== selection.segment">
         <mat-expansion-panel-header>
@@ -29,6 +30,7 @@
 
 
   <div class="column" style="background-color:#ccc;">
+    <h5>Annotations</h5>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let annotation of selection.annotations.slice().reverse()"
                            [disabled]="annotation.data !== selection.annotation">
