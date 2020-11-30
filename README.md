@@ -69,3 +69,35 @@ It will perform tokenization of the text signals in the provided *.csv* files.
 #### Display values
 
 It will add annotations containing display values that can be used in the GUI.
+
+## Usage
+
+![Screenshot Image](doc/img/screenshot_image.png)
+
+### Workflow for images
+
+1. Select a scenario
+1. Select a modality
+1. Show a list of the signals for the scenario (folded by default)
+1. Select a signal either from the list of signals or from the timeline
+1. Click the Badge of the signal in the list to enable positioning on the timeline and move the slider. When done
+   click the Badge again to disable time editing. *Note: currently the selection get's lost when disabling editing* 
+1. Select a segment from the list of segments. When selected dragging the bounding box can be enabled by clicking
+   on the label below the bounding box. Size can be adjusted by dragging the bottom right corner of the bounding box. 
+1. Expand the segment for editing (same for annotations)
+1. Add a mention (generatates a single bounding box for the image)
+1. Add annotations to the mention after selecting an annotation type.
+1. Save after modifications (use any *Save* button you can find)
+
+### Workflow for images
+
+![Screenshot Text](doc/img/screenshot_text.png)
+
+For step 1. - 5. follow the instructions for images.
+1. Add a mention (empty by default)
+1. Select the tokens that belong to the mention by clicking on them.
+1. Select a mention by selecting a segment from the segment list (to be improved) or an annotation from the
+   annotation list
+1. Expand segment or annotation for editing (to be improved).
+1. Add annotations to the mention after selecting an annotation type.
+1. Save after modifications (use any *Save* button you can find)
