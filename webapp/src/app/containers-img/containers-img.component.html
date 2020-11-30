@@ -30,7 +30,7 @@
       <mat-label>Annotation Type</mat-label>
       <mat-select [(value)]="annotationType" name="type">
         <mat-option></mat-option>
-        <mat-option *ngFor="let type of ['display', 'person', 'label']" [value]="type">
+        <mat-option *ngFor="let type of getAnnotationTypes()" [value]="type">
           {{type}}
         </mat-option>
       </mat-select>

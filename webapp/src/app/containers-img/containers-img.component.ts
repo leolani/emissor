@@ -1,6 +1,7 @@
 import {
   Component,
-  ElementRef, EventEmitter,
+  ElementRef,
+  EventEmitter,
   HostListener,
   Input,
   OnChanges,
@@ -14,6 +15,7 @@ import {ImageSignal} from "../representation/scenario";
 import {ContainerComponent} from "../container/container.component";
 import {SignalSelection} from "../signal-selection";
 import {ScenarioService} from "../scenario.service";
+import {ComponentService} from "../component.service";
 
 const enum Status {
   OFF = 0,
@@ -51,7 +53,8 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
   private startPosition: number[];
   private mouseStart: {x: number, y: number};
 
-  constructor(private scenarioService: ScenarioService) { }
+  // TODO circluar dependency with component service
+  constructor(private scenarioService: ScenarioService, private componentService: ComponentService) { }
 
   ngOnInit() {
     this.segments = <MultiIndex[]> this.selection.signal.mentions.flatMap(mention => mention.segment)
@@ -181,6 +184,10 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
       this.selection = selection;
       this.selectionChange.emit(this.selection);
     });
+  }
+
+  getAnnotationTypes(): string[] {
+    return this.componentService.getAnnotationTypes();
   }
 
   save() {

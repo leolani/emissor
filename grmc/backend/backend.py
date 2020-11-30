@@ -8,7 +8,7 @@ from grmc.backend.persistence import ScenarioStorage, guess_scenario_range, load
     file_name, load_text
 from grmc.representation.annotation import AnnotationType, Token
 from grmc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
-from grmc.representation.entity import Person, Gender
+from grmc.representation.entity import Person, Gender, Emotion
 from grmc.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation, Signal
 
@@ -120,6 +120,10 @@ class Backend:
             value = Person(str(uuid.uuid4()), "", 0, Gender.UNDEFINED)
         elif type_.lower() == "display":
             value = "new"
+        elif type_.lower() == "pos":
+            value = "POS-TAG"
+        elif type_.lower() == "emotion":
+            value = Emotion.NEUTRAL.name.lower()
         else:
             raise ValueError("Unsupported annotation type: " + type_)
 

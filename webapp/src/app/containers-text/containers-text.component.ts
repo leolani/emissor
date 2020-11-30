@@ -4,6 +4,7 @@ import {ContainerComponent} from "../container/container.component";
 import {Mention, TextSignal} from "../representation/scenario";
 import {SignalSelection} from "../signal-selection";
 import {ScenarioService} from "../scenario.service";
+import {ComponentService} from "../component.service";
 
 @Component({
   templateUrl: './containers-text.component.html',
@@ -17,7 +18,7 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
   annotationType: string;
   private selectedContainerIds: Set<any>;
 
-  constructor(private scenarioService: ScenarioService) {}
+  constructor(private scenarioService: ScenarioService, private componentService: ComponentService) {}
 
   ngOnInit(): void {
     this.tokens = this.selection.signal.mentions.filter(mention =>
@@ -79,6 +80,10 @@ export class ContainersTextComponent implements OnInit, OnChanges, ContainerComp
       this.selection = selection;
       this.selectionChange.emit(this.selection);
     });
+  }
+
+  getAnnotationTypes(): string[] {
+    return this.componentService.getAnnotationTypes();
   }
 
   save() {

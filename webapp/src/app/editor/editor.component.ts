@@ -2,6 +2,7 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {ScenarioService} from "../scenario.service";
 import {SignalSelection} from "../signal-selection";
 import {Annotation, Mention} from "../representation/scenario";
+import {ComponentService} from "../component.service";
 
 @Component({
   selector: 'app-editor',
@@ -15,7 +16,7 @@ export class EditorComponent implements OnInit {
 
   annotationType: string;
 
-  constructor(private scenarioService: ScenarioService) { }
+  constructor(private scenarioService: ScenarioService, private componentService: ComponentService) { }
 
   ngOnInit(): void {}
 
@@ -71,5 +72,9 @@ export class EditorComponent implements OnInit {
   selectAnnotation(annotation: Annotation<any>) {
     this.signal = this.signal.withAnnotation(annotation);
     this.signalChange.emit(this.signal);
+  }
+
+  getAnnotationTypes(): string[] {
+    return this.componentService.getAnnotationTypes();
   }
 }

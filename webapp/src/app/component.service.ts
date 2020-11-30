@@ -1,9 +1,5 @@
 import {Injectable, Type} from '@angular/core';
-import {Observable} from 'rxjs';
-import {Annotation, ImageSignal, Mention, Scenario, Signal, TextSignal} from "./representation/scenario";
-
-import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
-import {map} from "rxjs/operators";
+import {Annotation, Signal} from "./representation/scenario";
 import {SegmentsTimeComponent} from "./segments-time/segments-time.component";
 import {SegmentsBoundingboxComponent} from "./segments-boundingbox/segments-boundingbox.component";
 import {AnnotationComponent} from "./annotation/annotation.component";
@@ -21,12 +17,20 @@ import {AnnotationsPersonComponent} from "./annotations-person/annotations-perso
 import {AnnotationsEmotionComponent} from "./annotations-emotion/annotations-emotion.component";
 
 
+const ANNOTATION_TYPES = ["display", "emotion", "pos", "person", "token"];
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ComponentService {
 
   constructor() { }
+
+  getAnnotationTypes(): string[] {
+    // TODO enum
+    return ANNOTATION_TYPES
+  }
 
   getAnnotationComponent(annotation: Annotation<any>): Type<AnnotationComponent<any>> {
     switch (annotation.type.toLowerCase()) {

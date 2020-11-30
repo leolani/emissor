@@ -38,6 +38,7 @@ export function annotationDisplayValue(annotation: Annotation<any>): string {
   switch (annotation.type.toLowerCase()) {
     case "display":
     case "label":
+    case "pos":
       return annotation.value;
     case "utterance":
       return annotation.value.utterance;
