@@ -10,7 +10,7 @@ import {
   SimpleChanges,
   ViewChild
 } from '@angular/core';
-import {MultiIndex} from "../representation/container";
+import {MultiIndex, Ruler, segmentDisplayValue} from "../representation/container";
 import {ImageSignal} from "../representation/scenario";
 import {ContainerComponent} from "../container/container.component";
 import {SignalSelection} from "../signal-selection";
@@ -188,6 +188,10 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
 
   getAnnotationTypes(): string[] {
     return this.componentService.getAnnotationTypes();
+  }
+
+  segmentDisplayValue(segment: Ruler) {
+    return segment.display || (segment && segmentDisplayValue(segment)) || "";
   }
 
   save() {

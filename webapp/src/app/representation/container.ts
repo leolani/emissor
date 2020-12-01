@@ -1,5 +1,4 @@
 import {Typed} from "./util";
-import {Annotation} from "./scenario";
 
 export interface Ruler extends Typed {
   container_id: string;
