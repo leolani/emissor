@@ -5,11 +5,13 @@
       <mat-expansion-panel *ngFor="let mention of selection.signal.mentions.slice().reverse()">
         <mat-expansion-panel-header [ngClass]="{'selected': selection.mention && mention.id === selection.mention.id}">
           <mat-panel-title>
-            {{"" + segmentDisplayValue(mention.segment.length && mention.segment[0]) | slice:0:6}}
-            - {{"" + (mention.segment.length && mention.segment[0].display) | slice:0:6}}
+            <button mat-icon-button (click)="selectMention(mention, $event)"><mat-icon>select_all</mat-icon></button>
+            <div>
+              <span class="short">{{segmentDisplayValue(mention.segment.length && mention.segment[0])}}</span>
+              <span class="short">{{"" + (mention.segment.length && mention.segment[0].display)}}</span>
+            </div>
           </mat-panel-title>
           <mat-panel-description>
-            <button mat-icon-button (click)="selectMention(mention, $event)"><mat-icon>select_all</mat-icon></button>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <app-segment-editor *ngIf="selection.segment && selection.mention && mention.id === selection.mention.id" [segment]="selection.segmentItem"></app-segment-editor>
@@ -36,10 +38,12 @@
       <mat-expansion-panel *ngFor="let annotation of selection.annotations.slice().reverse()">
         <mat-expansion-panel-header [ngClass]="{'selected': selection.mention && annotation.mentionId === selection.mention.id}">
           <mat-panel-title>
-            {{ "" + annotationDisplayValue(annotation) | slice:0:6}}
+            <button mat-icon-button (click)="selectAnnotation(annotation, $event)"><mat-icon>select_all</mat-icon></button>
+            <div>
+              <sapan class="short">{{ "" + annotationDisplayValue(annotation)}}</sapan>
+            </div>
           </mat-panel-title>
           <mat-panel-description>
-            <button mat-icon-button (click)="selectAnnotation(annotation, $event)"><mat-icon>select_all</mat-icon></button>
           </mat-panel-description>
         </mat-expansion-panel-header>
         <app-annotation-editor [annotation]="annotation"></app-annotation-editor>

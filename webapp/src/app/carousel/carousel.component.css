@@ -45,3 +45,10 @@ app-container-view {
 .selected {
   background-color: #3B666B !important;
 }
+
+span.short {
+  width: 8em;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
