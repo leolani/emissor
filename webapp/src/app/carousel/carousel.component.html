@@ -5,8 +5,8 @@
       <mat-expansion-panel *ngFor="let mention of selection.signal.mentions.slice().reverse()">
         <mat-expansion-panel-header [ngClass]="{'selected': selection.mention && mention.id === selection.mention.id}">
           <mat-panel-title>
-            {{segmentDisplayValue(mention.segment.length && mention.segment[0]) | slice:0:6}}
-            - {{mention.segment.length && mention.segment[0].display}}
+            {{"" + segmentDisplayValue(mention.segment.length && mention.segment[0]) | slice:0:6}}
+            - {{"" + (mention.segment.length && mention.segment[0].display) | slice:0:6}}
           </mat-panel-title>
           <mat-panel-description>
             <button mat-icon-button (click)="selectMention(mention, $event)"><mat-icon>select_all</mat-icon></button>
@@ -36,7 +36,7 @@
       <mat-expansion-panel *ngFor="let annotation of selection.annotations.slice().reverse()">
         <mat-expansion-panel-header [ngClass]="{'selected': selection.mention && annotation.mentionId === selection.mention.id}">
           <mat-panel-title>
-            {{annotationDisplayValue(annotation) | json}}
+            {{ "" + annotationDisplayValue(annotation) | slice:0:6}}
           </mat-panel-title>
           <mat-panel-description>
             <button mat-icon-button (click)="selectAnnotation(annotation, $event)"><mat-icon>select_all</mat-icon></button>
