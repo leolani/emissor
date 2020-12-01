@@ -12,7 +12,7 @@ from grmc.representation.util import unmarshal, marshal
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 
-_MAX_GUESS_RANGE = 60 * 60 * 24 * 365 * 100
+_MAX_GUESS_RANGE = 1000 * 60 * 60 * 24 * 365 * 100
 
 
 def file_name(path):
