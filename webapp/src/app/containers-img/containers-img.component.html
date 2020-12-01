@@ -25,7 +25,6 @@
   <div>
     <button mat-raised-button (click)="save()">Save</button>
     <button mat-raised-button (click)="addMention()">Add Mention</button>
-    <button mat-raised-button (click)="addAnnotation()" [disabled]="!annotationType">Add Annotation</button>
     <mat-form-field *ngIf="selection.mention">
       <mat-label>Annotation Type</mat-label>
       <mat-select [(value)]="annotationType" name="type">
@@ -35,5 +34,6 @@
         </mat-option>
       </mat-select>
     </mat-form-field>
+    <button mat-raised-button (click)="addAnnotation()" [disabled]="!annotationType">Add Annotation</button>
   </div>
 </div>

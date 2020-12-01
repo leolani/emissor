@@ -34,7 +34,6 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <button mat-button (click)="addAnnotation()" [disabled]="!annotationType">Add Annotation</button>
   <mat-form-field *ngIf="signal.mention">
     <mat-label>Annotation Type</mat-label>
     <mat-select [(value)]="annotationType" name="type">
@@ -44,6 +43,7 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
+  <button mat-button (click)="addAnnotation()" [disabled]="!annotationType">Add Annotation</button>
 
   <div *ngIf="signal.segment">
     <h3>Segment</h3>
