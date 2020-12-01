@@ -19,7 +19,6 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {CarouselComponent} from "./carousel/carousel.component";
 import {EditorComponent} from './editor/editor.component';
-import {BoundingboxComponent} from './boundingbox/boundingbox.component';
 import {TokenContainerComponent} from './token-container/token-container.component';
 import {SegmentDirective} from './segment/segment.directive';
 import {SegmentEditorComponent} from './segment-editor/segment-editor.component';
@@ -34,11 +33,11 @@ import {ContainerDirective} from "./container/container.directive";
 import {ContainersImgComponent} from "./containers-img/containers-img.component";
 import {ContainersTextComponent} from "./containers-text/containers-text.component";
 import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.component";
-import { AnnotationsPersonComponent } from './annotations-person/annotations-person.component';
-import { AnnotationsEmotionComponent } from './annotations-emotion/annotations-emotion.component';
-import { AnnotationsPosComponent } from './annotations-pos/annotations-pos.component';
-import { AnnotationsTokenComponent } from './annotations-token/annotations-token.component';
-import { AnnotationsTripleComponent } from './annotations-triple/annotations-triple.component';
+import {AnnotationsPersonComponent} from './annotations-person/annotations-person.component';
+import {AnnotationsEmotionComponent} from './annotations-emotion/annotations-emotion.component';
+import {AnnotationsPosComponent} from './annotations-pos/annotations-pos.component';
+import {AnnotationsTokenComponent} from './annotations-token/annotations-token.component';
+import {AnnotationsTripleComponent} from './annotations-triple/annotations-triple.component';
 
 // import { AppRoutingModule } from './app-routing.module';
 
@@ -51,7 +50,6 @@ import { AnnotationsTripleComponent } from './annotations-triple/annotations-tri
     CarouselComponent,
     EditorComponent,
     ContainersImgComponent,
-    BoundingboxComponent,
     ContainersTextComponent,
     TokenContainerComponent,
     AnnotationDirective,
