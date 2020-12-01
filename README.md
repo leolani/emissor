@@ -132,7 +132,11 @@ files to version control, as currently there is no *Undo* functionality! If you 
 add the following *.gitignore* to the data folder:
 
         # Ignore everything except JSON files
+        *
         !*.json
+        
+**Note that for the default folder `data` in this repository the content is ignored, it is prefered to use a folder outside
+of this repository and setup a separate git repository only for the data.**
 
 ## Issues
 
