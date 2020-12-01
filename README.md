@@ -6,13 +6,19 @@
 
         > docker run --rm -ti -p 4200:4200 -v /Users/tkb/automatic/workspaces/robo/annotation/mumo_annotation/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
 
-  or by install node.js
-        
+  or by install node.js and angular
+
         > brew install angular-cli
         > ng --version
         > cd webapp
         >
         > ng serve
+
+  If you run into issues with node versions, try in *webapp/*:
+  
+        > npm i -g npm-check-updates
+        > ncu -u
+        > npm install
         
 * Setup certificate next to `app.py` 
 
@@ -24,7 +30,8 @@
         > source venv/bin/activate
         > pip install -r requirements.txt
 
-* Run the webserver, optionally with a path to the folder containing the scenario data (default is *"$(pwd)/data"*).
+* Run the webserver, optionally with the **absolute path** to the folder containing the scenario data. If no data folder
+is specified, *data/* is used by default.
 It is recommended to choose a separate data folder, then you can easily use version control on the data folder (see below). 
 
         > python app.py -d /absolute/path/to/my/scenarios
@@ -133,10 +140,6 @@ add the following *.gitignore* to the data folder:
 Sometimes there can be issues with caching in the browser, especially if changes are pulled from GitHub,
 if you run into strange behaviour try to clear the cache in your Browser (only Cache is enough, cookies etc. is not necessary)
 
-#### Time in seconds
-
-Time is currently in seconds, we will change that to milliseconds at some point. 
-
 #### Switching between scenarios
 
 Switching between scenarios does not work, reload the page instead before choosing the scenario.
@@ -156,3 +159,41 @@ edit the JSON files by hand to remove Segments/Annotations/Mentions, after doing
 
 There is also no undo functionality, and also the Save buttons are not very intuitive. Take care to save often, and
 follow the advice in the previous point and track your changes using version control. 
+
+## Add custom Annotations
+
+Custom annotations values can be added by creating a data class in the backend, a component for displaying and editing the data
+in the frontend and supporting selection of the annotation in a couple of places. Follow the following instructions:
+
+### Backend
+
+##### Representation
+Add a class representing the data of the custom annotation to the `grmc/representation/annotation.py` module. Follow the
+examples that can be found there, the simplest case being the `Display` annotation.
+
+##### Backend
+
+In the `Backend#create_annotation` annotation method add a case that creates an instance of the class with initial values.
+
+##### Frontend
+
+Add an interface corresponding the data class created the backend to the frontend representation in
+`webapp/src/app/representation/annotation.ts`, and add a case to the `annotationDisplayValue` function in the same
+file returning a short string representation of the annotation that can be used in labels in the GUI.
+
+#### Angular component
+
+Create an Angular component to display and edit the annotation:
+In *webapp/* run
+
+        ng generate component annotations-myannotationname
+
+This will add a new component in `webapp/src/app/annotations-myannotationname` with an html template containing the
+view of the annotation and a typescript component holding the data. The typescript class must contain a `data` field
+
+        @Input() data: Annotation<MyAnnotataionType>;
+        
+that holds an Annotation with the custom annotation value in the `value` field and can be accessed in the html template.
+Follow the patterns used in the other annotations, e.g. `webapp/src/app/annotations-person`.
+
+Finally add the component to `webapp/src/app/component.service.ts`.
