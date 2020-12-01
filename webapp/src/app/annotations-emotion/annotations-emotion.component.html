@@ -1,6 +1,6 @@
 <div *ngIf="data">
   <mat-form-field>
-    <mat-label>Annotation Type</mat-label>
+    <mat-label>Emotion</mat-label>
     <mat-select [(value)]="data.value" name="emotion">
       <mat-option></mat-option>
       <mat-option *ngFor="let emotion of emotions" [value]="emotion">
