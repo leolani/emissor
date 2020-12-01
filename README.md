@@ -7,7 +7,7 @@
         brew install angular-cli
         ng --version
         cd webapp
-        ng server
+        ng serve
         
 * Setup certificate next to `app.py` 
 
