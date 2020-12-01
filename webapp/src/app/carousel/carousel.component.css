@@ -43,5 +43,5 @@ app-container-view {
 }
 
 .selected {
-  background-color: #3B666B;
+  background-color: #3B666B !important;
 }
