@@ -24,7 +24,7 @@ for path in list(friends_time_):
         if seasonno == 'special':
             episodeno = p[0]
             date = p[-2]
-        else:  
+        else:
             episodeno = p[1]
             date = p[-3]
 
@@ -34,15 +34,17 @@ for path in list(friends_time_):
         date = date.replace("[b]", "")
         date = parser.parse(date)
 
+        # Friends was aired at 20:00
         if (len(episodeno) == 4) or (len(episodeno) == 6):
             episodeno_1 = episodeno[:len(episodeno)//2]
             episodeno_2 = episodeno[len(episodeno)//2:]
-            friends_time[seasonno][episodeno_1] = date
-            friends_time[seasonno][episodeno_2] = date + timedelta(days=7)
+            friends_time[seasonno][episodeno_1] = date + timedelta(hours=20)
+            friends_time[seasonno][episodeno_2] = date + \
+                timedelta(days=7) + timedelta(hours=20)
 
         else:
-            friends_time[seasonno][episodeno] = date
+            friends_time[seasonno][episodeno] = date + timedelta(hours=20)
+
 
 with open('friends-time.pkl', 'wb') as stream:
     pickle.dump(friends_time, stream)
-
