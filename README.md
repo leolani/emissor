@@ -1,5 +1,17 @@
 # GRMC Annotations
 
+This repo provides a tool for the annotation of multimodal interaction, following the GMRC (Goal-oriented Multimodal Robot Collaboration) framework.
+GMRC is an easy-to-use representation for storing and exchanging recordings and annotations of multimodal interaction data.
+
+The goal of GMRC is to exchange these interactions, where contributors are free to generate interactions in any way they like but need to represent
+the starting conditions, the goals and the recoding of the interaction in a uniform way. The interactions are represented in different modalities: 
+video, image, audio, text, while the data units are aligned in so-called temporal and spatial containers. 
+
+More information on GMRC and the format will be provided here: [LINK TO BE PROVIDED]
+
+The tool that is described in this repo allows you to load such data with annotations and to manually edit the data by grounding it to the 
+temporal and spatial containers ads well as by adding any annotations.
+
 ## Install
 
 * Run the frontend, either from a docker container 
@@ -112,7 +124,7 @@ The will add annotations containing display values that can are used in the GUI 
 1. Add annotations to the mention after selecting an annotation type.
 1. **Save after modifications (you can use any of the *Save* buttons, they all save the whole scenario)**
 
-### Workflow for images
+### Workflow for text
 
 ![Screenshot Text](doc/img/screenshot_text.png)
 
