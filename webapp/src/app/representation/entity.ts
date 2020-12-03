@@ -3,7 +3,6 @@ export enum Emotion {
   ANGER,
   DISGUST,
   FEAR,
-  HAPPINESS,
   JOY,
   SADNESS,
   SURPRISE,

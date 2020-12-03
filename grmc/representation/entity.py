@@ -10,10 +10,9 @@ class Emotion(enum.Enum):
     ANGER = 1
     DISGUST = 2
     FEAR = 3
-    HAPPINESS = 4
-    JOY = 5
-    SADNESS = 6
-    SURPRISE = 7
+    JOY = 4
+    SADNESS = 5
+    SURPRISE = 6
 
 
 class Gender(enum.Enum):
