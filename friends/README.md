@@ -1,29 +1,32 @@
 # friends
 
 This directory includes jupyter notebooks with which you can save MELD friends videos into GRMC annotation format.
+Below is an example.
+
+![friends2gmrc example](friends2gmrc.png)
+> Age (a floating point number from 0 to 100), gender (femaleness on a scale from 0 to 1), and the face recognition (somehow not displayed. It's a TODO) are predicted by machine, not human! See https://github.com/leolani/cltl-face-all for more details.
 
 ## Things to note
 
-- The unix time stamp used is in time is milliseconds
+- The unit of the unix time stamps is milliseconds.
+- Probably this is not perfect.
 
 ## Requirements
 
-You don't have to install anything to run on colab. If you run on you local machine, install the requriements by
-```
-pip install -r requirements.txt
-```
-I highly recommend you to run above command in your virtual python environment
+1. You have to run this on your local machine. This is intended since you'll have to run the webapp locally to test it anyways. I only tested it on Python3.7.9, x86-64 Ubuntu machine. It'll probably work fine on a Mac too. On your local machine, install the requriements by
+    ```
+    pip install -r requirements.txt
+    ```
+    I highly recommend you to run above command in your virtual python environment.
+
+1. To test this on the GUI webapp, read the `README.md` in the root directory of this git repo. 
 
 
 ## jupyter notebooks
 
-- `friends2gmrc-colab.ipynb`
-
-  Run this on colab
-
 - `friends2gmrc-local.ipynb`
 
-  Run this locally
+  Run this locally to do everything at one go (You still have to manually load the GUI webapp later though.)
 
 ## Authors
 

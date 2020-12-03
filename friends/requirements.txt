@@ -1,6 +1,7 @@
 argon2-cffi==20.1.0
 async-generator==1.10
 attrs==20.3.0
+autopep8==1.5.4
 av==8.0.2
 backcall==0.2.0
 bleach==3.2.1
@@ -52,6 +53,7 @@ Pillow==8.0.1
 prometheus-client==0.9.0
 prompt-toolkit==3.0.8
 ptyprocess==0.6.0
+pycodestyle==2.6.0
 pycparser==2.20
 Pygments==2.7.2
 pyparsing==2.4.7
@@ -70,6 +72,7 @@ simplejson==3.17.2
 six==1.15.0
 terminado==0.9.1
 testpath==0.4.4
+toml==0.10.2
 tornado==6.1
 tqdm==4.54.0
 traitlets==5.0.5
