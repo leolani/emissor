@@ -4,7 +4,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="grmc",  # Replace with your own username
+    name="gmrc",  # Replace with your own username
     version="0.0.0",
     author="CLTL",
     # author_email="t.kim@vu.nl",

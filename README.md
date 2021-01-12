@@ -185,7 +185,7 @@ in the frontend and supporting selection of the annotation in a couple of places
 ### Backend
 
 ##### Representation
-Add a class representing the data of the custom annotation to the `grmc/representation/annotation.py` module. Follow the
+Add a class representing the data of the custom annotation to the `gmrc/representation/annotation.py` module. Follow the
 examples that can be found there, the simplest case being the `Display` annotation.
 
 ##### Backend

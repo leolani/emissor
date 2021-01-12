@@ -2,7 +2,7 @@
 import enum
 from dataclasses import dataclass
 
-from grmc.representation.util import Identifier
+from gmrc.representation.util import Identifier
 
 
 class Emotion(enum.Enum):

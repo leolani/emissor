@@ -8,8 +8,8 @@ from dataclasses import dataclass
 from rdflib import URIRef, Namespace
 from typing import Tuple
 
-from grmc.representation.container import Sequence, AtomicContainer, AtomicRuler
-from grmc.representation.util import Identifier
+from gmrc.representation.container import Sequence, AtomicContainer, AtomicRuler
+from gmrc.representation.util import Identifier
 
 friends_namespace = Namespace("http://cltl.nl/leolani/friends/")
 data_namespace = Namespace("http://cltl.nl/combot/signal/")

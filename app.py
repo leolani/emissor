@@ -5,7 +5,7 @@ import os
 
 import argparse
 
-from grmc.endpoint import create_app
+from gmrc.endpoint import create_app
 
 root = logging.getLogger()
 root.setLevel(logging.INFO)

@@ -6,9 +6,9 @@ from PIL import Image
 from pandas import DataFrame
 from typing import Iterable, Optional, Any, Tuple, Union
 
-from grmc.backend.cache import ScenarioCache
-from grmc.representation.scenario import Scenario, Modality, Signal
-from grmc.representation.util import unmarshal, marshal
+from gmrc.backend.cache import ScenarioCache
+from gmrc.representation.scenario import Scenario, Modality, Signal
+from gmrc.representation.util import unmarshal, marshal
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 

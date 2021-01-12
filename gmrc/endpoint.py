@@ -1,9 +1,9 @@
 from flask import Flask, request
 from flask_cors import CORS
 
-from grmc.backend.backend import Backend
-from grmc.representation.scenario import Modality
-from grmc.representation.util import unmarshal, marshal
+from gmrc.backend.backend import Backend
+from gmrc.representation.scenario import Modality
+from gmrc.representation.util import unmarshal, marshal
 
 
 def create_app(data_path):

@@ -4,11 +4,11 @@ from nltk import TreebankWordTokenizer
 from pandas import Series
 from typing import Iterable, Any
 
-from grmc.backend.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
-from grmc.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
-from grmc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
-from grmc.representation.entity import Person, Gender, Emotion
-from grmc.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
+from gmrc.backend.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
+from gmrc.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
+from gmrc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
+from gmrc.representation.entity import Person, Gender, Emotion
+from gmrc.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation, Signal
 
 _SPEAKER = Person(str(uuid.uuid4()), "Speaker", 50, Gender.UNDEFINED)
