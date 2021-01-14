@@ -6,7 +6,7 @@ from PIL import Image
 from pandas import DataFrame
 from typing import Iterable, Optional, Any, Tuple, Union
 
-from gmrc.backend.cache import ScenarioCache
+from gmrc.annotation.cache import ScenarioCache
 from gmrc.representation.scenario import Scenario, Modality, Signal
 from gmrc.representation.util import unmarshal, marshal
 

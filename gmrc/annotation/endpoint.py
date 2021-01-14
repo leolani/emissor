@@ -1,7 +1,7 @@
 from flask import Flask, request
 from flask_cors import CORS
 
-from gmrc.backend.backend import Backend
+from gmrc.annotation.backend import Backend
 from gmrc.representation.scenario import Modality
 from gmrc.representation.util import unmarshal, marshal
 
