@@ -24,7 +24,7 @@ if __name__ == "__main__":
     app_path = os.path.dirname(os.path.realpath(__file__))
     default_static = os.path.join(app_path, 'data')
 
-    parser = argparse.ArgumentParser(description='Web server for GRMC annotations app')
+    parser = argparse.ArgumentParser(description='Web server for GMRC annotations app')
     parser.add_argument('-data', type=str, default=default_static,
                         help='Path to the directory containing scenario data. Defaults to ./data')
     args = parser.parse_args()
