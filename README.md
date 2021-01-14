@@ -7,7 +7,7 @@ The goal of GMRC is to exchange these interactions, where contributors are free 
 the starting conditions, the goals and the recoding of the interaction in a uniform way. The interactions are represented in different modalities: 
 video, image, audio, text, while the data units are aligned in so-called temporal and spatial containers. 
 
-More information on GMRC and the format will be provided here: [LINK TO BE PROVIDED]
+A white paper explaining the overall goals and motivation can be found [here](https://docs.google.com/document/d/1wJrdSAilPiCYvwBuoLEU5oWcOKk0lQw7GdWtirRwL20/edit?usp=sharing)
 
 The tool that is described in this repo allows you to load such data with annotations and to manually edit the data by grounding it to the 
 temporal and spatial containers ads well as by adding any annotations.
