@@ -1,4 +1,4 @@
-# GRMC Annotations
+# GMRC Annotations
 
 This repo provides a tool for the annotation of multimodal interaction, following the GMRC (Goal-oriented Multimodal Robot Collaboration) framework.
 GMRC is an easy-to-use representation for storing and exchanging recordings and annotations of multimodal interaction data.
@@ -16,8 +16,8 @@ temporal and spatial containers ads well as by adding any annotations.
 
 * Run the frontend, either from a docker container 
 
-        > docker run --rm -ti -v /absolute/path/to/repository/GRMCAnnotation/webapp:/app trion/ng-cli npm install
-        > docker run --rm -ti -p 4200:4200 -v /absolute/path/to/repository/GRMCAnnotation/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
+        > docker run --rm -ti -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli npm install
+        > docker run --rm -ti -p 4200:4200 -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
 
   or by install node.js and angular
 

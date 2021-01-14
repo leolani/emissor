@@ -1,6 +1,6 @@
 # friends
 
-This directory includes jupyter notebooks with which you can save MELD friends videos into GRMC annotation format.
+This directory includes jupyter notebooks with which you can save MELD friends videos into GMRC annotation format.
 Below is an example.
 
 ![friends2gmrc example](friends2gmrc.png)
