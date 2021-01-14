@@ -4,7 +4,7 @@ from nltk import TreebankWordTokenizer
 from pandas import Series
 from typing import Iterable, Any
 
-from gmrc.backend.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
+from gmrc.annotation.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
 from gmrc.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
 from gmrc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
 from gmrc.representation.entity import Person, Gender, Emotion
