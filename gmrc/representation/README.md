@@ -47,7 +47,7 @@ of a certain modality. These signals consist of segments. Segments that are anno
 Some of these annotations are instances in the model of the world and others are labels that represent concepts. Here we show different types of
 concepts, such as tokens, faces, and named entity expressions, and types of instances, such as objects, friends and persons.
 
-![Entity relationship diagram](/data/Datarepresentation.png "Overview of data elements and relations")
+![Entity relationship diagram](doc/Datarepresentation.png "Overview of data elements and relations")
 Figure-1: Overview of data elements and relations.
 
  
