@@ -30,6 +30,10 @@ tool.
 
 An example for an interaction scenario can be found in [*example_data/*](example_data) directory. 
 
+## meld2gmrc
+
+This includes [Taewoon Kim](https://tae898.github.io/)'s work on annotating the [MELD dataset](https://affective-meld.github.io/) with the GMRC format. It's a private repo and work in progress. If you want access to it, write me an email.
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
