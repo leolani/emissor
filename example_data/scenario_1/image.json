@@ -1,0 +1,282 @@
+[
+  {
+    "array": null,
+    "bounds": [
+      0,
+      0,
+      250,
+      131
+    ],
+    "files": [
+      "image/maxima.jpg"
+    ],
+    "id": "abcd9efd-6dcd-4644-a076-99c13f7e9a4e",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606740197,
+            "type": "display",
+            "value": "maxima"
+          }
+        ],
+        "id": "e5c6fbaf-1e38-42cb-8936-03413870fc14",
+        "segment": [
+          {
+            "bounds": [
+              0,
+              0,
+              250,
+              131
+            ],
+            "container_id": null,
+            "type": "MultiIndex"
+          }
+        ]
+      }
+    ],
+    "modality": "image",
+    "ruler": {
+      "bounds": [
+        0,
+        0,
+        250,
+        131
+      ],
+      "container_id": null,
+      "type": "MultiIndex"
+    },
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139000,
+      "start": 1603139000,
+      "type": "TemporalRuler"
+    },
+    "type": "ImageSignal"
+  },
+  {
+    "array": null,
+    "bounds": [
+      0,
+      0,
+      1158,
+      775
+    ],
+    "files": [
+      "image/niqee-2020-10-25 at 17.30.51.png"
+    ],
+    "id": "d9279083-6340-4894-90b9-7eb409ab1c85",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606740197,
+            "type": "display",
+            "value": "niqee-2020-10-25 at 17.30.51"
+          }
+        ],
+        "id": "deec605f-04f0-4969-97fe-3c7bd672cd9a",
+        "segment": [
+          {
+            "bounds": [
+              0,
+              0,
+              1158,
+              775
+            ],
+            "container_id": null,
+            "type": "MultiIndex"
+          }
+        ]
+      }
+    ],
+    "modality": "image",
+    "ruler": {
+      "bounds": [
+        0,
+        0,
+        1158,
+        775
+      ],
+      "container_id": null,
+      "type": "MultiIndex"
+    },
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139000,
+      "start": 1603139000,
+      "type": "TemporalRuler"
+    },
+    "type": "ImageSignal"
+  },
+  {
+    "array": null,
+    "bounds": [
+      0,
+      0,
+      196,
+      194
+    ],
+    "files": [
+      "image/soccer-balll.png"
+    ],
+    "id": "03242c06-4ac9-42d3-8a41-37b95c881cf3",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606740197,
+            "type": "display",
+            "value": "soccer-balll"
+          }
+        ],
+        "id": "0d27f2c2-09e0-4ee9-939e-8462cf623842",
+        "segment": [
+          {
+            "bounds": [
+              0,
+              0,
+              196,
+              194
+            ],
+            "container_id": null,
+            "type": "MultiIndex"
+          }
+        ]
+      }
+    ],
+    "modality": "image",
+    "ruler": {
+      "bounds": [
+        0,
+        0,
+        196,
+        194
+      ],
+      "container_id": null,
+      "type": "MultiIndex"
+    },
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139000,
+      "start": 1603139000,
+      "type": "TemporalRuler"
+    },
+    "type": "ImageSignal"
+  },
+  {
+    "array": null,
+    "bounds": [
+      0,
+      0,
+      838,
+      492
+    ],
+    "files": [
+      "image/sam-2020-10-25 at 17.30.25.png"
+    ],
+    "id": "9982197a-5381-4fd2-a49c-83fe86b1910a",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606740197,
+            "type": "display",
+            "value": "sam-2020-10-25 at 17.30.25"
+          }
+        ],
+        "id": "630bc7ad-bf85-44e0-a650-718adac1ded6",
+        "segment": [
+          {
+            "bounds": [
+              0,
+              0,
+              838,
+              492
+            ],
+            "container_id": null,
+            "type": "MultiIndex"
+          }
+        ]
+      }
+    ],
+    "modality": "image",
+    "ruler": {
+      "bounds": [
+        0,
+        0,
+        838,
+        492
+      ],
+      "container_id": null,
+      "type": "MultiIndex"
+    },
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139000,
+      "start": 1603139000,
+      "type": "TemporalRuler"
+    },
+    "type": "ImageSignal"
+  },
+  {
+    "array": null,
+    "bounds": [
+      0,
+      0,
+      188,
+      250
+    ],
+    "files": [
+      "image/piek-sunglasses.jpg"
+    ],
+    "id": "54a599aa-f055-4ad7-9bfc-946a056e0776",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1606740197,
+            "type": "display",
+            "value": "piek-sunglasses"
+          }
+        ],
+        "id": "b7793fd5-227d-4d02-abed-f8035aeb5897",
+        "segment": [
+          {
+            "bounds": [
+              0,
+              0,
+              188,
+              250
+            ],
+            "container_id": null,
+            "type": "MultiIndex"
+          }
+        ]
+      }
+    ],
+    "modality": "image",
+    "ruler": {
+      "bounds": [
+        0,
+        0,
+        188,
+        250
+      ],
+      "container_id": null,
+      "type": "MultiIndex"
+    },
+    "time": {
+      "container_id": "scenario_1",
+      "end": 1603139000,
+      "start": 1603139000,
+      "type": "TemporalRuler"
+    },
+    "type": "ImageSignal"
+  }
+]
