@@ -28,9 +28,9 @@ tool.
 
 ## Example data
 
-An example for an interaction scenario can be found in [*example_data/*](example_data) directory. 
+Example data can be found in [*example_data/*](example_data) directory. Some of them are annotated by human and some are by machihne.
 
-## erc
+### example_data/erc
 
 This includes [Taewoon Kim](https://tae898.github.io/)'s work on emotion recognition in conversation, which also includes a script that annotates the friends MELD dataset into the GMRC format, using [the existing annotations](https://github.com/declare-lab/MELD/tree/master/data/MELD). It's currently a private repo and work in progress. If you want access to it, [write me an email](mailto:tae898@gmail.com).
 
