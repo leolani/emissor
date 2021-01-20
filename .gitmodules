@@ -1,3 +1,4 @@
 [submodule "example_data/erc"]
 	path = example_data/erc
 	url = https://github.com/tae898/erc.git
+	branch = master
