@@ -1,4 +1,0 @@
-[submodule "erc"]
-	path = erc
-	url = https://github.com/tae898/erc.git
-	branch = master
