@@ -18,6 +18,11 @@ temporal and spatial containers ads well as by adding any annotations.
         >
         > ng serve
 
+  If you run into issues with typescript versions, try:
+  
+        > docker run --rm -ti -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli npm uninstall typescript
+        > docker run --rm -ti -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli npm i -D typescript@4.0.5
+        
   If you run into issues with node versions, try in *webapp/*:
   
         > npm i -g npm-check-updates
