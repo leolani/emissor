@@ -34,17 +34,6 @@ Example data can be found in [*example_data/*](example_data) directory. Some of 
 
 This includes [Taewoon Kim](https://tae898.github.io/)'s work on emotion recognition in conversation, which also includes a script that annotates the friends MELD dataset into the GMRC format, using [the existing annotations](https://github.com/declare-lab/MELD/tree/master/data/MELD). It's currently a private repo and work in progress. If you want access to it, [write me an email](mailto:tae898@gmail.com).
 
-## TODOs
-
-1. Fix `example_data/example-scenario/`
-1. Emotion should span out in multiple signals / modalities, especially in time. Emotion should also be grounded to the face boudning box.
-1. Add a feature that shows the detected person's name on the bounding box. 
-1. The text modality GUI section support is minimal. Add more functions (e.g. time duration using endtime and startime, display speaker, display emotion of the text, etc.)
-1. Include a "master time horizontal slider" that moves every time in all modalities. Currently you have to do this individually, which is not so user-friendly. 
-1. Make the GUI tool more extendable, such that annotation is more intuitive and well visualized.
-1. Support audio playback
-1. Support video playback
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
