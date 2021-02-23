@@ -1,0 +1,10 @@
+av==8.0.3
+coolname==1.1.0
+joblib==1.0.1
+numpy==1.20.1
+opencv-contrib-python==4.5.1.48
+Pillow==8.1.0
+scikit-learn==0.24.1
+scipy==1.6.1
+threadpoolctl==2.1.0
+tqdm==4.57.0
