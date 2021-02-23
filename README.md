@@ -30,9 +30,12 @@ tool.
 
 Example data can be found in [*example_data/*](example_data) directory. Some of them are annotated by human and some are by machihne.
 
-### example_data/meld2gmrc
 
-This includes [Taewoon Kim](https://tae898.github.io/)'s work on emotion recognition in conversation, which also includes a script that annotates the friends MELD dataset into the GMRC format, using [the existing annotations](https://github.com/declare-lab/MELD/tree/master/data/MELD). It's currently a private repo and work in progress. If you want access to it, [write me an email](mailto:tae898@gmail.com).
+## How to create GMRC annotations from existing datasets
+
+You can find the instructions at `convert2gmrc/`
+
+This is done by [Taewoon Kim](https://tae898.github.io/). Ask him if you have any questions.
 
 ## Contributing
 
