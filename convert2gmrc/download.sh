@@ -3,14 +3,16 @@
 for arg in "$@"; do
     echo $arg
     if [ $arg = "IEMOCAP" ]; then
-        FILEID="1iq6ocRu3jkQgyVMmKj5EGb9A_wBmxzGh"
+        LINK="https://surfdrive.surf.nl/files/index.php/s/EcIkP4iRzoJpBzR/download"
+        FILENAME="IEMOCAP.zip"
     elif [ $arg = "MELD" ]; then
-        FILEID="1YZ9Zz_TdRaYsM6Lwx34IwpFgiVLNIAZ6"
+        LINK="https://surfdrive.surf.nl/files/index.php/s/nnjxH1oboRN3996/download"
+        FILENAME="MELD.zip"
     else
         echo "Currently only IEMOCAP and MELD datasets are supported"
         continue
     fi
-    gdown --id $FILEID
+    wget -O $FILENAME $LINK
 done
 
 for FILE in "IEMOCAP.zip" "MELD.zip"
