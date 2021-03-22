@@ -1,0 +1,27 @@
+{
+  "context": {
+    "agent": "robot_agent",
+    "objects": [],
+    "persons": [],
+    "speaker": {
+      "age": 50,
+      "gender": "undefined",
+      "id": "749896a8-ae08-4848-b816-242a18eac66c",
+      "name": "Speaker"
+    }
+  },
+  "end": 21416,
+  "id": "dia65",
+  "ruler": {
+    "container_id": null,
+    "end": 21416,
+    "start": 0,
+    "type": "TemporalRuler"
+  },
+  "signals": {
+    "image": "./image.json",
+    "text": "./text.json"
+  },
+  "start": 0,
+  "type": "Scenario"
+}

@@ -1,0 +1,1409 @@
+[
+    {
+        "files": [
+            "image/dia65_utt0_frame0_0.jpg"
+        ],
+        "id": "a94d29f8-b5ff-414c-8374-ef475d0ccf7b",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 0,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 24,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "9a98d42d-f173-4bbd-862e-f79ec9c4d6ce",
+                "segment": [
+                    {
+                        "bounds": [
+                            524,
+                            148,
+                            694,
+                            399
+                        ],
+                        "container_id": "a94d29f8-b5ff-414c-8374-ef475d0ccf7b",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "a94d29f8-b5ff-414c-8374-ef475d0ccf7b",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "a94d29f8-b5ff-414c-8374-ef475d0ccf7b",
+            "start": 0,
+            "end": 42,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt0_frame24_1000.jpg"
+        ],
+        "id": "f462e6bf-e0c5-4a40-a625-a304eaf2fac1",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 1000,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 24,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "3d7d5725-d652-4f96-a8cf-cded65926242",
+                "segment": [
+                    {
+                        "bounds": [
+                            526,
+                            144,
+                            698,
+                            402
+                        ],
+                        "container_id": "f462e6bf-e0c5-4a40-a625-a304eaf2fac1",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "f462e6bf-e0c5-4a40-a625-a304eaf2fac1",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "f462e6bf-e0c5-4a40-a625-a304eaf2fac1",
+            "start": 1000,
+            "end": 1042,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt0_frame48_2000.jpg"
+        ],
+        "id": "2d502bd2-02de-4c25-a648-0352fe6617b4",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 2000,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 26,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "2e4314be-f7cb-405e-9d20-4fb30a3a08da",
+                "segment": [
+                    {
+                        "bounds": [
+                            524,
+                            143,
+                            696,
+                            402
+                        ],
+                        "container_id": "2d502bd2-02de-4c25-a648-0352fe6617b4",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "2d502bd2-02de-4c25-a648-0352fe6617b4",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "2d502bd2-02de-4c25-a648-0352fe6617b4",
+            "start": 2000,
+            "end": 2042,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt0_frame72_3000.jpg"
+        ],
+        "id": "fc0d8dff-1763-47a4-a7e0-8494b529717d",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 3000,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 27,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "bc3f7c9f-aab3-4a82-af3b-0c23076df115",
+                "segment": [
+                    {
+                        "bounds": [
+                            537,
+                            158,
+                            708,
+                            411
+                        ],
+                        "container_id": "fc0d8dff-1763-47a4-a7e0-8494b529717d",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "fc0d8dff-1763-47a4-a7e0-8494b529717d",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "fc0d8dff-1763-47a4-a7e0-8494b529717d",
+            "start": 3000,
+            "end": 3042,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt0_frame96_4000.jpg"
+        ],
+        "id": "11bad2e6-a75c-493f-8954-c8539ed9eb34",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 4000,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 24,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "6e173c8c-59f0-4a8b-835b-94bf3dbf0a3d",
+                "segment": [
+                    {
+                        "bounds": [
+                            516,
+                            146,
+                            686,
+                            402
+                        ],
+                        "container_id": "11bad2e6-a75c-493f-8954-c8539ed9eb34",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "11bad2e6-a75c-493f-8954-c8539ed9eb34",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "11bad2e6-a75c-493f-8954-c8539ed9eb34",
+            "start": 4000,
+            "end": 4042,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt1_frame0_4458.jpg"
+        ],
+        "id": "456ab99e-d1c3-46fc-948a-83f4cdf44d12",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 4458,
+                        "type": "person",
+                        "value": {
+                            "name": "Rachel",
+                            "age": 27,
+                            "gender": "male",
+                            "faceprob": 1.0
+                        }
+                    }
+                ],
+                "id": "4a7794d5-f90f-4423-a18a-144bad999e1d",
+                "segment": [
+                    {
+                        "bounds": [
+                            723,
+                            203,
+                            892,
+                            432
+                        ],
+                        "container_id": "456ab99e-d1c3-46fc-948a-83f4cdf44d12",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "456ab99e-d1c3-46fc-948a-83f4cdf44d12",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "456ab99e-d1c3-46fc-948a-83f4cdf44d12",
+            "start": 4458,
+            "end": 4500,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt1_frame24_5458.jpg"
+        ],
+        "id": "9cc156e7-3627-4a88-aada-0d68591345a2",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 5458,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 26,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "4e046edd-8ecd-4bcf-a1b8-c536a4bcabe6",
+                "segment": [
+                    {
+                        "bounds": [
+                            520,
+                            144,
+                            691,
+                            401
+                        ],
+                        "container_id": "9cc156e7-3627-4a88-aada-0d68591345a2",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "9cc156e7-3627-4a88-aada-0d68591345a2",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "9cc156e7-3627-4a88-aada-0d68591345a2",
+            "start": 5458,
+            "end": 5500,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt2_frame0_6041.jpg"
+        ],
+        "id": "33200ea2-6876-409a-8a10-c3b0da949498",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 6041,
+                        "type": "person",
+                        "value": {
+                            "name": "Rachel",
+                            "age": 36,
+                            "gender": "male",
+                            "faceprob": 1.0
+                        }
+                    }
+                ],
+                "id": "6921acf9-216d-4d4e-a4b4-609d22f5cdb7",
+                "segment": [
+                    {
+                        "bounds": [
+                            696,
+                            216,
+                            866,
+                            441
+                        ],
+                        "container_id": "33200ea2-6876-409a-8a10-c3b0da949498",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "33200ea2-6876-409a-8a10-c3b0da949498",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "33200ea2-6876-409a-8a10-c3b0da949498",
+            "start": 6041,
+            "end": 6083,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt2_frame24_7041.jpg"
+        ],
+        "id": "06010dfa-deb6-4fb8-bb4d-0498d545d20c",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 7041,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 25,
+                            "gender": "male",
+                            "faceprob": 1.0
+                        }
+                    }
+                ],
+                "id": "6e4ac32c-8659-49f2-91d0-028229dd1a9e",
+                "segment": [
+                    {
+                        "bounds": [
+                            518,
+                            160,
+                            686,
+                            417
+                        ],
+                        "container_id": "06010dfa-deb6-4fb8-bb4d-0498d545d20c",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "06010dfa-deb6-4fb8-bb4d-0498d545d20c",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "06010dfa-deb6-4fb8-bb4d-0498d545d20c",
+            "start": 7041,
+            "end": 7083,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame0_7416.jpg"
+        ],
+        "id": "f4314d7a-adad-4d09-b13b-a19d4b3bd158",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 7416,
+                        "type": "person",
+                        "value": {
+                            "name": "Rachel",
+                            "age": 22,
+                            "gender": "female",
+                            "faceprob": 1.0
+                        }
+                    }
+                ],
+                "id": "2e7278dc-781c-4fa3-9d1b-3f28cf0716ac",
+                "segment": [
+                    {
+                        "bounds": [
+                            670,
+                            220,
+                            846,
+                            439
+                        ],
+                        "container_id": "f4314d7a-adad-4d09-b13b-a19d4b3bd158",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "f4314d7a-adad-4d09-b13b-a19d4b3bd158",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "f4314d7a-adad-4d09-b13b-a19d4b3bd158",
+            "start": 7416,
+            "end": 7458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame24_8416.jpg"
+        ],
+        "id": "d4723304-1910-48eb-8b49-fb5d27a6dd8f",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 8416,
+                        "type": "person",
+                        "value": {
+                            "name": "Rachel",
+                            "age": 22,
+                            "gender": "female",
+                            "faceprob": 1.0
+                        }
+                    }
+                ],
+                "id": "de607dc3-fbc2-481f-8662-22e23047ae67",
+                "segment": [
+                    {
+                        "bounds": [
+                            675,
+                            222,
+                            847,
+                            445
+                        ],
+                        "container_id": "d4723304-1910-48eb-8b49-fb5d27a6dd8f",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "d4723304-1910-48eb-8b49-fb5d27a6dd8f",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "d4723304-1910-48eb-8b49-fb5d27a6dd8f",
+            "start": 8416,
+            "end": 8458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame48_9416.jpg"
+        ],
+        "id": "907e6d2e-bbaa-4637-8c57-22f879fca734",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 9416,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 37,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "c1f4c1c5-438b-4390-9726-c2891b1fcd7c",
+                "segment": [
+                    {
+                        "bounds": [
+                            379,
+                            300,
+                            439,
+                            399
+                        ],
+                        "container_id": "907e6d2e-bbaa-4637-8c57-22f879fca734",
+                        "type": "MultiIndex"
+                    }
+                ]
+            },
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 9416,
+                        "type": "person",
+                        "value": {
+                            "name": "almond-cricket",
+                            "age": 18,
+                            "gender": "male",
+                            "faceprob": 0.996
+                        }
+                    }
+                ],
+                "id": "787e8639-31aa-40a4-96d5-a4726fd8c987",
+                "segment": [
+                    {
+                        "bounds": [
+                            621,
+                            132,
+                            679,
+                            213
+                        ],
+                        "container_id": "907e6d2e-bbaa-4637-8c57-22f879fca734",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "907e6d2e-bbaa-4637-8c57-22f879fca734",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "907e6d2e-bbaa-4637-8c57-22f879fca734",
+            "start": 9416,
+            "end": 9458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame72_10416.jpg"
+        ],
+        "id": "af451671-dec7-4da7-a953-e340996aaf33",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 10416,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 19,
+                            "gender": "male",
+                            "faceprob": 0.998
+                        }
+                    }
+                ],
+                "id": "918550e4-f200-4cf8-aec3-c3ebec358fcc",
+                "segment": [
+                    {
+                        "bounds": [
+                            360,
+                            339,
+                            427,
+                            429
+                        ],
+                        "container_id": "af451671-dec7-4da7-a953-e340996aaf33",
+                        "type": "MultiIndex"
+                    }
+                ]
+            },
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 10416,
+                        "type": "person",
+                        "value": {
+                            "name": "slim-cougar",
+                            "age": 17,
+                            "gender": "female",
+                            "faceprob": 0.996
+                        }
+                    }
+                ],
+                "id": "deeaf4b5-a5d9-441a-9beb-218294fd6603",
+                "segment": [
+                    {
+                        "bounds": [
+                            757,
+                            189,
+                            798,
+                            244
+                        ],
+                        "container_id": "af451671-dec7-4da7-a953-e340996aaf33",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "af451671-dec7-4da7-a953-e340996aaf33",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "af451671-dec7-4da7-a953-e340996aaf33",
+            "start": 10416,
+            "end": 10458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame96_11416.jpg"
+        ],
+        "id": "c41f5b68-7ff9-453a-b879-c6794a452eb3",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 11416,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 19,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "8f9cfeb0-3c0c-4561-abbe-96196cd0a99d",
+                "segment": [
+                    {
+                        "bounds": [
+                            371,
+                            335,
+                            438,
+                            427
+                        ],
+                        "container_id": "c41f5b68-7ff9-453a-b879-c6794a452eb3",
+                        "type": "MultiIndex"
+                    }
+                ]
+            },
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 11416,
+                        "type": "person",
+                        "value": {
+                            "name": "Joey",
+                            "age": 23,
+                            "gender": "male",
+                            "faceprob": 0.987
+                        }
+                    }
+                ],
+                "id": "88b38269-8b43-4477-8422-96ec83a138f3",
+                "segment": [
+                    {
+                        "bounds": [
+                            757,
+                            181,
+                            800,
+                            233
+                        ],
+                        "container_id": "c41f5b68-7ff9-453a-b879-c6794a452eb3",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "c41f5b68-7ff9-453a-b879-c6794a452eb3",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "c41f5b68-7ff9-453a-b879-c6794a452eb3",
+            "start": 11416,
+            "end": 11458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame120_12416.jpg"
+        ],
+        "id": "46089ece-5f7e-443b-a487-af8b5b3a6d28",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 12416,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 30,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "d806b997-bc63-4843-a3b3-8d420e299cd3",
+                "segment": [
+                    {
+                        "bounds": [
+                            578,
+                            193,
+                            785,
+                            399
+                        ],
+                        "container_id": "46089ece-5f7e-443b-a487-af8b5b3a6d28",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "46089ece-5f7e-443b-a487-af8b5b3a6d28",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "46089ece-5f7e-443b-a487-af8b5b3a6d28",
+            "start": 12416,
+            "end": 12458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame144_13416.jpg"
+        ],
+        "id": "1e2a4fac-4c08-4183-914f-1eac030257d0",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 13416,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 31,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "c1a9f31d-ae27-4c28-a2b8-6a4c3ff891a0",
+                "segment": [
+                    {
+                        "bounds": [
+                            578,
+                            199,
+                            777,
+                            403
+                        ],
+                        "container_id": "1e2a4fac-4c08-4183-914f-1eac030257d0",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "1e2a4fac-4c08-4183-914f-1eac030257d0",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "1e2a4fac-4c08-4183-914f-1eac030257d0",
+            "start": 13416,
+            "end": 13458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame168_14416.jpg"
+        ],
+        "id": "d1306de1-8c84-493c-b211-642e472dcbd4",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 14416,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 29,
+                            "gender": "male",
+                            "faceprob": 1.0
+                        }
+                    }
+                ],
+                "id": "cd96affe-077b-4d74-9677-644535177db4",
+                "segment": [
+                    {
+                        "bounds": [
+                            594,
+                            188,
+                            778,
+                            410
+                        ],
+                        "container_id": "d1306de1-8c84-493c-b211-642e472dcbd4",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "d1306de1-8c84-493c-b211-642e472dcbd4",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "d1306de1-8c84-493c-b211-642e472dcbd4",
+            "start": 14416,
+            "end": 14458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame192_15416.jpg"
+        ],
+        "id": "81148979-3514-4370-bb00-c9880bd01e90",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 15416,
+                        "type": "person",
+                        "value": {
+                            "name": "Joey",
+                            "age": 18,
+                            "gender": "male",
+                            "faceprob": 0.995
+                        }
+                    }
+                ],
+                "id": "6b04a1cf-a8c1-40dc-bcb2-b63491f95e33",
+                "segment": [
+                    {
+                        "bounds": [
+                            791,
+                            225,
+                            826,
+                            264
+                        ],
+                        "container_id": "81148979-3514-4370-bb00-c9880bd01e90",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "81148979-3514-4370-bb00-c9880bd01e90",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "81148979-3514-4370-bb00-c9880bd01e90",
+            "start": 15416,
+            "end": 15458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame216_16416.jpg"
+        ],
+        "id": "d365b7b8-25b9-46c9-b3eb-42bc41f5649a",
+        "mentions": [],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "d365b7b8-25b9-46c9-b3eb-42bc41f5649a",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "d365b7b8-25b9-46c9-b3eb-42bc41f5649a",
+            "start": 16416,
+            "end": 16458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame240_17416.jpg"
+        ],
+        "id": "cfde15fe-ba1b-447b-9c38-d68c758e37b0",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 17416,
+                        "type": "person",
+                        "value": {
+                            "name": "Joey",
+                            "age": 19,
+                            "gender": "male",
+                            "faceprob": 0.947
+                        }
+                    }
+                ],
+                "id": "fe18d299-ab76-4dad-b1b1-e3553874d154",
+                "segment": [
+                    {
+                        "bounds": [
+                            907,
+                            442,
+                            952,
+                            500
+                        ],
+                        "container_id": "cfde15fe-ba1b-447b-9c38-d68c758e37b0",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "cfde15fe-ba1b-447b-9c38-d68c758e37b0",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "cfde15fe-ba1b-447b-9c38-d68c758e37b0",
+            "start": 17416,
+            "end": 17458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame264_18416.jpg"
+        ],
+        "id": "6a9030bc-96e9-4a8c-8fca-fa7ec4843725",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 18416,
+                        "type": "person",
+                        "value": {
+                            "name": "Joey",
+                            "age": 19,
+                            "gender": "female",
+                            "faceprob": 0.968
+                        }
+                    }
+                ],
+                "id": "103dba45-c1e3-4f49-b940-436d19e1e1d1",
+                "segment": [
+                    {
+                        "bounds": [
+                            850,
+                            453,
+                            901,
+                            519
+                        ],
+                        "container_id": "6a9030bc-96e9-4a8c-8fca-fa7ec4843725",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "6a9030bc-96e9-4a8c-8fca-fa7ec4843725",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "6a9030bc-96e9-4a8c-8fca-fa7ec4843725",
+            "start": 18416,
+            "end": 18458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame288_19416.jpg"
+        ],
+        "id": "761a836a-0d40-4aba-b137-02253b3849ea",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 19416,
+                        "type": "person",
+                        "value": {
+                            "name": "Joey",
+                            "age": 19,
+                            "gender": "male",
+                            "faceprob": 0.994
+                        }
+                    }
+                ],
+                "id": "49607dec-3365-4f7a-b1b2-7be1848c9ac6",
+                "segment": [
+                    {
+                        "bounds": [
+                            908,
+                            453,
+                            965,
+                            528
+                        ],
+                        "container_id": "761a836a-0d40-4aba-b137-02253b3849ea",
+                        "type": "MultiIndex"
+                    }
+                ]
+            },
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 19416,
+                        "type": "person",
+                        "value": {
+                            "name": "amiable-baboon",
+                            "age": 18,
+                            "gender": "male",
+                            "faceprob": 0.935
+                        }
+                    }
+                ],
+                "id": "5ae85a9e-36f6-4135-a4e2-6d88b08d87db",
+                "segment": [
+                    {
+                        "bounds": [
+                            803,
+                            333,
+                            831,
+                            365
+                        ],
+                        "container_id": "761a836a-0d40-4aba-b137-02253b3849ea",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "761a836a-0d40-4aba-b137-02253b3849ea",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "761a836a-0d40-4aba-b137-02253b3849ea",
+            "start": 19416,
+            "end": 19458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame312_20416.jpg"
+        ],
+        "id": "43e3c36a-8e79-42bd-baed-f11aba085029",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 20416,
+                        "type": "person",
+                        "value": {
+                            "name": "slim-cougar",
+                            "age": 18,
+                            "gender": "female",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "527336ac-08f0-409e-becc-90b7a3682c7b",
+                "segment": [
+                    {
+                        "bounds": [
+                            952,
+                            439,
+                            1008,
+                            525
+                        ],
+                        "container_id": "43e3c36a-8e79-42bd-baed-f11aba085029",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "43e3c36a-8e79-42bd-baed-f11aba085029",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "43e3c36a-8e79-42bd-baed-f11aba085029",
+            "start": 20416,
+            "end": 20458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    },
+    {
+        "files": [
+            "image/dia65_utt3_frame336_21416.jpg"
+        ],
+        "id": "fa16d16b-88d3-4566-b0fb-c1e505304f19",
+        "mentions": [
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 21416,
+                        "type": "person",
+                        "value": {
+                            "name": "slim-cougar",
+                            "age": 19,
+                            "gender": "male",
+                            "faceprob": 0.999
+                        }
+                    }
+                ],
+                "id": "69ef0d24-aaa8-4511-ab5e-22e4f777a995",
+                "segment": [
+                    {
+                        "bounds": [
+                            966,
+                            458,
+                            1027,
+                            537
+                        ],
+                        "container_id": "fa16d16b-88d3-4566-b0fb-c1e505304f19",
+                        "type": "MultiIndex"
+                    }
+                ]
+            },
+            {
+                "annotations": [
+                    {
+                        "source": "machine",
+                        "timestamp": 21416,
+                        "type": "person",
+                        "value": {
+                            "name": "Ross",
+                            "age": 18,
+                            "gender": "male",
+                            "faceprob": 0.997
+                        }
+                    }
+                ],
+                "id": "e92a6dcc-07cf-4691-89b8-9496a816dcba",
+                "segment": [
+                    {
+                        "bounds": [
+                            356,
+                            92,
+                            411,
+                            173
+                        ],
+                        "container_id": "fa16d16b-88d3-4566-b0fb-c1e505304f19",
+                        "type": "MultiIndex"
+                    }
+                ]
+            }
+        ],
+        "modality": "image",
+        "ruler": {
+            "bounds": [
+                0,
+                0,
+                1280,
+                720
+            ],
+            "container_id": "fa16d16b-88d3-4566-b0fb-c1e505304f19",
+            "type": "MultiIndex"
+        },
+        "time": {
+            "container_id": "fa16d16b-88d3-4566-b0fb-c1e505304f19",
+            "start": 21416,
+            "end": 21458,
+            "type": "TemporalRuler"
+        },
+        "type": "ImageSignal"
+    }
+]

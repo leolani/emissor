@@ -14,11 +14,11 @@ import os
 import coolname
 import uuid
 import shutil
-DATABASE_DIR = './Datasets'
+DATASET_DIR = './Datasets'
 EXAMPLE_DIR = '../example_data'
 DET_THRESHOLD = 0.90
 COS_THRESHOLD = 0.80
-INTERVAL_SEC = 2
+INTERVAL_SEC = 1
 
 
 def batch_paths(list_of_elements, n_jobs):
@@ -39,7 +39,7 @@ def loadN(path, interval_sec):
     try:
         container = av.open(path)
     except (av.error.InvalidDataError, av.error.FileNotFoundError) as e:
-        print(e)
+        print(path, e)
         return None, None, None
     frames = {}
     fps = round(float(container.streams.video[0].average_rate))
@@ -56,10 +56,10 @@ def loadN(path, interval_sec):
     return frames, duration_msec, fps
 
 
-def get_existing_path(DATABASE_DIR, DATABASE, modality, DATASET, uttid,
+def get_existing_path(DATASET_DIR, DATASET, modality, SPLIT, uttid,
                       extensions):
-    candidates = [os.path.join(DATABASE_DIR, DATABASE, modality,
-                               DATASET, uttid + extension)
+    candidates = [os.path.join(DATASET_DIR, DATASET, modality,
+                               SPLIT, uttid + extension)
                   for extension in extensions]
 
     for candidate in candidates:
@@ -97,59 +97,59 @@ def get_unique_faces(embeddings):
     return face_names
 
 
-class DataBase():
-    def __init__(self, DATABASE_DIR, DATABASE):
-        with open(os.path.join(DATABASE_DIR, DATABASE,
+class DataSet():
+    def __init__(self, DATASET_DIR, DATASET):
+        with open(os.path.join(DATASET_DIR, DATASET,
                                'labels.json'), 'r') as stream:
             self.labels = json.load(stream)
 
-        self.DATABASE = DATABASE
-        self.DATASETS = list(self.labels.keys())
+        self.DATASET = DATASET
+        self.SPLITS = list(self.labels.keys())
 
-        utterance_ordered_path = os.path.join(DATABASE_DIR, self.DATABASE,
+        utterance_ordered_path = os.path.join(DATASET_DIR, self.DATASET,
                                               'utterance-ordered.json')
 
         if os.path.isfile(utterance_ordered_path):
             with open(utterance_ordered_path, 'r') as stream:
                 self.diauttids = json.load(stream)
         else:
-            self.diauttids = {DATASET: {uttid: [uttid]
+            self.diauttids = {SPLIT: {uttid: [uttid]
                                         for uttid, label in uttid_label.items()}
-                              for DATASET, uttid_label in self.labels.items()}
+                              for SPLIT, uttid_label in self.labels.items()}
 
-        self.videopaths = {DATASET:
+        self.videopaths = {SPLIT:
                            {uttid: get_existing_path(
-                               DATABASE_DIR, self.DATABASE, 'raw-videos',
-                               DATASET, uttid, ['.mp4', '.avi'])
+                               DATASET_DIR, self.DATASET, 'raw-videos',
+                               SPLIT, uttid, ['.mp4', '.avi'])
                                for diaid, uttids in diauttid.items()
                                for uttid in uttids}
-                           for DATASET, diauttid in self.diauttids.items()}
+                           for SPLIT, diauttid in self.diauttids.items()}
 
-        self.facepaths = {DATASET:
+        self.facepaths = {SPLIT:
                           {uttid: get_existing_path(
-                              DATABASE_DIR, self.DATABASE, 'faces',
-                              DATASET, uttid, ['.pkl'])
+                              DATASET_DIR, self.DATASET, 'faces',
+                              SPLIT, uttid, ['.pkl'])
                            for diaid, uttids in diauttid.items()
                            for uttid in uttids}
-                          for DATASET, diauttid in self.diauttids.items()}
+                          for SPLIT, diauttid in self.diauttids.items()}
 
-        self.audiopaths = {DATASET:
+        self.audiopaths = {SPLIT:
                            {uttid: get_existing_path(
-                               DATABASE_DIR, self.DATABASE, 'raw-audios',
-                               DATASET, uttid, ['.wav', '.mp3'])
+                               DATASET_DIR, self.DATASET, 'raw-audios',
+                               SPLIT, uttid, ['.wav', '.mp3'])
                                for diaid, uttids in diauttid.items()
                                for uttid in uttids}
-                           for DATASET, diauttid in self.diauttids.items()}
+                           for SPLIT, diauttid in self.diauttids.items()}
 
-        self.textpaths = {DATASET:
+        self.textpaths = {SPLIT:
                           {uttid: get_existing_path(
-                              DATABASE_DIR, self.DATABASE, 'raw-texts',
-                              DATASET, uttid, ['.json'])
+                              DATASET_DIR, self.DATASET, 'raw-texts',
+                              SPLIT, uttid, ['.json'])
                            for diaid, uttids in diauttid.items()
                            for uttid in uttids}
-                          for DATASET, diauttid in self.diauttids.items()}
+                          for SPLIT, diauttid in self.diauttids.items()}
 
-    def process_dia(self, DATASET, diaid, interval_sec=INTERVAL_SEC):
+    def process_dia(self, SPLIT, diaid, interval_sec=INTERVAL_SEC):
         """Dialogue (session) level.
 
         Note that a dialogue (session) contains at least one utterance.
@@ -158,18 +158,18 @@ class DataBase():
         self.chat_gmrc = []
         self.image_gmrc = []
 
-        self.face_recognition_dia(DATASET, diaid, interval_sec)
+        self.face_recognition_dia(SPLIT, diaid, interval_sec)
 
         starttime_msec = 0
-        for uttid in self.diauttids[DATASET][diaid]:
+        for uttid in self.diauttids[SPLIT][diaid]:
 
-            self.load_images_utt(DATASET, uttid, interval_sec)
-            emotion = self.load_labeled_emotion(DATASET, uttid)
+            self.load_images_utt(SPLIT, uttid, interval_sec)
+            emotion = self.load_labeled_emotion(SPLIT, uttid)
             if self.faces is not None:
                 self.annotate_write_frames(
-                    starttime_msec, DATASET, diaid, uttid, emotion)
+                    starttime_msec, SPLIT, diaid, uttid, emotion)
 
-            self.load_text(DATASET, uttid)
+            self.load_text(SPLIT, uttid)
             if self.text is not None:
                 self.chat_gmrc.append(
                     [self.text['Speaker'], self.text['Utterance'],
@@ -183,21 +183,21 @@ class DataBase():
             starttime_msec += self.duration_msec
 
         if len(self.image_gmrc) != 0:
-            self.write_image_gmrc(EXAMPLE_DIR, DATASET, diaid)
+            self.write_image_gmrc(EXAMPLE_DIR, SPLIT, diaid)
 
         if len(self.chat_gmrc) != 0:
-            self.write_chat_gmrc(EXAMPLE_DIR, DATASET, diaid)
+            self.write_chat_gmrc(EXAMPLE_DIR, SPLIT, diaid)
 
-    def annotate_write_frames(self, starttime_msec, DATASET, diaid, uttid,
+    def annotate_write_frames(self, starttime_msec, SPLIT, diaid, uttid,
                               emotion):
         for idx, frame in self.frames.items():
             frame_time = int(starttime_msec + round(idx*1000/self.fps))
             numpy_BGR = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
             os.makedirs(os.path.join(
-                EXAMPLE_DIR, self.DATABASE, DATASET, diaid, 'image'),
+                EXAMPLE_DIR, self.DATASET, SPLIT, diaid, 'image'),
                 exist_ok=True)
             save_path = os.path.join(
-                EXAMPLE_DIR, self.DATABASE, DATASET, diaid,
+                EXAMPLE_DIR, self.DATASET, SPLIT, diaid,
                 'image', uttid + f'_frame{str(idx)}_{str(frame_time)}.jpg')
             cv2.imwrite(save_path, numpy_BGR)
 
@@ -228,11 +228,12 @@ class DataBase():
                 name = self.face_names_dia[uttid][idx][k]
 
                 annotations = []
-                if k == 0:
-                    annotations.append({'source': 'human',
-                                        'timestamp': frame_time,
-                                        'type': 'emotion',
-                                        'value': emotion})
+                # emotions are not displayed nicely at the moment.
+                # if k == 0:
+                #     annotations.append({'source': 'human',
+                #                         'timestamp': frame_time,
+                #                         'type': 'emotion',
+                #                         'value': emotion})
 
                 annotations.append({'source': 'machine',
                                     'timestamp': frame_time,
@@ -251,18 +252,18 @@ class DataBase():
                                                'segment': segment})
             self.image_gmrc.append(frame_info)
 
-    def write_image_gmrc(self, SAVE_AT, DATASET, diaid):
+    def write_image_gmrc(self, SAVE_AT, SPLIT, diaid):
         os.makedirs(os.path.join(
-            SAVE_AT, self.DATABASE, DATASET, diaid, 'image'), exist_ok=True)
+            SAVE_AT, self.DATASET, SPLIT, diaid, 'image'), exist_ok=True)
 
-        with open(os.path.join(SAVE_AT, self.DATABASE, DATASET, diaid,
+        with open(os.path.join(SAVE_AT, self.DATASET, SPLIT, diaid,
                                'image.json'), 'w') as stream:
             json.dump(self.image_gmrc, stream)
 
-    def write_chat_gmrc(self, SAVE_AT, DATASET, diaid):
-        os.makedirs(os.path.join(SAVE_AT, self.DATABASE, DATASET, diaid, 'text'),
+    def write_chat_gmrc(self, SAVE_AT, SPLIT, diaid):
+        os.makedirs(os.path.join(SAVE_AT, self.DATASET, SPLIT, diaid, 'text'),
                     exist_ok=True)
-        with open(os.path.join(SAVE_AT, self.DATABASE, DATASET,
+        with open(os.path.join(SAVE_AT, self.DATASET, SPLIT,
                                diaid, 'text', f"{diaid}.csv"), 'w') as stream:
             stream.write('speaker,utterance,time\n')
 
@@ -275,11 +276,11 @@ class DataBase():
                 stream.write(str(starttime_msec))
                 stream.write('\n')
 
-    def face_recognition_dia(self, DATASET, diaid, interval_sec):
+    def face_recognition_dia(self, SPLIT, diaid, interval_sec):
         embs_dia = {}
-        for uttid in self.diauttids[DATASET][diaid]:
-            videopath = self.videopaths[DATASET][uttid]
-            facepath = self.facepaths[DATASET][uttid]
+        for uttid in self.diauttids[SPLIT][diaid]:
+            videopath = self.videopaths[SPLIT][uttid]
+            facepath = self.facepaths[SPLIT][uttid]
 
             frames, duration_msec, fps = loadN(videopath, interval_sec)
 
@@ -309,9 +310,9 @@ class DataBase():
                     self.face_names_dia[uttid][idx].append(unique_faces[count])
                     count += 1
 
-    def load_images_utt(self, DATASET, uttid, interval_sec):
+    def load_images_utt(self, SPLIT, uttid, interval_sec):
         """Utterance level. This is the most atomic level."""
-        videopath = self.videopaths[DATASET][uttid]
+        videopath = self.videopaths[SPLIT][uttid]
         self.frames, self.duration_msec, self.fps = None, None, None
         if videopath is not None:
             self.frames, self.duration_msec, self.fps = loadN(
@@ -319,7 +320,7 @@ class DataBase():
 
         self.faces = None
         if self.frames is not None:
-            facepath = self.facepaths[DATASET][uttid]
+            facepath = self.facepaths[SPLIT][uttid]
             if videopath is not None and facepath is not None:
                 with open(facepath, 'rb') as stream:
                     faces = pickle.load(stream)
@@ -331,28 +332,28 @@ class DataBase():
                                     > DET_THRESHOLD]
                               for idx, face in self.faces.items()}
 
-    def load_labeled_emotion(self, DATASET, uttid):
+    def load_labeled_emotion(self, SPLIT, uttid):
         """Utterance level. This is the most atomic level."""
-        label = self.labels[DATASET][uttid]
+        label = self.labels[SPLIT][uttid]
 
         return label
 
-    def load_text(self, DATASET, uttid):
+    def load_text(self, SPLIT, uttid):
         """Utterance level. This is the most atomic level."""
-        textpath = self.textpaths[DATASET][uttid]
+        textpath = self.textpaths[SPLIT][uttid]
         self.text = None
         if textpath is not None:
             with open(textpath, 'r') as stream:
                 self.text = json.load(stream)
 
-    def load_audio(self, DATASET, uttid):
+    def load_audio(self, SPLIT, uttid):
         """Utterance level. This is the most atomic level."""
         raise NotImplementedError("TODO!")
 
 
-def run(DATASET, diaids, db):
+def run(SPLIT, diaids, ds):
     for diaid in tqdm(diaids):
-        db.process_dia(DATASET, diaid)
+        ds.process_dia(SPLIT, diaid)
 
 
 parser = argparse.ArgumentParser(description='run.py')
@@ -361,24 +362,25 @@ args = parser.parse_args()
 n_jobs = int(args.num_jobs)
 print(f"n_jobs: {n_jobs}")
 
-DATABASES = glob(os.path.join(DATABASE_DIR, '*/labels.json'))
-DATABASES = [DB.split('/')[-2] for DB in DATABASES]
-print(f"In total there are {len(DATABASES)} datasets found: {DATABASES}")
+DATASETS = glob(os.path.join(DATASET_DIR, '*/labels.json'))
+DATASETS = [DB.split('/')[-2] for DB in DATASETS]
+print(f"In total there are {len(DATASETS)} datasets found: {DATASETS}")
 
-for DATABASE in tqdm(DATABASES):
-    db = DataBase(DATABASE_DIR, DATABASE)
+for DATASET in tqdm(DATASETS):
+    ds = DataSet(DATASET_DIR, DATASET)
 
-    for DATASET in tqdm(db.DATASETS):
-        diaids = [diaid for diaid in list(db.diauttids[DATASET].keys())]
+    for SPLIT in tqdm(ds.SPLITS):
+        diaids = [diaid for diaid in list(ds.diauttids[SPLIT].keys())]
         random.shuffle(diaids)
 
         n_jobs_ = min(len(diaids), n_jobs)
 
         diaids_batched = batch_paths(diaids, n_jobs_)
+        print(diaids_batched)
 
-        dbs = [DataBase(DATABASE_DIR, DATABASE) for i in range(n_jobs_)]
-        Parallel(n_jobs=n_jobs_)(delayed(run)(DATASET, diaids, db)
-                                 for diaids, db
-                                 in tqdm(zip(diaids_batched, dbs)))
+        dss = [DataSet(DATASET_DIR, DATASET) for i in range(n_jobs_)]
+        Parallel(n_jobs=n_jobs_)(delayed(run)(SPLIT, diaids, ds)
+                                 for diaids, ds
+                                 in tqdm(zip(diaids_batched, dss)))
 
-    shutil.rmtree(os.path.join(DATABASE_DIR, DATABASE), ignore_errors=True)
+    # shutil.rmtree(os.path.join(DATASET_DIR, DATASET), ignore_errors=True)
