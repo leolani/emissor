@@ -1,0 +1,27 @@
+{
+  "context": {
+    "agent": "robot_agent",
+    "objects": [],
+    "persons": [],
+    "speaker": {
+      "age": 50,
+      "gender": "undefined",
+      "id": "bc913d64-a597-4876-a3fe-fe47472cd274",
+      "name": "Speaker"
+    }
+  },
+  "end": 11133,
+  "id": "carl-leolani",
+  "ruler": {
+    "container_id": null,
+    "end": 11133,
+    "start": 0,
+    "type": "TemporalRuler"
+  },
+  "signals": {
+    "image": "./image.json",
+    "text": "./text.json"
+  },
+  "start": 0,
+  "type": "Scenario"
+}

@@ -1,0 +1,1145 @@
+[
+  {
+    "files": [
+      "text/dia65.csv#0"
+    ],
+    "id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "1ab3093b-ba66-4211-9b02-f6c9899b8007",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "See"
+            }
+          }
+        ],
+        "id": "02c65438-3f89-4727-beed-0ce400875173",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 0,
+            "stop": 3,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "aa964189-a800-4419-b88a-fa66477e0816",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": ","
+            }
+          }
+        ],
+        "id": "d6a0c5cf-0122-4379-9f7a-bc56edd97aa3",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 3,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "2fb1f620-8a96-4342-b4aa-5420828c2e78",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "I"
+            }
+          }
+        ],
+        "id": "70cba3a4-9e14-4cc9-9ab6-d9321019bb90",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 5,
+            "stop": 6,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "bbde1c0a-db37-444c-8af6-bc80fdd74ce7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "see"
+            }
+          }
+        ],
+        "id": "62258508-94e9-4d0f-b93f-e0d97359d964",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 7,
+            "stop": 10,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "9f51a123-e872-40ca-b909-c1b070319ea3",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "..."
+            }
+          }
+        ],
+        "id": "c7ba7b18-82da-4f52-be15-6bc398b83926",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 10,
+            "stop": 13,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "3f071be0-9bad-46eb-92fc-3df391a2e3bb",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "80bc2c59-fb17-4b89-852e-dd7c1d16e6a4",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 13,
+            "stop": 14,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "ea6db37e-f6cf-469f-9b01-790f1b5e7fb7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "big"
+            }
+          }
+        ],
+        "id": "7c5cec6c-1179-4d2f-957a-99dc5e5576db",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 15,
+            "stop": 18,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "6951fecc-c6d4-4bd3-bbb1-8caf93f76b02",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "passion"
+            }
+          }
+        ],
+        "id": "3bbac292-7a6e-4e3d-8a2d-37d7e0be4899",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 19,
+            "stop": 26,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "97173396-b444-4505-9849-3be1abfc59a1",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "in"
+            }
+          }
+        ],
+        "id": "440b7139-5569-4e86-b047-f1c22c1dbe5b",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 27,
+            "stop": 29,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "063ffac1-9b11-4de0-aa39-114f4d3920cc",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "your"
+            }
+          }
+        ],
+        "id": "292500a1-dbff-457f-9954-a13d02eb9693",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 30,
+            "stop": 34,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "03abac75-0379-4de6-b12d-6006b3ff5523",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "future"
+            }
+          }
+        ],
+        "id": "0e3a02f9-f75f-458f-a8a5-efb4cf7a5c93",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 35,
+            "stop": 41,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "f0d8eb80-1063-4c87-bb33-f077a95c7e1b",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "6bd26bf5-ccc5-4ff9-bc05-05eb6b49344c",
+        "segment": [
+          {
+            "container_id": "a2a2c932-e780-4c3d-b463-0b155e0f0d55",
+            "start": 41,
+            "stop": 42,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 0.0,
+      "stop": 0.0,
+      "type": "Index"
+    },
+    "seq": [
+      "S",
+      "e",
+      "e",
+      ",",
+      " ",
+      "I",
+      " ",
+      "s",
+      "e",
+      "e",
+      ".",
+      ".",
+      ".",
+      ".",
+      " ",
+      "b",
+      "i",
+      "g",
+      " ",
+      "p",
+      "a",
+      "s",
+      "s",
+      "i",
+      "o",
+      "n",
+      " ",
+      "i",
+      "n",
+      " ",
+      "y",
+      "o",
+      "u",
+      "r",
+      " ",
+      "f",
+      "u",
+      "t",
+      "u",
+      "r",
+      "e",
+      "."
+    ],
+    "start": 0.0,
+    "stop": 0.0,
+    "time": {
+      "container_id": "dia65",
+      "end": 0.0,
+      "start": 0.0,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/dia65.csv#1"
+    ],
+    "id": "42047431-7211-4a77-8f36-79c538c68011",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "aa28e5a4-cb06-4b70-95fa-983d0e247ee5",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Really"
+            }
+          }
+        ],
+        "id": "d3b428b2-7d66-49b4-870c-1849d179c794",
+        "segment": [
+          {
+            "container_id": "42047431-7211-4a77-8f36-79c538c68011",
+            "start": 0,
+            "stop": 6,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "463d8741-f276-457a-9e5e-c7599f779682",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "?"
+            }
+          }
+        ],
+        "id": "e4d2656a-8735-4a7f-b209-5e122fe08b8e",
+        "segment": [
+          {
+            "container_id": "42047431-7211-4a77-8f36-79c538c68011",
+            "start": 6,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 4458.333333333333,
+      "stop": 4458.333333333333,
+      "type": "Index"
+    },
+    "seq": [
+      "R",
+      "e",
+      "a",
+      "l",
+      "l",
+      "y",
+      "?"
+    ],
+    "start": 4458.333333333333,
+    "stop": 4458.333333333333,
+    "time": {
+      "container_id": "dia65",
+      "end": 4458.333333333333,
+      "start": 4458.333333333333,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/dia65.csv#2"
+    ],
+    "id": "430b1270-6274-40a3-bb6d-6aaf01a4941b",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "25a5b417-a2a2-43b1-b3a7-022e0ec511dd",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "I"
+            }
+          }
+        ],
+        "id": "971532f1-644a-4bf1-80ab-40bfcce0fa47",
+        "segment": [
+          {
+            "container_id": "430b1270-6274-40a3-bb6d-6aaf01a4941b",
+            "start": 0,
+            "stop": 1,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "f41c91d3-0f76-4653-a7f5-05f8357b3197",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "do"
+            }
+          }
+        ],
+        "id": "2e89eccc-78d9-4ece-b30e-0f0469254aa6",
+        "segment": [
+          {
+            "container_id": "430b1270-6274-40a3-bb6d-6aaf01a4941b",
+            "start": 2,
+            "stop": 4,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "2643d011-c308-49e5-a50f-794b671e4365",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "."
+            }
+          }
+        ],
+        "id": "c8e6e870-0318-4b05-b2a6-221e563b9e74",
+        "segment": [
+          {
+            "container_id": "430b1270-6274-40a3-bb6d-6aaf01a4941b",
+            "start": 4,
+            "stop": 5,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 6041.666666666666,
+      "stop": 6041.666666666666,
+      "type": "Index"
+    },
+    "seq": [
+      "I",
+      " ",
+      "d",
+      "o",
+      "."
+    ],
+    "start": 6041.666666666666,
+    "stop": 6041.666666666666,
+    "time": {
+      "container_id": "dia65",
+      "end": 6041.666666666666,
+      "start": 6041.666666666666,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  },
+  {
+    "files": [
+      "text/dia65.csv#3"
+    ],
+    "id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "bf4d05b1-abba-4b51-b582-29a5415dad9d",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Oh"
+            }
+          }
+        ],
+        "id": "af1d43f0-334e-4394-adb4-b0689d3f7623",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 0,
+            "stop": 2,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "e7082d87-9cdd-43fd-9fb8-c63af24d6633",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "Ross"
+            }
+          }
+        ],
+        "id": "d2da4389-8d57-4310-ad12-fdd98ef93087",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 3,
+            "stop": 7,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "f1a751a3-206e-485a-8178-fafb332209ad",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": ","
+            }
+          }
+        ],
+        "id": "644895cf-bb1e-4433-b4cc-977beb79f900",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 7,
+            "stop": 8,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "677c1860-d718-497a-bcda-c1cf74594484",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "you"
+            }
+          }
+        ],
+        "id": "089cccd9-a663-4f03-9ae2-a6c2fa4c2b31",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 9,
+            "stop": 12,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "8dee8f72-b662-4c36-8288-7c4af56627b4",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "'re"
+            }
+          }
+        ],
+        "id": "074a3707-2b1e-44fe-be25-ac8c3f29dc83",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 12,
+            "stop": 15,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "be282632-a298-46d6-b930-9f110074520c",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "so"
+            }
+          }
+        ],
+        "id": "1010b9e9-ae54-4520-807a-373860f96d70",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 16,
+            "stop": 18,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "b302e5bf-e5e8-4a74-b150-d693e999d26c",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "great."
+            }
+          }
+        ],
+        "id": "e441bc6c-4cd8-4c4c-aad6-9e450d8b1569",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 19,
+            "stop": 25,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "fb9b4209-becb-4037-80d9-391e0b697a4c",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "["
+            }
+          }
+        ],
+        "id": "6c9515f8-6e02-4ab3-b87d-aac1ac2fb93d",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 26,
+            "stop": 27,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "746f236b-7997-405d-ab1e-49fbc51e55ca",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "she"
+            }
+          }
+        ],
+        "id": "23c6950e-6078-4cf8-8378-57f01c7a517e",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 27,
+            "stop": 30,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "e0c4ead9-2d93-42fa-b86e-229fd061c4ae",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "playfully"
+            }
+          }
+        ],
+        "id": "d0261d32-94f2-43fa-bc51-79f8c1fc93d9",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 31,
+            "stop": 40,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "6b691449-4da3-4608-a9e4-f4e9829fbc21",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "rubs"
+            }
+          }
+        ],
+        "id": "f2111298-24e6-495d-b8d7-a04da02f5b2e",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 41,
+            "stop": 45,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "5d141a17-632c-4551-867e-f5c364640306",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "his"
+            }
+          }
+        ],
+        "id": "29268422-7dc4-4ba9-85d0-f2bdfaf7bc4a",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 46,
+            "stop": 49,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "738ada7d-f778-4e0f-973a-c0f8af1df62a",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "head"
+            }
+          }
+        ],
+        "id": "da03a267-23b4-4c2a-b589-2304a2956d57",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 50,
+            "stop": 54,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "a6989901-2af1-4712-b28c-ddc7663953af",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "and"
+            }
+          }
+        ],
+        "id": "57c5412c-486e-4909-867d-8c36ca8f9dab",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 55,
+            "stop": 58,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "77fc8a23-4ab8-472e-b61e-dffbb3fecec7",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "gets"
+            }
+          }
+        ],
+        "id": "5c031e9c-8dcf-4311-88ed-aa6e22372c20",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 59,
+            "stop": 63,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "fbae8b61-2e7e-4198-92a0-c06c35e08cbc",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "up"
+            }
+          }
+        ],
+        "id": "e05c0d00-46b7-4531-8468-0410073850b4",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 64,
+            "stop": 66,
+            "type": "Index"
+          }
+        ]
+      },
+      {
+        "annotations": [
+          {
+            "source": "annotation_tool",
+            "timestamp": 1616442688,
+            "type": "token",
+            "value": {
+              "id": "671d523e-692b-4257-a7f5-c21675b54185",
+              "ruler": {
+                "container_id": null,
+                "type": "AtomicRuler"
+              },
+              "type": "Token",
+              "value": "]"
+            }
+          }
+        ],
+        "id": "1897a947-bce8-48c0-922f-7dbef203f189",
+        "segment": [
+          {
+            "container_id": "a99d9846-4df2-460b-b1b2-365a7ac399b3",
+            "start": 66,
+            "stop": 67,
+            "type": "Index"
+          }
+        ]
+      }
+    ],
+    "modality": "text",
+    "ruler": {
+      "container_id": null,
+      "start": 7416.666666666666,
+      "stop": 7416.666666666666,
+      "type": "Index"
+    },
+    "seq": [
+      "O",
+      "h",
+      " ",
+      "R",
+      "o",
+      "s",
+      "s",
+      ",",
+      " ",
+      "y",
+      "o",
+      "u",
+      "'",
+      "r",
+      "e",
+      " ",
+      "s",
+      "o",
+      " ",
+      "g",
+      "r",
+      "e",
+      "a",
+      "t",
+      ".",
+      " ",
+      "[",
+      "s",
+      "h",
+      "e",
+      " ",
+      "p",
+      "l",
+      "a",
+      "y",
+      "f",
+      "u",
+      "l",
+      "l",
+      "y",
+      " ",
+      "r",
+      "u",
+      "b",
+      "s",
+      " ",
+      "h",
+      "i",
+      "s",
+      " ",
+      "h",
+      "e",
+      "a",
+      "d",
+      " ",
+      "a",
+      "n",
+      "d",
+      " ",
+      "g",
+      "e",
+      "t",
+      "s",
+      " ",
+      "u",
+      "p",
+      "]"
+    ],
+    "start": 7416.666666666666,
+    "stop": 7416.666666666666,
+    "time": {
+      "container_id": "dia65",
+      "end": 7416.666666666666,
+      "start": 7416.666666666666,
+      "type": "TemporalRuler"
+    },
+    "type": "TextSignal"
+  }
+]
