@@ -142,6 +142,7 @@ cython_debug/
 
 # User-specific stuff
 .idea/
+.DS_Store
 
 key.pem
 cert.pem
