@@ -19,11 +19,11 @@ Things that *will* be done by the machine in the future:
 
 ## Screenshots
 
-### CARL
+### CarLani
 
 This is a simple dialogue between the human (Carl) and the robot (Leolani), where Leolani helps Carl with finding the pills that he is looking for. Such a use case might be very useful in the eldery care.
 
-![CARL](CARL/CARL.png)
+![CarLani](CarLani/CarLani.png)
 
 ### MELD
 
