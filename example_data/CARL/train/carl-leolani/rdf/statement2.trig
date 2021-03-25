@@ -1,0 +1,392 @@
+@prefix : <http://cltl.nl/leolani/integration/> .
+@prefix leolaniContext: <http://cltl.nl/leolani/context/> .
+@prefix xml1: <https://www.w3.org/TR/xmlschema-2/#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix wdt: <http://www.wikidata.org/prop/direct/> .
+@prefix owl2xml: <http://www.w3.org/2006/12/owl2-xml#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ceo: <http://www.newsreader-project.eu/domain-ontology#> .
+@prefix gaf: <http://groundedannotationframework.org/gaf#> .
+@prefix ns1: <urn:x-rdflib:> .
+@prefix wd: <http://www.wikidata.org/entity/> .
+@prefix leolaniTalk: <http://cltl.nl/leolani/talk/> .
+@prefix grasp: <http://groundedannotationframework.org/grasp#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix grasps: <http://groundedannotationframework.org/grasp/sentiment#> .
+@prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix n2mu: <http://cltl.nl/leolani/n2mu/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix leolaniFriends: <http://cltl.nl/leolani/friends/> .
+@prefix leolaniWorld: <http://cltl.nl/leolani/world/> .
+@prefix wgs: <http://www.w3.org/2003/01/geo/wgs84_pos#> .
+@prefix graspf: <http://groundedannotationframework.org/grasp/factuality#> .
+@prefix graspe: <http://groundedannotationframework.org/grasp/emotion#> .
+@prefix gn: <http://www.geonames.org/ontology#> .
+@prefix wikibase: <http://wikiba.se/ontology#> .
+@prefix eps: <http://cltl.nl/episodicawareness/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix leolaniInputs: <http://cltl.nl/leolani/inputs/> .
+@prefix time: <http://www.w3.org/TR/owl-time/#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+
+leolaniTalk:Perspectives {
+  graspf:CERTAIN a grasp:AttributionValue, graspf:CertaintyValue .
+  
+  graspf:POSITIVE a grasp:AttributionValue, graspf:PolarityValue .
+}
+
+leolaniTalk:Interactions {
+  leolaniInputs:front-camera a gaf:Instance, grasp:Source, sem:Actor, n2mu:sensor .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:leolani a n2mu:person, gaf:Instance, n2mu:robot .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_sense_front-camera a gaf:Assertion, sem:Event .
+}
+
+leolaniTalk:Interactions {
+  leolaniTalk:chat1 a sem:Event, grasp:Chat .
+  
+  leolaniTalk:visual1 a sem:Event, grasp:Visual .
+  
+  leolaniWorld:Netherlands a n2mu:location, sem:Place, n2mu:country .
+}
+
+leolaniTalk:Perspectives {
+  graspf:PROBABLE a grasp:AttributionValue, graspf:CertaintyValue .
+}
+
+leolaniTalk:Interactions {
+  leolaniWorld:Gelderland a n2mu:location, sem:Place, n2mu:region .
+  
+  leolaniTalk:chat1_utterance2 a sem:Event, grasp:Utterance .
+  
+  leolaniTalk:visual1_detection2 a sem:Event, grasp:Detection .
+}
+
+leolaniTalk:Perspectives {
+  graspe:NEUTRAL a grasp:AttributionValue, graspe:EmotionValue .
+  
+  grasps:NEUTRAL a grasp:AttributionValue, grasps:SentimentValue .
+  
+  leolaniTalk:visual1_detection2_pixel0-3 a gaf:Mention, grasp:Experience .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:pills a gaf:Instance, n2mu:object .
+}
+
+leolaniTalk:Interactions {
+  leolaniContext:2021-03-12 a sem:Time, time:DateTimeDescription .
+  
+  leolaniContext:home a n2mu:location, sem:Place .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:chat1_utterance2_char0-39 a gaf:Mention, grasp:Statement .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:table a gaf:Instance, n2mu:object .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:pills_locatedunder_table a gaf:Assertion, sem:Event .
+}
+
+leolaniTalk:Interactions {
+  leolaniFriends:leolani a n2mu:person, gaf:Instance, grasp:Source, sem:Actor .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_know_leolani a gaf:Assertion, sem:Event .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:pills_locatedunder_table_CERTAIN-POSITIVE-NEUTRAL-NEUTRAL a grasp:Attribution .
+}
+
+leolaniTalk:Interactions {
+  leolaniWorld:Apeldoorn a n2mu:location, sem:Place, n2mu:city .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:pills-277239114378627994263096586625677220018 a gaf:Instance, n2mu:object,
+      n2mu:pills .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_see_pills-277239114378627994263096586625677220018 a gaf:Assertion,
+      sem:Event .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:pills_locatedunder_table_PROBABLE a grasp:Attribution .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:table-208510306279707560066228055598366854157 a gaf:Instance, n2mu:object,
+      n2mu:table .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_see_table-208510306279707560066228055598366854157 a gaf:Assertion,
+      sem:Event .
+}
+
+leolaniTalk:Interactions {
+  leolaniContext:context212127036058589458765669058969697407870 a eps:Context .
+}
+
+leolaniWorld:Claims {
+  leolaniFriends:leolani owl:sameAs leolaniWorld:leolani .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:chat1_utterance2_char0-39 rdf:value "I found them. They are under the table."^^xml1:string .
+  
+  leolaniTalk:pills_locatedunder_table_CERTAIN-POSITIVE-NEUTRAL-NEUTRAL rdf:value graspf:CERTAIN,
+      graspf:POSITIVE, graspe:NEUTRAL, grasps:NEUTRAL .
+  
+  leolaniTalk:pills_locatedunder_table_PROBABLE rdf:value graspf:PROBABLE .
+  
+  graspf:CERTAIN rdfs:label "CERTAIN" .
+  
+  graspf:POSITIVE rdfs:label "POSITIVE" .
+}
+
+leolaniTalk:Interactions {
+  leolaniInputs:front-camera rdfs:label "front-camera" .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:leolani rdfs:label "leolani" .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_sense_front-camera rdfs:label "leolani_sense_front-camera" .
+}
+
+leolaniTalk:Interactions {
+  leolaniTalk:chat1 rdfs:label "chat1" .
+  
+  leolaniTalk:visual1 rdfs:label "visual1" .
+  
+  leolaniWorld:Netherlands rdfs:label "Netherlands" .
+}
+
+leolaniTalk:Perspectives {
+  graspf:PROBABLE rdfs:label "PROBABLE" .
+}
+
+leolaniTalk:Interactions {
+  leolaniWorld:Gelderland rdfs:label "Gelderland" .
+  
+  leolaniTalk:chat1_utterance2 rdfs:label "chat1_utterance2" .
+  
+  leolaniTalk:visual1_detection2 rdfs:label "visual1_detection2" .
+}
+
+leolaniTalk:Perspectives {
+  graspe:NEUTRAL rdfs:label "NEUTRAL" .
+  
+  grasps:NEUTRAL rdfs:label "NEUTRAL" .
+  
+  leolaniTalk:visual1_detection2_pixel0-3 rdfs:label "visual1_detection2_pixel0-3" .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:pills rdfs:label "pills" .
+}
+
+leolaniTalk:Interactions {
+  leolaniContext:2021-03-12 rdfs:label "2021-03-12" .
+  
+  leolaniContext:home rdfs:label "home" .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:chat1_utterance2_char0-39 rdfs:label "chat1_utterance2_char0-39" .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:table rdfs:label "table" .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:pills_locatedunder_table rdfs:label "pills_locatedunder_table" .
+}
+
+leolaniTalk:Interactions {
+  leolaniFriends:leolani rdfs:label "leolani" .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_know_leolani rdfs:label "leolani_know_leolani" .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:pills_locatedunder_table_CERTAIN-POSITIVE-NEUTRAL-NEUTRAL rdfs:label "pills_locatedunder_table_CERTAIN-POSITIVE-NEUTRAL-NEUTRAL" .
+}
+
+leolaniTalk:Interactions {
+  leolaniWorld:Apeldoorn rdfs:label "Apeldoorn" .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:pills-277239114378627994263096586625677220018 rdfs:label "pills-277239114378627994263096586625677220018" .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_see_pills-277239114378627994263096586625677220018 rdfs:label
+      "leolani_see_pills-277239114378627994263096586625677220018" .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:pills_locatedunder_table_PROBABLE rdfs:label "pills_locatedunder_table_PROBABLE" .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:table-208510306279707560066228055598366854157 rdfs:label "table-208510306279707560066228055598366854157" .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_see_table-208510306279707560066228055598366854157 rdfs:label
+      "leolani_see_table-208510306279707560066228055598366854157" .
+}
+
+leolaniTalk:Interactions {
+  leolaniContext:context212127036058589458765669058969697407870 rdfs:label "context212127036058589458765669058969697407870" .
+}
+
+leolaniTalk:Perspectives {
+  leolaniTalk:visual1_detection2_pixel0-3 gaf:containsDenotation leolaniWorld:pills-277239114378627994263096586625677220018,
+      leolaniWorld:table-208510306279707560066228055598366854157 .
+  
+  leolaniTalk:chat1_utterance2_char0-39 gaf:containsDenotation leolaniWorld:pills, leolaniWorld:table .
+  
+  leolaniTalk:visual1_detection2_pixel0-3 gaf:denotes leolaniWorld:leolani_see_pills-277239114378627994263096586625677220018,
+      leolaniWorld:leolani_see_table-208510306279707560066228055598366854157 .
+  
+  leolaniTalk:chat1_utterance2_char0-39 gaf:denotes leolaniWorld:pills_locatedunder_table .
+  
+  leolaniTalk:visual1_detection2_pixel0-3 grasp:hasAttribution leolaniTalk:pills_locatedunder_table_PROBABLE .
+  
+  leolaniTalk:chat1_utterance2_char0-39 grasp:hasAttribution leolaniTalk:pills_locatedunder_table_CERTAIN-POSITIVE-NEUTRAL-NEUTRAL .
+  
+  leolaniTalk:visual1_detection2_pixel0-3 grasp:wasAttributedTo leolaniInputs:front-camera .
+  
+  leolaniTalk:chat1_utterance2_char0-39 grasp:wasAttributedTo leolaniFriends:leolani .
+  
+  leolaniTalk:visual1_detection2_pixel0-3 prov:wasDerivedFrom leolaniTalk:visual1_detection2 .
+  
+  leolaniTalk:chat1_utterance2_char0-39 prov:wasDerivedFrom leolaniTalk:chat1_utterance2 .
+  
+  leolaniTalk:pills_locatedunder_table_CERTAIN-POSITIVE-NEUTRAL-NEUTRAL grasp:isAttributionFor
+      leolaniTalk:chat1_utterance2_char0-39 .
+  
+  leolaniTalk:pills_locatedunder_table_PROBABLE grasp:isAttributionFor leolaniTalk:visual1_detection2_pixel0-3 .
+}
+
+leolaniWorld:leolani_see_pills-277239114378627994263096586625677220018 {
+  leolaniWorld:leolani n2mu:see leolaniWorld:pills-277239114378627994263096586625677220018 .
+}
+
+leolaniWorld:leolani_see_table-208510306279707560066228055598366854157 {
+  leolaniWorld:leolani n2mu:see leolaniWorld:table-208510306279707560066228055598366854157 .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:pills_locatedunder_table gaf:denotedBy leolaniTalk:chat1_utterance2_char0-39 .
+  
+  leolaniWorld:leolani_see_pills-277239114378627994263096586625677220018 gaf:denotedBy
+      leolaniTalk:visual1_detection2_pixel0-3 .
+  
+  leolaniWorld:leolani_see_table-208510306279707560066228055598366854157 gaf:denotedBy
+      leolaniTalk:visual1_detection2_pixel0-3 .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:pills-277239114378627994263096586625677220018 eps:hasContext leolaniContext:context212127036058589458765669058969697407870 .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_see_pills-277239114378627994263096586625677220018 eps:hasContext
+      leolaniContext:context212127036058589458765669058969697407870 .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:table-208510306279707560066228055598366854157 eps:hasContext leolaniContext:context212127036058589458765669058969697407870 .
+}
+
+leolaniWorld:Claims {
+  leolaniWorld:leolani_see_table-208510306279707560066228055598366854157 eps:hasContext
+      leolaniContext:context212127036058589458765669058969697407870 .
+}
+
+leolaniWorld:Instances {
+  leolaniWorld:pills gaf:denotedIn leolaniTalk:chat1_utterance2_char0-39 .
+  
+  leolaniWorld:table gaf:denotedIn leolaniTalk:chat1_utterance2_char0-39 .
+  
+  leolaniWorld:pills-277239114378627994263096586625677220018 gaf:denotedIn leolaniTalk:visual1_detection2_pixel0-3 .
+  
+  leolaniWorld:table-208510306279707560066228055598366854157 gaf:denotedIn leolaniTalk:visual1_detection2_pixel0-3 .
+}
+
+leolaniWorld:leolani_know_leolani {
+  leolaniWorld:leolani n2mu:know leolaniFriends:leolani .
+}
+
+leolaniWorld:leolani_sense_front-camera {
+  leolaniWorld:leolani n2mu:sense leolaniInputs:front-camera .
+}
+
+leolaniTalk:Interactions {
+  leolaniContext:context212127036058589458765669058969697407870 eps:hasDetection leolaniWorld:pills-277239114378627994263096586625677220018,
+      leolaniWorld:table-208510306279707560066228055598366854157 .
+  
+  leolaniTalk:chat1 n2mu:id "1"^^xml1:string .
+  
+  leolaniTalk:visual1 n2mu:id "1"^^xml1:string .
+  
+  leolaniTalk:chat1_utterance2 n2mu:id "2"^^xml1:string .
+  
+  leolaniTalk:visual1_detection2 n2mu:id "2"^^xml1:string .
+  
+  leolaniContext:home n2mu:id "251375587958092281626687124600376747824"^^xml1:string .
+  
+  leolaniWorld:pills-277239114378627994263096586625677220018 n2mu:id "277239114378627994263096586625677220018"^^xml1:string .
+  
+  leolaniWorld:table-208510306279707560066228055598366854157 n2mu:id "208510306279707560066228055598366854157"^^xml1:string .
+  
+  leolaniContext:context212127036058589458765669058969697407870 n2mu:id "212127036058589458765669058969697407870"^^xml1:string;
+    sem:hasBeginTimeStamp leolaniContext:2021-03-12;
+    sem:hasEvent leolaniTalk:chat1, leolaniTalk:visual1;
+    sem:hasPlace leolaniContext:home .
+  
+  leolaniContext:2021-03-12 time:day "12"^^xml1:gDay;
+    time:month "3"^^xml1:gMonthDay;
+    time:unitType time:unitDay;
+    time:year "2021"^^xml1:gYear .
+  
+  leolaniContext:home n2mu:in leolaniWorld:Netherlands, leolaniWorld:Gelderland, leolaniWorld:Apeldoorn .
+  
+  leolaniTalk:chat1 sem:hasSubEvent leolaniTalk:chat1_utterance2 .
+  
+  leolaniTalk:visual1 sem:hasSubEvent leolaniTalk:visual1_detection2 .
+  
+  leolaniTalk:chat1_utterance2 sem:hasActor leolaniFriends:leolani .
+  
+  leolaniTalk:visual1_detection2 sem:hasActor leolaniInputs:front-camera .
+}
+
+leolaniWorld:pills_locatedunder_table {
+  leolaniWorld:pills n2mu:locatedUnder leolaniWorld:table .
+}
