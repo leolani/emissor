@@ -1,0 +1,7 @@
+{
+    "train": {
+        "carl-leolani-000": "angry",
+        "carl-leolani-001": "neutral",
+        "carl-leolani-002": "joy"
+    }
+}
