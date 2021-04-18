@@ -77,6 +77,9 @@ If the files already exist, they are used, if not, the will be generated from th
 
 The *.csv* files for the text signals are currently expected to contain at least an `utterance` and `time` column.
 
+For custom annotations related to a specific ontology, please add the `.ttl` files to  `gmrc/annotation/brain/ontologies`. 
+For annotations related to an existing episodic memory, please add the `.trig` files to  `gmrc/annotation/brain/episodic_memory`. 
+
 **Note that the tool will create one signal for each
 image entry, i.e. if an image should be present multiple times, multiple copies of it should be placed in the image folder.**
 
@@ -132,6 +135,17 @@ For step 1. - 5. follow the instructions for images.
 1. Expand segment or annotation for editing (to be improved).
 1. Add annotations to the mention after selecting an annotation type.
 1. **Save after modifications (you can use any of the *Save* buttons, they all save the whole scenario)**
+
+### Workflow for linking manual annotations 
+
+For linking mentions to instance in the real world:
+1. Select a mention
+1. Select the annotation type from the drop down menu
+1. Select an instance of that the from the second drop down menu
+
+For establishing relations between mentions/instances in the real world:
+1. Select two mentions that are related
+1. Select the relation type that between them
 
 ### Version Control
 

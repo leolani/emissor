@@ -2,6 +2,7 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from gmrc.annotation.backend import Backend
+from gmrc.annotation.brain.util import get_annotation_types, get_relation_types, get_instances_of_type
 from gmrc.representation.scenario import Modality
 from gmrc.representation.util import unmarshal, marshal
 
@@ -54,5 +55,17 @@ def create_app(data_path):
         pprint(app.url_map)
 
         return str(app.url_map)
+
+    @app.route('/api/annotation/class_types')
+    def load_annotation_types():
+        return marshal(get_annotation_types())
+
+    @app.route('/api/annotation/relation_types')
+    def load_relation_types():
+        return marshal(get_relation_types())
+
+    @app.route('/api/annotation/<class_type>/instances')
+    def load_annotation_instances(class_type):
+        return marshal(get_instances_of_type(class_type))
 
     return app

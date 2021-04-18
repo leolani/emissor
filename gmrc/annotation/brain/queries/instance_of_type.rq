@@ -1,0 +1,47 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX ceo: <http://www.newsreader-project.eu/domain-ontology#>
+PREFIX eps: <http://cltl.nl/episodicawareness/>
+PREFIX n2mu: <http://cltl.nl/leolani/n2mu/>
+PREFIX gaf: <http://groundedannotationframework.org/gaf#>
+PREFIX grasp: <http://groundedannotationframework.org/grasp#>
+PREFIX sem: <http://semanticweb.cs.vu.nl/2009/11/sem/>
+prefix leolaniInputs: <http://cltl.nl/leolani/inputs/>
+prefix leolaniFriends: <http://cltl.nl/leolani/friends/>
+prefix leolaniTalk: <http://cltl.nl/leolani/talk/>
+prefix leolaniContext: <http://cltl.nl/leolani/context/>
+prefix leolaniWorld: <http://cltl.nl/leolani/world/>
+
+select distinct
+        ?full_id
+		?prefixed_id
+		?prefix
+		?id
+		?label
+
+WHERE {
+    ?full_id a %s .
+    ?full_id rdfs:label ?label .
+
+    BIND(
+        IF(STRSTARTS(STR(?full_id), STR(ceo:)), replace(str(?full_id), str(ceo:), "ceo:"),
+        IF(STRSTARTS(STR(?full_id), STR(eps:)), replace(str(?full_id), str(eps:), "eps:"),
+        IF(STRSTARTS(STR(?full_id), STR(n2mu:)), replace(str(?full_id), str(n2mu:), "n2mu:"),
+        IF(STRSTARTS(STR(?full_id), STR(gaf:)), replace(str(?full_id), str(gaf:), "gaf:"),
+        IF(STRSTARTS(STR(?full_id), STR(grasp:)), replace(str(?full_id), str(grasp:), "grasp:"),
+        IF(STRSTARTS(STR(?full_id), STR(sem:)), replace(str(?full_id), str(sem:), "sem:"),
+        IF(STRSTARTS(STR(?full_id), STR(leolaniInputs:)), replace(str(?full_id), str(leolaniInputs:), "leolaniInputs:"),
+        IF(STRSTARTS(STR(?full_id), STR(leolaniFriends:)), replace(str(?full_id), str(leolaniFriends:), "leolaniFriends:"),
+        IF(STRSTARTS(STR(?full_id), STR(leolaniTalk:)), replace(str(?full_id), str(leolaniTalk:), "leolaniTalk:"),
+        IF(STRSTARTS(STR(?full_id), STR(leolaniContext:)), replace(str(?full_id), str(leolaniContext:), "leolaniContext:"),
+        IF(STRSTARTS(STR(?full_id), STR(leolaniWorld:)), replace(str(?full_id), str(leolaniWorld:), "leolaniWorld:"), ?full_id )))))))))))
+        as ?prefixed_id)
+
+    BIND(STRBEFORE(?prefixed_id, ":") AS ?prefix)
+	BIND(STRAFTER(?prefixed_id, ":") AS ?id)
+
+    FILTER(BOUND(?prefix))
+
+}
+ORDER BY (?prefix)
