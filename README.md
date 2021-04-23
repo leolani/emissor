@@ -31,9 +31,7 @@ tool.
 Example data can be found in [*example_data/*](example_data) directory. Some of them are annotated by human and some are by machine. You can visualize them with the annotation tool. We highly recommend this, since it gives you how the modalities are referenced / grounded with each other.
 
 
-## How to create GMRC annotations from existing datasets
-
-See this [repo](https://github.com/tae898/multimodal-datasets).
+## [How to create GMRC annotations from existing datasets](https://github.com/tae898/multimodal-datasets)
 
 This repo collects multimodal datasets, process them, and annotate them in the GMRC annotation format. 
 
