@@ -33,7 +33,9 @@ Example data can be found in [*example_data/*](example_data) directory. Some of 
 
 ## How to create GMRC annotations from existing datasets
 
-You can find the instructions at `convert2gmrc/`
+See this [repo](https://github.com/tae898/multimodal-datasets).
+
+This repo collects multimodal datasets, process them, and annotate them in the GMRC annotation format. 
 
 This is done by [Taewoon Kim](https://tae898.github.io/). Ask him if you have any questions.
 
