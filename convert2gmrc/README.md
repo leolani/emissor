@@ -1,6 +1,8 @@
 # convert2gmrc
 
-This directory includes a shell script to download the datasets and a python script to annotate them in the GMRC format.
+**This has been moved to https://github.com/tae898/multimodal-datasets.**
+
+<s>This directory includes a shell script to download the datasets and a python script to annotate them in the GMRC format.
 
 Below is an example of loading the GMRC annotated MELD dataset with the webapp GUI.
 
@@ -49,3 +51,5 @@ Change the value 16 to whatever you want, depending on the number of CPU cores y
 ## Authors
 
 - Taewoon Kim (t.kim@vu.nl)
+
+</s>
