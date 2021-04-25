@@ -1,8 +1,9 @@
 import time
 import uuid
+from typing import Iterable, Any, Dict
+
 from nltk import TreebankWordTokenizer
 from pandas import Series
-from typing import Iterable, Any
 
 from gmrc.annotation.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
 from gmrc.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
@@ -129,3 +130,12 @@ class Backend:
             return AtomicRuler(container_id)
 
         raise ValueError("Unsupported type: " + type_.lower())
+
+    def load_annotation_types(self) -> Iterable[Dict]:
+        return self._storage.brain.get_annotation_types()
+
+    def load_relation_types(self) -> Iterable[Dict]:
+        return self._storage.brain.get_relation_types()
+
+    def load_instances_of_type(self, class_type: str) -> Iterable[Dict]:
+        return self._storage.brain.get_instances_of_type(class_type)

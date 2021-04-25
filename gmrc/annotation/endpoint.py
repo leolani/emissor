@@ -3,7 +3,6 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from gmrc.annotation.backend import Backend
-from gmrc.annotation.brain.util import get_annotation_types, get_relation_types, get_instances_of_type
 from gmrc.representation.scenario import Modality
 from gmrc.representation.util import unmarshal, marshal
 
@@ -312,13 +311,19 @@ def create_app(data_path):
 
         return str(app.url_map)
 
-    @app.route('/api/annotation/class_types')
-    def load_annotation_types():
+    @app.route('/api/scenario/<scenario_id>/annotation/class_types')
+    def load_annotation_types(scenario_id: str):
         """Get all potential annotation types based on the ontology
         Lists all class types in the brain.
         ---
         tags:
           - annotation-brain
+        parameters:
+          - name: scenario_id
+            in: path
+            type: string
+            required: true
+            default: 'scenario_1'
         definitions:
           AnnotationTypes:
             type: array
@@ -341,15 +346,21 @@ def create_app(data_path):
             schema:
               $ref: '#/definitions/AnnotationTypes'
         """
-        return marshal(get_annotation_types())
+        return marshal(backend.load_annotation_types())
 
-    @app.route('/api/annotation/relation_types')
-    def load_relation_types():
+    @app.route('/api/scenario/<scenario_id>/annotation/relation_types')
+    def load_relation_types(scenario_id: str):
         """Get all potential relational annotation types based on the ontology
         Lists all relations types in the brain.
         ---
         tags:
           - annotation-brain
+        parameters:
+          - name: scenario_id
+            in: path
+            type: string
+            required: true
+            default: 'scenario_1'
         definitions:
           AnnotationTypes:
             type: array
@@ -372,16 +383,21 @@ def create_app(data_path):
             schema:
               $ref: '#/definitions/AnnotationTypes'
         """
-        return marshal(get_relation_types())
+        return marshal(backend.load_relation_types())
 
-    @app.route('/api/annotation/<class_type>/instances')
-    def load_annotation_instances(class_type):
+    @app.route('/api/scenario/<scenario_id>/annotation/<class_type>/instances')
+    def load_annotation_instances(scenario_id: str, class_type: str):
         """Get all potential annotation instances (according to the given type) based on the episodic memory
         Lists all instances of the given type in the brain.
         ---
         tags:
           - annotation-brain
         parameters:
+          - name: scenario_id
+            in: path
+            type: string
+            required: true
+            default: 'scenario_1'
           - name: class_type
             in: path
             type: string
@@ -412,6 +428,6 @@ def create_app(data_path):
             schema:
               $ref: '#/definitions/AnnotationValues'
         """
-        return marshal(get_instances_of_type(class_type))
+        return marshal(backend.load_instances_of_type(class_type))
 
     return app
