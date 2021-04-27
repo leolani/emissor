@@ -1,11 +1,12 @@
 import os
 from glob import glob
+from typing import Iterable, Optional, Any, Tuple, Union
 
 import pandas as pd
 from PIL import Image
 from pandas import DataFrame
-from typing import Iterable, Optional, Any, Tuple, Union
 
+from gmrc.annotation.brain.util import Brain
 from gmrc.annotation.cache import ScenarioCache
 from gmrc.representation.scenario import Scenario, Modality, Signal
 from gmrc.representation.util import unmarshal, marshal
@@ -26,6 +27,7 @@ def base_name(path):
 class ScenarioStorage:
     def __init__(self, data_path):
         self._cache = None
+        self.brain = None
         self._data_path = data_path
 
     def _get_base(self):
@@ -127,6 +129,9 @@ class ScenarioStorage:
         scenario = unmarshal(json_string)
 
         self._cache = ScenarioCache(scenario_id)
+
+        ememory_path = self._get_path(scenario_id, 'rdf', 'episodic_memory', extension=None)
+        self.brain = Brain(ememory_path)
 
         return scenario
 

@@ -3,12 +3,12 @@
     "modality": "IMAGE",
     "time": {
         "type": "TemporalRuler",
-        "container_id": "test-scenario-2",
+        "container_id": "example-scenario",
         "start": 1603139705,
         "end": 1603140000
     },
     "files": [
-        "data/test-scenes/test-scenario-2/image/piek-sunglasses.jpg"
+        "data/test-scenes/example-scenario/image/piek-sunglasses.jpg"
     ],
     "mentions": [
         {
@@ -49,12 +49,12 @@
     "modality": "IMAGE",
     "time": {
         "type": "TemporalRuler",
-        "container_id": "test-scenario-2",
+        "container_id": "example-scenario",
         "start": 1603139840,
         "end": 1603149860
     },
     "files": [
-        "data/test-scenes/test-scenario-2/image/maxima.jpg"
+        "data/test-scenes/example-scenario/image/maxima.jpg"
     ],
 
     "mentions": [
@@ -98,12 +98,12 @@
     "modality": "IMAGE",
     "time": {
         "type": "TemporalRuler",
-        "container_id": "test-scenario-2",
+        "container_id": "example-scenario",
         "start": 1603139840,
         "end": 1603149860
     },
     "files": [
-        "data/test-scenes/test-scenario-2/image/niqee-2020-10-25 at 17.30.51.png"
+        "data/test-scenes/example-scenario/image/niqee-2020-10-25 at 17.30.51.png"
     ],
 
     "mentions": [
@@ -146,12 +146,12 @@
     "modality": "IMAGE",
     "time": {
         "type": "TemporalRuler",
-        "container_id": "test-scenario-2",
+        "container_id": "example-scenario",
         "start": 1603139840,
         "end": 1603149860
     },
     "files": [
-        "data/test-scenes/test-scenario-2/image/sam-2020-10-25 at 17.30.25.png"
+        "data/test-scenes/example-scenario/image/sam-2020-10-25 at 17.30.25.png"
     ],
     "mentions": [
         {
@@ -194,12 +194,12 @@
     "modality": "IMAGE",
     "time": {
         "type": "TemporalRuler",
-        "container_id": "test-scenario-2",
+        "container_id": "example-scenario",
         "start": 1603139840,
         "end": 1603149860
     },
     "files": [
-        "data/test-scenes/test-scenario-2/image/soccer-balll.jpg"
+        "data/test-scenes/example-scenario/image/soccer-balll.jpg"
     ],
     "mentions": [
         {
@@ -235,12 +235,12 @@
     "modality": "IMAGE",
     "time": {
         "type": "TemporalRuler",
-        "container_id": "test-scenario-2",
+        "container_id": "example-scenario",
         "start": 1603139840,
         "end": 1603149860
     },
     "files": [
-        "data/test-scenes/test-scenario-2/image/family-1.jpg"
+        "data/test-scenes/example-scenario/image/family-1.jpg"
     ],
     "mentions": [
         {
@@ -266,12 +266,12 @@
     "modality": "IMAGE",
     "time": {
         "type": "TemporalRuler",
-        "container_id": "test-scenario-2",
+        "container_id": "example-scenario",
         "start": 1603139840,
         "end": 1603149860
     },
     "files": [
-        "data/test-scenes/test-scenario-2/image/family-2.jpg"
+        "data/test-scenes/example-scenario/image/family-2.jpg"
     ],
     "mentions": [
         {

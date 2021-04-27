@@ -1,0 +1,1112 @@
+@prefix : <http://cltl.nl/leolani/integration/> .
+@prefix eps: <http://cltl.nl/episodicawareness/> .
+@prefix gaf: <http://groundedannotationframework.org/gaf#> .
+@prefix obo: <http://purl.obolibrary.org/obo/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix sem: <http://semanticweb.cs.vu.nl/2009/11/sem/> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix n2mu: <http://cltl.nl/leolani/n2mu/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix grasp: <http://groundedannotationframework.org/grasp#> .
+@prefix graspe: <http://groundedannotationframework.org/grasp/emotion#> .
+@prefix graspf: <http://groundedannotationframework.org/grasp/factuality#> .
+@prefix grasps: <http://groundedannotationframework.org/grasp/sentiment#> .
+@base <http://cltl.nl/leolani/n2mu/> .
+
+<http://cltl.nl/leolani/n2mu/> rdf:type owl:Ontology .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://www.w3.org/2004/02/skos/core#broadMatch
+skos:broadMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#closeMatch
+skos:closeMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#narrowMatch
+skos:narrowMatch rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#category
+prov:category rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#component
+prov:component rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#definition
+prov:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#inverse
+prov:inverse rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/ns/prov#qualifiedForm
+prov:qualifiedForm rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://cltl.nl/episodicawareness/contextProperty
+eps:contextProperty rdf:type owl:ObjectProperty ;
+                    rdfs:comment "Context properties connect Context to other SEM Core entities." ;
+                    rdfs:label "context property" .
+
+
+###  http://cltl.nl/episodicawareness/hasContext
+eps:hasContext rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf sem:eventProperty ;
+               rdfs:domain gaf:Instance ,
+                           sem:Event ;
+               rdfs:range eps:Context .
+
+
+###  http://cltl.nl/episodicawareness/hasDetection
+eps:hasDetection rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf eps:contextProperty ;
+                 rdfs:domain eps:Context ;
+                 rdfs:range n2mu:object ,
+                            n2mu:person ,
+                            grasp:Detection .
+
+
+###  http://cltl.nl/leolani/n2mu/acknowledge
+n2mu:acknowledge rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf n2mu:perceive ;
+                 rdfs:domain n2mu:robot ;
+                 rdfs:range n2mu:smell ,
+                            n2mu:taste ,
+                            n2mu:touch ;
+                 owl:propertyDisjointWith n2mu:experience .
+
+
+###  http://cltl.nl/leolani/n2mu/be-ancestor-of
+n2mu:be-ancestor-of rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf n2mu:be-family-of ;
+                    rdfs:domain n2mu:person ;
+                    rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-child-of
+n2mu:be-child-of rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf n2mu:be-family-of ;
+                 rdfs:domain n2mu:agent ;
+                 rdfs:range n2mu:agent ;
+                 owl:propertyDisjointWith n2mu:be-parent-of .
+
+
+###  http://cltl.nl/leolani/n2mu/be-colleague-of
+n2mu:be-colleague-of rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf n2mu:know ;
+                     rdfs:domain [ owl:intersectionOf ( n2mu:agent
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty n2mu:be-member-of ;
+                                                          owl:someValuesFrom n2mu:institution
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ;
+                     rdfs:range [ owl:intersectionOf ( n2mu:agent
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty n2mu:be-member-of ;
+                                                         owl:someValuesFrom n2mu:institution
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] .
+
+
+###  http://cltl.nl/leolani/n2mu/be-family-of
+n2mu:be-family-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:know ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-friends-with
+n2mu:be-friends-with rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf n2mu:know ;
+                     rdfs:domain n2mu:person ;
+                     rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/be-from
+n2mu:be-from rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:agent ,
+                         n2mu:cuisine ;
+             rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/be-member-of
+n2mu:be-member-of rdf:type owl:ObjectProperty ;
+                  rdfs:domain n2mu:agent ;
+                  rdfs:range n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/be-parent-of
+n2mu:be-parent-of rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf n2mu:be-family-of ;
+                  rdfs:domain n2mu:person ;
+                  rdfs:range n2mu:person .
+
+
+###  http://cltl.nl/leolani/n2mu/born-in
+n2mu:born-in rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf n2mu:be-from ;
+             rdfs:domain n2mu:person ;
+             rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/cook-by
+n2mu:cook-by rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:dish ,
+                         n2mu:food ;
+             rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/dislike
+n2mu:dislike rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:agent ;
+             rdfs:range n2mu:agent ,
+                        n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/experience
+n2mu:experience rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf n2mu:perceive ;
+                rdfs:domain n2mu:person ;
+                rdfs:range n2mu:smell ,
+                           n2mu:taste ,
+                           n2mu:touch .
+
+
+###  http://cltl.nl/leolani/n2mu/favorite
+n2mu:favorite rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf n2mu:like ;
+              owl:inverseOf n2mu:favorite-of ;
+              rdfs:domain n2mu:agent ;
+              rdfs:range n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/favorite-of
+n2mu:favorite-of rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf n2mu:like-by ;
+                 rdfs:domain n2mu:interest ;
+                 rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/in
+n2mu:in rdf:type owl:ObjectProperty ,
+                 owl:TransitiveProperty ;
+        rdfs:domain n2mu:city ;
+        rdfs:range n2mu:country .
+
+
+###  http://cltl.nl/leolani/n2mu/know
+n2mu:know rdf:type owl:ObjectProperty ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/like
+n2mu:like rdf:type owl:ObjectProperty ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:agent ,
+                     n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/like-by
+n2mu:like-by rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:agent ,
+                         n2mu:interest ;
+             rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/live-in
+n2mu:live-in rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:agent ;
+             rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/locate-in
+n2mu:locate-in rdf:type owl:ObjectProperty ;
+               rdfs:domain n2mu:institution ;
+               rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/manufacture-in
+n2mu:manufacture-in rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf n2mu:be-from ;
+                    rdfs:domain n2mu:robot ;
+                    rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/own
+n2mu:own rdf:type owl:ObjectProperty ;
+         rdfs:domain n2mu:agent ,
+                     n2mu:person ;
+         rdfs:range n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/perceive
+n2mu:perceive rdf:type owl:ObjectProperty ;
+              rdfs:domain n2mu:agent ;
+              rdfs:range n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/play
+n2mu:play rdf:type owl:ObjectProperty ;
+          rdfs:domain n2mu:agent ;
+          rdfs:range n2mu:song ,
+                     n2mu:sport .
+
+
+###  http://cltl.nl/leolani/n2mu/read-by
+n2mu:read-by rdf:type owl:ObjectProperty ;
+             rdfs:domain n2mu:book ;
+             rdfs:range n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/sense
+n2mu:sense rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf n2mu:perceive ;
+           rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/share-interest
+n2mu:share-interest rdf:type owl:ObjectProperty ;
+                    rdfs:domain [ owl:intersectionOf ( n2mu:agent
+                                                       [ rdf:type owl:Restriction ;
+                                                         owl:onProperty n2mu:like ;
+                                                         owl:someValuesFrom n2mu:interest
+                                                       ]
+                                                     ) ;
+                                  rdf:type owl:Class
+                                ] ;
+                    rdfs:range [ owl:intersectionOf ( n2mu:agent
+                                                      [ rdf:type owl:Restriction ;
+                                                        owl:onProperty n2mu:like ;
+                                                        owl:someValuesFrom n2mu:interest
+                                                      ]
+                                                    ) ;
+                                 rdf:type owl:Class
+                               ] .
+
+
+###  http://cltl.nl/leolani/n2mu/study-at
+n2mu:study-at rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf n2mu:be-member-of ;
+              rdfs:domain n2mu:agent ;
+              rdfs:range n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/travel-to
+n2mu:travel-to rdf:type owl:ObjectProperty ;
+               rdfs:domain n2mu:agent ;
+               rdfs:range n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/work-at
+n2mu:work-at rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf n2mu:be-member-of ;
+             rdfs:domain n2mu:agent ;
+             rdfs:range n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/write-by
+n2mu:write-by rdf:type owl:ObjectProperty ;
+              rdfs:domain n2mu:book ;
+              rdfs:range n2mu:person .
+
+
+###  http://groundedannotationframework.org/gaf#containsDenotation
+gaf:containsDenotation rdf:type owl:ObjectProperty ;
+                       rdfs:domain gaf:Mention ;
+                       rdfs:range gaf:Instance .
+
+
+###  http://groundedannotationframework.org/gaf#denotedBy
+gaf:denotedBy rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf gaf:denotedIn ;
+              rdfs:domain gaf:Instance ;
+              rdfs:range gaf:Mention .
+
+
+###  http://groundedannotationframework.org/gaf#denotedIn
+gaf:denotedIn rdf:type owl:ObjectProperty ;
+              rdfs:domain gaf:Instance ;
+              rdfs:range gaf:Mention .
+
+
+###  http://groundedannotationframework.org/gaf#denotes
+gaf:denotes rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf gaf:containsDenotation ;
+            rdfs:domain gaf:Mention ;
+            rdfs:range gaf:Instance .
+
+
+###  http://groundedannotationframework.org/grasp#hasAttribution
+grasp:hasAttribution rdf:type owl:ObjectProperty ;
+                     owl:inverseOf grasp:isAttributionFor ;
+                     rdfs:domain gaf:Mention ;
+                     rdfs:range grasp:Attribution .
+
+
+###  http://groundedannotationframework.org/grasp#isAttributionFor
+grasp:isAttributionFor rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf owl:topObjectProperty ;
+                       rdfs:domain grasp:Attribution ;
+                       rdfs:range gaf:Mention .
+
+
+###  http://groundedannotationframework.org/grasp#wasAttributedTo
+grasp:wasAttributedTo rdf:type owl:ObjectProperty ;
+                      rdfs:subPropertyOf prov:wasAttributedTo ;
+                      rdfs:domain gaf:Mention ;
+                      rdfs:range n2mu:sensor ,
+                                 grasp:Source ,
+                                 sem:Actor ,
+                                 [ owl:intersectionOf ( n2mu:agent
+                                                        gaf:Instance
+                                                        grasp:Source
+                                                        sem:Actor
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ,
+                                 [ owl:intersectionOf ( n2mu:sensor
+                                                        gaf:Instance
+                                                        grasp:Source
+                                                        sem:Actor
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ;
+                      rdfs:comment "States that a gaf:Mention was attributed to a gaf:Instance. This is a sub property of the prov:wasAttributedTo relation that can be used to relate any prov:Entity to any prov:Agent."^^xsd:string ;
+                      rdfs:label "was attributed to" .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/eventProperty
+sem:eventProperty rdf:type owl:ObjectProperty ;
+                  rdfs:comment "Event properties connect Events to other SEM Core entities." ;
+                  rdfs:label "event property" .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasActor
+sem:hasActor rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf sem:eventProperty ;
+             rdfs:domain grasp:Chat ,
+                         grasp:Utterance ,
+                         sem:Event ;
+             rdfs:range sem:Actor .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasPlace
+sem:hasPlace rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf eps:contextProperty ;
+             rdfs:domain eps:Context ;
+             rdfs:range n2mu:location ,
+                        [ owl:intersectionOf ( gaf:Instance
+                                               sem:Place
+                                             ) ;
+                          rdf:type owl:Class
+                        ] .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasSubEvent
+sem:hasSubEvent rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf sem:eventProperty ;
+                rdfs:domain grasp:Chat ,
+                            grasp:Visual ,
+                            sem:Event ;
+                rdfs:range grasp:Detection ,
+                           grasp:Utterance ,
+                           sem:Event .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/hasTime
+sem:hasTime rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf eps:contextProperty ;
+            rdfs:domain eps:Context ;
+            rdfs:range sem:Time .
+
+
+###  http://www.w3.org/1999/02/22-rdf-syntax-ns#value
+rdf:value rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#hadDerivation
+prov:hadDerivation rdf:type owl:ObjectProperty ;
+                   owl:inverseOf prov:wasDerivedFrom .
+
+
+###  http://www.w3.org/ns/prov#wasAttributedTo
+prov:wasAttributedTo rdf:type owl:ObjectProperty .
+
+
+###  http://www.w3.org/ns/prov#wasDerivedFrom
+prov:wasDerivedFrom rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf owl:topObjectProperty ;
+                    rdfs:domain gaf:Mention ;
+                    rdfs:range grasp:Detection ,
+                               grasp:Utterance ;
+                    rdfs:comment "The more specific subproperties of prov:wasDerivedFrom (i.e., prov:wasQuotedFrom, prov:wasRevisionOf, prov:hadPrimarySource) should be used when applicable."@en ;
+                    rdfs:label "wasDerivedFrom" ;
+                    prov:category "starting-point" ;
+                    prov:component "derivations" ;
+                    prov:definition "A derivation is a transformation of an entity into another, an update of an entity resulting in a new one, or the construction of a new entity based on a pre-existing entity."@en ;
+                    prov:inverse "hadDerivation" ;
+                    prov:qualifiedForm prov:Derivation .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://cltl.nl/leolani/n2mu/birthday
+n2mu:birthday rdf:type owl:DatatypeProperty ;
+              rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/color
+n2mu:color rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf n2mu:physical_feature ;
+           rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/hight
+n2mu:hight rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf n2mu:physical_feature ;
+           rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/name
+n2mu:name rdf:type owl:DatatypeProperty ;
+          rdfs:domain n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/physical_feature
+n2mu:physical_feature rdf:type owl:DatatypeProperty ;
+                      rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/shape
+n2mu:shape rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf n2mu:physical_feature ;
+           rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/size
+n2mu:size rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf n2mu:physical_feature ;
+          rdfs:domain n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/weight
+n2mu:weight rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf n2mu:physical_feature ;
+            rdfs:domain n2mu:object .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://cltl.nl/episodicawareness/Context
+eps:Context rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/agent
+n2mu:agent rdf:type owl:Class ;
+           owl:equivalentClass foaf:Agent .
+
+
+###  http://cltl.nl/leolani/n2mu/animal
+n2mu:animal rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/band
+n2mu:band rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/book
+n2mu:book rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:interest-occurrence .
+
+
+###  http://cltl.nl/leolani/n2mu/chair
+n2mu:chair rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/city
+n2mu:city rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/company
+n2mu:company rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/country
+n2mu:country rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:location .
+
+
+###  http://cltl.nl/leolani/n2mu/cuisine
+n2mu:cuisine rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:interest-field .
+
+
+###  http://cltl.nl/leolani/n2mu/device
+n2mu:device rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/dish
+n2mu:dish rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:interest-occurrence .
+
+
+###  http://cltl.nl/leolani/n2mu/electricity
+n2mu:electricity rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/equilibrium
+n2mu:equilibrium rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/film-genre
+n2mu:film-genre rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:interest-field .
+
+
+###  http://cltl.nl/leolani/n2mu/food
+n2mu:food rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:interest-occurrence .
+
+
+###  http://cltl.nl/leolani/n2mu/gravity
+n2mu:gravity rdf:type owl:Class ;
+             rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/institution
+n2mu:institution rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/interest
+n2mu:interest rdf:type owl:Class ;
+              owl:equivalentClass [ rdf:type owl:Restriction ;
+                                    owl:onProperty n2mu:like-by ;
+                                    owl:someValuesFrom foaf:Agent
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty [ owl:inverseOf n2mu:like
+                                                   ] ;
+                                    owl:someValuesFrom foaf:Agent
+                                  ] .
+
+
+###  http://cltl.nl/leolani/n2mu/interest-field
+n2mu:interest-field rdf:type owl:Class ;
+                    rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/interest-occurrence
+n2mu:interest-occurrence rdf:type owl:Class ;
+                         rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/light
+n2mu:light rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/literature-genre
+n2mu:literature-genre rdf:type owl:Class ;
+                      rdfs:subClassOf n2mu:interest-field .
+
+
+###  http://cltl.nl/leolani/n2mu/location
+n2mu:location rdf:type owl:Class ;
+              owl:equivalentClass <http://schema.org/Place> ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty [ owl:inverseOf n2mu:be-from
+                                                   ] ;
+                                    owl:someValuesFrom foaf:Agent
+                                  ] .
+
+
+###  http://cltl.nl/leolani/n2mu/mammal
+n2mu:mammal rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/movie
+n2mu:movie rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:interest-occurrence .
+
+
+###  http://cltl.nl/leolani/n2mu/music-genre
+n2mu:music-genre rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:interest-field .
+
+
+###  http://cltl.nl/leolani/n2mu/musical-work
+n2mu:musical-work rdf:type owl:Class ;
+                  rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/object
+n2mu:object rdf:type owl:Class .
+
+
+###  http://cltl.nl/leolani/n2mu/pain
+n2mu:pain rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/person
+n2mu:person rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/plant
+n2mu:plant rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:object .
+
+
+###  http://cltl.nl/leolani/n2mu/popular-interest
+n2mu:popular-interest rdf:type owl:Class ;
+                      owl:equivalentClass [ owl:intersectionOf ( n2mu:interest
+                                                                 [ rdf:type owl:Restriction ;
+                                                                   owl:onProperty n2mu:like-by ;
+                                                                   owl:minQualifiedCardinality "4"^^xsd:nonNegativeInteger ;
+                                                                   owl:onClass n2mu:agent
+                                                                 ]
+                                                               ) ;
+                                            rdf:type owl:Class
+                                          ] ;
+                      rdfs:subClassOf n2mu:interest .
+
+
+###  http://cltl.nl/leolani/n2mu/robot
+n2mu:robot rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:agent .
+
+
+###  http://cltl.nl/leolani/n2mu/sensor
+n2mu:sensor rdf:type owl:Class ;
+            owl:equivalentClass obo:MF_0000019 .
+
+
+###  http://cltl.nl/leolani/n2mu/smell
+n2mu:smell rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/song
+n2mu:song rdf:type owl:Class ;
+          rdfs:subClassOf n2mu:interest-occurrence .
+
+
+###  http://cltl.nl/leolani/n2mu/sound
+n2mu:sound rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/sport
+n2mu:sport rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:interest-field .
+
+
+###  http://cltl.nl/leolani/n2mu/sports-team
+n2mu:sports-team rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:interest-occurrence .
+
+
+###  http://cltl.nl/leolani/n2mu/taste
+n2mu:taste rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/temperature
+n2mu:temperature rdf:type owl:Class ;
+                 rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/touch
+n2mu:touch rdf:type owl:Class ;
+           rdfs:subClassOf n2mu:sensor .
+
+
+###  http://cltl.nl/leolani/n2mu/university
+n2mu:university rdf:type owl:Class ;
+                rdfs:subClassOf n2mu:institution .
+
+
+###  http://cltl.nl/leolani/n2mu/visual
+n2mu:visual rdf:type owl:Class ;
+            rdfs:subClassOf n2mu:sensor .
+
+
+###  http://groundedannotationframework.org/gaf#Assertion
+gaf:Assertion rdf:type owl:Class ;
+              rdfs:subClassOf gaf:Instance .
+
+
+###  http://groundedannotationframework.org/gaf#Instance
+gaf:Instance rdf:type owl:Class ;
+             owl:equivalentClass [ rdf:type owl:Restriction ;
+                                   owl:onProperty gaf:denotedBy ;
+                                   owl:someValuesFrom gaf:Mention
+                                 ] ;
+             rdfs:subClassOf owl:Thing ;
+             owl:disjointWith grasp:AttributionValue ;
+             rdfs:comment "Instances are statements about real world entities, including actions, processes and abstract notions. They are the primary subject of individuals of type gaf:Mention that can denote them."^^xsd:string ;
+             rdfs:label "Instance" .
+
+
+###  http://groundedannotationframework.org/gaf#Mention
+gaf:Mention rdf:type owl:Class ;
+            owl:equivalentClass [ rdf:type owl:Restriction ;
+                                  owl:onProperty gaf:denotes ;
+                                  owl:someValuesFrom gaf:Instance
+                                ] ;
+            rdfs:subClassOf owl:Thing ;
+            owl:disjointWith grasp:AttributionValue ;
+            rdfs:comment """Mentions are references to members of the gaf:Instance class as they occur in (web) media such as texts, video, audio, images, etc. Mentions denote gaf:Instances.
+
+A Mention uniquely identifies the (part of a) web source that denotes the mention. We refer to the standard use of fragment identifiers for different media types. """^^xsd:string ;
+            rdfs:label "Mention" .
+
+
+###  http://groundedannotationframework.org/grasp#Attribution
+grasp:Attribution rdf:type owl:Class ;
+                  owl:equivalentClass [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                               owl:onProperty rdf:value ;
+                                                               owl:someValuesFrom grasp:AttributionValue
+                                                             ]
+                                                             [ rdf:type owl:Restriction ;
+                                                               owl:onProperty [ owl:inverseOf grasp:hasAttribution
+                                                                              ] ;
+                                                               owl:someValuesFrom gaf:Mention
+                                                             ]
+                                                           ) ;
+                                        rdf:type owl:Class
+                                      ] ;
+                  rdfs:subClassOf owl:Thing ;
+                  owl:disjointWith grasp:AttributionValue ;
+                  rdfs:comment "A grasp:Attribution reflects the attribution of some interpretation, some perspective to a gaf:Mention. An attribution expresses such things as certainty, emotion, polarity, sentiment, temporality."^^xsd:string ;
+                  rdfs:label "Attribution" .
+
+
+###  http://groundedannotationframework.org/grasp#AttributionValue
+grasp:AttributionValue rdf:type owl:Class ;
+                       rdfs:subClassOf owl:Thing ;
+                       rdfs:comment "The value of a grasp:Attribution"^^xsd:string ;
+                       rdfs:label "Attribution value"^^xsd:string .
+
+
+###  http://groundedannotationframework.org/grasp#CertaintyValue
+grasp:CertaintyValue rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:oneOf ( graspf:certain
+                                                       graspf:possible
+                                                       graspf:probable
+                                                       graspf:underspecified
+                                                     )
+                                         ] ;
+                     rdfs:subClassOf grasp:FactualityValue ;
+                     owl:disjointWith grasp:PolarityValue ,
+                                      grasp:TemporalValue ;
+                     rdfs:comment "The level of certainty of a gaf:Mention"^^xsd:string ;
+                     rdfs:label "Certainty Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Chat
+grasp:Chat rdf:type owl:Class ;
+           rdfs:subClassOf sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#Detection
+grasp:Detection rdf:type owl:Class ;
+                rdfs:subClassOf sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#EmotionValue
+grasp:EmotionValue rdf:type owl:Class ;
+                   owl:equivalentClass [ rdf:type owl:Class ;
+                                         owl:oneOf ( graspe:anger
+                                                     graspe:disgust
+                                                     graspe:fear
+                                                     graspe:happiness
+                                                     graspe:sadness
+                                                     graspe:surprise
+                                                   )
+                                       ] ;
+                   rdfs:subClassOf grasp:AttributionValue ;
+                   owl:disjointWith grasp:FactualityValue ,
+                                    grasp:SentimentValue ;
+                   rdfs:comment "The emotion expressed in a gaf:Mention"^^xsd:string ;
+                   rdfs:label "Emotion Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Experience
+grasp:Experience rdf:type owl:Class ;
+                 rdfs:subClassOf gaf:Mention ,
+                                 sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#FactualityValue
+grasp:FactualityValue rdf:type owl:Class ;
+                      rdfs:subClassOf grasp:AttributionValue ;
+                      owl:disjointWith grasp:SentimentValue ;
+                      rdfs:label "Factuality value"^^xsd:string .
+
+
+###  http://groundedannotationframework.org/grasp#PolarityValue
+grasp:PolarityValue rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:oneOf ( graspf:negative
+                                                      graspf:positive
+                                                    )
+                                        ] ;
+                    rdfs:subClassOf grasp:FactualityValue ;
+                    owl:disjointWith grasp:TemporalValue ;
+                    rdfs:comment "The polarity of a gaf:Mention (e.g. if something is or isn't the case)"^^xsd:string ;
+                    rdfs:label "Polarity Value" .
+
+
+###  http://groundedannotationframework.org/grasp#SentimentValue
+grasp:SentimentValue rdf:type owl:Class ;
+                     owl:equivalentClass [ rdf:type owl:Class ;
+                                           owl:oneOf ( grasps:negative
+                                                       grasps:positive
+                                                     )
+                                         ] ;
+                     rdfs:subClassOf grasp:AttributionValue ;
+                     rdfs:comment "The sentiment expressed by a gaf:Mention"^^xsd:string ;
+                     rdfs:label "Sentiment Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Source
+grasp:Source rdf:type owl:Class ;
+             rdfs:subClassOf owl:Thing ;
+             rdfs:comment "" ;
+             rdfs:label "Source" .
+
+
+###  http://groundedannotationframework.org/grasp#Statement
+grasp:Statement rdf:type owl:Class ;
+                rdfs:subClassOf gaf:Mention ,
+                                sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#TemporalValue
+grasp:TemporalValue rdf:type owl:Class ;
+                    owl:equivalentClass [ rdf:type owl:Class ;
+                                          owl:oneOf ( graspf:future
+                                                      graspf:non-future
+                                                    )
+                                        ] ;
+                    rdfs:subClassOf grasp:FactualityValue ;
+                    rdfs:comment "The temporal property of a gaf:Mention"^^xsd:string ;
+                    rdfs:label "Temporal Value" .
+
+
+###  http://groundedannotationframework.org/grasp#Utterance
+grasp:Utterance rdf:type owl:Class ;
+                rdfs:subClassOf sem:Event .
+
+
+###  http://groundedannotationframework.org/grasp#Visual
+grasp:Visual rdf:type owl:Class ;
+             rdfs:subClassOf sem:Event .
+
+
+###  http://purl.obolibrary.org/obo/MF_0000019
+obo:MF_0000019 rdf:type owl:Class .
+
+
+###  http://schema.org/Place
+<http://schema.org/Place> rdf:type owl:Class .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Actor
+sem:Actor rdf:type owl:Class ;
+          rdfs:comment """Actors are entities that take part in an Event, either actively or passively. Actors do not necessarily have to be sentient. They can also be objects. Actors are a thing, animate or inanimate, physical or non-physical.
+""" ;
+          rdfs:label "Actor" ;
+          skos:broadMatch <http://sw.opencyc.org/2009/04/07/concept/en/SomethingExisting> ,
+                          <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#endurant> ;
+          skos:closeMatch <http://purl.org/dc/terms/Agent> ,
+                          <http://purl.org/dc/terms/AgentClass> ,
+                          <http://sw.opencyc.org/2009/04/07/concept/en/Agent-Generic> ,
+                          <http://www.ontologyportal.org/translations/SUMO.owl.txt#Agent> ,
+                          <http://www8.informatik.uni-erlangen.de/IMMD8/Services/cidoc-crm/erlangen-crm_090330_5_0_1.owl#E39.Actor> ,
+                          foaf:Agent .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Event
+sem:Event rdf:type owl:Class ;
+          rdfs:comment "Events are things that happen. This comprises everything from historical events to web site sessions and mythical journeys. Event is the central class of SEM." ;
+          rdfs:label "Event" ;
+          skos:broadMatch <http://linkedevents.org/ontology/Event> ,
+                          <http://purl.org/NET/c4dm/event.owl#Event> ;
+          skos:closeMatch <http://purl.org/dc/dcmitype/Event> ,
+                          <http://sw.opencyc.org/2009/04/07/concept/en/Situation> ,
+                          <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#perdurant> ,
+                          <http://www.ontologyportal.org/translations/SUMO.owl.txt#Process> ,
+                          <http://www8.informatik.uni-erlangen.de/IMMD8/Services/cidoc-crm/erlangen-crm_090330_5_0_1.owl#E5.Event> .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Place
+sem:Place rdf:type owl:Class ;
+          rdfs:comment "Places are locations where an Event happens. They do not need to be physical places and hence do not necessarily need coordinates. Neither do they need to have any significance apart from them being the location of an Event." ;
+          rdfs:label "Place" ;
+          skos:closeMatch <http://purl.org/dc/terms/Location> ,
+                          <http://sw.opencyc.org/2009/04/07/concept/en/EnduringThing-Localized> ,
+                          <http://www.ontologyportal.org/translations/SUMO.owl.txt#GeographicArea> ,
+                          <http://www8.informatik.uni-erlangen.de/IMMD8/Services/cidoc-crm/erlangen-crm_090330_5_0_1.owl#E53.Place> ;
+          skos:narrowMatch <http://www.loa-cnr.it/ontologies/DOLCE-Lite.owl#PhysicalRegion> ,
+                           <http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing> .
+
+
+###  http://semanticweb.cs.vu.nl/2009/11/sem/Time
+sem:Time rdf:type owl:Class ;
+         rdfs:comment "Time contains symbolic representations of when an Event took place. Time instances do not necessarily need to have a timestamp associated with them. The Time class exists to represent semantics of time, e.g. that one thing happens before another, even though the exact timestamps are unknown." ;
+         rdfs:label "Time" ;
+         skos:broadMatch <http://www.w3.org/2006/timeTemporalEntity> .
+
+
+###  http://xmlns.com/foaf/0.1/Agent
+foaf:Agent rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://groundedannotationframework.org/grasp/emotion#anger
+graspe:anger rdf:type owl:NamedIndividual ,
+                      grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#disgust
+graspe:disgust rdf:type owl:NamedIndividual ,
+                        grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#fear
+graspe:fear rdf:type owl:NamedIndividual ,
+                     grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#happiness
+graspe:happiness rdf:type owl:NamedIndividual ,
+                          grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#sadness
+graspe:sadness rdf:type owl:NamedIndividual ,
+                        grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/emotion#surprise
+graspe:surprise rdf:type owl:NamedIndividual ,
+                         grasp:EmotionValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#certain
+graspf:certain rdf:type owl:NamedIndividual ,
+                        grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#future
+graspf:future rdf:type owl:NamedIndividual ,
+                       grasp:TemporalValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#negative
+graspf:negative rdf:type owl:NamedIndividual ,
+                         grasp:PolarityValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#non-future
+graspf:non-future rdf:type owl:NamedIndividual ,
+                           grasp:TemporalValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#positive
+graspf:positive rdf:type owl:NamedIndividual ,
+                         grasp:PolarityValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#possible
+graspf:possible rdf:type owl:NamedIndividual ,
+                         grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#probable
+graspf:probable rdf:type owl:NamedIndividual ,
+                         grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/factuality#underspecified
+graspf:underspecified rdf:type owl:NamedIndividual ,
+                               grasp:CertaintyValue .
+
+
+###  http://groundedannotationframework.org/grasp/sentiment#negative
+grasps:negative rdf:type owl:NamedIndividual ,
+                         grasp:SentimentValue .
+
+
+###  http://groundedannotationframework.org/grasp/sentiment#positive
+grasps:positive rdf:type owl:NamedIndividual ,
+                         grasp:SentimentValue .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:book
+                n2mu:dish
+                n2mu:movie
+                n2mu:song
+                n2mu:sports-team
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( n2mu:cuisine
+                n2mu:film-genre
+                n2mu:literature-genre
+                n2mu:music-genre
+                n2mu:sport
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

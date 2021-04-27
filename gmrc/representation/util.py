@@ -10,6 +10,7 @@ from typing import Optional, Any
 
 Identifier = Optional[str]
 
+
 class Typed:
     @property
     def type(self) -> str:

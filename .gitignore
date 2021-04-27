@@ -149,3 +149,8 @@ cert.pem
 
 # MS VS Code stuff
 .vscode
+
+# npm
+package.json
+package-lock.json
+
