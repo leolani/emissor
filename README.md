@@ -1,21 +1,25 @@
 # EMISSOR
 
-EMISSOR is a repo to represent and annotate multimodal interaction in combination with an episodic memory for referential grounding.
 
-EMISSOR stands for \textbf{E}pisodic \textbf{M}emories and \textbf{I}nterpretations with \textbf{S}ituated 
-\textbf{S}cenario-based \textbf{O}ntological \textbf{R}eferences. 
+EMISSOR stands for **E**pisodic **M**emories and **I**nterpretations with **S**ituated 
+**S**cenario-based **O**ntological **R**eferences. 
+
+EMISSOR is a platform to represent and annotate multimodal interaction 
+in combination with an episodic memory for referential grounding and cumulative knowledge
+growth from interactions.
+
 The platform stores streams of multiple modalities as parallel signals. 
-Each signal can be segmented independently and annotated with interpretation. 
+Each signal can be segmented independently and annotated with interpretations. 
 However, these annotations do not stand on their own, but they are eventually mapped to explicit identities, 
-relations, and properties in an episodic Knowledge Graph (eKG) for capturing instances of situations. 
-We ground signal segments to formal instance representations and ground different modalities across each other 
-through these representations. We represent natural conversations in situated contexts in which actions and 
-utterances can be responses but can also happen independently. In addition, we capture these episodic experiences 
-as an explicit cumulative interpretation of streams of signals. 
+relations, and properties in an episodic Knowledge Graph (**eKG**) for capturing instances of situations. 
+Our model grounds signal segments to formal instance representations and ground different modalities across each other 
+through these representations. EMISSOR catures natural conversations in situated contexts in which actions and 
+utterances can be responses to each other in situations but can also happen independently. 
+In addition, we store these episodic experiences as an explicit cumulative interpretation of streams of signals. 
 
-Unique to our approach is that these annotations are eventually mapped to explicit identities 
-and relations in an RDF Knowledge Graph for capturing instances in situations which allows for 
-different interpretations across modalities, sources and experiences. 
+Unique to our approach is that our model allows for 
+different interpretations across modalities, sources and experiences. Our episodic memory thus reflects 
+the dynamics of interpretations but also conflicts and uncertainties.
 Likewise, we ground signal segments to unique instance representations and 
 ground different modalities across each other through these representations. 
 The Knowledge Graph represents a transparent episodic memory that can be used for reasoning.
@@ -25,8 +29,8 @@ we can record and annotate experiments, share data, evaluate system behavior and
 for preset goals but also model the accumulation of knowledge and interpretations in the Knowledge Graph 
 as a result of these episodic experiences. 
 
-Although EMISSOR can be connected to any kind of eKG to model situations, 
-this release includes an episodic memory that supports reasoning over conflicting information and 
+Although EMISSOR can be connected to any kind of eKG to model situations. 
+In this release includes an episodic memory that supports reasoning over conflicting information and 
 uncertainties that may result from multimodal experiences.
 
 ## [Data Representation](gmrc/representation/README.md)
