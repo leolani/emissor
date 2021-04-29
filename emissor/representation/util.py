@@ -1,12 +1,14 @@
 import enum
 from collections import namedtuple, Iterable
+from dataclasses import dataclass
 
 import numpy as np
-# import json
 import simplejson as json
 import uuid
 from rdflib import URIRef
-from typing import Optional, Any
+from typing import Optional, Any, Union
+import marshmallow_dataclass
+
 
 Identifier = Optional[str]
 
@@ -35,9 +37,15 @@ def serializer(obj):
     return {k: getattr(obj, k) for k in fields}
 
 
-def marshal(obj: Any) -> str:
-    return json.dumps(obj, default=serializer, indent=2)
+def marshal(obj: Any, indent: int=None) -> str:
+    schema = marshmallow_dataclass.class_schema(obj.__class__)()
+
+    return json.dumps(schema.dump(obj), indent=indent)
 
 
-def unmarshal(json_string: str) -> Any:
+def unmarshal(json_string: str, cls: type=None) -> Any:
+    if cls:
+        schema = marshmallow_dataclass.class_schema(cls)()
+        return schema.loads(json_string)
+
     return json.loads(json_string, object_hook=lambda d: namedtuple('JSON', d.keys())(*d.values()))
