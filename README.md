@@ -41,7 +41,7 @@ package can be built from the `setup.py` by executing
 ## [Annotation Tool](gmrc/annotation/README.md)
 
 In addition to the `gmrc.representation` package, this repo provides a tool that allows you to load multi-modal interaction
-data with annotations and to manually edit the data by grounding it to the 
+data with annotations and to manually edit the data by grounding it to the
 temporal and spatial containers ads well as by adding any annotations. For a
 detailed description see the [README](gmrc/annotation/README.md) of the annotation
 tool.
@@ -51,9 +51,9 @@ tool.
 Example data can be found in [*example_data/*](example_data) directory. Some of them are annotated by human and some are by machine. You can visualize them with the annotation tool. We highly recommend this, since it gives you how the modalities are referenced / grounded with each other.
 
 
-## [How to create GMRC annotations from existing datasets](https://github.com/tae898/multimodal-datasets)
+## [How to create EMISSOR annotations from existing datasets](https://github.com/tae898/multimodal-datasets)
 
-This repo collects multimodal datasets, process them, and annotate them in the GMRC annotation format. 
+This repo collects multimodal datasets, process them, and annotate them in the EMISSOR annotation format.
 
 This is done by [Taewoon Kim](https://tae898.github.io/). Ask him if you have any questions.
 
@@ -69,7 +69,7 @@ Contributions are what make the open source community such an amazing place to b
 
 ## License
 
-Distributed under the MIT License. See [`LICENSE`](https://github.com/leolani/cltl-combot/blob/main/LICENCE) for more information.
+Distributed under the MIT License. See [`LICENSE`](https://github.com/cltl/EMISSOR/blob/main/LICENCE) for more information.
 
 ## Authors
 * [Piek Vossen](https://github.com/piekvossen)
