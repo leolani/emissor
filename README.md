@@ -29,21 +29,21 @@ Although EMISSOR can be connected to any kind of eKG to model situations,
 this release includes an episodic memory that supports reasoning over conflicting information and 
 uncertainties that may result from multimodal experiences.
 
-## [Data Representation](gmrc/representation/README.md)
+## [Data Representation](emissor/representation/README.md)
 
-This repository provides the [`gmrc.representation`](gmrc/representation/README.md) Python package with data classes for
+This repository provides the [`emissor.representation`](emissor/representation/README.md) Python package with data classes for
 the representation of multi-modal interaction. A detailed description of the representation model can be found in the
-[README](gmrc/representation/README.md) of this package. For usage outside of this repository a distribution of the
+[README](emissor/representation/README.md) of this package. For usage outside of this repository a distribution of the
 package can be built from the `setup.py` by executing
 
     > python setup.py sdist
 
-## [Annotation Tool](gmrc/annotation/README.md)
+## [Annotation Tool](emissor/annotation/README.md)
 
-In addition to the `gmrc.representation` package, this repo provides a tool that allows you to load multi-modal interaction
+In addition to the `emissor.representation` package, this repo provides a tool that allows you to load multi-modal interaction
 data with annotations and to manually edit the data by grounding it to the
 temporal and spatial containers ads well as by adding any annotations. For a
-detailed description see the [README](gmrc/annotation/README.md) of the annotation
+detailed description see the [README](emissor/annotation/README.md) of the annotation
 tool.
 
 ## Example data

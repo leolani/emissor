@@ -5,11 +5,11 @@ from typing import Iterable, Any, Dict
 from nltk import TreebankWordTokenizer
 from pandas import Series
 
-from gmrc.annotation.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
-from gmrc.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
-from gmrc.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
-from gmrc.representation.entity import Person, Gender, Emotion
-from gmrc.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
+from emissor.annotation.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
+from emissor.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
+from emissor.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
+from emissor.representation.entity import Person, Gender, Emotion
+from emissor.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation, Signal
 
 _SPEAKER = Person(str(uuid.uuid4()), "Speaker", 50, Gender.UNDEFINED)

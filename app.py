@@ -5,7 +5,7 @@ import os
 
 import argparse
 
-from gmrc.annotation.endpoint import create_app
+from emissor.annotation.endpoint import create_app
 
 root = logging.getLogger()
 root.setLevel(logging.INFO)
@@ -24,7 +24,7 @@ if __name__ == "__main__":
     app_path = os.path.dirname(os.path.realpath(__file__))
     default_static = os.path.join(app_path, 'data')
 
-    parser = argparse.ArgumentParser(description='Web server for GMRC annotations app')
+    parser = argparse.ArgumentParser(description='Web server for EMISSOR annotations app')
     parser.add_argument('-data', type=str, default=default_static,
                         help='Path to the directory containing scenario data. Defaults to ./data')
     args = parser.parse_args()
