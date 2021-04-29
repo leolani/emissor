@@ -155,8 +155,8 @@ class DataSet():
         Note that a dialogue (session) contains at least one utterance.
 
         """
-        self.chat_gmrc = []
-        self.image_gmrc = []
+        self.chat_emissor = []
+        self.image_emissor = []
 
         self.face_recognition_dia(SPLIT, diaid, interval_sec)
 
@@ -171,7 +171,7 @@ class DataSet():
 
             self.load_text(SPLIT, uttid)
             if self.text is not None:
-                self.chat_gmrc.append(
+                self.chat_emissor.append(
                     [self.text['Speaker'], self.text['Utterance'],
                      starttime_msec])
 
@@ -182,11 +182,11 @@ class DataSet():
 
             starttime_msec += self.duration_msec
 
-        if len(self.image_gmrc) != 0:
-            self.write_image_gmrc(EXAMPLE_DIR, SPLIT, diaid)
+        if len(self.image_emissor) != 0:
+            self.write_image_emissor(EXAMPLE_DIR, SPLIT, diaid)
 
-        if len(self.chat_gmrc) != 0:
-            self.write_chat_gmrc(EXAMPLE_DIR, SPLIT, diaid)
+        if len(self.chat_emissor) != 0:
+            self.write_chat_emissor(EXAMPLE_DIR, SPLIT, diaid)
 
     def annotate_write_frames(self, starttime_msec, SPLIT, diaid, uttid,
                               emotion):
@@ -250,24 +250,24 @@ class DataSet():
                 frame_info['mentions'].append({'annotations': annotations,
                                                'id': mention_id,
                                                'segment': segment})
-            self.image_gmrc.append(frame_info)
+            self.image_emissor.append(frame_info)
 
-    def write_image_gmrc(self, SAVE_AT, SPLIT, diaid):
+    def write_image_emissor(self, SAVE_AT, SPLIT, diaid):
         os.makedirs(os.path.join(
             SAVE_AT, self.DATASET, SPLIT, diaid, 'image'), exist_ok=True)
 
         with open(os.path.join(SAVE_AT, self.DATASET, SPLIT, diaid,
                                'image.json'), 'w') as stream:
-            json.dump(self.image_gmrc, stream)
+            json.dump(self.image_emissor, stream)
 
-    def write_chat_gmrc(self, SAVE_AT, SPLIT, diaid):
+    def write_chat_emissor(self, SAVE_AT, SPLIT, diaid):
         os.makedirs(os.path.join(SAVE_AT, self.DATASET, SPLIT, diaid, 'text'),
                     exist_ok=True)
         with open(os.path.join(SAVE_AT, self.DATASET, SPLIT,
                                diaid, 'text', f"{diaid}.csv"), 'w') as stream:
             stream.write('speaker,utterance,time\n')
 
-            for line in self.chat_gmrc:
+            for line in self.chat_emissor:
                 speaker, utterance, starttime_msec = line
                 stream.write(speaker)
                 stream.write(',')
