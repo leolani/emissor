@@ -7,8 +7,8 @@ temporal and spatial containers ads well as by adding any annotations.
 
 * Run the frontend, either from a docker container 
 
-        > docker run --rm -ti -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli npm install
-        > docker run --rm -ti -p 4200:4200 -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
+        > docker run --rm -ti -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli npm install
+        > docker run --rm -ti -p 4200:4200 -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
 
   or by install node.js and angular
 
@@ -20,8 +20,8 @@ temporal and spatial containers ads well as by adding any annotations.
 
   If you run into issues with typescript versions, try:
   
-        > docker run --rm -ti -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli npm uninstall typescript
-        > docker run --rm -ti -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli npm i -D typescript@4.0.5
+        > docker run --rm -ti -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli npm uninstall typescript
+        > docker run --rm -ti -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli npm i -D typescript@4.0.5
         
   If you run into issues with node versions, try in *webapp/*:
   
