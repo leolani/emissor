@@ -4,7 +4,7 @@ We propose a generic and simple structure for representing multimodal interactio
 This data can be derived from human-human, human-agent and agent-agent interactions, 
 where agents can be robots or virtual agents. Our motivation for doing this is that 
 it can be used to hold, combine and share data across many different experiments and allows to compare these.
-Out motivation for this representation can be found in our seminal paper: Baez et al. 2021 (see references below).
+Our motivation for this representation can be found in our seminal paper: Baez et al. 2021 (see references below).
 
 This README explains the data folder in this repository, which illustrates how to structure data.
 This data can be rendered by interacting systems that record the interaction and it can be annotated 

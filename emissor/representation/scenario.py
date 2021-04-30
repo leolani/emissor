@@ -9,10 +9,10 @@ import uuid
 import numpy as np
 from typing import Iterable, Dict, TypeVar, Type, Generic, Any, List
 
-from gmrc.representation.container import Container, TemporalContainer, Ruler, TemporalRuler, Sequence, \
+from emissor.representation.container import Container, TemporalContainer, Ruler, TemporalRuler, Sequence, \
     ArrayContainer, Index, MultiIndex, BaseContainer
-from gmrc.representation.entity import Person, Object
-from gmrc.representation.util import Identifier, serializer, Typed
+from emissor.representation.entity import Person, Object
+from emissor.representation.util import Identifier, serializer, Typed
 
 T = TypeVar('T')
 U = TypeVar('U')

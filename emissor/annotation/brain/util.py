@@ -10,10 +10,10 @@ class Brain:
     def __init__(self, ememory_path):
         self.ememory_path = Path(ememory_path).resolve()
 
-        with path('gmrc.annotation.brain', 'queries') as p:
+        with path('emissor.annotation.brain', 'queries') as p:
             self.queries_path = p
 
-        with path('gmrc.annotation.brain', 'world_model') as p:
+        with path('emissor.annotation.brain', 'world_model') as p:
             self.ontologies_path = p
 
         self.ontology = self._load_ontology()
