@@ -12,17 +12,19 @@ The platform stores streams of multiple modalities as parallel signals.
 Each signal can be segmented independently and annotated with interpretations. 
 However, these annotations do not stand on their own, but they are eventually mapped to explicit identities, 
 relations, and properties in an episodic Knowledge Graph (**eKG**) for capturing instances of situations. 
-Our model grounds signal segments to formal instance representations and ground different modalities across each other 
-through these representations. EMISSOR catures natural conversations in situated contexts in which actions and 
-utterances can be responses to each other in situations but can also happen independently. Through this representation,
-we can record and annotate experiments, share data, evaluate system behavior and their performance 
+Our model grounds signal segments to formal instance representations and it grounds different modalities (e.g. vision and references in dialogues) across each other 
+through these representations. EMISSOR captures natural conversations in situated contexts in which actions and 
+utterances can be responses to each other in situations but can also happen independently. We achieve this through
+a flexible and robust data architecture with separate independent storage of data in different modalities
+that can be aligned through so-called temporal and spatial containers. Through this representation, we can record and annotate experiments, share data, evaluate system behavior and their performance 
 for preset goals but also model the accumulation of knowledge and interpretations in the **eKG**
 as a result of these episodic experiences.
 
 Although EMISSOR can be connected to any kind of eKG to model situations, this release 
 includes an episodic memory that supports reasoning over conflicting information and 
 uncertainties that may result from multimodal experiences. Our model allows for 
-different interpretations across modalities, sources and experiences.
+different interpretations across modalities, sources and experiences. Finally note that EMISSOR can also be used
+without any eKG to represent and annotate multimodal interaction data.
 
 ## [Data Representation](gmrc/representation/README.md)
 
