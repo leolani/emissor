@@ -1,9 +1,10 @@
-# Multimodal Interaction Data Representation (MIDR)
+# Multimodal Interaction Data Representation
 
 We propose a generic and simple structure for representing multimodal interaction data. 
 This data can be derived from human-human, human-agent and agent-agent interactions, 
 where agents can be robots or virtual agents. Our motivation for doing this is that 
 it can be used to hold, combine and share data across many different experiments and allows to compare these.
+Out motivation for this representation can be found in our seminal paper: Baez et al. 2021 (see references below).
 
 This README explains the data folder in this repository, which illustrates how to structure data.
 This data can be rendered by interacting systems that record the interaction and it can be annotated 
@@ -486,6 +487,14 @@ explicitly in the JSON file, but we can annotate segments through URIs that are 
 
 ## References
 ```
+
+inproceedings@{emissor:2021,
+        title = {EMISSOR: A platform for capturing multimodal interactions as Episodic Memories and Interpretations with Situated Scenario-based Ontological References},
+        author = {Selene Baez Santamaria and Thomas Baier and Taewoon Kim and Lea Krause and Jaap Kruijt and Piek Vossen},
+        url={https://mmsr-workshop.github.io/programme},
+        booktitle = {Processings of the MMSR workshop "Beyond Language: Multimodal Semantic Representations", IWSC2021},
+        year = {2021}
+
 
 @incollection{ide2007towards,
   title={Towards International Standards for Language Resources Nancy Ide and Laurent Romary},
