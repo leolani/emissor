@@ -2,9 +2,9 @@ from flasgger import Swagger
 from flask import Flask, request
 from flask_cors import CORS
 
-from gmrc.annotation.backend import Backend
-from gmrc.representation.scenario import Modality
-from gmrc.representation.util import unmarshal, marshal
+from emissor.annotation.backend import Backend
+from emissor.representation.scenario import Modality
+from emissor.representation.util import unmarshal, marshal
 
 
 def create_app(data_path):

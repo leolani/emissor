@@ -9,7 +9,7 @@ import numpy as np
 import uuid
 from typing import Union, TypeVar, Generic, Iterable, Tuple, Type, Any
 
-from gmrc.representation.util import Identifier, Typed, marshal
+from emissor.representation.util import Identifier, Typed, marshal
 
 
 @dataclass

@@ -1,4 +1,4 @@
-# GMRC Annotations
+# EMISSOR Annotations
 
 The tool that is described in this package allows you to load such data with annotations and to manually edit the data by grounding it to the 
 temporal and spatial containers ads well as by adding any annotations.
@@ -7,8 +7,8 @@ temporal and spatial containers ads well as by adding any annotations.
 
 * Run the frontend, either from a docker container 
 
-        > docker run --rm -ti -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli npm install
-        > docker run --rm -ti -p 4200:4200 -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
+        > docker run --rm -ti -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli npm install
+        > docker run --rm -ti -p 4200:4200 -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
 
   or by install node.js and angular
 
@@ -20,8 +20,8 @@ temporal and spatial containers ads well as by adding any annotations.
 
   If you run into issues with typescript versions, try:
   
-        > docker run --rm -ti -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli npm uninstall typescript
-        > docker run --rm -ti -v /absolute/path/to/repository/GMRCAnnotation/webapp:/app trion/ng-cli npm i -D typescript@4.0.5
+        > docker run --rm -ti -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli npm uninstall typescript
+        > docker run --rm -ti -v /absolute/path/to/repository/EMISSORAnnotation/webapp:/app trion/ng-cli npm i -D typescript@4.0.5
         
   If you run into issues with node versions, try in *webapp/*:
   
@@ -77,8 +77,8 @@ If the files already exist, they are used, if not, the will be generated from th
 
 The *.csv* files for the text signals are currently expected to contain at least an `utterance` and `time` column.
 
-For custom annotations related to a specific ontology, please add the `.ttl` files to  `gmrc/annotation/brain/ontologies`. 
-For annotations related to an existing episodic memory, please add the `.trig` files to  `gmrc/annotation/brain/episodic_memory`. 
+For custom annotations related to a specific ontology, please add the `.ttl` files to  `emissor/annotation/brain/ontologies`. 
+For annotations related to an existing episodic memory, please add the `.trig` files to  `emissor/annotation/brain/episodic_memory`. 
 
 **Note that the tool will create one signal for each
 image entry, i.e. if an image should be present multiple times, multiple copies of it should be placed in the image folder.**
@@ -195,7 +195,7 @@ in the frontend and supporting selection of the annotation in a couple of places
 ### Backend
 
 ##### Representation
-Add a class representing the data of the custom annotation to the `gmrc/representation/annotation.py` module. Follow the
+Add a class representing the data of the custom annotation to the `emissor/representation/annotation.py` module. Follow the
 examples that can be found there, the simplest case being the `Display` annotation.
 
 ##### Backend

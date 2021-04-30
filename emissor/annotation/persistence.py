@@ -6,10 +6,10 @@ import pandas as pd
 from PIL import Image
 from pandas import DataFrame
 
-from gmrc.annotation.brain.util import Brain
-from gmrc.annotation.cache import ScenarioCache
-from gmrc.representation.scenario import Scenario, Modality, Signal
-from gmrc.representation.util import unmarshal, marshal
+from emissor.annotation.brain.util import Brain
+from emissor.annotation.cache import ScenarioCache
+from emissor.representation.scenario import Scenario, Modality, Signal
+from emissor.representation.util import unmarshal, marshal
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 

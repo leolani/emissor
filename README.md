@@ -26,21 +26,21 @@ uncertainties that may result from multimodal experiences. Our model allows for
 different interpretations across modalities, sources and experiences. Finally note that EMISSOR can also be used
 without any eKG to represent and annotate multimodal interaction data.
 
-## [Data Representation](gmrc/representation/README.md)
+## [Data Representation](emissor/representation/README.md)
 
-This repository provides the [`gmrc.representation`](gmrc/representation/README.md) Python package with data classes for
+This repository provides the [`emissor.representation`](emissor/representation/README.md) Python package with data classes for
 the representation of multi-modal interaction. A detailed description of the representation model can be found in the
-[README](gmrc/representation/README.md) of this package. For usage outside of this repository a distribution of the
+[README](emissor/representation/README.md) of this package. For usage outside of this repository a distribution of the
 package can be built from the `setup.py` by executing
 
     > python setup.py sdist
 
-## [Annotation Tool](gmrc/annotation/README.md)
+## [Annotation Tool](emissor/annotation/README.md)
 
-In addition to the `gmrc.representation` package, this repo provides a tool that allows you to load multi-modal interaction
+In addition to the `emissor.representation` package, this repo provides a tool that allows you to load multi-modal interaction
 data with annotations and to manually edit the data by grounding it to the 
 temporal and spatial containers ads well as by adding any annotations. For a
-detailed description see the [README](gmrc/annotation/README.md) of the annotation
+detailed description see the [README](emissor/annotation/README.md) of the annotation
 tool.
 
 ## Example data
@@ -48,9 +48,9 @@ tool.
 Example data can be found in [*example_data/*](example_data) directory. Some of them are annotated by human and some are by machine. You can visualize them with the annotation tool. We highly recommend this, since it gives you how the modalities are referenced / grounded with each other.
 
 
-## [How to create GMRC annotations from existing datasets](https://github.com/tae898/multimodal-datasets)
+## [How to create EMISSOR annotations from existing datasets](https://github.com/tae898/multimodal-datasets)
 
-This repo collects multimodal datasets, process them, and annotate them in the GMRC annotation format. 
+This repo collects multimodal datasets, process them, and annotate them in the EMISSOR annotation format. 
 
 This is done by [Taewoon Kim](https://tae898.github.io/). Ask him if you have any questions.
 

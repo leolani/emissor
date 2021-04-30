@@ -1,12 +1,12 @@
-# convert2gmrc
+# convert2emissor
 
 **This has been moved to https://github.com/tae898/multimodal-datasets.**
 
-<s>This directory includes a shell script to download the datasets and a python script to annotate them in the GMRC format.
+<s>This directory includes a shell script to download the datasets and a python script to annotate them in the EMISSOR format.
 
-Below is an example of loading the GMRC annotated MELD dataset with the webapp GUI.
+Below is an example of loading the EMISSOR annotated MELD dataset with the webapp GUI.
 
-![convert2gmrc example](convert2gmrc.png)
+![convert2emissor example](convert2emissor.png)
 
 ## Things to note
 
@@ -31,7 +31,7 @@ In the current directory where this `README.md` is located, run
 bash download.sh IEMOCAP MELD
 ```
 
-### 2. Annotate the datasets in the GMRC format
+### 2. Annotate the datasets in the EMISSOR format
 
 In the current directory where this `README.md` is located, run
 ```
