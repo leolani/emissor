@@ -6,7 +6,7 @@ import pandas as pd
 from PIL import Image
 from pandas import DataFrame
 
-from emissor.annotation.brain.util import Brain
+from emissor.annotation.brain.util import EmissorBrain
 from emissor.annotation.cache import ScenarioCache
 from emissor.representation.scenario import Scenario, Modality, Signal
 from emissor.representation.util import unmarshal, marshal
@@ -130,8 +130,9 @@ class ScenarioStorage:
 
         self._cache = ScenarioCache(scenario_id)
 
+        # Load memories
         ememory_path = self._get_path(scenario_id, 'rdf', 'episodic_memory', extension=None)
-        self.brain = Brain(ememory_path)
+        self.brain = EmissorBrain(ememory_path)
 
         return scenario
 
