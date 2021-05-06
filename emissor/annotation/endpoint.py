@@ -385,49 +385,44 @@ def create_app(data_path):
         """
         return marshal(backend.load_relation_types())
 
-    @app.route('/api/scenario/<scenario_id>/annotation/<class_type>/instances')
-    def load_annotation_instances(scenario_id: str, class_type: str):
-        """Get all potential annotation instances (according to the given type) based on the episodic memory
-        Lists all instances of the given type in the brain.
+    @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/<mention_id>/<annotation_id>/denotedBy')
+    def create_denotedBy(scenario_id: str, modality: str, signal_id: str, mention_id: str, annotation_id: str):
+        """Create links between signal annotations in brain
+        Link mentions to instances by loading the annotations in signals of a given modality in a scenario
         ---
         tags:
-          - annotation-brain
+          - signals
         parameters:
           - name: scenario_id
             in: path
             type: string
             required: true
             default: 'scenario_1'
-          - name: class_type
+          - name: modality
             in: path
             type: string
-            enum: ['n2mu:person', 'n2mu:robot', 'n2mu:object', '<other_class types>']
+            enum: ['image', 'text', 'audio', 'video']
             required: true
-            default: n2mu:person
-        definitions:
-          AnnotationValues:
-            type: array
-            items:
-              $ref: '#/definitions/AnnotationValue'
-          AnnotationValue:
-            type: object
-            properties:
-              full_id:
-                type: URI
-              prefixed_id:
-                type: string
-              prefix:
-                type: string
-              id:
-                type: string
-              label:
-                type: string
+            default: 'text'
+          - name: signal_id
+            in: path
+            type: string
+            required: true
+            default: '4f0bbc71-2369-4d55-8dd0-b00e56c0f0b2'
+          - name: mention_id
+            in: path
+            type: string
+            required: true
+            default: '68fdc43f-cc13-46a9-b9ab-d26abacc8fdb'
+          - name: annotation_id
+            in: path
+            type: string
+            required: true
+            default: '190cb100-e2c7-4f15-9f2f-8c6f3a73a88f'
         responses:
           200:
-            description: A list of instances (filtered by class type) representing potential annotation values
-            schema:
-              $ref: '#/definitions/AnnotationValues'
+            description: Successful addition of the link between mention and an annotation
         """
-        return marshal(backend.load_instances_of_type(class_type))
+        return marshal(backend.create_denotations(scenario_id, modality, signal_id, mention_id, annotation_id))
 
     return app
