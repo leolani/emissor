@@ -1,14 +1,15 @@
+import collections.abc
 import enum
-from collections import namedtuple, Iterable
-from dataclasses import dataclass
+import numbers
+import uuid
+from collections import namedtuple
+from typing import Optional, Any
 
+import marshmallow
+import marshmallow_dataclass
 import numpy as np
 import simplejson as json
-import uuid
 from rdflib import URIRef
-from typing import Optional, Any, Union
-import marshmallow_dataclass
-
 
 Identifier = Optional[str]
 
@@ -28,7 +29,7 @@ def serializer(obj):
         return obj.tolist()
     if isinstance(obj, tuple) and hasattr(obj, '_asdict'):
         return obj._asdict()
-    if isinstance(obj, Iterable):
+    if isinstance(obj, collections.abc.Iterable):
         return list(obj)
 
     # Include @property
@@ -37,15 +38,30 @@ def serializer(obj):
     return {k: getattr(obj, k) for k in fields}
 
 
-def marshal(obj: Any, indent: int=None) -> str:
-    schema = marshmallow_dataclass.class_schema(obj.__class__)()
+def marshal(obj: Any, *, indent: int = 2, cls: type = None, default=None) -> str:
+    if not cls:
+        return json.dumps(obj, default=default if default else serializer, indent=indent)
 
-    return json.dumps(schema.dump(obj), indent=indent)
+    if default:
+        raise ValueError("don't specify default if cls is already specified")
+
+    is_collection = isinstance(obj, collections.abc.Iterable)
+    schema = marshmallow_dataclass.class_schema(cls)()
+
+    return schema.dumps(obj, indent=indent, many=is_collection)
 
 
-def unmarshal(json_string: str, cls: type=None) -> Any:
-    if cls:
-        schema = marshmallow_dataclass.class_schema(cls)()
-        return schema.loads(json_string)
+def unmarshal(json_string: str, *, cls: type = None) -> Any:
+    if not cls:
+        return json.loads(json_string, object_hook=lambda d: namedtuple('JSON', d.keys())(*d.values()))
 
-    return json.loads(json_string, object_hook=lambda d: namedtuple('JSON', d.keys())(*d.values()))
+    mapping = json.loads(json_string)
+
+    # Valid JSON is either an object, array, number, string, false, null or true (https://tools.ietf.org/rfc/rfc7159.txt)
+    if mapping is None or isinstance(mapping, (str, numbers.Number, bool)):
+        return mapping
+
+    is_collection = not isinstance(mapping, dict)
+    schema = marshmallow_dataclass.class_schema(cls)()
+
+    return schema.load(mapping, unknown=marshmallow.EXCLUDE, many=is_collection)
