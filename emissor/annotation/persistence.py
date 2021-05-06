@@ -12,6 +12,7 @@ from emissor.representation.scenario import Scenario, Modality, Signal
 from emissor.representation.util import unmarshal, marshal
 
 ANNOTATION_TOOL_ID = "annotation_tool"
+SPACY_ID = "SpaCY"
 
 _MAX_GUESS_RANGE = 1000 * 60 * 60 * 24 * 365 * 100
 

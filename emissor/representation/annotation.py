@@ -20,10 +20,11 @@ class AnnotationType(enum.Enum):
     DISPLAY = 0
     PERSON = 1
     EMOTION = 2
-    FRIEND = 2
-    OBJECT = 3
-    TOKEN = 4
-    POS = 4
+    FRIEND = 3
+    OBJECT = 4
+    TOKEN = 5
+    POS = 6
+    NER = 7
 
 
 class ImageLabel(enum.Enum):
@@ -44,6 +45,12 @@ class Entity:
 
 @dataclass
 class Token(AtomicContainer[str]):
+    @classmethod
+    def for_string(cls, value: str):
+        return cls(str(uuid.uuid4()), AtomicRuler(None), value)
+
+@dataclass
+class NER(AtomicContainer[str]):
     @classmethod
     def for_string(cls, value: str):
         return cls(str(uuid.uuid4()), AtomicRuler(None), value)
