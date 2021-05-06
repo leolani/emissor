@@ -1,6 +1,7 @@
 Flask==1.1.2
 Flask-Cors==3.0.9
 nltk==3.5
+marshmallow==3.11.1
 marshmallow-dataclass==8.4.1
 numpy==1.20.0
 numpy==1.20.0
