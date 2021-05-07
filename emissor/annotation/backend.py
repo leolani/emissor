@@ -139,3 +139,26 @@ class Backend:
 
     def load_instances_of_type(self, class_type: str) -> Iterable[Dict]:
         return self._storage.brain.get_instances_of_type(class_type)
+
+    def create_denotations(self, scenario_id: str, modality: str, signal_id: str, mention_id: str,
+                           annotation_id: str) -> None:
+
+        # Load modality data
+        signals = self.load_modality(scenario_id, Modality[modality.upper()])
+
+        # Filter signals to get the right one
+        signals = [sig for sig in signals if sig.id == signal_id]
+        signal = signals[0]
+
+        # Filter mentions to get the right one
+        mentions = [men for men in signal.mentions if men.id == mention_id]
+        mention = mentions[0]
+
+        # Filter annotations to get the right one
+        annotations = [ann for ann in mention.annotations if ann.value.id == annotation_id]
+        annotation = annotations[0]
+
+        # Create triple
+        triples = self._storage.brain.denote_things(mention, annotation)
+
+        return {"triples": triples}
