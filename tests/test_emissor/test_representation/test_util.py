@@ -1,9 +1,11 @@
+import json
 import uuid
 from dataclasses import dataclass
+from pprint import pprint
 from typing import Union, Optional
 from unittest import TestCase
-from uuid import UUID
 
+from emissor.representation.ldschema import emissor_dataclass, EMISSOR_NAMESPACE, LdProperty
 from emissor.representation.util import marshal, unmarshal
 
 
@@ -12,8 +14,11 @@ class TestMarshallingWithTypes(TestCase):
         @dataclass
         class TestString:
             label: str
+            json_ld_context: Union[str, dict]
 
-        instance = TestString("testString")
+        instance = TestString("testString", {'id': '@id'})
+        print(marshal(instance, cls=TestString))
+
         unmarshalled = unmarshal(marshal(instance, cls=TestString), cls=TestString)
 
         self.assertIsInstance(unmarshalled, TestString)
@@ -318,3 +323,76 @@ class TestOnlyUnmarshallingWithTypes(TestCase):
 
         self.assertIsInstance(unmarshalled, list)
         self.assertSetEqual(set(unmarshalled), instance)
+
+
+class TestLDMarshalling(TestCase):
+    def test_plain(self):
+        @emissor_dataclass
+        class TestString:
+            label: str
+
+        instance = TestString("testString")
+        json_string = marshal(instance, cls=TestString)
+        print(json_string)
+
+        obj_dict = json.loads(json_string)
+        type_ = obj_dict["@type"]
+        context = obj_dict["@context"]
+        pprint(context)
+
+        self.assertEqual("TestString", type_)
+        self.assertEqual(EMISSOR_NAMESPACE + "#" + "TestString", context["TestString"])
+        self.assertEqual(EMISSOR_NAMESPACE + "#" + "label", context["label"])
+
+    def test_alias(self):
+        @emissor_dataclass
+        class TestString:
+            label: str = LdProperty(alias="name")
+
+        instance = TestString("testString")
+        json_string = marshal(instance, cls=TestString)
+
+        obj_dict = json.loads(json_string)
+        type_ = obj_dict["@type"]
+        context = obj_dict["@context"]
+
+        self.assertEqual("TestString", type_)
+        self.assertEqual(EMISSOR_NAMESPACE + "#" + "TestString", context["TestString"])
+        self.assertEqual(EMISSOR_NAMESPACE + "#" + "name", context["label"])
+
+    def test_separator(self):
+        @emissor_dataclass(separator="/")
+        class TestString:
+            label: str = LdProperty(alias="name")
+
+        instance = TestString("testString")
+        json_string = marshal(instance, cls=TestString)
+
+        obj_dict = json.loads(json_string)
+        type_ = obj_dict["@type"]
+        context = obj_dict["@context"]
+
+        self.assertEqual("TestString", type_)
+        self.assertEqual(EMISSOR_NAMESPACE + "/" + "TestString", context["TestString"])
+        self.assertEqual(EMISSOR_NAMESPACE + "/" + "name", context["label"])
+
+    def test_unmarshall_type(self):
+        @emissor_dataclass
+        class TestString:
+            label: str
+
+        instance = TestString("testString")
+        unmarshalled = unmarshal(marshal(instance, cls=TestString), cls=TestString)
+
+        self.assertIsInstance(unmarshalled, TestString)
+        self.assertEqual(unmarshalled.label, "testString")
+
+    def test_unmarshall_without_type(self):
+        @emissor_dataclass
+        class TestString:
+            label: str
+
+        instance = TestString("testString")
+        unmarshalled = unmarshal(marshal(instance, cls=TestString))
+
+        self.assertEqual(unmarshalled.label, "testString")

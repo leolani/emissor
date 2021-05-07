@@ -2,22 +2,31 @@ import collections.abc
 import enum
 import numbers
 import uuid
+from abc import ABC
 from collections import namedtuple
-from typing import Optional, Any, Callable
+from dataclasses import dataclass
+from typing import Any, Callable, TypeVar, Generic, NewType, ClassVar
 
 import marshmallow
 import marshmallow_dataclass
 import numpy as np
 import simplejson as json
+from marshmallow import fields, Schema, EXCLUDE
 from rdflib import URIRef
 
-Identifier = Optional[str]
+from emissor.representation.ldschema import LD_CONTEXT_FIELD, emissor_dataclass, LD_TYPE_FIELD
 
 
-class Typed:
-    @property
-    def type(self) -> str:
-        return self.__class__.__name__
+Identifier = str
+
+
+class _JsonLdSchema(marshmallow.Schema):
+    """A Schema that marshals data with JSON-LD contexts."""
+    _ld_context = fields.Dict(data_key="@context", dump_only=True)
+    _ld_type = fields.Str(data_key="@type", dump_only=True)
+
+    class Meta:
+        unknown = EXCLUDE
 
 
 def serializer(obj):
@@ -69,7 +78,7 @@ def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[A
         return json.dumps(obj, default=default if default else serializer, indent=indent)
 
     is_collection = isinstance(obj, collections.abc.Iterable)
-    schema = marshmallow_dataclass.class_schema(cls)()
+    schema = marshmallow_dataclass.class_schema(cls, base_schema=_JsonLdSchema)()
 
     return schema.dumps(obj, indent=indent, many=is_collection)
 
@@ -97,16 +106,60 @@ def unmarshal(json_string: str, *, cls: type = None) -> Any:
         an instance or collection of this type is returned, otherwise a named
         tuple.
     """
-    if not cls:
-        return json.loads(json_string, object_hook=lambda d: namedtuple('JSON', d.keys())(*d.values()))
+    if cls:
+        mapping = json.loads(json_string)
 
-    mapping = json.loads(json_string)
+        # Valid JSON is either an object, array, number, string, false, null or true (https://tools.ietf.org/rfc/rfc7159.txt)
+        if mapping is None or isinstance(mapping, (str, numbers.Number, bool)):
+            return mapping
 
-    # Valid JSON is either an object, array, number, string, false, null or true (https://tools.ietf.org/rfc/rfc7159.txt)
-    if mapping is None or isinstance(mapping, (str, numbers.Number, bool)):
-        return mapping
+        is_collection = not isinstance(mapping, dict)
+        schema = marshmallow_dataclass.class_schema(cls, base_schema=_JsonLdSchema)()
 
-    is_collection = not isinstance(mapping, dict)
-    schema = marshmallow_dataclass.class_schema(cls)()
+        return schema.load(mapping, unknown=marshmallow.EXCLUDE, many=is_collection)
+    else:
+        def hook(obj_dict):
+            valid_attributes = {k: v for k, v in obj_dict.items() if k.isidentifier()}
 
-    return schema.load(mapping, unknown=marshmallow.EXCLUDE, many=is_collection)
+            return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
+
+        return json.loads(json_string, object_hook=hook)
+
+
+if __name__ == '__main__':
+    @emissor_dataclass
+    class Ruler(ABC):
+        container_id: Identifier
+
+    @emissor_dataclass
+    class TemporalRuler(Ruler):
+        start: int
+        end: int
+
+
+    R = TypeVar('R', bound=Ruler)
+    T = TypeVar('T')
+
+    @emissor_dataclass
+    class Container(Generic[R, T], ABC):
+        pass
+
+
+    @emissor_dataclass
+    class BaseContainer(Container[R, T], ABC):
+        id: Identifier
+        ruler: R
+
+
+    @emissor_dataclass
+    class TemporalContainer(BaseContainer[TemporalRuler, TemporalRuler]):
+        ruler: TemporalRuler
+
+    t = TemporalContainer("cid", TemporalRuler("rid", 0, 1))
+    print(t._ld_context)
+    print(marshal(t, cls=TemporalContainer))
+    s = marshal(t, cls=TemporalContainer)
+    print(unmarshal(s, cls=TemporalContainer))
+    tr = TemporalRuler("rid", 0, 1)
+    print(marshal(tr, cls=TemporalRuler))
+    print(unmarshal(marshal(tr, cls=TemporalRuler), cls=TemporalRuler))

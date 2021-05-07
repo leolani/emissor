@@ -1,18 +1,17 @@
-# Define Annotation Class
 import enum
-import os
-from abc import ABC
-from dataclasses import dataclass
-
 import json
+import os
 import uuid
-import numpy as np
+from abc import ABC
 from typing import Iterable, Dict, TypeVar, Type, Generic, Any, List
 
-from emissor.representation.container import Container, TemporalContainer, Ruler, TemporalRuler, Sequence, \
+import numpy as np
+
+from emissor.representation.container import TemporalContainer, Ruler, TemporalRuler, Sequence, \
     ArrayContainer, Index, MultiIndex, BaseContainer
 from emissor.representation.entity import Person, Object
-from emissor.representation.util import Identifier, serializer, Typed
+from emissor.representation.ldschema import emissor_dataclass
+from emissor.representation.util import Identifier, serializer
 
 T = TypeVar('T')
 U = TypeVar('U')
@@ -25,7 +24,7 @@ class Modality(enum.Enum):
     VIDEO = 3
 
 
-@dataclass
+@emissor_dataclass
 class Annotation(Generic[T]):
     type: str
     value: T
@@ -33,7 +32,7 @@ class Annotation(Generic[T]):
     timestamp: int
 
 
-@dataclass
+@emissor_dataclass
 class Mention:
     id: Identifier
     segment: List[Ruler]
@@ -41,7 +40,9 @@ class Mention:
 
 
 R = TypeVar('R', bound=Ruler)
-@dataclass
+
+
+@emissor_dataclass
 class Signal(BaseContainer[R, T], ABC):
     modality: Modality
     time: TemporalRuler
@@ -49,7 +50,7 @@ class Signal(BaseContainer[R, T], ABC):
     mentions: List[Mention]
 
 
-@dataclass
+@emissor_dataclass
 class TextSignal(Signal[Index, str], Sequence[str]):
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str, text: str = None,
@@ -58,7 +59,7 @@ class TextSignal(Signal[Index, str], Sequence[str]):
                    Modality.TEXT, TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
 
 
-@dataclass
+@emissor_dataclass
 class ImageSignal(Signal[MultiIndex, np.array], ArrayContainer):
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str,
@@ -67,19 +68,19 @@ class ImageSignal(Signal[MultiIndex, np.array], ArrayContainer):
                    TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
 
 
-@dataclass
+@emissor_dataclass
 class AudioSignal(Signal[MultiIndex, np.array], ArrayContainer):
     # TODO factory
     pass
 
 
-@dataclass
+@emissor_dataclass
 class VideoSignal(Signal[MultiIndex, np.array], ArrayContainer):
     # TODO factory
     pass
 
 
-@dataclass
+@emissor_dataclass
 class ScenarioContext:
     agent: Identifier
     speaker: Person
@@ -87,7 +88,7 @@ class ScenarioContext:
     objects: List[Object]
 
 
-@dataclass
+@emissor_dataclass
 class Scenario(TemporalContainer):
     context: ScenarioContext
     signals: Dict[str, str]

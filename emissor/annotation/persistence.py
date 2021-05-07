@@ -144,7 +144,7 @@ class ScenarioStorage:
         if not self._cache or self._cache.scenario_id != scenario_id:
             self.load_scenario(scenario_id)
 
-        if modality in self._cache:
+        if self._cache and modality in self._cache:
             return self._cache[modality].values()
 
         modality_meta_path = self._get_path(scenario_id, modality)

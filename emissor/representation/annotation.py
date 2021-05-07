@@ -1,12 +1,13 @@
-# Define Annotation Class
-from __future__ import annotations
+# TODO This conflicts with marshmallow dataclass serialization
+# Enable using the current class in type annotations
+# from __future__ import annotations
 
 import enum
 import uuid
 from dataclasses import dataclass
 
 from rdflib import URIRef, Namespace
-from typing import Tuple
+from typing import Tuple, Any, Union
 
 from emissor.representation.container import Sequence, AtomicContainer, AtomicRuler
 from emissor.representation.util import Identifier
@@ -55,9 +56,9 @@ class Triple:
     predicate: URIRef
     object: Entity
 
-    # TODO make this more generic
+    # TODO make this more generic, return Triple (see import of annotations)
     @classmethod
-    def from_friends(cls, subject_id, predicate_id, object_id) -> Triple:
+    def from_friends(cls, subject_id, predicate_id, object_id) -> Any:
         return cls(Entity(friends_namespace.term(subject_id), EntityType.FRIEND),
                    predicate_namespace.term(predicate_id),
                    Entity(friends_namespace.term(object_id), EntityType.FRIEND))
@@ -73,3 +74,8 @@ class Utterance(Sequence):
 @dataclass
 class Display:
     display: str
+
+
+@dataclass
+class EntityLink:
+    annotates: Union[str, URIRef]

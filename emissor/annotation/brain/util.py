@@ -6,7 +6,6 @@ from rdflib import Graph, ConjunctiveGraph, URIRef, Namespace
 
 
 class EmissorBrain:
-
     def __init__(self, ememory_path):
 
         # TODO: Similar to robot platform, a brain needs an RDF Builder (taken from cltl-knowledge representation)
