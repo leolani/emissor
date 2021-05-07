@@ -11,6 +11,7 @@ from emissor.representation.container import TemporalRuler, MultiIndex, Index, A
 from emissor.representation.entity import Person, Gender, Emotion
 from emissor.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation, Signal
+from emissor.representation.util import marshal
 
 _SPEAKER = Person(str(uuid.uuid4()), "Speaker", 50, Gender.UNDEFINED)
 _DEFAULT_SIGNALS = {
@@ -139,3 +140,8 @@ class Backend:
 
     def load_instances_of_type(self, class_type: str) -> Iterable[Dict]:
         return self._storage.brain.get_instances_of_type(class_type)
+
+
+if __name__ == '__main__':
+    backend = Backend("/Users/tkb/automatic/workspaces/robo/annotation/GMRCAnnotation/example_data")
+    marshal(backend.load_modality("scenario_1", Modality.IMAGE))

@@ -130,8 +130,8 @@ class ScenarioStorage:
 
         self._cache = ScenarioCache(scenario_id)
 
-        ememory_path = self._get_path(scenario_id, 'rdf', 'episodic_memory', extension=None)
-        self.brain = Brain(ememory_path)
+        # ememory_path = self._get_path(scenario_id, 'rdf', 'episodic_memory', extension=None)
+        # self.brain = Brain(ememory_path)
 
         return scenario
 
@@ -143,7 +143,7 @@ class ScenarioStorage:
         if not self._cache or self._cache.scenario_id != scenario_id:
             self.load_scenario(scenario_id)
 
-        if modality in self._cache:
+        if self._cache and modality in self._cache:
             return self._cache[modality].values()
 
         modality_meta_path = self._get_path(scenario_id, modality)
