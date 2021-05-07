@@ -3,7 +3,7 @@ import enum
 import numbers
 import uuid
 from collections import namedtuple
-from typing import Optional, Any
+from typing import Optional, Any, Callable
 
 import marshmallow
 import marshmallow_dataclass
@@ -38,12 +38,35 @@ def serializer(obj):
     return {k: getattr(obj, k) for k in fields}
 
 
-def marshal(obj: Any, *, indent: int = 2, cls: type = None, default=None) -> str:
+def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer) -> str:
+    """Serialize a Python object to JSON.
+
+    Serialization can be performed either based on the type of the object, in
+    which case the `cls` parameter must be provided, or using a conversion
+    function to default types, provided by the `default` parameter.
+
+    Parameters
+    ----------
+    obj : Any
+        The object to be serialized.
+    indent : int, optional, default: '2'
+        Formatting parameter for the returned JSON string.
+    cls : type, optional
+        The type of the `obj` passed in. If this parameter is used, the object should be
+         a dataclass (see :mod:`dataclasses).
+        If `cls` is not 'None', `default` is ignored.
+    default : Callable[[Any], Any], optional, default: :func:`serializer`
+        A function that converts any object to a Python type that is supported
+        by :mod:`json` by default, i.e. one of primitive type, list, dict.
+        If `cls` is not 'None', `default` is ignored.
+
+    Returns
+    -------
+    str
+        The serialized JSON object.
+    """
     if not cls:
         return json.dumps(obj, default=default if default else serializer, indent=indent)
-
-    if default:
-        raise ValueError("don't specify default if cls is already specified")
 
     is_collection = isinstance(obj, collections.abc.Iterable)
     schema = marshmallow_dataclass.class_schema(cls)()
@@ -52,6 +75,28 @@ def marshal(obj: Any, *, indent: int = 2, cls: type = None, default=None) -> str
 
 
 def unmarshal(json_string: str, *, cls: type = None) -> Any:
+    """Deserialize a JSON to a Python object.
+
+    Deserialization can be performed either based on the expected output type,
+    in which case the `cls` parameter must be provided, or to a named tuple.
+
+    Parameters
+    ----------
+    json_string : str
+        The object to be serialized.
+    cls : type, optional
+        The type of the expected output. If this parameter is used, its value
+        should be a dataclass (see :mod:`dataclasses).
+        If the input is a collection, the expected type of its elements should
+        be provided.
+
+    Returns
+    -------
+    object
+        The deserialized form of the provided JSON object. If `cls` is provided,
+        an instance or collection of this type is returned, otherwise a named
+        tuple.
+    """
     if not cls:
         return json.loads(json_string, object_hook=lambda d: namedtuple('JSON', d.keys())(*d.values()))
 
