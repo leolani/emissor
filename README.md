@@ -52,7 +52,7 @@ Example data can be found in [*example_data/*](example_data) directory. Some of 
 
 This repo collects multimodal datasets, process them, and annotate them in the EMISSOR annotation format.
 
-This is done by [Taewoon Kim](https://tae898.github.io/). Ask him if you have any questions.
+This is done by [Taewoon Kim](https://taewoonkim.com/). Ask him if you have any questions.
 
 ## Contributing
 
