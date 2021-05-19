@@ -1,7 +1,0 @@
-@prefix gaf: <http://groundedannotationframework.org/gaf#> .
-@prefix leolaniTalk: <http://cltl.nl/leolani/talk/> .
-
-{
-    <This> gaf:denotedBy leolaniTalk:68fdc43f-cc13-46a9-b9ab-d26abacc8fdb .
-}
-

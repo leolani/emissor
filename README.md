@@ -83,7 +83,7 @@ Distributed under the MIT License. See [`LICENSE`](https://github.com/cltl/EMISS
 ## Authors
 * [Piek Vossen](https://github.com/piekvossen)
 * [Thomas Baier](https://github.com/numblr)
-* [Taewoon Kim](https://tae898.github.io/)
+* [Taewoon Kim](https://taewoonkim.com)
 * [Selene Báez Santamaría](https://selbaez.github.io/)
 * [Lea Krause](https://github.com/orgs/cltl/people/lkra)
 * [Jaap Kruijt]()
