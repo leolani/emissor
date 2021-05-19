@@ -1,21 +1,7 @@
 # Example data
 
-Some of the data here are annotated manually while some are done by the machine. We are trying to avoid manual human labor as less as possible.
+These are just some of the examples from the full datasets. See https://github.com/tae898/multimodal-datasets to get the full examples.
 
-Things that are done by the machine:
-
-1. Face detection (bouding box)
-1. Face recognition
-    * The machine groups the same faces and give them a random name. You still have to name them manually afterwards but this is very trivial.
-1. Age recognition
-    * Not perfect, but cool.
-1. Sex recognition
-    * Not perfect and a bit controversial.
-
-Things that *will* be done by the machine in the future:
-
-1. RDF Triple generation
-1. Support for some common and useful ontologies.
 
 ## Screenshots
 
@@ -25,14 +11,29 @@ This is a simple dialogue between the human (Carl) and the robot (Leolani), wher
 
 ![CarLani](CarLani/CarLani.png)
 
+Run below
+```
+python app.py -d  /absolute/path/to/EMISSOR/example_data/CarLani
+```
+
 ### MELD
 
 MELD is a public dataset. The below image shows one small example from it.
 
 ![MELD](MELD/MELD.png)
 
+Run below
+```
+python app.py -d  /absolute/path/to/EMISSOR/example_data/MELD
+```
+
 ### IEMOCAP
 
 IEMOCAP is a public dataset. The below image shows one small example from it.
 
 ![IEMOCAP](IEMOCAP/IEMOCAP.png)
+
+Run below
+```
+python app.py -d  /absolute/path/to/EMISSOR/example_data/IEMOCAP
+```
