@@ -20,14 +20,15 @@ _DEFAULT_MODALITIES = (Modality.TEXT, Modality.IMAGE)
 logger = logging.getLogger(__name__)
 
 
-def run_init(dataset):
-    storage = ScenarioStorage(dataset, mode="metadata")
+def run_init(dataset, mode="metadata"):
+    logger.info("Initialize dataset %s", dataset)
+    storage = ScenarioStorage(dataset, mode=mode)
     for scenario_id in storage.list_scenarios():
         create_scenario(scenario_id, storage)
         logger.info("Initialized scenario %s", scenario_id)
 
         for modality in _DEFAULT_MODALITIES:
-            ModalitySetup(dataset, scenario_id, modality).run_setup()
+            ModalitySetup(dataset, scenario_id, modality, mode).run_setup()
             logger.info("Initialized modality %s for scenario %s", modality.name, scenario_id)
 
 

@@ -25,7 +25,9 @@ class AnnotationType(enum.Enum):
     FRIEND = 2
     OBJECT = 3
     TOKEN = 4
-    POS = 4
+    POS = 5
+    NER = 6
+    LINK = 7
 
 
 class ImageLabel(enum.Enum):
@@ -82,6 +84,14 @@ class Display:
     display: str
 
 
-@emissor_dataclass
+@dataclass
 class EntityLink:
-    annotates: Union[str, URIRef] = LdId()
+    annotates: Union[str, URIRef]
+
+    @property
+    def id(self):
+        return self.annotates
+
+    @property
+    def value(self):
+        return friends_namespace + str(self.annotates)

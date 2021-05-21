@@ -1,3 +1,5 @@
+import logging
+
 import time
 import uuid
 
@@ -9,13 +11,15 @@ from emissor.representation.annotation import AnnotationType, Token, NER, Entity
 from emissor.representation.container import Index, AtomicRuler
 from emissor.representation.scenario import Modality, TextSignal, Mention, Annotation
 
+logger = logging.getLogger(__name__)
+
 nlp = spacy.load('en_core_web_sm')
 
 
 SPACY_ID = "SpaCY"
 
 
-def _add_entity_links(signal: TextSignal):
+def _add_entity_links(signal: TextSignal, brain: EmissorBrain):
     # TODO: check if annotations already exist
     ner_mentions = [(mention, annotation)
                     for mention in signal.mentions
@@ -23,7 +27,10 @@ def _add_entity_links(signal: TextSignal):
                     if annotation.type.lower() == AnnotationType.NER.name.lower()]
 
     for mention, annotation in ner_mentions:
-        mention.annotations.append(EntityLink(uuid.uuid4()))
+        link_annotation = Annotation(AnnotationType.LINK.name, EntityLink(uuid.uuid4()), "linkin_tool", int(time.time()))
+        mention.annotations.append(link_annotation)
+
+        brain.denote_things(mention, link_annotation)
 
     return signal
 
@@ -33,6 +40,8 @@ def annotate_scenarios(data_path):
     scenario_ids = storage.list_scenarios()
 
     for scenario_id in scenario_ids:
+        logger.info("Add tokenization and NER annotations to %s", scenario_id)
+
         # Load episodic memory
         storage.load_scenario(scenario_id)
         signals = storage.load_modality(scenario_id, Modality.TEXT)

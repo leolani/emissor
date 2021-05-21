@@ -19,8 +19,8 @@ _DEFAULT_SIGNALS = {
 
 
 class ModalitySetup:
-    def __init__(self, dataset: str, scenario_id: str, modality: Modality):
-        self._storage = ScenarioStorage(dataset, mode="metadata")
+    def __init__(self, dataset: str, scenario_id: str, modality: Modality, mode):
+        self._storage = ScenarioStorage(dataset, mode)
         self._scenario_id = scenario_id
         self._modality = modality
 

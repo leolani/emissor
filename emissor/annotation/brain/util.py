@@ -1,3 +1,5 @@
+import os
+
 from importlib.resources import path, open_text, files
 from pathlib import Path
 from typing import Dict, Iterable
@@ -86,6 +88,7 @@ class EmissorBrain:
         self.interpretations_graph.add((instance_uri, gaf_ns['denotedBy'], mention_uri))
 
         # Save to file but return the string representation
+        os.makedirs(f'{self.interpretations_path}', exist_ok=True)
         with open(f'{self.interpretations_path}/annotation_{annotation.value.id}.trig', 'wb') as f:
             self.interpretations_graph.serialize(f, format="trig")
 

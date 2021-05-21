@@ -1,3 +1,5 @@
+import logging
+
 import time
 import uuid
 
@@ -7,6 +9,9 @@ from emissor.annotation.persistence import ScenarioStorage
 from emissor.representation.annotation import AnnotationType, Token, NER
 from emissor.representation.container import Index, AtomicRuler
 from emissor.representation.scenario import Modality, TextSignal, Mention, Annotation
+
+logger = logging.getLogger(__name__)
+
 
 nlp = spacy.load('en_core_web_sm')
 
@@ -45,6 +50,7 @@ def annotate_scenarios(data_path):
     scenario_ids = storage.list_scenarios()
 
     for scenario_id in scenario_ids:
+        logger.info("Add tokenization and NER annotations to %s", scenario_id)
         signals = storage.load_modality(scenario_id, Modality.TEXT)
         if signals is None:
             raise ValueError("Signals not found")

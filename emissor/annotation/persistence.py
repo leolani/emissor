@@ -53,13 +53,15 @@ class ScenarioStorage:
         text_path = self._get_path(scenario_id, Modality.TEXT, extension=None)
         csv_files = tuple(glob(os.path.join(text_path, "*.csv")))
 
-        data = [row for row in pd.concat(self._load_csv(file) for file in csv_files).iterrows()] \
-               if csv_files else []
+        text_df = pd.concat(self._load_csv(file) for file in csv_files) if csv_files else pd.DataFrame()
+        text_data = text_df.to_dict('records')
+        # text_data = [row for row in tuple(zip(*text_df.iterrows()))[1]] \
+        #        if csv_files else []
 
         json_files = tuple(glob(os.path.join(text_path, "*.json")))
-        data += [self._load_json(file) for file in json_files]
+        text_data += [self._load_json(file) for file in json_files]
 
-        return data
+        return text_data
 
     def _load_csv(self, file):
         data = pd.read_csv(file, skipinitialspace=True)

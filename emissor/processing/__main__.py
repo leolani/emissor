@@ -20,17 +20,18 @@ _DEFAULT_MODALITIES = {
 class Step(Enum):
     @property
     def arg(self):
-        return '--' + self.name.lower()
+        return '--' + self.name.lower().replace('_', '-')
 
     PREPROCESSING = auto()
     INIT = auto()
-    ANNOTATION = auto()
+    ANNOTATION_NER = auto()
+    ANNOTATION_LINK = auto()
 
 
 def main(args):
     all_steps = not any([vars(args)[step.name.lower()] for step in Step])
 
-    emissor_data_path = os.path.join(args.dataset, "scenarios")
+    emissor_data_path = os.path.join(args.dataset)
 
     if all_steps or args.preprocessing:
         kwargs = {'port_docker_video2frames': args.port_docker_video2frames,
@@ -43,9 +44,10 @@ def main(args):
         VideoProcessing(args.dataset, **kwargs).split_video()
         TextProcessing(args.dataset).copy_text()
     if all_steps or args.init:
-        run_init(emissor_data_path)
-    if all_steps or args.annotation:
+        run_init(emissor_data_path, args.init_mode)
+    if all_steps or args.annotation_ner:
         token_ner.annotate_scenarios(emissor_data_path)
+    if all_steps or args.annotation_link:
         entity_linking.annotate_scenarios(emissor_data_path)
 
 
@@ -62,6 +64,8 @@ if __name__ == '__main__':
     # Processing steps
     for step in Step:
         parser.add_argument(step.arg, action="store_true")
+
+    parser.add_argument('--init-mode', type=str, default="metadata")
 
     # Video preprocessing
     parser.add_argument('--port-docker-video2frames', type=int,
