@@ -4,20 +4,14 @@ import logging
 import os
 import pickle
 import random
-import time
 from glob import glob
 
 import jsonpickle
 import requests
 from joblib import Parallel, delayed
-from python_on_whales import docker
 from tqdm import tqdm
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-)
+from emissor.processing.util import DockerInfra
 
 
 IMAGE_DIR = "image"
@@ -37,7 +31,7 @@ class Video2Frames:
         self.image_ext = image_ext
 
         self.base_dir = os.path.join(self.dataset, "scenarios")
-        self.processing_dir = os.path.join(self.dataset, "processing")
+        self.processing_dir = os.path.join(self.dataset, "processing", "frames")
 
     def split_videos(self):
         for video_path in tqdm(self.video_paths):
@@ -117,56 +111,24 @@ class Frames2Faces:
                 logging.exception("Failed to process %s", image_path)
 
         save_path_face_features = os.path.join(self.processing_dir, "face-features", f"{scenario_id}.pkl")
-        os.makedirs(os.path.join(self.processing_dir, "face-features"), exist_ok=True)
+        os.makedirs(os.path.dirname(save_path_face_features), exist_ok=True)
         with open(save_path_face_features, 'wb') as stream:
             pickle.dump(fa_results_all, stream)
 
     def image2face(self, image_path):
-        logging.info(f"Processing image %s", image_path)
+        logging.info("Processing image %s", image_path)
+
         with open(image_path, 'rb') as stream:
             data = stream.read()
 
         data = jsonpickle.encode({'image': data})
         response = requests.post(
             f"{'http://127.0.0.1'}:{self.face_analysis_port}/", json=data)
-        logging.info(f"{response} received")
+        logging.info("%s received", response)
 
         response = jsonpickle.decode(response.text)
 
         return response['fa_results']
-
-
-class DockerInfra:
-    def __init__(self, image, port, host_ports, num_jobs, run_on_gpu = False, boot_time=30):
-        self.image = image
-        self.port = port
-        self.host_ports = range(host_ports, host_ports + num_jobs)
-        self.num_jobs = num_jobs
-        self.run_on_gpu = run_on_gpu
-        self.boot_time = boot_time
-
-        self.containers = {}
-
-    def start_containers(self):
-        if len(self.containers):
-            raise EnvironmentError("Containers already started")
-
-        logging.info("Creating %s containers of %s ...", self.num_jobs, self.image)
-
-        self.containers = []
-        for i in range(self.num_jobs):
-            container = docker.run(image=self.image, detach=True, remove=False, publish=[(self.host_ports[i], self.port)])
-            self.containers.append(container)
-            logging.debug("sleeping for %s seconds to warm up %s th container for %s ...", self.boot_time, i, self.image)
-            time.sleep(self.boot_time)
-            logging.debug("sleeping done for %s th container for %s ...", i, self.image)
-
-    def stop_containers(self):
-        for container in self.containers:
-            logging.info("stopping the container %s of %s ...", container, self.image)
-            container.stop()
-
-        self.containers = []
 
 
 class VideoProcessing:
@@ -189,13 +151,11 @@ class VideoProcessing:
                           'CarLani': '.mp4'}[self.dataset]
 
     def split_video(self):
-        self.video_infra.start_containers()
+        with self.video_infra:
+            video_paths = self._get_video_paths()
+            if len(video_paths) == 0:
+                raise ValueError(f"No videos found!")
 
-        video_paths = self._get_video_paths()
-        if len(video_paths) == 0:
-            raise ValueError(f"No videos found!")
-
-        try:
             batch_size = len(video_paths) // self.num_jobs
             video_batches = [video_paths[i:i + batch_size] for i in range(0, len(video_paths), batch_size)]
 
@@ -211,15 +171,9 @@ class VideoProcessing:
                 in zip(video_batches, self.video_infra.host_ports))
 
             logging.info("splitting videos complete!")
-        except Exception:
-            logging.exception("Failed to split videos")
-        finally:
-            self.video_infra.stop_containers()
 
     def extract_face_features(self):
-        self.face_infra.start_containers()
-
-        try:
+        with self.face_infra:
             scenario_ids = self._get_scenario_ids()
             batch_size = len(scenario_ids) // self.num_jobs
             scenario_batches = [scenario_ids[i:i + batch_size] for i in range(0, len(scenario_ids), batch_size)]
@@ -234,10 +188,6 @@ class VideoProcessing:
                 in zip(scenario_batches, self.face_infra.host_ports))
 
             logging.info("face feature extraction complete!")
-        except Exception:
-            logging.exception("Failed to extract faces")
-        finally:
-            self.face_infra.stop_containers()
 
     def _get_video_paths(self):
         video_paths = glob(f'./{self.dataset}/raw-videos/*/*{self.video_ext}')
@@ -275,6 +225,12 @@ def main(dataset, port_docker_video2frames, port_docker_face_analysis, width_max
 
 
 if __name__ == "__main__":
+    logging.basicConfig(
+        level=logging.DEBUG,
+        format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S',
+    )
+
     parser = argparse.ArgumentParser(
         description='extract features from a multimodal dataset')
     parser.add_argument('--dataset', type=str)

@@ -10,6 +10,7 @@ from rdflib import URIRef, Namespace
 from typing import Tuple, Any, Union
 
 from emissor.representation.container import Sequence, AtomicContainer, AtomicRuler
+from emissor.representation.ldschema import emissor_dataclass, LdId
 from emissor.representation.util import Identifier
 
 friends_namespace = Namespace("http://cltl.nl/leolani/friends/")
@@ -49,6 +50,11 @@ class Token(AtomicContainer[str]):
     def for_string(cls, value: str):
         return cls(str(uuid.uuid4()), AtomicRuler(None), value)
 
+@dataclass
+class NER(AtomicContainer[str]):
+    @classmethod
+    def for_string(cls, value: str):
+        return cls(str(uuid.uuid4()), AtomicRuler(None), value)
 
 @dataclass
 class Triple:
@@ -76,6 +82,6 @@ class Display:
     display: str
 
 
-@dataclass
+@emissor_dataclass
 class EntityLink:
-    annotates: Union[str, URIRef]
+    annotates: Union[str, URIRef] = LdId()

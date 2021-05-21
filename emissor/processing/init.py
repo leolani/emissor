@@ -1,15 +1,11 @@
 import argparse
-
 import logging
-
 import uuid
-from pandas import Series
-from typing import Iterable, Any
 
 from emissor.annotation.persistence import ScenarioStorage
+from emissor.processing.modality import ModalitySetup
 from emissor.representation.entity import Person, Gender
-from emissor.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Signal
-
+from emissor.representation.scenario import Scenario, ScenarioContext, Modality
 
 _AGENT = "robot_agent"
 _SPEAKER = Person(str(uuid.uuid4()), "Speaker", 50, Gender.UNDEFINED)
@@ -18,18 +14,27 @@ _DEFAULT_SIGNALS = {
     Modality.TEXT.name.lower(): "./text.json"
 }
 
+_DEFAULT_MODALITIES = (Modality.TEXT, Modality.IMAGE)
+
+
+logger = logging.getLogger(__name__)
+
 
 def run_init(dataset):
-    storage = ScenarioStorage(dataset)
+    storage = ScenarioStorage(dataset, mode="metadata")
     for scenario_id in storage.list_scenarios():
         create_scenario(scenario_id, storage)
-        logging.info("Initialized scenario %s", scenario_id)
+        logger.info("Initialized scenario %s", scenario_id)
+
+        for modality in _DEFAULT_MODALITIES:
+            ModalitySetup(dataset, scenario_id, modality).run_setup()
+            logger.info("Initialized modality %s for scenario %s", modality.name, scenario_id)
 
 
 def create_scenario(scenario_id: str, storage: ScenarioStorage) -> Scenario:
     scenario = storage.load_scenario(scenario_id)
     if not scenario:
-        scenario = _create_scenario_metadata(scenario_id)
+        scenario = _create_scenario_metadata(scenario_id, storage)
         storage.save_scenario(scenario)
 
     return scenario

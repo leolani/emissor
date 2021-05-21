@@ -1,8 +1,10 @@
-from importlib.resources import path
+from importlib.resources import path, open_text, files
 from pathlib import Path
 from typing import Dict, Iterable
 
 from rdflib import Graph, ConjunctiveGraph, URIRef, Namespace
+
+import emissor
 
 
 class EmissorBrain:
@@ -16,19 +18,12 @@ class EmissorBrain:
         self.ememory_path = Path(ememory_path).resolve()
         self.interpretations_path = self.ememory_path.parent
 
-        with path('emissor.annotation.brain', 'queries') as p:
-            self.queries_path = p
-
-        with path('emissor.annotation.brain', 'world_model') as p:
-            self.ontologies_path = p
-
         self.ontology = self._load_ontology()
         self.ememory = self._load_memories()
         self.interpretations_graph = self._create_episode_graph()
 
     def _read_query(self, query_filename: str) -> str:
-        file_path = self.queries_path / f"{query_filename}.rq"
-        with open(file_path) as fr:
+        with open_text(emissor.annotation.brain, f"queries/{query_filename}.rq") as fr:
             query = fr.read()
         return query
 
@@ -42,7 +37,7 @@ class EmissorBrain:
 
     def _load_ontology(self) -> Graph:
         ontology_graph = Graph()
-        for ontology_path in self.ontologies_path.glob('*.ttl'):
+        for ontology_path in files(emissor.annotation.brain).joinpath('world_model').glob('*.ttl'):
             ontology_graph.parse(location=str(ontology_path), format="turtle")
 
         return ontology_graph

@@ -40,12 +40,11 @@ def _add_ner_annotation(signal: TextSignal):
     return signal
 
 
-def annotate_scenario(data_path):
+def annotate_scenarios(data_path):
     storage = ScenarioStorage(data_path)
     scenario_ids = storage.list_scenarios()
 
     for scenario_id in scenario_ids:
-        print(scenario_id)
         signals = storage.load_modality(scenario_id, Modality.TEXT)
         if signals is None:
             raise ValueError("Signals not found")
@@ -57,4 +56,4 @@ def annotate_scenario(data_path):
 
 
 if __name__ == '__main__':
-    annotate_scenario('/Users/jaap/Documents/GitHub/GMRCAnnotation/test_data')
+    annotate_scenarios('/Users/jaap/Documents/GitHub/GMRCAnnotation/test_data')

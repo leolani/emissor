@@ -37,7 +37,7 @@ def create_image_signal(scenario: Scenario, image_meta: Series) -> ImageSignal:
     return image_signal
 
 
-def _create_text_signal(scenario: Scenario, utterance_data: Series):
+def _create_text_signal(scenario: Scenario, utterance_data: dict):
     timestamp = utterance_data['time'] if 'time' in utterance_data else scenario.start
     utterance = utterance_data['utterance']
     signal = TextSignal.for_scenario(scenario.id, timestamp, timestamp, utterance_data['file'], utterance, [])
@@ -92,7 +92,7 @@ class Backend:
             return [create_image_signal(scenario, meta) for _, meta in image_meta.iterrows()]
         elif modality.name.lower() == "text":
             texts = self._storage.load_text(scenario_id)
-            return [_create_text_signal(scenario, utt) for _, utt in texts.iterrows()]
+            return [_create_text_signal(scenario, utt) for utt in texts.iterrows()]
         else:
             raise ValueError("Unsupported modality " + modality.name)
 

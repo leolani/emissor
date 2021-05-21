@@ -1,3 +1,5 @@
+import json
+
 import os
 from glob import glob
 from typing import Iterable, Optional, Any, Tuple, Union
@@ -25,10 +27,11 @@ def base_name(path):
 
 
 class ScenarioStorage:
-    def __init__(self, data_path):
+    def __init__(self, data_path, mode="filename"):
         self._cache = None
         self.brain = None
         self._data_path = data_path
+        self._mode = mode
 
     def _get_base(self):
         return self._data_path
@@ -50,13 +53,30 @@ class ScenarioStorage:
         text_path = self._get_path(scenario_id, Modality.TEXT, extension=None)
         csv_files = tuple(glob(os.path.join(text_path, "*.csv")))
 
-        return pd.concat(self._load_csv(file) for file in csv_files) if csv_files else pd.DataFrame()
+        data = [row for row in pd.concat(self._load_csv(file) for file in csv_files).iterrows()] \
+               if csv_files else []
+
+        json_files = tuple(glob(os.path.join(text_path, "*.json")))
+        data += [self._load_json(file) for file in json_files]
+
+        return data
 
     def _load_csv(self, file):
         data = pd.read_csv(file, skipinitialspace=True)
         data['chat'] = file_name(file)
         data['file'] = Modality.TEXT.name.lower() + "/" + base_name(file) + "#"
         data['file'] = data['file'] + data.index.astype(str)
+
+        return data
+
+    def _load_json(self, file):
+        with open(file, 'r') as f:
+            data = json.load(f)
+        data['speaker'] = data['Speaker']
+        data['utterance'] = data['Utterance']
+        data['chat'] = data['Dialogue_ID']
+        data['file'] = Modality.TEXT.name.lower() + "/" + base_name(file)
+        data['time'] = 0
 
         return data
 
@@ -75,7 +95,7 @@ class ScenarioStorage:
         # Path in scenario
         image_file = Modality.IMAGE.name.lower() + "/" + base
 
-        timestamp = self._guess_timestamp(name, scenario.start, scenario.end)
+        timestamp = self._guess_timestamp(name, scenario.id, scenario.start, scenario.end)
 
         if not os.path.isfile(image_path):
             return None
@@ -90,31 +110,55 @@ class ScenarioStorage:
         max_ = 0
 
         if Modality.IMAGE.name.lower() in modalities:
-            image_path = self._get_path(scenario_id, Modality.IMAGE, extension=None)
-            for image in glob(os.path.join(image_path, "*")):
-                image_name = os.path.splitext(os.path.basename(image))[0]
-                image_timestamp = self._guess_timestamp(image_name, 0, _MAX_GUESS_RANGE)
-                if image_timestamp and image_timestamp < min_:
-                    min_ = image_timestamp
-                if image_timestamp and image_timestamp > max_:
-                    max_ = image_timestamp
-
+            if self._mode == "filename":
+                image_path = self._get_path(scenario_id, Modality.IMAGE, extension=None)
+                for image in glob(os.path.join(image_path, "*")):
+                    image_name = os.path.splitext(os.path.basename(image))[0]
+                    image_timestamp = self._guess_timestamp(image_name, scenario_id, 0, _MAX_GUESS_RANGE)
+                    if image_timestamp and image_timestamp < min_:
+                        min_ = image_timestamp
+                    if image_timestamp and image_timestamp > max_:
+                        max_ = image_timestamp
+            elif self._mode == "metadata":
+                min_ = 0
+                metadata = self._load_image_metadata(scenario_id)
+                max_ = metadata['duration_seconds'] * 1000
+            else:
+                raise ValueError("Unknown mode: " + self._mode)
         if Modality.TEXT.name.lower() in modalities:
-            timestamps = self.load_text(scenario_id)['time']
-            min_ = min(min_, timestamps.min())
-            max_ = max(max_, timestamps.max())
+            timestamps = [txt_meta['time'] for txt_meta in self.load_text(scenario_id)]
+            min_ = min(min_, min(timestamps) if timestamps else 0)
+            max_ = max(max_, max(timestamps) if timestamps else 0)
 
         return int(min(min_, max_)), int(max_)
 
-    def _guess_timestamp(self, name: str, scenario_start: int, scenario_end: int) -> int:
+    def _guess_timestamp(self, name: str, scenario_id: str, scenario_start: int, scenario_end: int) -> int:
+        file_timestamp = scenario_start
+
         try:
-            file_timestamp = int(name.split('_')[-1])
-            if scenario_start < file_timestamp < scenario_end:
-                return file_timestamp
+            if self._mode == "filename":
+                file_timestamp = int(name.split('_')[-1])
+            elif self._mode == "metadata":
+                metadata = self._load_image_metadata(scenario_id)
+                frame_idx = int(name.split('_')[-1])
+                frame_length = 1 / metadata["fps_original"]
+                file_timestamp = frame_idx * frame_length
+            else:
+                raise NotImplementedError("Unknown mode: " + self._mode)
         except ValueError:
             pass
 
+        if scenario_start <= file_timestamp < scenario_end:
+            return file_timestamp
+
         return scenario_start
+
+    def _load_image_metadata(self, scenario_id: str) -> dict:
+        metadata_path = os.path.join(self._data_path, "..", "processing", "frames", f"{scenario_id}.json")
+        with open(metadata_path, 'r') as file:
+            metadata = json.load(file)
+
+        return metadata
 
     def list_scenarios(self) -> Iterable[str]:
         return tuple(os.path.basename(path[:-1]) for path in glob(os.path.join(self._get_base(), "*", "")))

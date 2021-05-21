@@ -18,47 +18,36 @@ _DEFAULT_SIGNALS = {
 }
 
 
-class Preprocessor:
-
-
-
-
 class ModalitySetup:
-    def __init__(self, dataset, modality: Modality):
-        self._storage = ScenarioStorage(dataset)
+    def __init__(self, dataset: str, scenario_id: str, modality: Modality):
+        self._storage = ScenarioStorage(dataset, mode="metadata")
+        self._scenario_id = scenario_id
         self._modality = modality
 
     def run_setup(self):
-        for scenario_id in self.list_scenarios():
-            try:
-                self.create_modality(scenario_id)
-            except ValueError:
-                logging.exception("Modality %s could not be created for scenario %s", modality, scenario_id)
+        try:
+            self.create_modality()
+        except Exception:
+            logging.exception("Modality %s could not be created for scenario %s", self._modality, self._scenario_id)
 
-    def list_scenarios(self) -> Iterable[str]:
-        return self._storage.list_scenarios()
-
-    def create_modality(self, scenario_id: str) -> Iterable[Signal[Any, Any]]:
-        signals = self._storage.load_modality(scenario_id, self._modality)
+    def create_modality(self) -> Iterable[Signal[Any, Any]]:
+        signals = self._storage.load_modality(self._scenario_id, self._modality)
         if signals is None:
-            signals = self._create_modality_metadata(scenario_id, self._modality)
-            self._storage.save_signals(scenario_id, self._modality, signals)
+            signals = self._create_modality_metadata()
+            self._storage.save_signals(self._scenario_id, self._modality, signals)
 
         return signals
 
-    def _create_modality_metadata(self, scenario_id) -> Iterable[Signal[Any, Any]]:
-        scenario = self.create_scenario(scenario_id)
+    def _create_modality_metadata(self) -> Iterable[Signal[Any, Any]]:
+        scenario = self._storage.load_scenario(self._scenario_id)
         if self._modality == Modality.IMAGE:
-            image_meta = self._storage.load_images(self._storage.load_scenario(scenario_id))
+            image_meta = self._storage.load_images(self._storage.load_scenario(self._scenario_id))
             return [self._create_image_signal(scenario, meta) for _, meta in image_meta.iterrows()]
         elif self._modality == Modality.TEXT:
-            texts = self._storage.load_text(scenario_id)
-            return [self._create_text_signal(scenario, utt) for _, utt in texts.iterrows()]
+            texts = self._storage.load_text(self._scenario_id)
+            return [self._create_text_signal(scenario, utt) for utt in texts]
         else:
-            raise ValueError("Unsupported modality " + modality.name)
-
-    def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
-        self._storage.save_signal(scenario_id, signal)
+            raise ValueError("Unsupported modality " + self._modality.name)
 
     def _create_image_signal(self, scenario: Scenario, image_meta: Series) -> ImageSignal:
         bounds = image_meta['bounds']
@@ -68,20 +57,9 @@ class ModalitySetup:
 
         return image_signal
 
-    def _create_text_signal(self, scenario: Scenario, utterance_data: Series):
+    def _create_text_signal(self, scenario: Scenario, utterance_data: dict):
         timestamp = utterance_data['time'] if 'time' in utterance_data else scenario.start
         utterance = utterance_data['utterance']
         signal = TextSignal.for_scenario(scenario.id, timestamp, timestamp, utterance_data['file'], utterance, [])
 
         return signal
-
-
-if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Setup EMISSOR metadata for a dataset.')
-    parser.add_argument('--dataset', type=str,
-                        help="Base directory that contains the scenarios of the dataset.")
-
-    args = parser.parse_args()
-    logging.info("Setting up EMISSOR for dataset %s", args.dataset)
-
-    ModalitySetup(args.dataset)
