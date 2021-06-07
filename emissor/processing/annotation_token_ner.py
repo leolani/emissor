@@ -1,11 +1,8 @@
 import logging
-
+import spacy
 import time
 import uuid
 
-import spacy
-
-from emissor.annotation.persistence import ScenarioStorage
 from emissor.representation.annotation import AnnotationType, Token, NER
 from emissor.representation.container import Index, AtomicRuler
 from emissor.representation.scenario import Modality, TextSignal, Mention, Annotation
@@ -45,8 +42,7 @@ def _add_ner_annotation(signal: TextSignal):
     return signal
 
 
-def annotate_scenarios(data_path):
-    storage = ScenarioStorage(data_path)
+def annotate_scenarios(storage):
     scenario_ids = storage.list_scenarios()
 
     for scenario_id in scenario_ids:

@@ -19,8 +19,8 @@ _DEFAULT_SIGNALS = {
 
 
 class ModalitySetup:
-    def __init__(self, dataset: str, scenario_id: str, modality: Modality, mode):
-        self._storage = ScenarioStorage(dataset, mode)
+    def __init__(self, storage: ScenarioStorage, scenario_id: str, modality: Modality):
+        self._storage = storage
         self._scenario_id = scenario_id
         self._modality = modality
 
@@ -58,8 +58,14 @@ class ModalitySetup:
         return image_signal
 
     def _create_text_signal(self, scenario: Scenario, utterance_data: dict):
-        timestamp = utterance_data['time'] if 'time' in utterance_data else scenario.start
+        if 'start' in utterance_data and 'end' in utterance_data:
+            start, end = utterance_data['start'], utterance_data['end']
+        elif 'time' in utterance_data:
+            start, end = [utterance_data['time']] * 2
+        else:
+            start, end = [scenario.start] * 2
+
         utterance = utterance_data['utterance']
-        signal = TextSignal.for_scenario(scenario.id, timestamp, timestamp, utterance_data['file'], utterance, [])
+        signal = TextSignal.for_scenario(scenario.id, start, end, utterance_data['file'], utterance, [])
 
         return signal

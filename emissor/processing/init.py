@@ -1,3 +1,8 @@
+import time
+
+import datetime
+from glob import glob
+
 import argparse
 import logging
 import uuid
@@ -20,15 +25,14 @@ _DEFAULT_MODALITIES = (Modality.TEXT, Modality.IMAGE)
 logger = logging.getLogger(__name__)
 
 
-def run_init(dataset, mode="metadata"):
-    logger.info("Initialize dataset %s", dataset)
-    storage = ScenarioStorage(dataset, mode=mode)
+def run_init(storage: ScenarioStorage):
+    logger.info("Initialize dataset %s", storage.base_path)
     for scenario_id in storage.list_scenarios():
         create_scenario(scenario_id, storage)
         logger.info("Initialized scenario %s", scenario_id)
 
         for modality in _DEFAULT_MODALITIES:
-            ModalitySetup(dataset, scenario_id, modality, mode).run_setup()
+            ModalitySetup(storage, scenario_id, modality).run_setup()
             logger.info("Initialized modality %s for scenario %s", modality.name, scenario_id)
 
 
@@ -43,7 +47,7 @@ def create_scenario(scenario_id: str, storage: ScenarioStorage) -> Scenario:
 
 def _create_scenario_metadata(scenario_id: str, storage: ScenarioStorage) -> Scenario:
     # TODO plugin for scenario details
-    start, end = storage.guess_scenario_range(scenario_id, _DEFAULT_SIGNALS.keys())
+    start, end = storage.guess_scenario_range(scenario_id, [m.name.lower() for m in Modality])
 
     return Scenario.new_instance(scenario_id, start, end,
                                  ScenarioContext(_AGENT, _SPEAKER, [], []),

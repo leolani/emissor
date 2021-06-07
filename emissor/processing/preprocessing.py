@@ -1,18 +1,15 @@
-from pathlib import Path
-
-import shutil
+from glob import glob
 
 import argparse
 import json
+import jsonpickle
 import logging
 import os
-import pickle
 import random
-from glob import glob
-
-import jsonpickle
 import requests
+import shutil
 from joblib import Parallel, delayed
+from pathlib import Path
 from tqdm import tqdm
 
 from emissor.processing.util import DockerInfra
@@ -46,9 +43,10 @@ class Video2Frames:
 
     def video2frames(self, video_path):
         basename = os.path.basename(video_path)
-        scenario_id = basename.split(f'{self.video_ext}')[0]
+        video_id = basename.split(f'{self.video_ext}')[0]
+        scenario_id = video_id.split("_")[0]
 
-        save_path_metadata = os.path.join(self.processing_dir, f"{scenario_id}.json")
+        save_path_metadata = os.path.join(self.processing_dir, f"{scenario_id}/{video_id}.json")
 
         if os.path.isfile(save_path_metadata) and os.path.getsize(save_path_metadata) > self.BYTES_AT_LEAST:
             logging.info("%s, %s, seems to be already done. skipping ...", video_path, save_path_metadata)
@@ -73,7 +71,7 @@ class Video2Frames:
         assert len(frames) == len(metadata['frame_idx_original'])
 
         for frame_bytestring, idx in zip(frames, metadata['frame_idx_original']):
-            file_name = os.path.join(self.base_dir, scenario_id, IMAGE_DIR, f"{scenario_id}_{idx:06d}{self.image_ext}")
+            file_name = os.path.join(self.base_dir, scenario_id, IMAGE_DIR, f"{video_id}_{idx:06d}{self.image_ext}")
             os.makedirs(os.path.dirname(file_name), exist_ok=True)
             with open(file_name, 'wb') as stream:
                 stream.write(frame_bytestring)
@@ -97,7 +95,7 @@ class VideoProcessing:
         with self.video_infra:
             video_paths = self._get_video_paths()
             if len(video_paths) == 0:
-                raise ValueError(f"No videos found!")
+                raise ValueError(f"No videos found! (ext: {self.video_ext})")
 
             batch_size = len(video_paths) // self.num_jobs
             video_batches = [video_paths[i:i + batch_size] for i in range(0, len(video_paths), batch_size)]
@@ -116,7 +114,7 @@ class VideoProcessing:
             logging.info("splitting videos complete!")
 
     def _get_video_paths(self):
-        video_paths = glob(f'./{self.dataset}/raw-videos/*/*{self.video_ext}')
+        video_paths = glob(f'./{self.dataset}/raw-videos/*{self.video_ext}')
         random.shuffle(video_paths)
 
         logging.info(
@@ -130,14 +128,15 @@ class TextProcessing:
         self._dataset = dataset
 
     def copy_text(self):
-        logging.info(f"Copying text from {self._dataset}/raw-texts/*/*.json")
+        logging.info(f"Copying text from {self._dataset}/raw-texts/*.json")
 
-        for text in glob(f"{self._dataset}/raw-texts/*/*.json"):
+        for text in glob(f"{self._dataset}/raw-texts/*.json"):
             path = Path(text)
-            text_dir = os.path.join(self._dataset, "scenarios", path.stem, Modality.TEXT.name.lower())
+            scenario_id = path.stem.split('_')[0]
+            text_dir = os.path.join(self._dataset, "scenarios", scenario_id, Modality.TEXT.name.lower())
             os.makedirs(text_dir, exist_ok=True)
-            logging.info("Copy %s to %s", text, text_dir)
             shutil.copyfile(text, os.path.join(text_dir, path.name))
+            logging.info("Copy %s to %s", text, text_dir)
 
 
 def main(dataset, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, run_on_gpu):

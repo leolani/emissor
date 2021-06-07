@@ -21,3 +21,4 @@ joblib==1.0.1
 jsonpickle==2.0.0
 tqdm==4.60.0
 python-on-whales==0.18.0
+scikit-learn==0.24.2

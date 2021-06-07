@@ -1,17 +1,21 @@
-import json
-
-import os
 from glob import glob
-from typing import Iterable, Optional, Any, Tuple, Union
 
+import datetime
+import json
+import logging
+import os
 import pandas as pd
 from PIL import Image
 from pandas import DataFrame
+from typing import Iterable, Optional, Any, Tuple, Union
 
 from emissor.annotation.brain.util import EmissorBrain
 from emissor.annotation.cache import ScenarioCache
 from emissor.representation.scenario import Scenario, Modality, Signal
 from emissor.representation.util import unmarshal, marshal
+
+logger = logging.getLogger(__name__)
+
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 
@@ -33,12 +37,13 @@ class ScenarioStorage:
         self._data_path = data_path
         self._mode = mode
 
-    def _get_base(self):
+    @property
+    def base_path(self):
         return self._data_path
 
     def _get_path(self, scenario_name, modality: Optional[Union[Modality, str]] = None, file: str = None,
                   extension: Optional[str] = ".json"):
-        path = os.path.join(self._get_base(), scenario_name)
+        path = os.path.join(self.base_path, scenario_name)
         if modality:
             path = os.path.join(path, modality if isinstance(modality, str) else modality.name.lower())
         else:
@@ -78,7 +83,8 @@ class ScenarioStorage:
         data['utterance'] = data['Utterance']
         data['chat'] = data['Dialogue_ID']
         data['file'] = Modality.TEXT.name.lower() + "/" + base_name(file)
-        data['time'] = 0
+        data['start'] = self._to_millisec(data['StartTime'])
+        data['end'] = self._to_millisec(data['EndTime'])
 
         return data
 
@@ -116,19 +122,22 @@ class ScenarioStorage:
                 image_path = self._get_path(scenario_id, Modality.IMAGE, extension=None)
                 for image in glob(os.path.join(image_path, "*")):
                     image_name = os.path.splitext(os.path.basename(image))[0]
-                    image_timestamp = self._guess_timestamp(image_name, scenario_id, 0, _MAX_GUESS_RANGE)
+                    image_timestamp = self._guess_timestamp(image_name, scenario_id, min_, max_)
                     if image_timestamp and image_timestamp < min_:
                         min_ = image_timestamp
                     if image_timestamp and image_timestamp > max_:
                         max_ = image_timestamp
             elif self._mode == "metadata":
-                min_ = 0
-                metadata = self._load_image_metadata(scenario_id)
-                max_ = metadata['duration_seconds'] * 1000
+                pass
             else:
                 raise ValueError("Unknown mode: " + self._mode)
+
         if Modality.TEXT.name.lower() in modalities:
-            timestamps = [txt_meta['time'] for txt_meta in self.load_text(scenario_id)]
+            ranges = [(text['start'], text['end'])
+                      for text in self.load_text(scenario_id) if 'start' in text and 'end' in text]
+            ranges += [(int(text['time']),) for text in self.load_text(scenario_id) if 'time' in text]
+            timestamps = [t for range in ranges for t in range]
+
             min_ = min(min_, min(timestamps) if timestamps else 0)
             max_ = max(max_, max(timestamps) if timestamps else 0)
 
@@ -141,8 +150,9 @@ class ScenarioStorage:
             if self._mode == "filename":
                 file_timestamp = int(name.split('_')[-1])
             elif self._mode == "metadata":
-                metadata = self._load_image_metadata(scenario_id)
-                frame_idx = int(name.split('_')[-1])
+                parts = name.split('_')
+                metadata = self._load_image_metadata(scenario_id, "_".join(parts[:-1]))
+                frame_idx = int(parts[-1])
                 frame_length = 1 / metadata["fps_original"]
                 file_timestamp = frame_idx * frame_length
             else:
@@ -155,15 +165,19 @@ class ScenarioStorage:
 
         return scenario_start
 
-    def _load_image_metadata(self, scenario_id: str) -> dict:
-        metadata_path = os.path.join(self._data_path, "..", "processing", "frames", f"{scenario_id}.json")
+    def _to_millisec(self, time_str):
+        return int(1000 * (datetime.datetime.strptime(time_str, '%H:%M:%S,%f').timestamp()
+                           - datetime.datetime(1900, 1, 1).timestamp()))
+
+    def _load_image_metadata(self, scenario_id: str, name: str) -> dict:
+        metadata_path = os.path.join(self._data_path, "..", "processing", "frames", f"{scenario_id}/{name}.json")
         with open(metadata_path, 'r') as file:
             metadata = json.load(file)
 
         return metadata
 
-    def list_scenarios(self) -> Iterable[str]:
-        return tuple(os.path.basename(path[:-1]) for path in glob(os.path.join(self._get_base(), "*", "")))
+    def list_scenarios(self) -> Tuple[str]:
+        return tuple(os.path.basename(path[:-1]) for path in glob(os.path.join(self.base_path, "*", "")))
 
     def load_scenario(self, scenario_id: str) -> Optional[Scenario]:
         scenario_path = self._get_path(scenario_id)
@@ -195,6 +209,8 @@ class ScenarioStorage:
 
         modality_meta_path = self._get_path(scenario_id, modality)
         if not os.path.isfile(modality_meta_path):
+            logger.warning("%s modality metadata (%s) for scenario %s not present",
+                           modality.name, modality_meta_path, scenario_id)
             return None
 
         with open(modality_meta_path) as json_file:
