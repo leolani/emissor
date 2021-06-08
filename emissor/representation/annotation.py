@@ -7,7 +7,7 @@ import uuid
 from dataclasses import dataclass
 
 from rdflib import URIRef, Namespace
-from typing import Tuple, Any, Union, List
+from typing import Tuple, Any, Union, List, Type
 
 from emissor.representation.container import Sequence, AtomicContainer, AtomicRuler
 from emissor.representation.ldschema import emissor_dataclass, LdId
@@ -40,23 +40,26 @@ class EntityType(enum.Enum):
     FRIEND = 1
     OBJECT = 2
 
-
 @dataclass
 class Entity:
     id: URIRef
     type: EntityType
 
 
-@dataclass
+@emissor_dataclass
 class Token(AtomicContainer):
+    value: str
+
     @classmethod
     def for_string(cls, value: str):
         token_id = str(uuid.uuid4())
         return cls(token_id, AtomicRuler(token_id), value)
 
 
-@dataclass
+@emissor_dataclass
 class NER(AtomicContainer):
+    value: str
+
     @classmethod
     def for_string(cls, value: str):
         entity_id = str(uuid.uuid4())

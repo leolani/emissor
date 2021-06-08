@@ -7,6 +7,7 @@ import logging
 import emissor.processing.annotation_token_ner as token_ner
 import emissor.processing.annotation_entity_linking as entity_linking
 import emissor.processing.annotation_face as face_detection
+import emissor.processing.annotation_knowledge as ekg
 
 from emissor.annotation.persistence import ScenarioStorage
 from emissor.processing.preprocessing import VideoProcessing, TextProcessing
@@ -30,13 +31,13 @@ class Step(Enum):
     ANNOTATION_NER = auto()
     ANNOTATION_LINK = auto()
     ANNOTATION_FACE = auto()
+    ANNOTATION_EKG = auto()
 
 
 def main(args):
     all_steps = not any([vars(args)[step.name.lower()] for step in Step])
 
     emissor_data_path = os.path.join(args.dataset)
-    storage = ScenarioStorage(emissor_data_path, mode=args.init_mode)
 
     if all_steps or args.preprocessing:
         kwargs = {'port_docker_video2frames': args.port_docker_video2frames,
@@ -48,6 +49,11 @@ def main(args):
                   'video_ext': args.video_ext}
         VideoProcessing(args.dataset, **kwargs).split_video()
         TextProcessing(args.dataset).copy_text()
+
+        emissor_data_path = os.path.join(emissor_data_path, "scenarios")
+
+    storage = ScenarioStorage(emissor_data_path, mode=args.init_mode)
+
     if all_steps or args.init:
         run_init(storage)
     if all_steps or args.annotation_ner:
@@ -56,6 +62,8 @@ def main(args):
         entity_linking.annotate_scenarios(storage)
     if all_steps or args.annotation_face:
         face_detection.main(storage, args.port_docker_face_analysis, args.num_jobs, args.run_on_gpu)
+    if all_steps or args.annotation_ekg:
+        ekg.annotate_scenarios(storage)
 
 
 if __name__ == '__main__':

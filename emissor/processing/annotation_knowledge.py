@@ -5,6 +5,7 @@ from datetime import date
 import numpy as np
 import spacy
 import time
+from rdflib import Namespace
 
 from cltl.brain import LongTermMemory
 from cltl.brain.infrastructure.rdf_builder import RdfBuilder
@@ -46,9 +47,16 @@ def _add_entity_links(signal: TextSignal, chat: Chat, brain: LongTermMemory):
         link_annotation = Annotation(AnnotationType.LINK.name, EntityLink(str(uuid.uuid4())), "linking_tool", int(time.time()))
         mention.annotations.append(link_annotation)
         utterance = _create_utterance(chat, "", 1)
-        entity = "Carl"
-        complement = {"label": entity, "type": str(annotation.value)}
 
+        # ltalk_ns = Namespace('http://cltl.nl/leolani/talk/')
+        # mention_ref = ltalk_ns[mention.id]
+        # gaf_ns = Namespace('http://groundedannotationframework.org/gaf#')
+        # predicate = gaf_ns['denotedBy']
+        #
+        entity = "Carl"
+        complement = {"label": entity, "type": str(annotation.value.value)}
+        #
+        # _add_triple(utterance, complement, {"type": predicate}, mention_ref)
         _add_triple(utterance, complement, {"type": "sees"}, {"label": "pills", "type": "object"})
 
         brain.experience(utterance)
@@ -58,7 +66,7 @@ def _add_entity_links(signal: TextSignal, chat: Chat, brain: LongTermMemory):
 
 def annotate_scenarios(storage, brain=None):
     scenario_ids = storage.list_scenarios()
-    brain = brain if brain else LongTermMemory()
+    brain = brain if brain else LongTermMemory("http://localhost:7200/repositories/sandbox", ".")
 
     for scenario_id in scenario_ids:
         logger.info("Add tokenization and NER annotations to %s", scenario_id)

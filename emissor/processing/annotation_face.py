@@ -13,10 +13,11 @@ from tqdm import tqdm
 from emissor.annotation.persistence import ScenarioStorage
 from emissor.processing.util import DockerInfra
 from emissor.representation.annotation import AnnotationType
+from emissor.representation.container import MultiIndex
 from emissor.representation.entity import Person
 from emissor.representation.scenario import Modality, ImageSignal, Annotation, Mention
 
-from emissor.processing.friends import JOANNA, RACHEL
+from emissor.processing.friends import FRIENDS
 
 IMAGE_DIR = "image"
 
@@ -24,9 +25,8 @@ IMAGE_DIR = "image"
 class Frames2Faces:
     BYTES_AT_LEAST = 256
 
-    # TODO
     def __init__(self, storage: ScenarioStorage, scenario_ids, face_analysis_port, image_ext="jpg",
-                 face_cos_distance_threshold=0.8):
+                 face_cos_distance_threshold=0.6):
         self.scenario_ids = scenario_ids
 
         self.face_analysis_port = face_analysis_port
@@ -76,6 +76,8 @@ class Frames2Faces:
     def get_unique_faces(self, embeddings):
         logging.debug(f"finding unique faces ...")
 
+        friends, representations = zip(*FRIENDS.items())
+
         if len(embeddings) == 0:
             return None
         # elif len(embeddings) == 1:
@@ -86,21 +88,20 @@ class Frames2Faces:
                                          linkage='average',
                                          distance_threshold=self.face_cos_distance_threshold)
 
-            clustering = ac.fit([JOANNA, RACHEL] + embeddings)
-            label_joanna = clustering.labels_[0]
-            label_rachel = clustering.labels_[1]
-            labels_clustered = clustering.labels_[2:]
+            clustering = ac.fit(representations + tuple(embeddings))
+            friend_labels = clustering.labels_[:len(friends)]
+            labels_clustered = clustering.labels_[len(friends):]
 
+        friend_labels = {label: friend for friend, label in zip(friends, friend_labels)}
         labels_unique = np.unique(labels_clustered)
-        names_unique = ["Rachel" if label == label_rachel else "Joanna" if label == label_joanna else str(uuid.uuid4())
-                        for label in labels_unique]
+        label2name = {label: friend_labels[label] if label in friend_labels else str(uuid.uuid4())
+                      for label in labels_unique}
 
-        label2name = {lbl: nm for lbl, nm in zip(labels_unique, names_unique)}
-        face_ids = [label2name[lbl] for lbl in labels_clustered]
+        face_ids = [label2name[label] for label in labels_clustered]
 
-        print("faces", face_ids[:2])
+        print("faces", face_ids[:len(friends)])
 
-        return face_ids[2:]
+        return face_ids[len(friends):]
 
     def image2face(self, scenario_id, image_path):
         logging.info("Processing image %s", image_path)
@@ -125,7 +126,8 @@ class Frames2Faces:
         name = face_id
         representation = face_result['normed_embedding']
 
-        segment = signal.ruler.get_area_bounding_box(*bbox)
+        # segment = signal.ruler.get_area_bounding_box(*bbox)
+        segment = MultiIndex(signal.ruler.container_id, bbox)
         annotation_person = Annotation(AnnotationType.PERSON.name, Person(str(uuid.uuid4()), name, age, gender), "cltl.face", int(time.time()))
         annotation_representation = Annotation(AnnotationType.REPRESENTATION.name, representation.tolist(), "cltl.face", int(time.time()))
         mention = Mention(str(uuid.uuid4()), [segment], [annotation_person, annotation_representation])

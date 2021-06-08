@@ -1,10 +1,10 @@
+import uuid
+
 import os
-
-from importlib.resources import path, open_text, files
+from importlib_resources import files
 from pathlib import Path
+from rdflib import Graph, ConjunctiveGraph, URIRef, Namespace, RDF, Literal
 from typing import Dict, Iterable
-
-from rdflib import Graph, ConjunctiveGraph, URIRef, Namespace
 
 import emissor
 
@@ -25,9 +25,7 @@ class EmissorBrain:
         self.interpretations_graph = self._create_episode_graph()
 
     def _read_query(self, query_filename: str) -> str:
-        with open_text(emissor.annotation.brain, f"queries/{query_filename}.rq") as fr:
-            query = fr.read()
-        return query
+        return files('emissor.annotation.brain').joinpath(f"queries/{query_filename}.rq").read_text()
 
     def _query_graph(self, graph: Graph, query: str) -> Iterable[Dict]:
         results = graph.query(query)
@@ -70,6 +68,19 @@ class EmissorBrain:
         query = self._read_query('instance_of_type') % instance_type
         annotation_instances = self._query_graph(self.ememory, query)
         return annotation_instances
+
+    def find_persons(self, label):
+        return [p for p in self.interpretations_graph.subjects(URIRef("n2mu:name"), Literal(label))] + \
+               [p for p in self.ememory.subjects(URIRef("n2mu:name"), Literal(label))]
+
+    def add_person(self, label):
+        friends_ns = Namespace('http://cltl.nl/leolani/friends/')
+        self.interpretations_graph.bind('leolaniFriend', friends_ns)
+        id = str(uuid.uuid4())
+        self.interpretations_graph.add((friends_ns[id], RDF.type, URIRef("n2mu:person")))
+        self.interpretations_graph.add((friends_ns[id], URIRef("n2mu:name"), Literal(label)))
+
+        return id
 
     def denote_things(self, mention, annotation):
         # TODO we assume the value of the annotation to be a valid URI,

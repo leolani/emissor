@@ -84,7 +84,11 @@ class MultiIndex(Ruler):
     def get_area_bounding_box(self, x_min: int, y_min: int, x_max: int, y_max: int) -> MI:
         if x_min < self.bounds[0] or x_max > self.bounds[2] \
                 or y_min < self.bounds[1] or y_max > self.bounds[3]:
-            raise ValueError(f"bounds must be within {self.bounds}, was {x_min}, {y_min}, {x_max}, {y_max}")
+            x_min = max(x_min, self.bounds[0])
+            y_min = max(y_min, self.bounds[1])
+            x_max = min(x_max, self.bounds[2])
+            y_max = min(y_max, self.bounds[3])
+            # raise ValueError(f"bounds must be within {self.bounds}, was {x_min}, {y_min}, {x_max}, {y_max}")
 
         return MultiIndex(self.container_id, (x_min, y_min, x_max, y_max))
 

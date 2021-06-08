@@ -221,7 +221,7 @@ class ScenarioStorage:
             else:
                 raise ValueError(f"Unsupported modality: {modality}")
 
-            signals = unmarshal(json_file.read(), cls=cls)
+            signals = unmarshal(json_file.read())
 
         self._cache[modality] = signals
 
@@ -251,4 +251,4 @@ class ScenarioStorage:
             raise ValueError(f"Unsupported modality: {modality}")
 
         with open(path, 'w') as json_file:
-            json_file.write(marshal(signals, cls=cls))
+            json_file.write(marshal(signals))

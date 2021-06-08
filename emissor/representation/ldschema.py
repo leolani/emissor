@@ -100,7 +100,9 @@ def ld_type(*, namespace: Union[URIRef, str] = None, type_name: str = None, sepa
         type_ = type_name if type_name else cls.__name__
 
         context = {type_: resolve_ref(type_, ns, None), "id": "@id"}
-        context = reduce(operator.or_, (extract_context(clazz) for clazz in cls.mro()), context)
+        for clazz in cls.mro():
+            context = {**context, **extract_context(clazz)}
+        # context = reduce(operator.or_, (extract_context(clazz) for clazz in cls.mro()), context)
 
         # add annotations to the current (sub-)class definition as dataclasses look them up here
         class_annotations = getattr(cls, "__annotations__", {})
