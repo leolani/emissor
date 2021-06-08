@@ -1,26 +1,50 @@
-import collections.abc
 import enum
-import numbers
-import uuid
-from abc import ABC
 from collections import namedtuple
-from dataclasses import dataclass
-from typing import Any, Callable, TypeVar, Generic, NewType, ClassVar
 
+import collections.abc
 import marshmallow
 import marshmallow_dataclass
+import numbers
 import numpy as np
 import simplejson as json
-from marshmallow import fields, Schema, EXCLUDE
+import uuid
+from abc import ABC
+from marshmallow import fields, EXCLUDE, ValidationError
+from numpy.typing import ArrayLike
 from rdflib import URIRef
+from typing import Any, Callable, TypeVar, Generic
 
-from emissor.representation.ldschema import LD_CONTEXT_FIELD, emissor_dataclass, LD_TYPE_FIELD
-
+from emissor.representation.ldschema import emissor_dataclass
 
 Identifier = str
 
 
+class ArrayLikeField(fields.Field):
+    def _serialize(self, value, attr, obj, **kwargs):
+        if value is None:
+            return ""
+
+        return np.array(value).tolist()
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        try:
+            return np.array(value) if value != "" else None
+        except ValueError as error:
+            raise ValidationError("Not an ArrayLike") from error
+
+
+class AnyField(fields.Field):
+    def _serialize(self, value, attr, obj, **kwargs):
+        return serializer(value)
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        return hook(value)
+
+
 class _JsonLdSchema(marshmallow.Schema):
+    TYPE_MAPPING = {ArrayLike: ArrayLikeField,
+                    Any: AnyField}
+
     """A Schema that marshals data with JSON-LD contexts."""
     _ld_context = fields.Dict(data_key="@context", dump_only=True)
     _ld_type = fields.Str(data_key="@type", dump_only=True)
@@ -83,7 +107,7 @@ def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[A
     return schema.dumps(obj, indent=indent, many=is_collection)
 
 
-def unmarshal(json_string: str, *, cls: type = None) -> Any:
+def unmarshal(json_string: object, *, cls: type = None) -> object:
     """Deserialize a JSON to a Python object.
 
     Deserialization can be performed either based on the expected output type,
@@ -118,12 +142,13 @@ def unmarshal(json_string: str, *, cls: type = None) -> Any:
 
         return schema.load(mapping, unknown=marshmallow.EXCLUDE, many=is_collection)
     else:
-        def hook(obj_dict):
-            valid_attributes = {k: v for k, v in obj_dict.items() if k.isidentifier()}
-
-            return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
-
         return json.loads(json_string, object_hook=hook)
+
+
+def hook(obj_dict):
+    valid_attributes = {k: v for k, v in obj_dict.items() if k.isidentifier()}
+
+    return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
 
 
 if __name__ == '__main__':

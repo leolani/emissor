@@ -1,14 +1,14 @@
 import enum
+
 import json
 import os
 import uuid
 from abc import ABC
-from typing import Iterable, Dict, TypeVar, Type, Generic, Any, List
-
-import numpy as np
+from numpy.typing import ArrayLike
+from typing import Iterable, Dict, TypeVar, Type, Any, List, Union
 
 from emissor.representation.container import TemporalContainer, Ruler, TemporalRuler, Sequence, \
-    ArrayContainer, Index, MultiIndex, BaseContainer
+    ArrayContainer, Index, MultiIndex, BaseContainer, AtomicRuler, Container
 from emissor.representation.entity import Person, Object
 from emissor.representation.ldschema import emissor_dataclass
 from emissor.representation.util import Identifier, serializer
@@ -25,9 +25,9 @@ class Modality(enum.Enum):
 
 
 @emissor_dataclass
-class Annotation(Generic[T]):
+class Annotation:
     type: str
-    value: T
+    value: Union[Container, Any]
     source: Identifier
     timestamp: int
 
@@ -35,8 +35,8 @@ class Annotation(Generic[T]):
 @emissor_dataclass
 class Mention:
     id: Identifier
-    segment: List[Ruler]
-    annotations: List[Annotation[Any]]
+    segment: List[Union[TemporalRuler, MultiIndex, Index, AtomicRuler]]
+    annotations: List[Annotation]
 
 
 R = TypeVar('R', bound=Ruler)
@@ -52,30 +52,38 @@ class Signal(BaseContainer[R, T], ABC):
 
 @emissor_dataclass
 class TextSignal(Signal[Index, str], Sequence[str]):
+    ruler: Index
+    seq: List[str]
+
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str, text: str = None,
                      mentions: Iterable[Mention] = None) -> U:
-        return cls(str(uuid.uuid4()), Index.from_range(start, stop), start, stop, tuple(text) if text else text,
+        signal_id = str(uuid.uuid4())
+        return cls(signal_id, Index.from_range(signal_id, start, stop), start, stop, tuple(text) if text else text,
                    Modality.TEXT, TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
 
 
 @emissor_dataclass
-class ImageSignal(Signal[MultiIndex, np.array], ArrayContainer):
+class ImageSignal(Signal[MultiIndex, ArrayLike], ArrayContainer):
+    ruler: MultiIndex
+
     @classmethod
     def for_scenario(cls: Type[U], scenario_id: Identifier, start: int, stop: int, file: str,
                      bounds: Iterable[int], mentions: Iterable[Mention] = None) -> U:
-        return cls(str(uuid.uuid4()), MultiIndex(None, tuple(bounds)), None, Modality.IMAGE,
+        signal_id = str(uuid.uuid4())
+
+        return cls(signal_id, MultiIndex(signal_id, tuple(bounds)), [], Modality.IMAGE,
                    TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
 
 
 @emissor_dataclass
-class AudioSignal(Signal[MultiIndex, np.array], ArrayContainer):
+class AudioSignal(Signal[MultiIndex, ArrayLike], ArrayContainer):
     # TODO factory
     pass
 
 
 @emissor_dataclass
-class VideoSignal(Signal[MultiIndex, np.array], ArrayContainer):
+class VideoSignal(Signal[MultiIndex, ArrayLike], ArrayContainer):
     # TODO factory
     pass
 
@@ -96,7 +104,7 @@ class Scenario(TemporalContainer):
     @classmethod
     def new_instance(cls: Type[U], scenario_id: str, start: int, end: int, context: ScenarioContext,
                      signals: Dict[str, str]) -> U:
-        temporal_ruler = TemporalRuler(None, start, end)
+        temporal_ruler = TemporalRuler(scenario_id, start, end)
         return cls(scenario_id, temporal_ruler, context, signals)
 
 

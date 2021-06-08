@@ -1,7 +1,7 @@
 # Define Annotation Class
 import enum
-from dataclasses import dataclass
 
+from emissor.representation.ldschema import emissor_dataclass
 from emissor.representation.util import Identifier
 
 
@@ -22,23 +22,23 @@ class Gender(enum.Enum):
     OTHER = 3
 
 
-@dataclass
+@emissor_dataclass
 class Instance:
     id: Identifier
 
 
-@dataclass
+@emissor_dataclass
 class Object(Instance):
     label: str
 
 
-@dataclass
+@emissor_dataclass
 class Person(Instance):
     name: str
     age: int
-    gender: Gender
+    gender: str
 
 
-@dataclass
+@emissor_dataclass
 class Friend(Person):
     pass

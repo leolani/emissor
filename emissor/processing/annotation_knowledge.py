@@ -43,7 +43,7 @@ def _add_entity_links(signal: TextSignal, chat: Chat, brain: LongTermMemory):
                     if annotation.type.lower() == AnnotationType.NER.name.lower()]
 
     for mention, annotation in ner_mentions:
-        link_annotation = Annotation(AnnotationType.LINK.name, EntityLink(uuid.uuid4()), "linking_tool", int(time.time()))
+        link_annotation = Annotation(AnnotationType.LINK.name, EntityLink(str(uuid.uuid4())), "linking_tool", int(time.time()))
         mention.annotations.append(link_annotation)
         utterance = _create_utterance(chat, "", 1)
         entity = "Carl"

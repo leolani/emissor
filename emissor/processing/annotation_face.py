@@ -10,7 +10,6 @@ from joblib import Parallel, delayed
 from sklearn.cluster import AgglomerativeClustering
 from tqdm import tqdm
 
-from build.lib.emissor.representation.container import MultiIndex
 from emissor.annotation.persistence import ScenarioStorage
 from emissor.processing.util import DockerInfra
 from emissor.representation.annotation import AnnotationType
@@ -123,10 +122,8 @@ class Frames2Faces:
         bbox = [int(num) for num in face_result['bbox'].tolist()]
         name = face_id
 
-        image_signal = ImageSignal(signal.id, MultiIndex(signal.ruler.container_id, signal.ruler.bounds), signal.modality, signal.time,
-                                   signal.files, signal.mentions, signal.array)
-        segment = image_signal.ruler.get_area_bounding_box(*bbox)
-        annotation = Annotation(AnnotationType.PERSON.name, Person(uuid.uuid4(), name, age, gender), "cltl.face", int(time.time()))
+        segment = signal.ruler.get_area_bounding_box(*bbox)
+        annotation = Annotation(AnnotationType.PERSON.name, Person(str(uuid.uuid4()), name, age, gender), "cltl.face", int(time.time()))
         mention = Mention(str(uuid.uuid4()), [segment], [annotation])
 
         signal.mentions.append(mention)

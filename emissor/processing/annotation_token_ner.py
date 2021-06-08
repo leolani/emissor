@@ -28,11 +28,12 @@ def _add_ner_annotation(signal: TextSignal):
 
     ents = [NER.for_string(ent.label_) for ent in doc.ents]
     entity_text = [ent.text for ent in doc.ents]
-    segments = [AtomicRuler(token.id) for token in tokens if token.value in entity_text]
+    segments = [token.ruler for token in tokens if token.value in entity_text]
 
     annotations = [Annotation(AnnotationType.TOKEN.name.lower(), token, SPACY_ID, int(time.time()))
                    for token in tokens]
-    ner_annotations = [Annotation(AnnotationType.NER.name, ent, SPACY_ID, int(time.time())) for ent in ents]
+    ner_annotations = [Annotation(AnnotationType.NER.name.lower(), ent, SPACY_ID, int(time.time()))
+                       for ent in ents]
 
     signal.mentions.extend([Mention(str(uuid.uuid4()), [offset], [annotation])
                             for offset, annotation in zip(offsets, annotations)])
