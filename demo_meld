@@ -1,0 +1,48 @@
+# rm -rf example_data/demo && mkdir example_data/demo
+# clear
+# sleep 15
+#
+# echo ""
+# echo ""
+# echo "EMISSOR %  cp -r example_data/demo_meld example_data/demo"
+# echo ""
+# rm -rf example_data/demo && cp -r example_data/demo_meld example_data/demo
+# sleep 10
+# clear
+# sleep 5
+#
+#
+# echo ""
+# echo ""
+# echo "EMISSOR % python -m emissor.processing --dataset example_data/demo --preprocessing --fps-max 1"
+# echo ""
+# python -m emissor.processing --dataset example_data/demo --preprocessing --fps-max 1
+# sleep 10
+# clear
+# sleep 5
+#
+# echo ""
+# echo ""
+# echo "EMISSOR % python -m emissor.processing --dataset example_data/demo/scenarios --init"
+# echo ""
+# python -m emissor.processing --dataset example_data/demo/scenarios --init
+#
+# sleep 60
+# sleep 15
+# 
+# clear
+# echo ""
+# echo ""
+# echo "EMISSOR % python -m emissor.processing --dataset example_data/demo/scenarios --annotation-ner"
+# echo ""
+# python -m emissor.processing --dataset example_data/demo/scenarios --annotation-ner
+# sleep 15
+
+clear
+echo ""
+echo ""
+#echo "EMISSOR % python -m emissor.processing --dataset example_data/demo/scenarios --annotation-face"
+echo "EMISSOR % python -m emissor.processing --dataset example_data/demo/scenarios --annotation-link"
+echo ""
+# python -m emissor.processing --dataset example_data/demo/scenarios --annotation-face
+python -m emissor.processing --dataset example_data/demo/scenarios --annotation-link

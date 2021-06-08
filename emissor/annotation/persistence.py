@@ -186,7 +186,7 @@ class ScenarioStorage:
 
         with open(scenario_path) as json_file:
             json_string = json_file.read()
-        scenario = unmarshal(json_string, cls=Scenario)
+        scenario = unmarshal(json_string)
 
         self._cache = ScenarioCache(scenario_id)
 
@@ -198,7 +198,7 @@ class ScenarioStorage:
 
     def save_scenario(self, scenario: Scenario) -> None:
         with open(self._get_path(scenario.id), 'w') as json_file:
-            json_file.write(marshal(scenario, cls=Scenario))
+            json_file.write(marshal(scenario))
 
     def load_modality(self, scenario_id: str, modality: Modality) -> Optional[Iterable[Signal[Any, Any]]]:
         if not self._cache or self._cache.scenario_id != scenario_id:

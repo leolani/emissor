@@ -1,3 +1,4 @@
+import time
 from glob import glob
 
 import argparse
@@ -137,6 +138,7 @@ class TextProcessing:
             os.makedirs(text_dir, exist_ok=True)
             shutil.copyfile(text, os.path.join(text_dir, path.name))
             logging.info("Copy %s to %s", text, text_dir)
+            time.sleep(0.2)
 
 
 def main(dataset, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, run_on_gpu):
