@@ -28,6 +28,7 @@ class AnnotationType(enum.Enum):
     POS = 5
     NER = 6
     LINK = 7
+    REPRESENTATION = 8
 
 
 class ImageLabel(enum.Enum):
