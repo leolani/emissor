@@ -2,15 +2,16 @@
 # Enable using the current class in type annotations
 # from __future__ import annotations
 
-import uuid
-from abc import ABC
 from dataclasses import dataclass
-from typing import Union, TypeVar, Generic, Iterable, Tuple, Type, Any
 
 import numpy as np
+import uuid
+from abc import ABC
+from numpy.typing import ArrayLike
+from typing import TypeVar, Generic, Iterable, Tuple, Type, Any, List
 
 from emissor.representation.ldschema import emissor_dataclass
-from emissor.representation.util import Identifier, marshal
+from emissor.representation.util import Identifier, marshal, get_serializable_type_var
 
 
 @dataclass
@@ -19,8 +20,9 @@ class Ruler(ABC):
     container_id: Identifier
 
 
-R = TypeVar('R', bound=Ruler)
-T = TypeVar('T')
+C = TypeVar('C')
+R = get_serializable_type_var('R', bound=Ruler)
+T = get_serializable_type_var('T')
 
 
 @dataclass
@@ -30,7 +32,7 @@ class Container(Generic[R, T], ABC):
 
 
 @dataclass
-class BaseContainer(Container[R, T], ABC):
+class BaseContainer(Generic[R, T], Container[R, T]):
     id: Identifier
     ruler: R
 
@@ -41,8 +43,8 @@ class Index(Ruler):
     stop: int
 
     @classmethod
-    def from_range(cls: Type[T], start: int, stop: int) -> T:
-        return cls(None, start, stop)
+    def from_range(cls: Type[C], container_id: Identifier, start: int, stop: int) -> C:
+        return cls(container_id, start, stop)
 
     # TODO return Index (see import of annotations)
     def get_offset(self, start: int, end: int) -> Any:
@@ -53,16 +55,16 @@ class Index(Ruler):
 
 
 @emissor_dataclass
-class Sequence(BaseContainer[Index, T]):
-    start: int
-    stop: int
-    seq: Tuple[T, ...]
+class Sequence(Generic[T], BaseContainer[Index, T]):
+    seq: List[T]
 
     @classmethod
-    def from_seq(cls: Type[T], seq: Iterable[Any]) -> T:
-        seq_tuple = tuple(seq)
-        ruler = Index.from_range(0, len(seq_tuple))
-        return cls(str(uuid.uuid4()), ruler, ruler.start, ruler.stop, seq_tuple)
+    def from_seq(cls: Type[C], seq: Iterable[Any]) -> C:
+        seq_tuple = list(seq)
+        sequence_id = str(uuid.uuid4())
+        ruler = Index.from_range(sequence_id, 0, len(seq_tuple))
+
+        return cls(sequence_id, ruler, seq_tuple)
 
     def get_segment(self, offset: Index) -> T:
         return self.seq[offset.start:offset.stop]
@@ -82,14 +84,16 @@ class MultiIndex(Ruler):
 
 
 @emissor_dataclass
-class ArrayContainer(BaseContainer[MultiIndex, np.array]):
-    array: np.ndarray
+class ArrayContainer(BaseContainer[MultiIndex, ArrayLike]):
+    array: ArrayLike
 
     @classmethod
-    def from_array(cls: Type[T], array_: Union[tuple, list, np.ndarray]) -> T:
+    def from_array(cls: Type[C], array_: ArrayLike) -> C:
         value = np.array(array_)
-        ruler = MultiIndex(None, (0, 0, value.shape[0], value.shape[1]))
-        return cls(str(uuid.uuid4()), ruler, value)
+        container_id = str(uuid.uuid4())
+        ruler = MultiIndex(container_id, (0, 0, value.shape[0], value.shape[1]))
+
+        return cls(container_id, ruler, value)
 
     @property
     def bounds(self):
@@ -97,6 +101,7 @@ class ArrayContainer(BaseContainer[MultiIndex, np.array]):
 
     def get_segment(self, bounding_box: MultiIndex) -> np.array:
         b = bounding_box.bounds
+
         return self.array[b[0]:b[1], b[1]:b[3]]
 
 
@@ -116,8 +121,9 @@ class TemporalRuler(Ruler):
 @emissor_dataclass
 class TemporalContainer(BaseContainer[TemporalRuler, TemporalRuler]):
     @classmethod
-    def from_range(cls: Type[T], start: int, end: int) -> T:
-        return cls(str(uuid.uuid4()), TemporalRuler(None, start, end))
+    def from_range(cls: Type[C], start: int, end: int) -> C:
+        id = str(uuid.uuid4())
+        return cls(id, TemporalRuler(id, start, end))
 
     @property
     def start(self):
@@ -137,7 +143,7 @@ class AtomicRuler(Ruler):
 
 
 @emissor_dataclass
-class AtomicContainer(BaseContainer[AtomicRuler, T]):
+class AtomicContainer(Generic[T], BaseContainer[AtomicRuler, T]):
     value: T
 
     def get_segment(self, segment: AtomicRuler) -> T:

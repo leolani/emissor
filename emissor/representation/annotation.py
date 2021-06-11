@@ -7,7 +7,7 @@ import uuid
 from dataclasses import dataclass
 
 from rdflib import URIRef, Namespace
-from typing import Tuple, Any, Union
+from typing import Tuple, Any, Union, List
 
 from emissor.representation.container import Sequence, AtomicContainer, AtomicRuler
 from emissor.representation.util import Identifier
@@ -47,7 +47,8 @@ class Entity:
 class Token(AtomicContainer[str]):
     @classmethod
     def for_string(cls, value: str):
-        return cls(str(uuid.uuid4()), AtomicRuler(None), value)
+        token_id = str(uuid.uuid4())
+        return cls(token_id, AtomicRuler(token_id), value)
 
 
 @dataclass
@@ -68,7 +69,7 @@ class Triple:
 class Utterance(Sequence):
     chat_id: Identifier
     utterance: str
-    tokens: Tuple[Token]
+    tokens: List[Token]
 
 
 @dataclass

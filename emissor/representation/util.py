@@ -1,26 +1,92 @@
-import collections.abc
 import enum
-import numbers
-import uuid
-from abc import ABC
 from collections import namedtuple
-from dataclasses import dataclass
-from typing import Any, Callable, TypeVar, Generic, NewType, ClassVar
+from dataclasses import is_dataclass
 
+import collections.abc
 import marshmallow
 import marshmallow_dataclass
+import numbers
 import numpy as np
 import simplejson as json
-from marshmallow import fields, Schema, EXCLUDE
+import sys
+import uuid
+from abc import ABC
+from marshmallow import fields, EXCLUDE, ValidationError
+from numpy.typing import ArrayLike
 from rdflib import URIRef
+from typing import Any, Callable, TypeVar, Generic, Type, Mapping, Union
 
-from emissor.representation.ldschema import LD_CONTEXT_FIELD, emissor_dataclass, LD_TYPE_FIELD
+from emissor.representation.ldschema import emissor_dataclass
 
+PY_TYPE_FIELD = "_py_type"
 
 Identifier = str
 
 
+class GenericField(fields.Field):
+    def _serialize(self, value, attr, obj, **kwargs):
+        try:
+            object_dict = marshal(value, cls=value.__class__, serialize=False)
+            object_dict[PY_TYPE_FIELD] = f"{value.__class__.__module__}-{value.__class__.__name__}"
+
+            return object_dict
+        except Exception:
+            return marshal(value)
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        try:
+            module_, type_ = value[PY_TYPE_FIELD].split("-")
+            clazz = getattr(sys.modules[module_], type_)
+
+            return unmarshal(value, cls=clazz, serialized=False)
+        except Exception:
+            return unmarshal(value)
+
+
+class ArrayLikeField(fields.Field):
+    def _serialize(self, value, attr, obj, **kwargs):
+        if value is None:
+            return ""
+
+        return np.array(value).tolist()
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        try:
+            return np.array(value) if value != "" else None
+        except ValueError as error:
+            raise ValidationError("Not an ArrayLike") from error
+
+
+class AnyField(fields.Field):
+    def _serialize(self, value, attr, obj, **kwargs):
+        if isinstance(value, (str, int, float, complex, bool)):
+            return value
+        if isinstance(value, dict):
+            return dict
+
+        try:
+            return marshal(value, cls=value.__class__)
+        except Exception:
+            return marshal(value)
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        unmarshal(value)
+        if isinstance(value, (str, int, float, complex, bool)):
+            return value
+        if isinstance(value, dict):
+            return object_hook(value)
+        if isinstance(value, collections.abc.Iterable):
+            return [self._deserialize(v, attr, data, **kwargs) for v in value]
+
+        raise ValueError(f"{value} of type {type(value)} is not implemented")
+
+
 class _JsonLdSchema(marshmallow.Schema):
+    TYPE_MAPPING: Mapping[Type, fields.Field] = {
+        ArrayLike: ArrayLikeField,
+        Any: GenericField,
+    }
+
     """A Schema that marshals data with JSON-LD contexts."""
     _ld_context = fields.Dict(data_key="@context", dump_only=True)
     _ld_type = fields.Str(data_key="@type", dump_only=True)
@@ -29,25 +95,37 @@ class _JsonLdSchema(marshmallow.Schema):
         unknown = EXCLUDE
 
 
+def get_serializable_type_var(name: str, *constraints: type, bound: Union[None, type, str] = None,
+                              covariant: bool = False, contravariant: bool = False):
+    # noinspection PyTypeHints
+    var = TypeVar(name, *constraints, bound=bound, covariant=covariant, contravariant=contravariant)
+    _JsonLdSchema.TYPE_MAPPING[var] = GenericField
+
+    return var
+
+
 def serializer(obj):
+    if isinstance(obj, (str, int, float, complex, bool)):
+        return obj
     if isinstance(obj, enum.Enum):
         return obj.name.lower()
     if isinstance(obj, (URIRef, uuid.UUID)):
         return str(obj)
     if isinstance(obj, np.ndarray):
-        return obj.tolist()
+        return tuple(obj.tolist())
     if isinstance(obj, tuple) and hasattr(obj, '_asdict'):
+        # noinspection PyProtectedMember
         return obj._asdict()
     if isinstance(obj, collections.abc.Iterable):
-        return list(obj)
+        return tuple(obj)
 
     # Include @property
-    fields = [key for key in dir(obj) if not key.startswith("_") and not callable(getattr(obj, key))]
+    attrs = [key for key in dir(obj) if not key.startswith("_") and not callable(getattr(obj, key))]
 
-    return {k: getattr(obj, k) for k in fields}
+    return {k: getattr(obj, k) for k in attrs}
 
 
-def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer) -> str:
+def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer, serialize=True) -> str:
     """Serialize a Python object to JSON.
 
     Serialization can be performed either based on the type of the object, in
@@ -74,16 +152,19 @@ def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[A
     str
         The serialized JSON object.
     """
-    if not cls:
+    if not cls or not is_dataclass(cls):
         return json.dumps(obj, default=default if default else serializer, indent=indent)
 
     is_collection = isinstance(obj, collections.abc.Iterable)
     schema = marshmallow_dataclass.class_schema(cls, base_schema=_JsonLdSchema)()
 
-    return schema.dumps(obj, indent=indent, many=is_collection)
+    json_string = schema.dumps(obj, indent=indent, many=is_collection)
+
+    # noinspection PyProtectedMember
+    return json_string if serialize else json.loads(json_string)
 
 
-def unmarshal(json_string: str, *, cls: type = None) -> Any:
+def unmarshal(json_string: str, *, cls: type = None, serialized: bool = True) -> Any:
     """Deserialize a JSON to a Python object.
 
     Deserialization can be performed either based on the expected output type,
@@ -106,8 +187,8 @@ def unmarshal(json_string: str, *, cls: type = None) -> Any:
         an instance or collection of this type is returned, otherwise a named
         tuple.
     """
-    if cls:
-        mapping = json.loads(json_string)
+    if cls and is_dataclass(cls):
+        mapping = json.loads(json_string) if serialized else json_string
 
         # Valid JSON is either an object, array, number, string, false, null or true (https://tools.ietf.org/rfc/rfc7159.txt)
         if mapping is None or isinstance(mapping, (str, numbers.Number, bool)):
@@ -117,13 +198,16 @@ def unmarshal(json_string: str, *, cls: type = None) -> Any:
         schema = marshmallow_dataclass.class_schema(cls, base_schema=_JsonLdSchema)()
 
         return schema.load(mapping, unknown=marshmallow.EXCLUDE, many=is_collection)
+    elif not serialized:
+        return json_string
     else:
-        def hook(obj_dict):
-            valid_attributes = {k: v for k, v in obj_dict.items() if k.isidentifier()}
+        return json.loads(json_string, object_hook=object_hook)
 
-            return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
 
-        return json.loads(json_string, object_hook=hook)
+def object_hook(obj_dict):
+    valid_attributes = {k: v for k, v in obj_dict.items() if k.isidentifier()}
+
+    return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
 
 
 if __name__ == '__main__':

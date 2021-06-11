@@ -17,7 +17,6 @@ class TestMarshallingWithTypes(TestCase):
             json_ld_context: Union[str, dict]
 
         instance = TestString("testString", {'id': '@id'})
-        print(marshal(instance, cls=TestString))
 
         unmarshalled = unmarshal(marshal(instance, cls=TestString), cls=TestString)
 
@@ -333,12 +332,10 @@ class TestLDMarshalling(TestCase):
 
         instance = TestString("testString")
         json_string = marshal(instance, cls=TestString)
-        print(json_string)
 
         obj_dict = json.loads(json_string)
         type_ = obj_dict["@type"]
         context = obj_dict["@context"]
-        pprint(context)
 
         self.assertEqual("TestString", type_)
         self.assertEqual(EMISSOR_NAMESPACE + "#" + "TestString", context["TestString"])
