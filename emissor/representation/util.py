@@ -69,7 +69,20 @@ class _JsonLdSchema(marshmallow.Schema):
 
 
 def get_serializable_type_var(name: str, *constraints: type, bound: Union[None, type, str] = None,
-                              covariant: bool = False, contravariant: bool = False):
+                              covariant: bool = False, contravariant: bool = False) -> TypeVar:
+    """
+    Obtain a :class:`TypeVar` that can be serialized by the :func:`marshal` and :func:`unmarshal`
+    functions in this module.
+
+    Parameters
+    ----------
+    see :class:`TypeVar`
+
+    Returns
+    -------
+    TypeVar
+        A :class:`TypeVar` with the given parameters.
+    """
     # noinspection PyTypeHints
     var = TypeVar(name, *constraints, bound=bound, covariant=covariant, contravariant=contravariant)
     _JsonLdSchema.TYPE_MAPPING[var] = GenericField
@@ -77,7 +90,22 @@ def get_serializable_type_var(name: str, *constraints: type, bound: Union[None, 
     return var
 
 
-def serializer(obj):
+def serializer(obj: Any) -> Union[dict, tuple, str, int, float, complex, bool]:
+    """
+    Convert an object to a type supported by default by :func:`json.dumps`.
+
+    This function can be used as the 'default' parameter in :func:`json.dumps`.
+
+    Parameters
+    ----------
+    obj : Any
+        Object to be serialized.
+
+    Returns
+    -------
+    Union[dict, tuple, str, int, float, complex, bool]
+        The serialized object.
+    """
     if isinstance(obj, (str, int, float, complex, bool)):
         return obj
     if isinstance(obj, enum.Enum):
@@ -98,7 +126,8 @@ def serializer(obj):
     return {k: getattr(obj, k) for k in attrs}
 
 
-def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer, serialize=True) -> str:
+def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer,
+            serialize: bool = True) -> str:
     """Serialize a Python object to JSON.
 
     Serialization can be performed either based on the type of the object, in
@@ -112,13 +141,16 @@ def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[A
     indent : int, optional, default: '2'
         Formatting parameter for the returned JSON string.
     cls : type, optional
-        The type of the `obj` passed in. If this parameter is used, the object should be
-         a dataclass (see :mod:`dataclasses).
+        The type of the `obj` passed in. If this parameter is used, the object
+        should be a dataclass (see :mod:`dataclasses`).
         If `cls` is not 'None', `default` is ignored.
     default : Callable[[Any], Any], optional, default: :func:`serializer`
         A function that converts any object to a Python type that is supported
         by :mod:`json` by default, i.e. one of primitive type, list, dict.
         If `cls` is not 'None', `default` is ignored.
+    serialize: bool, default: True
+        If `True` the object is marshalled to string form, otherwise to a generic
+        dict/list/primitive data structure.
 
     Returns
     -------
@@ -152,6 +184,9 @@ def unmarshal(json_string: str, *, cls: type = None, serialized: bool = True) ->
         should be a dataclass (see :mod:`dataclasses).
         If the input is a collection, the expected type of its elements should
         be provided.
+    serialized : bool, default: True
+        If `True` the input is expected to be serialized in string form,
+        otherwise a generic dict/list/primitive data structure is expected.
 
     Returns
     -------
