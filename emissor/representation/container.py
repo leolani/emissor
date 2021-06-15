@@ -151,25 +151,3 @@ class AtomicContainer(Generic[T], BaseContainer[AtomicRuler, T]):
             raise ValueError("Invalid segment")
 
         return self.value
-
-
-if __name__ == "__main__":
-    from pprint import pprint
-
-    tokens = Sequence.from_seq(["I", "am", "in", "Amsterdam"])
-    token_offset = tokens.ruler.get_offset(0, 1)
-    token_segment = tokens.get_segment(token_offset)
-    pprint(token_segment)
-    print(marshal(tokens))
-
-    array = ArrayContainer.from_array(np.zeros((5, 5, 3), dtype=int))
-    bbox = array.ruler.get_area_bounding_box(0, 0, 2, 2)
-    area = array.get_segment(bbox)
-    pprint(area)
-    print(marshal(array))
-
-    period = TemporalContainer.from_range(0, 1000)
-    time_segment = period.ruler.get_time_segment(10, 100)
-    sub_period = period.get_segment(time_segment)
-    print(period)
-    print(marshal(period, cls=TemporalContainer))

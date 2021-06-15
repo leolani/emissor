@@ -10,13 +10,10 @@ import numpy as np
 import simplejson as json
 import sys
 import uuid
-from abc import ABC
 from marshmallow import fields, EXCLUDE, ValidationError
 from numpy.typing import ArrayLike
 from rdflib import URIRef
-from typing import Any, Callable, TypeVar, Generic, Type, Mapping, Union
-
-from emissor.representation.ldschema import emissor_dataclass
+from typing import Any, Callable, TypeVar, Type, Mapping, Union
 
 PY_TYPE_FIELD = "_py_type"
 
@@ -55,30 +52,6 @@ class ArrayLikeField(fields.Field):
             return np.array(value) if value != "" else None
         except ValueError as error:
             raise ValidationError("Not an ArrayLike") from error
-
-
-class AnyField(fields.Field):
-    def _serialize(self, value, attr, obj, **kwargs):
-        if isinstance(value, (str, int, float, complex, bool)):
-            return value
-        if isinstance(value, dict):
-            return dict
-
-        try:
-            return marshal(value, cls=value.__class__)
-        except Exception:
-            return marshal(value)
-
-    def _deserialize(self, value, attr, data, **kwargs):
-        unmarshal(value)
-        if isinstance(value, (str, int, float, complex, bool)):
-            return value
-        if isinstance(value, dict):
-            return object_hook(value)
-        if isinstance(value, collections.abc.Iterable):
-            return [self._deserialize(v, attr, data, **kwargs) for v in value]
-
-        raise ValueError(f"{value} of type {type(value)} is not implemented")
 
 
 class _JsonLdSchema(marshmallow.Schema):
@@ -208,42 +181,3 @@ def object_hook(obj_dict):
     valid_attributes = {k: v for k, v in obj_dict.items() if k.isidentifier()}
 
     return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
-
-
-if __name__ == '__main__':
-    @emissor_dataclass
-    class Ruler(ABC):
-        container_id: Identifier
-
-    @emissor_dataclass
-    class TemporalRuler(Ruler):
-        start: int
-        end: int
-
-
-    R = TypeVar('R', bound=Ruler)
-    T = TypeVar('T')
-
-    @emissor_dataclass
-    class Container(Generic[R, T], ABC):
-        pass
-
-
-    @emissor_dataclass
-    class BaseContainer(Container[R, T], ABC):
-        id: Identifier
-        ruler: R
-
-
-    @emissor_dataclass
-    class TemporalContainer(BaseContainer[TemporalRuler, TemporalRuler]):
-        ruler: TemporalRuler
-
-    t = TemporalContainer("cid", TemporalRuler("rid", 0, 1))
-    print(t._ld_context)
-    print(marshal(t, cls=TemporalContainer))
-    s = marshal(t, cls=TemporalContainer)
-    print(unmarshal(s, cls=TemporalContainer))
-    tr = TemporalRuler("rid", 0, 1)
-    print(marshal(tr, cls=TemporalRuler))
-    print(unmarshal(marshal(tr, cls=TemporalRuler), cls=TemporalRuler))
