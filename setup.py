@@ -5,7 +5,7 @@ with open("emissor/representation/README.md", "r") as fh:
 
 setuptools.setup(
     name="emissor",
-    version="0.0.1-dev",
+    version="0.0.1",
     author="CLTL",
     author_email="piek.vossen@vu.nl",
     description="Representation of multi-modal datasets",
@@ -20,5 +20,12 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.8',
+    install_requires=['numpy==1.20.0',
+                      'marshmallow==3.11.1',
+                      'marshmallow-dataclass==8.4.1',
+                      'marshmallow-enum==1.5.1',
+                      'rdflib==5.0.0',
+                      'rdflib-jsonld==0.5.0',
+                      'simplejson==3.17.2'],
+    python_requires='>=3.7',
 )
