@@ -173,12 +173,12 @@ class ScenarioStorage:
 
     def save_signals(self, scenario_id: str, modality: Modality, signals: Iterable[Signal[Any, Any]]) -> None:
         self._cache[modality] = signals
-        self._save_signals(self._get_path(scenario_id, modality), signals)
+        self._save_signals(self._get_path(scenario_id, modality), signals, modality)
 
     def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
         modality = signal.modality if isinstance(signal.modality, Modality) else Modality[signal.modality.upper()]
         self._cache[modality][signal.id] = signal
-        self._save_signals(self._get_path(scenario_id, modality), self._cache[modality].values())
+        self._save_signals(self._get_path(scenario_id, modality), self._cache[modality].values(), modality)
 
     def _save_signals(self, path, signals, modality: Modality):
         if modality == Modality.IMAGE:
@@ -189,4 +189,4 @@ class ScenarioStorage:
             raise ValueError(f"Unsupported modality: {modality}")
 
         with open(path, 'w') as json_file:
-            json_file.write(marshal(signals), cls=cls)
+            json_file.write(marshal(signals, cls=cls))

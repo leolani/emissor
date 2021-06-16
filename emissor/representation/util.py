@@ -23,21 +23,21 @@ Identifier = str
 class GenericField(fields.Field):
     def _serialize(self, value, attr, obj, **kwargs):
         try:
-            object_dict = marshal(value, cls=value.__class__, serialize=False)
+            object_dict = _marshal(value, cls=value.__class__, serialize=False)
             object_dict[PY_TYPE_FIELD] = f"{value.__class__.__module__}-{value.__class__.__name__}"
 
             return object_dict
         except Exception:
-            return marshal(value)
+            return _marshal(value, serialize=False)
 
     def _deserialize(self, value, attr, data, **kwargs):
         try:
             module_, type_ = value[PY_TYPE_FIELD].split("-")
             clazz = getattr(sys.modules[module_], type_)
 
-            return unmarshal(value, cls=clazz, serialized=False)
+            return _unmarshal(value, cls=clazz, serialized=False)
         except Exception:
-            return unmarshal(value)
+            return _unmarshal(value, serialized=False)
 
 
 class ArrayLikeField(fields.Field):
@@ -126,8 +126,7 @@ def serializer(obj: Any) -> Union[dict, tuple, str, int, float, complex, bool]:
     return {k: getattr(obj, k) for k in attrs}
 
 
-def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer,
-            serialize: bool = True) -> str:
+def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer) -> str:
     """Serialize a Python object to JSON.
 
     Serialization can be performed either based on the type of the object, in
@@ -148,28 +147,30 @@ def marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[A
         A function that converts any object to a Python type that is supported
         by :mod:`json` by default, i.e. one of primitive type, list, dict.
         If `cls` is not 'None', `default` is ignored.
-    serialize: bool, default: True
-        If `True` the object is marshalled to string form, otherwise to a generic
-        dict/list/primitive data structure.
 
     Returns
     -------
     str
         The serialized JSON object.
     """
+    return _marshal(obj, indent=indent, cls=cls, default=default)
+
+
+def _marshal(obj: Any, *, indent: int = 2, cls: type = None, default: Callable[[Any], Any] = serializer,
+            serialize: bool = True) -> str:
     if not cls or not is_dataclass(cls):
-        return json.dumps(obj, default=default if default else serializer, indent=indent)
+        json_string = json.dumps(obj, default=default if default else serializer, indent=indent)
+    else:
+        is_collection = isinstance(obj, collections.abc.Iterable)
+        schema = marshmallow_dataclass.class_schema(cls, base_schema=_JsonLdSchema)()
 
-    is_collection = isinstance(obj, collections.abc.Iterable)
-    schema = marshmallow_dataclass.class_schema(cls, base_schema=_JsonLdSchema)()
-
-    json_string = schema.dumps(obj, indent=indent, many=is_collection)
+        json_string = schema.dumps(obj, indent=indent, many=is_collection)
 
     # noinspection PyProtectedMember
     return json_string if serialize else json.loads(json_string)
 
 
-def unmarshal(json_string: str, *, cls: type = None, serialized: bool = True) -> Any:
+def unmarshal(json_string: str, *, cls: type = None) -> Any:
     """Deserialize a JSON to a Python object.
 
     Deserialization can be performed either based on the expected output type,
@@ -184,9 +185,6 @@ def unmarshal(json_string: str, *, cls: type = None, serialized: bool = True) ->
         should be a dataclass (see :mod:`dataclasses).
         If the input is a collection, the expected type of its elements should
         be provided.
-    serialized : bool, default: True
-        If `True` the input is expected to be serialized in string form,
-        otherwise a generic dict/list/primitive data structure is expected.
 
     Returns
     -------
@@ -195,8 +193,12 @@ def unmarshal(json_string: str, *, cls: type = None, serialized: bool = True) ->
         an instance or collection of this type is returned, otherwise a named
         tuple.
     """
+    return _unmarshal(json_string, cls=cls)
+
+
+def _unmarshal(json_obj: str, *, cls: type = None, serialized: bool = True) -> Any:
     if cls and is_dataclass(cls):
-        mapping = json.loads(json_string) if serialized else json_string
+        mapping = json.loads(json_obj) if serialized else json_obj
 
         # Valid JSON is either an object, array, number, string, false, null or true (https://tools.ietf.org/rfc/rfc7159.txt)
         if mapping is None or isinstance(mapping, (str, numbers.Number, bool)):
@@ -207,12 +209,18 @@ def unmarshal(json_string: str, *, cls: type = None, serialized: bool = True) ->
 
         return schema.load(mapping, unknown=marshmallow.EXCLUDE, many=is_collection)
     elif not serialized:
-        return json_string
+        if isinstance(json_obj, dict):
+            return object_hook(json_obj)
+        elif isinstance(json_obj, (list, tuple)):
+            print(json_obj)
+            return [_unmarshal(item, serialized=False) for item in json_obj]
+        else:
+            return json_obj
     else:
-        return json.loads(json_string, object_hook=object_hook)
+        return json.loads(json_obj, object_hook=object_hook)
 
 
 def object_hook(obj_dict):
-    valid_attributes = {k: v for k, v in obj_dict.items() if k.isidentifier()}
+    valid_attributes = {key: val for key, val in obj_dict.items() if key.isidentifier() and not key.startswith("_")}
 
     return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
