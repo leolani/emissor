@@ -45,7 +45,7 @@ export interface AtomicContainer<T> extends Container<AtomicRuler> {
 }
 
 export function segmentDisplayValue(ruler: Ruler): string {
-  switch (ruler.type.toLowerCase()) {
+  switch (ruler['@type'].toLowerCase()) {
     case "index":
       return "" + [(<Index> ruler).start, (<Index> ruler).stop];
     case "multiindex":
