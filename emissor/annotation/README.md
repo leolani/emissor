@@ -19,11 +19,11 @@ temporal and spatial containers ads well as by adding any annotations.
         > source venv/bin/activate
         > pip install -r requirements.txt
 
-* Run the webserver, optionally with the **absolute path** to the folder containing the scenario data. If no data folder
+* Run the webserver, optionally with the path to the folder containing the scenario data. If no data folder
 is specified, *data/* is used by default.
 It is recommended to choose a separate data folder, then you can easily use version control on the data folder (see below).
 
-        > python app.py -d /absolute/path/to/my/scenarios
+        > python app.py -d path/to/my/scenarios
 
 * Open the GUI at `https://localhost:5000/index.html` in your browser.
 
