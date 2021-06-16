@@ -30,8 +30,9 @@ if __name__ == "__main__":
                         help='Path to the directory containing scenario data. Defaults to ./data')
     args = parser.parse_args()
 
-    logger.info("Serve data folder: %s", args.data)
+    data = os.path.abspath(args.data)
+    logger.info("Serve data folder: %s", data)
 
-    app = create_app(args.data, static_path)
+    app = create_app(data, static_path)
     app.debug = True
     app.run(threaded=False, processes=1)

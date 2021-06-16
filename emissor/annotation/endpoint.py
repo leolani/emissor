@@ -20,11 +20,10 @@ def create_app(data_path, static_path):
     @app.route('/<string:path>')
     @app.route('/<path:path>')
     def static_proxy(path):
-        print("static", path)
-        if os.path.isfile(os.path.join(static_path, path)):
-            return send_from_directory(os.path.abspath(static_path), path)
-        else:
-            return app.send_static_file(os.path.join(os.path.abspath(static_path), "index.html"))
+        if not path:
+            path = "index.html"
+
+        return send_from_directory(os.path.abspath(static_path), path)
 
     @app.route('/api/scenario')
     def list_scenario():
