@@ -15,7 +15,8 @@ export enum Modality {
   IMAGE, TEXT
 }
 
-export interface Annotation<T> extends Typed {
+export interface Annotation<T> {
+  type: string;
   value: T;
   source: string;
   timestamp: number;

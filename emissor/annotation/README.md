@@ -5,33 +5,13 @@ temporal and spatial containers ads well as by adding any annotations.
 
 ## Install
 
-* Run the frontend, either from a docker container
+* Build the frontend
 
-        > docker run --rm -ti -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli npm install
-        > docker run --rm -ti -p 4200:4200 -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli ng serve --host 0.0.0.0
+        > ./gradlew build
 
-  or by install node.js and angular
+  If you run into problems with the typescript version, run
 
-        > brew install angular-cli
-        > ng --version
-        > cd webapp
-        >
-        > ng serve
-
-  If you run into issues with typescript versions, try:
-
-        > docker run --rm -ti -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli npm uninstall typescript
-        > docker run --rm -ti -v /absolute/path/to/repository/EMISSOR/webapp:/app trion/ng-cli npm i -D typescript@4.0.5
-
-  If you run into issues with node versions, try in *webapp/*:
-
-        > npm i -g npm-check-updates
-        > ncu -u
-        > npm install
-
-* Setup certificate next to `app.py`
-
-        > openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+        > ./gradlew typescript
 
 * Setup python
 
@@ -45,10 +25,7 @@ It is recommended to choose a separate data folder, then you can easily use vers
 
         > python app.py -d /absolute/path/to/my/scenarios
 
-  **When starting the webserver for the first time, visit `https://localhost:5000/api/scenario` in the browser and accept
-  the certificate.** Otherwise the browser will not be able to load data from the backend.
-
-* Open the GUI at `https://localhost:4200` in your browser.
+* Open the GUI at `https://localhost:5000/index.html` in your browser.
 
 # Add data
 

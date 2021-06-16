@@ -1,5 +1,6 @@
+import os
 from flasgger import Swagger
-from flask import Flask, request
+from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 
 from emissor.annotation.backend import Backend
@@ -7,12 +8,22 @@ from emissor.representation.scenario import Modality
 from emissor.representation.util import unmarshal, marshal
 
 
-def create_app(data_path):
+def create_app(data_path, static_path):
     app = Flask(__name__, static_url_path='/data', static_folder=data_path)
-    swagger = Swagger(app)
+    Swagger(app)
     CORS(app)
 
     backend = Backend(data_path)
+
+    # Serving static files
+    @app.route('/', defaults={'path': ''})
+    @app.route('/<string:path>')
+    @app.route('/<path:path>')
+    def static_proxy(path):
+        if not path:
+            path = "index.html"
+
+        return send_from_directory(os.path.abspath(static_path), path)
 
     @app.route('/api/scenario')
     def list_scenario():
@@ -149,7 +160,12 @@ def create_app(data_path):
           200:
             description: List of signals of a specific modality and belonging to a given scenario
         """
-        return marshal(backend.load_modality(scenario_id, Modality[modality.upper()]))
+        signals = backend.load_modality(scenario_id, Modality[modality.upper()])
+
+        if len(signals) == 0:
+            return "[]"
+
+        return marshal(signals, cls=signals[0].__class__)
 
     @app.route('/api/scenario/<scenario_id>/<modality>/<signal>', methods=['POST'])
     def save_signal(scenario_id, modality, signal):

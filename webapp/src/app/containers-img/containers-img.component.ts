@@ -58,7 +58,7 @@ export class ContainersImgComponent implements OnInit, OnChanges, ContainerCompo
 
   ngOnInit() {
     this.segments = <MultiIndex[]> this.selection.signal.mentions.flatMap(mention => mention.segment)
-      .filter(seg => seg.type.toLowerCase() === "multiindex");
+      .filter(seg => seg['@type'].toLowerCase() === "multiindex");
   }
 
   ngOnChanges(changes: SimpleChanges) {

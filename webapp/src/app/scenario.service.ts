@@ -12,8 +12,8 @@ import {Ruler} from "./representation/container";
 })
 export class ScenarioService {
   // private scenarioEndpoint = "/api/scenario"
-  private scenarioEndpoint = "https://localhost:5000/api/scenario"
-  private resourcePath = "https://localhost:5000/data"
+  private scenarioEndpoint = 'http://localhost:5000/api/scenario';
+  private resourcePath = 'http://localhost:5000/data';
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class ScenarioService {
   }
 
   loadScenario(scenarioName: string): Observable<Scenario> {
-    return this.http.get<Scenario>(this.scenarioEndpoint + "/" + scenarioName)
+    return this.http.get<Scenario>(this.scenarioEndpoint + "/" + scenarioName);
   }
 
   loadSignals(scenarioName, modality: string): Observable<Signal<any>[]> {
@@ -33,24 +33,25 @@ export class ScenarioService {
     );
   }
 
-  saveSignal(scenario: string, signal :Signal<any>) {
-    this.http.post(this.scenarioEndpoint + "/" + scenario + "/" + signal.type + "/" + signal.id,
+  saveSignal(scenario: string, signal: Signal<any>) {
+    this.http.post(this.scenarioEndpoint + '/' + scenario + '/' + signal['@type'] + '/' + signal.id,
       JSON.stringify(signal), this.getJSONHeaders()).subscribe();
   }
 
   setSignalValue(scenarioName: string, signal: Signal<any>, basePath: string) {
-    switch (signal.type.toLowerCase()) {
-      case "imagesignal":
+    console.log(signal['@type']);
+    switch (signal['@type'].toLowerCase()) {
+      case 'imagesignal':
         let fileName = signal.files.length && signal.files[0].replace(/^.*[\\\/]/, '');
-        (<ImageSignal> signal).image = signal.files.length && (basePath + "/" + scenarioName + "/" + signal.files[0]);
+        (<ImageSignal> signal).image = signal.files.length && (basePath + '/' + scenarioName + '/' + signal.files[0]);
         signal.display = signal.display || fileName;
         break;
-      case "textsignal":
+      case 'textsignal':
         (<TextSignal> signal).text = (<TextSignal> signal).seq.join('');
         signal.display = signal.display || (<TextSignal> signal).text;
         break;
       default:
-        throw Error("Unknown signal type: " + signal.type);
+        throw Error("Unknown signal type: " + signal['@type']);
     }
 
     this.setDisplayValue(signal);

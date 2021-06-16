@@ -53,7 +53,7 @@ export class ComponentService {
   }
 
   getSegmentComponent(ruler: Ruler): Type<SegmentComponent<any>> {
-    switch (ruler.type.toLowerCase()) {
+    switch (ruler['@type'].toLowerCase()) {
       case "multiindex":
         return SegmentsBoundingboxComponent
       case "temporalruler":
@@ -63,18 +63,18 @@ export class ComponentService {
       case "atomicruler":
         return SegmentsAtomicComponent
       default:
-        throw Error("Unsupported segment type: " + ruler.type);
+        throw Error("Unsupported segment type: " + ruler['@type']);
     }
   }
 
   getContainerComponent(selectedSignal: Signal<any> | Annotation<any>): Type<ContainerComponent<any>> {
-    switch (selectedSignal.type.toLowerCase()) {
+    switch (selectedSignal['@type'].toLowerCase()) {
       case "textsignal":
         return ContainersTextComponent
       case "imagesignal":
         return ContainersImgComponent
       default:
-        throw Error("Unsupported container type: " + selectedSignal.type);
+        throw Error("Unsupported container type: " + selectedSignal['@type']);
     }
   }
 }

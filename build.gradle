@@ -1,0 +1,32 @@
+task npmInstall(type: Exec) {
+ executable 'docker'
+ args 'run', '--rm', '-v', "${projectDir}/webapp:/app", 'trion/ng-cli:10.2.0', 'npm', 'install'
+ outputs.dir "${projectDir}/webapp/node_modules"
+}
+
+task angularBuild(type: Exec) {
+ executable 'docker'
+ args 'run', '--rm', '-v', "${projectDir}/webapp:/app", 'trion/ng-cli:10.2.0', 'ng', 'build'
+ outputs.dir "${projectDir}/webapp/dist"
+ dependsOn npmInstall
+}
+
+task build {
+ dependsOn angularBuild
+}
+
+
+task uninstallTypescript (type: Exec) {
+ executable 'docker'
+ args 'run', '--rm', '-v', "${projectDir}/webapp:/app", 'trion/ng-cli:10.2.0', 'npm', 'uninstall', 'typescript'
+}
+
+task installTypescript (type: Exec) {
+ executable 'npm'
+ args 'run', '--rm', '-v', "${projectDir}/webapp:/app", 'trion/ng-cli:10.2.0', 'npm', 'install', '--save-dev', 'typescript@4.0.6'
+ dependsOn uninstallTypescript
+}
+
+task typescript {
+    dependsOn installTypescript
+}

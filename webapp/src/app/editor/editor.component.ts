@@ -36,12 +36,12 @@ export class EditorComponent implements OnInit {
 
   addSegment() {
     let type = null;
-    switch (this.signal.signal.type.toLowerCase()) {
-      case "imagesignal":
-        type = "multiindex";
+    switch (this.signal.signal['@type'].toLowerCase()) {
+      case 'imagesignal':
+        type = 'multiindex';
         break;
-      case "textsignal":
-        type = "index";
+      case 'textsignal':
+        type = 'index';
         break;
       default:
         // pass

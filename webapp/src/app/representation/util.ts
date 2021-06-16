@@ -1,3 +1,3 @@
 export interface Typed {
-  type: string
+  '@type': string
 }
