@@ -10,14 +10,14 @@ from abc import ABC
 from numpy.typing import ArrayLike
 from typing import TypeVar, Generic, Iterable, Tuple, Type, Any, List
 
-from emissor.representation.ldschema import emissor_dataclass
-from emissor.representation.util import Identifier, marshal, get_serializable_type_var
+from emissor.representation.ldschema import emissor_dataclass, LdId
+from emissor.representation.util import Identifier, get_serializable_type_var
 
 
-@dataclass
+@emissor_dataclass
 class Ruler(ABC):
     """Base type of Rulers that allow to identify a segment relative to a ruler in a signal"""
-    container_id: Identifier
+    container_id: Identifier = LdId()
 
 
 C = TypeVar('C')
@@ -25,13 +25,13 @@ R = get_serializable_type_var('R', bound=Ruler)
 T = get_serializable_type_var('T')
 
 
-@dataclass
+@emissor_dataclass
 class Container(Generic[R, T], ABC):
     def get_segment(self, segment: R) -> T:
         raise NotImplementedError()
 
 
-@dataclass
+@emissor_dataclass
 class BaseContainer(Generic[R, T], Container[R, T]):
     id: Identifier
     ruler: R

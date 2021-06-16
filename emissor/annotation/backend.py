@@ -8,7 +8,7 @@ from pandas import Series
 from emissor.annotation.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
 from emissor.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
 from emissor.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
-from emissor.representation.entity import Person, Gender, Emotion
+from emissor.representation.entity import Person, Gender, Emotion, LeolaniContext
 from emissor.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation, Signal
 
@@ -71,7 +71,7 @@ class Backend:
         start, end = self._storage.guess_scenario_range(scenario_id, _DEFAULT_SIGNALS.keys())
 
         return Scenario.new_instance(scenario_id, start, end,
-                                     ScenarioContext("robot_agent", _SPEAKER, [], []),
+                                     LeolaniContext("robot_agent", _SPEAKER, [], []),
                                      _DEFAULT_SIGNALS)
 
     def load_modality(self, scenario_id: str, modality: Modality) -> Iterable[Signal[Any, Any]]:
