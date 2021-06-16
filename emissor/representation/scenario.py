@@ -1,18 +1,15 @@
 import enum
 
-import json
-import os
 import uuid
 from abc import ABC
 from marshmallow import fields
 from numpy.typing import ArrayLike
-from typing import Iterable, Dict, TypeVar, Type, Generic, Any, List, Union
+from typing import Iterable, Dict, TypeVar, Type, Generic, List
 
 from emissor.representation.container import TemporalContainer, Ruler, TemporalRuler, ArrayContainer, Index, MultiIndex, \
     BaseContainer, Sequence
-from emissor.representation.entity import Person, Object
 from emissor.representation.ldschema import emissor_dataclass
-from emissor.representation.util import Identifier, serializer, marshal, get_serializable_type_var
+from emissor.representation.util import Identifier, marshal, get_serializable_type_var
 
 C = TypeVar('C')
 T = get_serializable_type_var('T')
@@ -81,17 +78,18 @@ class VideoSignal(Signal[MultiIndex, ArrayLike], ArrayContainer):
     pass
 
 
+
 @emissor_dataclass
-class ScenarioContext:
+class ScenarioContext(ABC):
     agent: Identifier
-    speaker: Person
-    persons: List[Person]
-    objects: List[Object]
+
+
+SC = get_serializable_type_var("SC", bound=ScenarioContext)
 
 
 @emissor_dataclass
-class Scenario(TemporalContainer):
-    context: ScenarioContext
+class Scenario(TemporalContainer, Generic[SC]):
+    context: SC
     signals: Dict[str, str]
 
     @classmethod

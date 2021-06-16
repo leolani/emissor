@@ -1,10 +1,8 @@
-import inspect
-import operator
-from dataclasses import dataclass, field
-from functools import reduce
-from typing import Union, IO, Any, Optional, Mapping, ClassVar, Tuple, Type
+from dataclasses import dataclass, field, Field
 
+import inspect
 from rdflib import URIRef, Namespace
+from typing import Union, IO, Any, Optional, Mapping, ClassVar, Tuple, Type
 
 LD_CONTEXT_FIELD = "_ld_context"
 LD_TYPE_FIELD = "_ld_type"
@@ -16,7 +14,8 @@ def emissor_dataclass(cls: Type = None, **kwargs):
     def wrapper(clazz):
         ld_type_kw = _get_kw_args(ld_type)
         ld_type_args = {k: v for k, v in kwargs.items() if k in ld_type_kw}
-        ld_type_args["namespace"] = EMISSOR_NAMESPACE
+        if not "namespace" in ld_type_args:
+            ld_type_args["namespace"] = EMISSOR_NAMESPACE
         ld_clazz = ld_type(**ld_type_args)(clazz)
 
         dataclass_kw = _get_kw_args(dataclass)
@@ -32,7 +31,7 @@ class LdProperty:
     """
     Adds linked data information to an attribute of the dataclass.
     """
-    val: Optional[Any] = None
+    val: Optional[Any] = field(default_factory=lambda: field())
     prefix: Optional[str] = None
     alias: Optional[str] = None
     type: Optional[str] = None
@@ -128,7 +127,9 @@ def ld_type(*, namespace: Union[URIRef, str] = None, type_name: str = None, sepa
         for attribute_name, annotation in filter(is_ld_property, attributes.items()):
             setattr(cls, attribute_name, annotation.val)
 
-        return {attr_name: resolve_ref(attr_name, ns, annotation) for attr_name, annotation in attributes.items()}
+        return {attr_name: resolve_ref(attr_name, ns, annotation)
+                for attr_name, annotation in attributes.items()
+                if not attr_name == "id"}
 
     def valid_name(attr_name):
         return attr_name[0].isalpha()
@@ -139,9 +140,14 @@ def ld_type(*, namespace: Union[URIRef, str] = None, type_name: str = None, sepa
         if not isinstance(val, LdProperty):
             return URIRef(ref_ns[ref_name])
 
-        alias = val.alias if val.alias else ref_name
-        prefix = _to_namespace(val.prefix, separator) if val.prefix else ref_ns
-        property_ref = prefix[alias]
+        alias = val.alias if val.alias is not None else ref_name
+        if val.prefix == "":
+            property_ref = alias
+        elif not val.prefix:
+            property_ref = ref_ns[alias]
+        else:
+            prefix = _to_namespace(val.prefix, separator)
+            property_ref = prefix[alias]
 
         # TODO validate type: if ':' in type assert prefix in prefixes
         return {"@id": property_ref, "@type": val.type} if val.type else property_ref

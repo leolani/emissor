@@ -2,14 +2,19 @@
 # Enable using the current class in type annotations
 # from __future__ import annotations
 
+"""
+Basic classes for values used in :class:`emissor.representation.Annotation`.
+"""
+
 import enum
-import uuid
 from dataclasses import dataclass
 
+import uuid
 from rdflib import URIRef, Namespace
-from typing import Tuple, Any, Union, List
+from typing import Any, List
 
 from emissor.representation.container import Sequence, AtomicContainer, AtomicRuler
+from emissor.representation.ldschema import LdId, emissor_dataclass
 from emissor.representation.util import Identifier
 
 friends_namespace = Namespace("http://cltl.nl/leolani/friends/")
@@ -37,9 +42,9 @@ class EntityType(enum.Enum):
     OBJECT = 2
 
 
-@dataclass
+@emissor_dataclass
 class Entity:
-    id: URIRef
+    id: URIRef = LdId(prefix="")
     type: EntityType
 
 
@@ -75,8 +80,3 @@ class Utterance(Sequence):
 @dataclass
 class Display:
     display: str
-
-
-@dataclass
-class EntityLink:
-    annotates: Union[str, URIRef]
