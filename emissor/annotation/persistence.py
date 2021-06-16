@@ -8,7 +8,7 @@ from pandas import DataFrame
 
 from emissor.annotation.brain.util import EmissorBrain
 from emissor.annotation.cache import ScenarioCache
-from emissor.representation.scenario import Scenario, Modality, Signal
+from emissor.representation.scenario import Scenario, Modality, Signal, ImageSignal, TextSignal
 from emissor.representation.util import unmarshal, marshal
 
 ANNOTATION_TOOL_ID = "annotation_tool"
@@ -126,7 +126,7 @@ class ScenarioStorage:
 
         with open(scenario_path) as json_file:
             json_string = json_file.read()
-        scenario = unmarshal(json_string)
+        scenario = unmarshal(json_string, cls=Scenario)
 
         self._cache = ScenarioCache(scenario_id)
 
@@ -138,13 +138,13 @@ class ScenarioStorage:
 
     def save_scenario(self, scenario: Scenario) -> None:
         with open(self._get_path(scenario.id), 'w') as json_file:
-            json_file.write(marshal(scenario))
+            json_file.write(marshal(scenario, cls=Scenario))
 
     def load_modality(self, scenario_id: str, modality: Modality) -> Optional[Iterable[Signal[Any, Any]]]:
         if not self._cache or self._cache.scenario_id != scenario_id:
             self.load_scenario(scenario_id)
 
-        if modality in self._cache:
+        if self._cache and modality in self._cache:
             return self._cache[modality].values()
 
         modality_meta_path = self._get_path(scenario_id, modality)
@@ -152,7 +152,14 @@ class ScenarioStorage:
             return None
 
         with open(modality_meta_path) as json_file:
-            signals = unmarshal(json_file.read())
+            if modality == Modality.IMAGE:
+                cls = ImageSignal
+            elif modality == Modality.TEXT:
+                cls = TextSignal
+            else:
+                raise ValueError(f"Unsupported modality: {modality}")
+
+            signals = unmarshal(json_file.read(), cls=cls)
 
         self._cache[modality] = signals
 
@@ -166,13 +173,20 @@ class ScenarioStorage:
 
     def save_signals(self, scenario_id: str, modality: Modality, signals: Iterable[Signal[Any, Any]]) -> None:
         self._cache[modality] = signals
-        self._save_signals(self._get_path(scenario_id, modality), signals)
+        self._save_signals(self._get_path(scenario_id, modality), signals, modality)
 
     def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
         modality = signal.modality if isinstance(signal.modality, Modality) else Modality[signal.modality.upper()]
         self._cache[modality][signal.id] = signal
-        self._save_signals(self._get_path(scenario_id, modality), self._cache[modality].values())
+        self._save_signals(self._get_path(scenario_id, modality), self._cache[modality].values(), modality)
 
-    def _save_signals(self, path, signals):
+    def _save_signals(self, path, signals, modality: Modality):
+        if modality == Modality.IMAGE:
+            cls = ImageSignal
+        elif modality == Modality.TEXT:
+            cls = TextSignal
+        else:
+            raise ValueError(f"Unsupported modality: {modality}")
+
         with open(path, 'w') as json_file:
-            json_file.write(marshal(signals))
+            json_file.write(marshal(signals, cls=cls))
