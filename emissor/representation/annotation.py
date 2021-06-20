@@ -29,7 +29,8 @@ class AnnotationType(enum.Enum):
     FRIEND = 2
     OBJECT = 3
     TOKEN = 4
-    POS = 4
+    POS = 5
+    NER = 6
 
 
 class ImageLabel(enum.Enum):
@@ -50,6 +51,14 @@ class Entity:
 
 @dataclass
 class Token(AtomicContainer[str]):
+    @classmethod
+    def for_string(cls, value: str):
+        token_id = str(uuid.uuid4())
+        return cls(token_id, AtomicRuler(token_id), value)
+
+
+@dataclass
+class NER(AtomicContainer[str]):
     @classmethod
     def for_string(cls, value: str):
         token_id = str(uuid.uuid4())

@@ -5,13 +5,17 @@ from typing import Iterable, Any, Dict
 from nltk import TreebankWordTokenizer
 from pandas import Series
 
-from emissor.annotation.persistence import ScenarioStorage, ANNOTATION_TOOL_ID, file_name
+from emissor.persistence import ScenarioStorage, file_name
+from emissor.processing.init import run_init
 from emissor.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
 from emissor.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
 from emissor.representation.entity import Person, Gender, Emotion, LeolaniContext
 from emissor.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
     Annotation, Signal
 
+
+# TODO Put to a central place
+ANNOTATION_TOOL_ID = "annotation tool"
 _SPEAKER = Person(str(uuid.uuid4()), "Speaker", 50, Gender.UNDEFINED)
 _DEFAULT_SIGNALS = {
     Modality.IMAGE.name.lower(): "./image.json",
@@ -62,39 +66,21 @@ class Backend:
     def load_scenario(self, scenario_id: str) -> Scenario:
         scenario = self._storage.load_scenario(scenario_id)
         if not scenario:
-            scenario = self._create_scenario(scenario_id)
-            self._storage.save_scenario(scenario)
+            # TODO
+            run_init(self._storage)
 
         return scenario
-
-    def _create_scenario(self, scenario_id: str) -> Scenario:
-        start, end = self._storage.guess_scenario_range(scenario_id, _DEFAULT_SIGNALS.keys())
-
-        return Scenario.new_instance(scenario_id, start, end,
-                                     LeolaniContext("robot_agent", _SPEAKER, [], []),
-                                     _DEFAULT_SIGNALS)
 
     def load_modality(self, scenario_id: str, modality: Modality) -> Iterable[Signal[Any, Any]]:
         signals = self._storage.load_modality(scenario_id, modality)
         if signals is None:
-            signals = self._create_modality_metadata(scenario_id, modality)
-            self._storage.save_signals(scenario_id, modality, signals)
+            # TODO
+            run_init(self._storage)
 
         return signals
 
     def load_signal(self, scenario_id: str, modality: Modality, signal_id: str) -> Signal[Any, Any]:
         return self._storage.load_signal(scenario_id, modality, signal_id)
-
-    def _create_modality_metadata(self, scenario_id, modality: Modality) -> Iterable[Signal[Any, Any]]:
-        scenario = self.load_scenario(scenario_id)
-        if modality.name.lower() == "image":
-            image_meta = self._storage.load_images(self._storage.load_scenario(scenario_id))
-            return [create_image_signal(scenario, meta) for _, meta in image_meta.iterrows()]
-        elif modality.name.lower() == "text":
-            texts = self._storage.load_text(scenario_id)
-            return [_create_text_signal(scenario, utt) for _, utt in texts.iterrows()]
-        else:
-            raise ValueError("Unsupported modality " + modality.name)
 
     def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
         self._storage.save_signal(scenario_id, signal)
