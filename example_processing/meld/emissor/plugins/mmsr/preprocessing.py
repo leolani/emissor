@@ -8,7 +8,6 @@ import os
 import random
 import requests
 import shutil
-import time
 from joblib import Parallel, delayed
 from pathlib import Path
 from tqdm import tqdm
@@ -23,8 +22,9 @@ IMAGE_DIR = "image"
 class Video2Frames:
     BYTES_AT_LEAST = 256
 
-    def __init__(self, dataset, video_paths, video2frames_port, fps_max, width_max, height_max, video_ext, image_ext=".jpg"):
+    def __init__(self, dataset, scenarios, video_paths, video2frames_port, fps_max, width_max, height_max, video_ext, image_ext=".jpg"):
         self.dataset = dataset
+        self.scenarios = scenarios
         self.video_paths = video_paths
         self.video2frames_port = video2frames_port
         self.fps_max = fps_max
@@ -33,7 +33,6 @@ class Video2Frames:
         self.video_ext = video_ext
         self.image_ext = image_ext
 
-        self.base_dir = os.path.join(self.dataset, "scenarios")
         self.processing_dir = os.path.join(self.dataset, "processing", "frames")
 
     def split_videos(self):
@@ -51,7 +50,7 @@ class Video2Frames:
         save_path_metadata = os.path.join(self.processing_dir, f"{scenario_id}/{video_id}.json")
 
         if os.path.isfile(save_path_metadata) and os.path.getsize(save_path_metadata) > self.BYTES_AT_LEAST:
-            logging.info("%s, %s, seems to be already done. skipping ...", video_path, save_path_metadata)
+            logging.debug("%s, %s, seems to be already done. skipping ...", video_path, save_path_metadata)
             return
 
         with open(video_path, 'rb') as stream:
@@ -73,15 +72,16 @@ class Video2Frames:
         assert len(frames) == len(metadata['frame_idx_original'])
 
         for frame_bytestring, idx in zip(frames, metadata['frame_idx_original']):
-            file_name = os.path.join(self.base_dir, scenario_id, IMAGE_DIR, f"{video_id}_{idx:06d}{self.image_ext}")
+            file_name = os.path.join(self.scenarios, scenario_id, IMAGE_DIR, f"{video_id}_{idx:06d}{self.image_ext}")
             os.makedirs(os.path.dirname(file_name), exist_ok=True)
             with open(file_name, 'wb') as stream:
                 stream.write(frame_bytestring)
 
 
 class VideoProcessing:
-    def __init__(self, dataset, run_on_gpu, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, video_ext):
+    def __init__(self, dataset, scenarios, run_on_gpu, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, video_ext):
         self.dataset = dataset
+        self.scenarios = scenarios
 
         self.video_infra = DockerInfra('video2frames', port_docker_video2frames, 20000, num_jobs, run_on_gpu,
                                        boot_time=5)
@@ -108,8 +108,8 @@ class VideoProcessing:
             logging.debug("splitting videos will begin ...")
             Parallel(n_jobs=self.num_jobs)(
                 delayed(split_videos)(
-                    self.dataset, video_paths, video2frames_port, self.fps_max, self.width_max, self.height_max,
-                    self.video_ext)
+                    self.dataset, self.scenarios, video_paths, video2frames_port, self.fps_max,
+                    self.width_max, self.height_max, self.video_ext)
                 for video_paths, video2frames_port
                 in zip(video_batches, self.video_infra.host_ports))
 
@@ -119,32 +119,74 @@ class VideoProcessing:
         video_paths = glob(f'./{self.dataset}/raw-videos/*{self.video_ext}')
         random.shuffle(video_paths)
 
-        logging.info(
-            f"There is a total of %s videos found in %s", len(video_paths), self.dataset)
+        logging.info("There is a total of %s videos found in %s", len(video_paths), self.dataset)
 
         return video_paths
 
 
 class TextProcessing:
-    def __init__(self, dataset):
+    def __init__(self, dataset, scenarios):
         self._dataset = dataset
+        self._scenarios = scenarios
 
     def copy_text(self):
-        logging.info(f"Copying text from {self._dataset}/raw-texts/*.json")
+        logging.info("Copying text from %s/raw-texts/*.json to %s", self._dataset, self._scenarios)
 
-        for text in glob(f"{self._dataset}/raw-texts/*.json"):
+        for text in tqdm(glob(f"{self._dataset}/raw-texts/*.json")):
             path = Path(text)
             scenario_id = path.stem.split('_')[0]
-            text_dir = os.path.join(self._dataset, "scenarios", scenario_id, Modality.TEXT.name.lower())
+            text_dir = os.path.join(self._scenarios, scenario_id, Modality.TEXT.name.lower())
             os.makedirs(text_dir, exist_ok=True)
             shutil.copyfile(text, os.path.join(text_dir, path.name))
-            logging.info("Copy %s to %s", text, text_dir)
-            time.sleep(0.2)
+
+            logging.debug("Copy %s to %s", text, text_dir)
 
 
-class MMSRFriendsPreprocessor(DataPreprocessor):
-    def __init__(self, dataset, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, run_on_gpu, video_ext):
+class MMSRMeldPreprocessor(DataPreprocessor):
+    """
+    Expected directory structure of the dataset:
+
+    dataset
+      |- raw-videos
+        |- dia{cnt}_utt{cnt}.mp4
+        |- dia{cnt}_utt{cnt}.mp4
+        |- ...
+      |- raw-audios
+        |- dia{cnt}_utt{cnt}.wav
+        |- dia{cnt}_utt{cnt}.wav
+        |- ...
+      |- raw-text
+        |- dia{cnt}_utt{cnt}.json
+        |- dia{cnt}_utt{cnt}.json
+        |- ...
+
+    produces:
+
+    dataset
+      |- processing
+        |- frames
+          |- dia{cnt}_utt{cnt}.json
+          |- dia{cnt}_utt{cnt}.json
+          |- ...
+    scenarios
+      |- dia{cnt}
+        |- images
+          |- dia{cnt}_utt{cnt}_{frame}.jpg
+          |- ...
+        |- text
+          |- dia{cnt}_utt{cnt}.json
+          |- ...
+      |- dia{cnt}
+        |- images
+          |- dia{cnt}_utt{cnt}_{frame}.jpg
+          |- ...
+        |- text
+          |- dia{cnt}_utt{cnt}.json
+          |- ...
+    """
+    def __init__(self, dataset, scenarios, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, run_on_gpu, video_ext):
         self.dataset = dataset
+        self.scenarios = scenarios
         self.port_docker_video2frames = port_docker_video2frames
         self.fps_max = fps_max
         self.width_max = width_max
@@ -153,8 +195,9 @@ class MMSRFriendsPreprocessor(DataPreprocessor):
         self.run_on_gpu = run_on_gpu
         self.video_ext = video_ext
 
-    def preprocess(self, base_path: PathLike):
+    def preprocess(self):
         vp = VideoProcessing(dataset=self.dataset,
+                             scenarios=self.scenarios,
                              port_docker_video2frames=self.port_docker_video2frames,
                              width_max=self.width_max,
                              height_max=self.height_max,
@@ -164,5 +207,5 @@ class MMSRFriendsPreprocessor(DataPreprocessor):
                              video_ext=self.video_ext)
         vp.split_video()
 
-        tp = TextProcessing(self.dataset)
+        tp = TextProcessing(self.dataset, self.scenarios)
         tp.copy_text()
