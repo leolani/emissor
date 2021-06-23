@@ -80,7 +80,7 @@ class ScenarioStorage:
         return tuple(os.path.basename(path[:-1]) for path in glob(os.path.join(self.base_path, "*", "")))
 
     def load_scenario(self, scenario_id: str) -> Optional[Scenario]:
-        scenario_path = self._get_path(scenario_id) + self.EXTENSION
+        scenario_path = os.path.join(self._get_path(scenario_id), scenario_id + self.EXTENSION)
         if not os.path.isfile(scenario_path):
             raise ValueError(f"No scenario with id {scenario_id} at {scenario_path}")
 
@@ -88,7 +88,7 @@ class ScenarioStorage:
             json_string = json_file.read()
         scenario = unmarshal(json_string, cls=Scenario)
 
-        self._cache = _ScenarioCache(scenario_id)
+        self._cache = _ScenarioCache(scenario)
 
         # Load memories
         ememory_path = os.path.join(self._get_path(scenario_id), 'rdf', 'episodic_memory')
@@ -97,7 +97,8 @@ class ScenarioStorage:
         return scenario
 
     def save_scenario(self, scenario: Scenario) -> None:
-        with open(self._get_path(scenario.id), 'w') as json_file:
+        scenario_metadata_path = os.path.join(self._get_path(scenario.id), scenario.id + self.EXTENSION)
+        with open(scenario_metadata_path, 'w') as json_file:
             json_file.write(marshal(scenario, cls=Scenario))
 
     def load_modality(self, scenario_id: str, modality: Modality) -> Optional[Iterable[Signal[Any, Any]]]:
@@ -111,7 +112,7 @@ class ScenarioStorage:
         if not modality_meta_path or not os.path.isfile(modality_meta_path):
             return None
 
-        with open(modality_meta_path) as json_file:
+        with open(modality_meta_path + self.EXTENSION) as json_file:
             if modality == Modality.IMAGE:
                 cls = ImageSignal
             elif modality == Modality.TEXT:

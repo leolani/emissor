@@ -9,12 +9,12 @@ from emissor.representation.scenario import Scenario, Signal, Modality
 
 
 class DataPreprocessor(ABC):
-    def preprocess(self, base_path: PathLike):
+    def preprocess(self):
         raise NotImplementedError("")
 
     @property
-    def name(self):
-        self.__class__.__name__
+    def name(self) -> str:
+        return self.__class__.__name__
 
 
 class ScenarioInitializer(ABC):
@@ -25,8 +25,8 @@ class ScenarioInitializer(ABC):
         raise NotImplementedError("")
 
     @property
-    def name(self):
-        self.__class__.__name__
+    def name(self) -> str:
+        return self.__class__.__name__
 
 
 class SignalProcessor(ABC):
@@ -34,8 +34,8 @@ class SignalProcessor(ABC):
         raise NotImplementedError("")
 
     @property
-    def name(self):
-        self.__class__.__name__
+    def name(self) -> str:
+        return self.__class__.__name__
 
 
 class ProcessorPlugin:
@@ -49,11 +49,11 @@ class ProcessorPlugin:
         return []
 
     @property
-    def name(self):
+    def name(self) -> str:
         return self.__class__.__name__
 
     @property
-    def priority(self):
+    def priority(self) -> int:
         return 0
 
 

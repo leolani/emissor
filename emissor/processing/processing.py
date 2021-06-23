@@ -1,7 +1,10 @@
 from enum import Enum, auto
+from typing import Iterable
 
 import logging
 
+from emissor.persistence import ScenarioStorage
+from emissor.processing.api import DataPreprocessor, ScenarioInitializer, SignalProcessor
 from emissor.representation.scenario import Modality
 
 logger = logging.getLogger()
@@ -14,7 +17,8 @@ class Step(Enum):
 
 
 class DataProcessing:
-    def __init__(self, storage, preprocessors, scenario_initializer, signal_processors):
+    def __init__(self, storage: ScenarioStorage, preprocessors: Iterable[DataPreprocessor],
+                 scenario_initializer: ScenarioInitializer, signal_processors: Iterable[SignalProcessor]):
         self._storage = storage
         self._preprocessors = preprocessors
         self._scenario_initializer = scenario_initializer
@@ -23,7 +27,7 @@ class DataProcessing:
     def run_preprocessing(self):
         for preprocessor in self._preprocessors:
             logger.info("Preprocessing dataset with %s to %s", preprocessor.__class__.__name__, self._storage.base_path)
-            preprocessor.preprocess(self._storage.base_path)
+            preprocessor.preprocess()
             logger.info("Finished preprocessing dataset with %s", preprocessor.__class__.__name__)
 
     def run_init(self):
@@ -32,12 +36,23 @@ class DataProcessing:
 
         logger.info("Initialize dataset %s", self._storage.base_path)
         for scenario_id in self._storage.list_scenarios():
+            try:
+                self._storage.load_scenario(scenario_id)
+                logger.debug("Scenario %s already initialized", scenario_id)
+                continue
+            except ValueError:
+                pass
+
             self._scenario_initializer.initialize_scenario(scenario_id, self._storage)
             logger.info("Initialized scenario %s", scenario_id)
 
             for modality in Modality:
-                self._scenario_initializer.initialize_modality(modality, self._storage.load_scenario(scenario_id),
-                                                               self._storage)
+                if self._storage.load_modality(scenario_id, modality):
+                    logger.debug("Modality %s for scenario %s already initialized", modality, scenario_id)
+                    continue
+
+                scenario = self._storage.load_scenario(scenario_id)
+                self._scenario_initializer.initialize_modality(modality, scenario, self._storage)
                 logger.info("Initialized modality %s for scenario %s", modality.name, scenario_id)
 
     def run_process(self):
@@ -53,6 +68,6 @@ class DataProcessing:
              for modality in scenario.signals]
 
     def run(self):
-        self.run_init()
         self.run_preprocessing()
+        self.run_init()
         self.run_process()
