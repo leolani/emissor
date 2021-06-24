@@ -3,6 +3,7 @@ import logging
 from typing import Iterable
 
 from emissor.processing.api import ProcessorPlugin, DataPreprocessor, SignalProcessor, ScenarioInitializer
+from .annotation_token_ner import MMSRMeldNERProcessor
 from .preprocessing import MMSRMeldPreprocessor
 from .init import MMSRMeldInitializer
 
@@ -43,5 +44,5 @@ class MMSRMeld(ProcessorPlugin):
     def create_initializer(self) -> ScenarioInitializer:
         return MMSRMeldInitializer(self.dataset)
 
-    def processing(self) -> Iterable[SignalProcessor]:
-        return []
+    def create_processors(self) -> Iterable[SignalProcessor]:
+        return [MMSRMeldNERProcessor()]

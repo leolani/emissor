@@ -1,14 +1,14 @@
-from typing import Iterable
-
 import logging
 import spacy
 import time
 import uuid
+from tqdm import tqdm
+from typing import Iterable
 
 from emissor.persistence import ScenarioStorage
 from emissor.processing.api import SignalProcessor
 from emissor.representation.annotation import AnnotationType, Token, NER
-from emissor.representation.container import Index, AtomicRuler
+from emissor.representation.container import Index
 from emissor.representation.scenario import Modality, TextSignal, Mention, Annotation, Scenario, Signal
 
 logger = logging.getLogger(__name__)
@@ -26,9 +26,12 @@ class MMSRMeldNERProcessor(SignalProcessor):
             return
 
         logger.info("Add tokenization and NER annotations to %s", scenario.id)
-        for signal in signals:
-            # TODO: check if annotations already exist
-            self.add_ner_annotation(signal)
+        with tqdm(signals) as progress:
+            cnt = 0
+            for signal in progress:
+                # TODO: check if annotations already exist
+                cnt += self.add_ner_annotation(signal)
+                progress.set_postfix({'NER count': cnt})
 
         storage.save_signals(scenario.id, Modality.TEXT, signals)
 
@@ -54,4 +57,4 @@ class MMSRMeldNERProcessor(SignalProcessor):
         signal.mentions.extend([Mention(str(uuid.uuid4()), [segment], [annotation])
                                 for segment, annotation in zip(segments, ner_annotations)])
 
-        return signal
+        return len(ner_annotations)
