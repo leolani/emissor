@@ -59,13 +59,13 @@ class DataProcessing:
         if not self._signal_processors:
             return
 
-        logger.info("Processing scenarios with processors {}", [processor.name for processor in self._signal_processors])
+        logger.info("Processing scenarios with processors %s", [processor.name for processor in self._signal_processors])
         for scenario_id in self._storage.list_scenarios():
             scenario = self._storage.load_scenario(scenario_id)
-
-            [processor.process(scenario, modality, self._storage)
-             for processor in self._signal_processors
-             for modality in scenario.signals]
+            for modality in scenario.signals:
+                for processor in self._signal_processors:
+                    signals = self._storage.load_modality(scenario_id, Modality[modality.upper()])
+                    processor.process(scenario, Modality[modality.upper()], signals, self._storage)
 
     def run(self):
         self.run_preprocessing()
