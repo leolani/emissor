@@ -1,8 +1,5 @@
-from os import PathLike
-
 from abc import ABC
-from argparse import Namespace, ArgumentParser
-from typing import Iterable, Collection
+from typing import Iterable
 
 from emissor.persistence import ScenarioStorage
 from emissor.representation.scenario import Scenario, Signal, Modality
@@ -16,6 +13,12 @@ class DataPreprocessor(ABC):
     def name(self) -> str:
         return self.__class__.__name__
 
+    def __enter__(self):
+        pass
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
+
 
 class ScenarioInitializer(ABC):
     def initialize_scenario(self, scenario_id: str, storage: ScenarioStorage):
@@ -28,6 +31,12 @@ class ScenarioInitializer(ABC):
     def name(self) -> str:
         return self.__class__.__name__
 
+    def __enter__(self):
+        pass
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
+
 
 class SignalProcessor(ABC):
     def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
@@ -36,6 +45,12 @@ class SignalProcessor(ABC):
     @property
     def name(self) -> str:
         return self.__class__.__name__
+
+    def __enter__(self):
+        pass
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        pass
 
 
 class ProcessorPlugin:
