@@ -17,9 +17,6 @@ logger = logging.getLogger(__name__)
 nlp = spacy.load('en_core_web_sm')
 
 
-SPACY_ID = "SpaCY"
-
-
 class MMSRMeldNERProcessor(SignalProcessor):
     def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
         if modality is not Modality.TEXT:
@@ -47,9 +44,9 @@ class MMSRMeldNERProcessor(SignalProcessor):
         entity_text = [ent.text for ent in doc.ents]
         segments = [token.ruler for token in tokens if token.value in entity_text]
 
-        annotations = [Annotation(AnnotationType.TOKEN.name.lower(), token, SPACY_ID, int(time.time()))
+        annotations = [Annotation(AnnotationType.TOKEN.name.lower(), token, self.name, int(time.time()))
                        for token in tokens]
-        ner_annotations = [Annotation(AnnotationType.NER.name.lower(), ent, SPACY_ID, int(time.time()))
+        ner_annotations = [Annotation(AnnotationType.NER.name.lower(), ent, self.name, int(time.time()))
                            for ent in ents]
 
         signal.mentions.extend([Mention(str(uuid.uuid4()), [offset], [annotation])
