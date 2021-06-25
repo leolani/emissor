@@ -50,5 +50,5 @@ class MMSRMeld(ProcessorPlugin):
 
     def create_processors(self) -> Iterable[SignalProcessor]:
         return [MMSRMeldNERProcessor(),
-                MMSRMeldFaceProcessor(self.port_docker_face_analysis, self.num_jobs, self.run_on_gpu, self.image_ext),
+                MMSRMeldFaceProcessor(self.port_docker_face_analysis, self.run_on_gpu, 0.8),
                 MMSRMeldEntityLinkingProcessor()]

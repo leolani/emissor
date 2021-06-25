@@ -31,6 +31,10 @@ class ScenarioInitializer(ABC):
     def name(self) -> str:
         return self.__class__.__name__
 
+    @property
+    def parallel(self) -> bool:
+        return False
+
     def __enter__(self):
         pass
 
@@ -45,6 +49,10 @@ class SignalProcessor(ABC):
     @property
     def name(self) -> str:
         return self.__class__.__name__
+
+    @property
+    def parallel(self) -> bool:
+        return False
 
     def __enter__(self):
         pass

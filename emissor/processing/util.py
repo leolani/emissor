@@ -59,11 +59,12 @@ def from_plugins(plugins: List[api.ProcessorPlugin]) -> DataProcessing:
     else:
         signal_processors = []
 
-    return DataProcessing(storage, preprocessors, scenario_initializer, signal_processors)
+    return DataProcessing(storage, preprocessors, scenario_initializer, signal_processors, args.num_jobs)
 
 
 def add_args(parser: argparse.ArgumentParser):
     parser.add_argument('--scenarios', type=str, help="Base directory that contains the emissor scenarios.")
+    parser.add_argument('--num-jobs', type=int, default=1, help="Max number of parallel processes")
 
     # Processing steps
     for step in [Step.PREPROCESSING, Step.INIT]:

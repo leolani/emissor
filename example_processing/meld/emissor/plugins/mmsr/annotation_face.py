@@ -19,25 +19,34 @@ from emissor.representation.scenario import Modality, ImageSignal, Annotation, M
 from example_processing.meld.emissor.plugins.mmsr.docker import DockerInfra
 from example_processing.meld.emissor.plugins.mmsr.friends import FRIENDS
 
-IMAGE_DIR = "image"
 
-
-class Frames2Faces:
+class MMSRMeldFaceProcessor(SignalProcessor):
     BYTES_AT_LEAST = 256
 
-    def __init__(self, storage: ScenarioStorage, scenario_id, signals, face_analysis_port, image_ext="jpg",
-                 face_cos_distance_threshold=0.6):
-        self.scenario_id = scenario_id
-        self.signals = signals
-
-        self.face_analysis_port = face_analysis_port
-        self.image_ext = image_ext
+    def __init__(self, port_docker_face_analysis: int, run_on_gpu: int, face_cos_distance_threshold: float):
+        self.face_infra = DockerInfra('face-analysis-cuda' if run_on_gpu else 'face-analysis',
+                                      port_docker_face_analysis, 30000, run_on_gpu, 30)
         self.face_cos_distance_threshold = face_cos_distance_threshold
 
-        self.scenario_storage = storage
-        self.processing_dir = os.path.join(self.scenario_storage.base_path, "..", "processing")
+    @property
+    def parallel(self) -> bool:
+        return True
 
-    def detect_faces_for_scenario(self):
+    def __enter__(self):
+        self.face_infra.__enter__()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.face_infra.__exit__(exc_type, exc_val, exc_tb)
+
+    def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
+        if modality is not Modality.IMAGE:
+            return
+
+        logging.debug("Face features extraction will begin ...")
+        self.detect_faces_for_scenario(scenario.id, tuple(signals), storage)
+        logging.info("Face feature extraction complete!")
+
+    def detect_faces_for_scenario(self, scenario_id, signals, storage: ScenarioStorage):
         # TODO do we want to store these?
         # save_path_face_features = os.path.join(self.processing_dir, "face-features", f"{self.scenario_id}.pkl")
         #
@@ -46,19 +55,19 @@ class Frames2Faces:
         #     logging.info("%s seems to be already done. skipping ...", save_path_face_features)
         #     return
         fa_results_all = []
-        for signal in tqdm(self.signals):
+        for signal in tqdm(signals):
             try:
                 assert len(signal.files) == 1
-                result = self.image2face(self.scenario_id, signal.files[0])
+                result = self.image2face(scenario_id, signal.files[0], storage)
                 fa_results_all.append((signal, result))
             except Exception:
-                logging.exception("Failed to process %s for scenario %s", signal.files[0], self.scenario_id)
+                logging.exception("Failed to process %s for scenario %s", signal.files[0], scenario_id)
 
         detection_results = self.face_detection(fa_results_all)
         for signal, face_result, face_id in detection_results:
             self.annotate_signal(signal, face_result, face_id)
 
-        self.scenario_storage.save_signals(self.scenario_id, Modality.IMAGE, self.signals)
+        storage.save_signals(scenario_id, Modality.IMAGE, signals)
 
     def face_detection(self, results):
         faces = [(signal, face) for signal, result in results for face in result]
@@ -95,17 +104,20 @@ class Frames2Faces:
 
         return face_ids[len(friends):]
 
-    def image2face(self, scenario_id, image_path):
+    def image2face(self, scenario_id, image_path, storage: ScenarioStorage):
         logging.info("Processing image %s", image_path)
 
-        path = os.path.join(self.scenario_storage.base_path, scenario_id, image_path)
+        path = os.path.join(storage.base_path, scenario_id, image_path)
         with open(path, 'rb') as stream:
             data = stream.read()
 
         data = jsonpickle.encode({'image': data})
         response = requests.post(
-            f"{'http://127.0.0.1'}:{self.face_analysis_port}/", json=data)
-        logging.info("%s received", response)
+            f"{'http://127.0.0.1'}:{self.face_infra.host_port}/", json=data)
+        if response.ok:
+            logging.info("%s received", response)
+        else:
+            raise ValueError(f"{response} received with reason {response.reason}")
 
         response = jsonpickle.decode(response.text)
 
@@ -125,36 +137,3 @@ class Frames2Faces:
         mention = Mention(str(uuid.uuid4()), [segment], [annotation_person, annotation_representation])
 
         signal.mentions.append(mention)
-
-
-class MMSRMeldFaceProcessor(SignalProcessor):
-    def __init__(self, port_docker_face_analysis: int, num_jobs: int, run_on_gpu: int, image_ext):
-        self.num_jobs = num_jobs
-        self.image_ext = image_ext
-        self.face_infra = DockerInfra('face-analysis-cuda' if run_on_gpu else 'face-analysis',
-                                      port_docker_face_analysis, 30000, num_jobs, run_on_gpu, boot_time=30)
-
-    def __enter__(self):
-        self.face_infra.__enter__()
-
-    def __exit__(self, exc_type, exc_val, exc_tb):
-        self.face_infra.__exit__(exc_type, exc_val, exc_tb)
-
-    def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
-        if modality is not Modality.IMAGE:
-            return
-
-        signals = tuple(signals)
-        batch_size = len(signals) // self.num_jobs
-        signal_batches = [signals[i:i + batch_size] for i in range(0, len(signals), batch_size)]
-
-        def extract_faces(*args, **kwargs):
-            Frames2Faces(*args, **kwargs).detect_faces_for_scenario()
-
-        logging.debug("face features extraction will begin ...")
-        Parallel(n_jobs=self.num_jobs)(delayed(extract_faces)
-                                       (storage, scenario.id, signal_batch, face_analysis_port, self.image_ext)
-                                       for signal_batch, face_analysis_port
-                                       in zip(signal_batches, self.face_infra.host_ports))
-
-        logging.info("face feature extraction complete!")

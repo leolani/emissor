@@ -85,8 +85,7 @@ class VideoProcessing:
         self.dataset = dataset
         self.scenarios = scenarios
 
-        self.video_infra = DockerInfra('video2frames', port_docker_video2frames, 20000, num_jobs, run_on_gpu,
-                                       boot_time=5)
+        self.video_infra = DockerInfra('video2frames', port_docker_video2frames, 20000, run_on_gpu, 5)
         self.num_jobs = num_jobs
         self.width_max = width_max
         self.height_max = height_max
@@ -108,11 +107,9 @@ class VideoProcessing:
 
         logging.debug("splitting videos will begin ...")
         Parallel(n_jobs=self.num_jobs)(
-            delayed(split_videos)(
-                self.dataset, self.scenarios, video_paths, video2frames_port, self.fps_max,
-                self.width_max, self.height_max, self.video_ext, self.image_ext)
-            for video_paths, video2frames_port
-            in zip(video_batches, self.video_infra.host_ports))
+            delayed(split_videos)(self.dataset, self.scenarios, video_paths, self.video_infra.host_port, self.fps_max,
+                                  self.width_max, self.height_max, self.video_ext, self.image_ext)
+            for video_paths in video_batches)
 
         logging.info("splitting videos complete!")
 

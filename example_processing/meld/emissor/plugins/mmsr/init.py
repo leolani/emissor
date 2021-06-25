@@ -33,6 +33,10 @@ class MMSRMeldInitializer(ScenarioInitializer):
         self.current_scenario = None
         self.processing_meta = None
 
+    @property
+    def parallel(self) -> bool:
+        return True
+
     def initialize_scenario(self, scenario_id: str, storage: ScenarioStorage):
         self.current_scenario = scenario_id
         self.processing_meta = self.load_processing_metadata(scenario_id, storage)

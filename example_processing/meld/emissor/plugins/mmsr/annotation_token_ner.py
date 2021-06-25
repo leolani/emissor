@@ -18,6 +18,10 @@ nlp = spacy.load('en_core_web_sm')
 
 
 class MMSRMeldNERProcessor(SignalProcessor):
+    @property
+    def parallel(self) -> bool:
+        return True
+
     def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
         if modality is not Modality.TEXT:
             return
