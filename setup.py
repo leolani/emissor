@@ -14,8 +14,8 @@ setuptools.setup(
     include="emissor/representation/README.md",
     exclude="README.md",
     url="https://github.com/cltl/EMISSOR",
-    namespace_packages=['emissor', 'emissor.plugins'],
-    packages=['emissor.representation'],
+    namespace_packages=['emissor'],
+    packages=['emissor.representation', 'emissor.processing', 'emissor.persistence'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",

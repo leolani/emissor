@@ -1,10 +1,8 @@
 from enum import Enum, auto
-from multiprocessing import Pool
-
-from joblib import Parallel, delayed
-from typing import Iterable
 
 import logging
+from joblib import Parallel, delayed
+from typing import Iterable
 
 from emissor.persistence import ScenarioStorage
 from emissor.processing.api import DataPreprocessor, ScenarioInitializer, SignalProcessor
