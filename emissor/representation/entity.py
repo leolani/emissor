@@ -4,11 +4,12 @@
 
 import enum
 
+from rdflib import URIRef
 from typing import List
 
-from emissor.representation.ldschema import emissor_dataclass
+from emissor.representation.annotation import Entity, EntityType
+from emissor.representation.ldschema import emissor_dataclass, LdId
 from emissor.representation.scenario import ScenarioContext
-from emissor.representation.util import Identifier
 
 
 class Emotion(enum.Enum):
@@ -28,18 +29,13 @@ class Gender(enum.Enum):
     OTHER = 3
 
 
-@emissor_dataclass
-class Instance:
-    id: Identifier
-
-
 @emissor_dataclass(namespace="http://cltl.nl/leolani/n2mu")
-class Object(Instance):
+class Object(Entity):
     label: str
 
 
 @emissor_dataclass(namespace="http://cltl.nl/leolani/n2mu")
-class Person(Instance):
+class Person(Entity):
     name: str
     age: int
     gender: Gender

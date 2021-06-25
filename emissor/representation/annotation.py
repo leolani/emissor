@@ -5,9 +5,9 @@
 """
 Basic classes for values used in :class:`emissor.representation.Annotation`.
 """
-
-import enum
+from abc import ABC
 from dataclasses import dataclass
+from enum import Enum, auto
 
 import uuid
 from rdflib import URIRef, Namespace
@@ -22,31 +22,32 @@ data_namespace = Namespace("http://cltl.nl/combot/signal/")
 predicate_namespace = Namespace("http://cltl.nl/combot/predicate/")
 
 
-class AnnotationType(enum.Enum):
-    DISPLAY = 0
-    PERSON = 1
-    EMOTION = 2
-    FRIEND = 2
-    OBJECT = 3
-    TOKEN = 4
-    POS = 5
-    NER = 6
+class AnnotationType(Enum):
+    DISPLAY = auto()
+    PERSON = auto()
+    EMOTION = auto()
+    FRIEND = auto()
+    OBJECT = auto()
+    TOKEN = auto()
+    POS = auto()
+    NER = auto()
+    LINK = auto()
+    REPRESENTATION = auto()
 
 
-class ImageLabel(enum.Enum):
-    FACE = 0
+class ImageLabel(Enum):
+    FACE = auto()
 
 
-class EntityType(enum.Enum):
-    PERSON = 0
-    FRIEND = 1
-    OBJECT = 2
+class EntityType(Enum):
+    PERSON = auto()
+    FRIEND = auto()
+    OBJECT = auto()
 
 
 @emissor_dataclass
 class Entity:
-    id: URIRef = LdId(prefix="")
-    type: EntityType
+    id: URIRef = LdId()
 
 
 @dataclass

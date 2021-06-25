@@ -54,9 +54,24 @@ class ArrayLikeField(fields.Field):
             raise ValidationError("Not an ArrayLike") from error
 
 
+class URIRefField(fields.Field):
+    def _serialize(self, value, attr, obj, **kwargs):
+        if value is None:
+            return ""
+
+        return value if isinstance(value, str) else value.toPython()
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        try:
+            return URIRef(value) if value != "" else None
+        except ValueError as error:
+            raise ValidationError("Not an URIRef") from error
+
+
 class _JsonLdSchema(marshmallow.Schema):
     TYPE_MAPPING: Mapping[Type, fields.Field] = {
         ArrayLike: ArrayLikeField,
+        URIRef: URIRefField,
         Any: GenericField,
     }
 
@@ -212,7 +227,6 @@ def _unmarshal(json_obj: str, *, cls: type = None, serialized: bool = True) -> A
         if isinstance(json_obj, dict):
             return object_hook(json_obj)
         elif isinstance(json_obj, (list, tuple)):
-            print(json_obj)
             return [_unmarshal(item, serialized=False) for item in json_obj]
         else:
             return json_obj

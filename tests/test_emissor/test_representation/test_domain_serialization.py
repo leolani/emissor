@@ -4,13 +4,17 @@ from unittest import TestCase
 import numpy as np
 import rdflib
 from numpy.testing import assert_array_equal
+from rdflib import URIRef
 from typing import TypeVar
 
 from emissor.representation.container import TemporalRuler, TemporalContainer, AtomicRuler, Index, \
     AtomicContainer, ArrayContainer, MultiIndex, Sequence
 from emissor.representation.entity import Person, Gender, LeolaniContext
-from emissor.representation.scenario import Scenario, ScenarioContext, TextSignal, Mention, Annotation, ImageSignal
+from emissor.representation.scenario import Scenario, TextSignal, Mention, Annotation, ImageSignal
 from emissor.representation.util import marshal, unmarshal
+
+PERSON_REF = URIRef("test:person")
+
 
 T = TypeVar('T')
 
@@ -56,8 +60,8 @@ SCENARIO_INSTANCES = [
     ImageSignal.for_scenario("id", 0, 1, "file.txt", (1, 2, 3, 4),
                              [Mention("id", [MultiIndex("id", (0, 0, 1, 1))],
                                       [Annotation("type", "val", "source", 0)])]),
-    LeolaniContext("agent", Person("id", "name", 18, Gender.MALE), [], []),
-    Scenario.new_instance("scenario1", 0, 10, LeolaniContext("agent", Person("id", "name", 18, Gender.MALE), [], []),
+    LeolaniContext("agent", Person(PERSON_REF, "name", 18, Gender.MALE), [], []),
+    Scenario.new_instance("scenario1", 0, 10, LeolaniContext("agent", Person(PERSON_REF, "name", 18, Gender.MALE), [], []),
                           {})
 ]
 
