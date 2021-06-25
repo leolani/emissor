@@ -13,8 +13,8 @@ from pathlib import Path
 from tqdm import tqdm
 
 from emissor.processing.api import DataPreprocessor
-from emissor.processing.docker import DockerInfra
 from emissor.representation.scenario import Modality
+from example_processing.meld.emissor.plugins.mmsr.docker import DockerInfra
 
 IMAGE_DIR = "image"
 
@@ -22,7 +22,8 @@ IMAGE_DIR = "image"
 class Video2Frames:
     BYTES_AT_LEAST = 256
 
-    def __init__(self, dataset, scenarios, video_paths, video2frames_port, fps_max, width_max, height_max, video_ext, image_ext=".jpg"):
+    def __init__(self, dataset, scenarios, video_paths, video2frames_port, fps_max, width_max, height_max, video_ext,
+                 image_ext):
         self.dataset = dataset
         self.scenarios = scenarios
         self.video_paths = video_paths
@@ -79,7 +80,8 @@ class Video2Frames:
 
 
 class VideoProcessing:
-    def __init__(self, dataset, scenarios, run_on_gpu, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, video_ext):
+    def __init__(self, dataset, scenarios, run_on_gpu, port_docker_video2frames, width_max, height_max, fps_max,
+                 num_jobs, video_ext, image_ext):
         self.dataset = dataset
         self.scenarios = scenarios
 
@@ -90,30 +92,29 @@ class VideoProcessing:
         self.height_max = height_max
         self.fps_max = fps_max
 
-        self.image_ext = ".jpg"
+        self.image_ext = image_ext
         self.video_ext = video_ext
 
     def split_video(self):
-        with self.video_infra:
-            video_paths = self._get_video_paths()
-            if len(video_paths) == 0:
-                raise ValueError(f"No videos found! (ext: {self.video_ext})")
+        video_paths = self._get_video_paths()
+        if len(video_paths) == 0:
+            raise ValueError(f"No videos found! (ext: {self.video_ext})")
 
-            batch_size = len(video_paths) // self.num_jobs
-            video_batches = [video_paths[i:i + batch_size] for i in range(0, len(video_paths), batch_size)]
+        batch_size = len(video_paths) // self.num_jobs
+        video_batches = [video_paths[i:i + batch_size] for i in range(0, len(video_paths), batch_size)]
 
-            def split_videos(*args, **kwargs):
-                Video2Frames(*args, **kwargs).split_videos()
+        def split_videos(*args, **kwargs):
+            Video2Frames(*args, **kwargs).split_videos()
 
-            logging.debug("splitting videos will begin ...")
-            Parallel(n_jobs=self.num_jobs)(
-                delayed(split_videos)(
-                    self.dataset, self.scenarios, video_paths, video2frames_port, self.fps_max,
-                    self.width_max, self.height_max, self.video_ext)
-                for video_paths, video2frames_port
-                in zip(video_batches, self.video_infra.host_ports))
+        logging.debug("splitting videos will begin ...")
+        Parallel(n_jobs=self.num_jobs)(
+            delayed(split_videos)(
+                self.dataset, self.scenarios, video_paths, video2frames_port, self.fps_max,
+                self.width_max, self.height_max, self.video_ext, self.image_ext)
+            for video_paths, video2frames_port
+            in zip(video_batches, self.video_infra.host_ports))
 
-            logging.info("splitting videos complete!")
+        logging.info("splitting videos complete!")
 
     def _get_video_paths(self):
         video_paths = glob(f'./{self.dataset}/raw-videos/*{self.video_ext}')
@@ -184,28 +185,27 @@ class MMSRMeldPreprocessor(DataPreprocessor):
           |- dia{cnt}_utt{cnt}.json
           |- ...
     """
-    def __init__(self, dataset, scenarios, port_docker_video2frames, width_max, height_max, fps_max, num_jobs, run_on_gpu, video_ext):
-        self.dataset = dataset
-        self.scenarios = scenarios
-        self.port_docker_video2frames = port_docker_video2frames
-        self.fps_max = fps_max
-        self.width_max = width_max
-        self.height_max = height_max
-        self.num_jobs = num_jobs
-        self.run_on_gpu = run_on_gpu
-        self.video_ext = video_ext
+
+    def __init__(self, dataset, scenarios, port_docker_video2frames, width_max, height_max, fps_max, num_jobs,
+                 run_on_gpu, video_ext, image_ext):
+        self.tp = TextProcessing(dataset, scenarios)
+        self.vp = VideoProcessing(dataset=dataset,
+                                  scenarios=scenarios,
+                                  port_docker_video2frames=port_docker_video2frames,
+                                  width_max=width_max,
+                                  height_max=height_max,
+                                  fps_max=fps_max,
+                                  run_on_gpu=run_on_gpu,
+                                  num_jobs=num_jobs,
+                                  video_ext=video_ext,
+                                  image_ext=image_ext)
+
+    def __enter__(self):
+        self.vp.video_infra.__enter__()
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.vp.video_infra.__exit__(exc_type, exc_val, exc_tb)
 
     def preprocess(self):
-        vp = VideoProcessing(dataset=self.dataset,
-                             scenarios=self.scenarios,
-                             port_docker_video2frames=self.port_docker_video2frames,
-                             width_max=self.width_max,
-                             height_max=self.height_max,
-                             fps_max=self.fps_max,
-                             run_on_gpu=self.run_on_gpu,
-                             num_jobs=self.num_jobs,
-                             video_ext=self.video_ext)
-        vp.split_video()
-
-        tp = TextProcessing(self.dataset, self.scenarios)
-        tp.copy_text()
+        self.vp.split_video()
+        self.tp.copy_text()

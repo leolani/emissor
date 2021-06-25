@@ -3,6 +3,8 @@ import logging
 from typing import Iterable
 
 from emissor.processing.api import ProcessorPlugin, DataPreprocessor, SignalProcessor, ScenarioInitializer
+from .annotation_entity_linking import MMSRMeldEntityLinkingProcessor
+from .annotation_face import MMSRMeldFaceProcessor
 from .annotation_token_ner import MMSRMeldNERProcessor
 from .preprocessing import MMSRMeldPreprocessor
 from .init import MMSRMeldInitializer
@@ -24,7 +26,7 @@ class MMSRMeld(ProcessorPlugin):
         parser.add_argument('--video-ext', type=str, default=".mp4")
         parser.add_argument('--width-max', type=int, default=10000)
         parser.add_argument('--height-max', type=int, default=10000)
-        parser.add_argument('--fps-max', type=int, default=10000)
+        parser.add_argument('--fps-max', type=int, default=1)
         parser.add_argument('--num-jobs', type=int, default=1)
         parser.add_argument('--run-on-gpu', action='store_true')
 
@@ -36,13 +38,17 @@ class MMSRMeld(ProcessorPlugin):
         logger.info("Initialize %s plugin with %s", self.name, args)
 
         self.__dict__.update(vars(args))
+        self.image_ext = ".jpg"
 
     def create_preprocessor(self) -> DataPreprocessor:
-        return MMSRMeldPreprocessor(self.dataset, self.scenarios, self.port_docker_video2frames, self.width_max, self.height_max,
-                                    self.fps_max, self.num_jobs, self.run_on_gpu, self.video_ext)
+        return MMSRMeldPreprocessor(self.dataset, self.scenarios, self.port_docker_video2frames, self.width_max,
+                                    self.height_max, self.fps_max, self.num_jobs, self.run_on_gpu, self.video_ext,
+                                    self.image_ext)
 
     def create_initializer(self) -> ScenarioInitializer:
         return MMSRMeldInitializer(self.dataset)
 
     def create_processors(self) -> Iterable[SignalProcessor]:
-        return [MMSRMeldNERProcessor()]
+        return [MMSRMeldNERProcessor(),
+                MMSRMeldFaceProcessor(self.port_docker_face_analysis, self.num_jobs, self.run_on_gpu, self.image_ext),
+                MMSRMeldEntityLinkingProcessor()]

@@ -1,8 +1,17 @@
-from importlib.resources import path
+import uuid
+
+import os
+from importlib_resources import files
 from pathlib import Path
+from rdflib import Graph, ConjunctiveGraph, URIRef, Namespace, RDF, Literal
+from rdflib.namespace import split_uri
 from typing import Dict, Iterable
 
-from rdflib import Graph, ConjunctiveGraph, URIRef, Namespace
+import emissor
+from emissor.representation.annotation import AnnotationType
+from emissor.representation.scenario import Annotation, Mention
+
+ENTITY_ANNOTATIONS = {type.name.upper() for type in [AnnotationType.LINK, AnnotationType.PERSON, AnnotationType.FRIEND, AnnotationType.OBJECT]}
 
 
 class EmissorBrain:
@@ -16,21 +25,12 @@ class EmissorBrain:
         self.ememory_path = Path(ememory_path).resolve()
         self.interpretations_path = self.ememory_path.parent
 
-        with path('emissor.annotation.brain', 'queries') as p:
-            self.queries_path = p
-
-        with path('emissor.annotation.brain', 'world_model') as p:
-            self.ontologies_path = p
-
         self.ontology = self._load_ontology()
         self.ememory = self._load_memories()
         self.interpretations_graph = self._create_episode_graph()
 
     def _read_query(self, query_filename: str) -> str:
-        file_path = self.queries_path / f"{query_filename}.rq"
-        with open(file_path) as fr:
-            query = fr.read()
-        return query
+        return files('emissor.annotation.brain').joinpath(f"queries/{query_filename}.rq").read_text()
 
     def _query_graph(self, graph: Graph, query: str) -> Iterable[Dict]:
         results = graph.query(query)
@@ -42,7 +42,7 @@ class EmissorBrain:
 
     def _load_ontology(self) -> Graph:
         ontology_graph = Graph()
-        for ontology_path in self.ontologies_path.glob('*.ttl'):
+        for ontology_path in files(emissor.annotation.brain).joinpath('world_model').glob('*.ttl'):
             ontology_graph.parse(location=str(ontology_path), format="turtle")
 
         return ontology_graph
@@ -74,9 +74,22 @@ class EmissorBrain:
         annotation_instances = self._query_graph(self.ememory, query)
         return annotation_instances
 
-    def denote_things(self, mention, annotation):
-        # TODO we assume the value of the annotation to be a valid URI,
-        #  but we still have to check this as there is no data to test
+    def find_persons(self, label):
+        return [p for p in self.interpretations_graph.subjects(URIRef("n2mu:name"), Literal(label))] + \
+               [p for p in self.ememory.subjects(URIRef("n2mu:name"), Literal(label))]
+
+    def add_person(self, label):
+        friends_ns = Namespace('http://cltl.nl/leolani/friends/')
+        self.interpretations_graph.bind('leolaniFriend', friends_ns)
+        iri = friends_ns[str(uuid.uuid4())]
+        self.interpretations_graph.add((iri, RDF.type, URIRef("n2mu:person")))
+        self.interpretations_graph.add((iri, URIRef("n2mu:name"), Literal(label)))
+
+        return iri
+
+    def denote_things(self, mention: Mention, annotation: Annotation):
+        if str(annotation.type).upper() not in ENTITY_ANNOTATIONS:
+            raise ValueError(f"Cannot denote {annotation} of type {annotation.type}")
 
         # Create and bind namespaces
         # TODO this will be much easier once we have the full brain functionality
@@ -87,11 +100,13 @@ class EmissorBrain:
 
         # Create triple
         mention_uri = ltalk_ns[mention.id]
-        instance_uri = URIRef(annotation.value.value)
+        instance_uri = annotation.value.id
         self.interpretations_graph.add((instance_uri, gaf_ns['denotedBy'], mention_uri))
 
         # Save to file but return the string representation
-        with open(f'{self.interpretations_path}/annotation_{annotation.value.id}.trig', 'wb') as f:
+        os.makedirs(f'{self.interpretations_path}', exist_ok=True)
+        id = split_uri(instance_uri)[-1]
+        with open(f'{self.interpretations_path}/annotation_{id}.trig', 'wb') as f:
             self.interpretations_graph.serialize(f, format="trig")
 
         data = self.interpretations_graph.serialize(format="trig")
