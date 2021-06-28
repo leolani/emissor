@@ -16,11 +16,11 @@ from emissor.representation.annotation import AnnotationType
 from emissor.representation.container import MultiIndex
 from emissor.representation.entity import Person
 from emissor.representation.scenario import Modality, ImageSignal, Annotation, Mention, Scenario, Signal
-from example_processing.meld.emissor.plugins.mmsr.docker import DockerInfra
-from example_processing.meld.emissor.plugins.mmsr.friends import FRIENDS
+from example_processing.meld.emissor.plugins.meld.docker import DockerInfra
+from example_processing.meld.emissor.plugins.meld.friends import FRIENDS
 
 
-class MMSRMeldFaceProcessor(SignalProcessor):
+class MeldFaceProcessor(SignalProcessor):
     BYTES_AT_LEAST = 256
 
     def __init__(self, port_docker_face_analysis: int, run_on_gpu: int, face_cos_distance_threshold: float):
@@ -132,8 +132,8 @@ class MMSRMeldFaceProcessor(SignalProcessor):
 
         # segment = signal.ruler.get_area_bounding_box(*bbox)
         segment = MultiIndex(signal.ruler.container_id, bbox)
-        annotation_person = Annotation(AnnotationType.PERSON.name, Person(str(uuid.uuid4()), name, age, gender), MMSRMeldFaceProcessor.name, int(time.time()))
-        annotation_representation = Annotation(AnnotationType.REPRESENTATION.name, representation.tolist(), MMSRMeldFaceProcessor.name, int(time.time()))
+        annotation_person = Annotation(AnnotationType.PERSON.name, Person(str(uuid.uuid4()), name, age, gender), MeldFaceProcessor.name, int(time.time()))
+        annotation_representation = Annotation(AnnotationType.REPRESENTATION.name, representation.tolist(), MeldFaceProcessor.name, int(time.time()))
         mention = Mention(str(uuid.uuid4()), [segment], [annotation_person, annotation_representation])
 
         signal.mentions.append(mention)

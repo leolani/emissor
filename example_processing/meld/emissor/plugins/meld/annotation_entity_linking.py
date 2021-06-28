@@ -6,8 +6,7 @@ from typing import Iterable
 from emissor.annotation.brain.util import EmissorBrain
 from emissor.persistence import ScenarioStorage
 from emissor.processing.api import SignalProcessor
-from emissor.representation.annotation import AnnotationType, Entity, EntityType
-from emissor.representation.entity import Person
+from emissor.representation.annotation import AnnotationType, Entity
 from emissor.representation.scenario import Modality, TextSignal, Annotation, ImageSignal, Signal, Scenario
 
 logger = logging.getLogger(__name__)
@@ -16,7 +15,7 @@ logger = logging.getLogger(__name__)
 PERSON_NAMESPACE = Namespace("http://cltl.nl/leolani/n2mu/person#")
 
 
-class MMSRMeldEntityLinkingProcessor(SignalProcessor):
+class MeldEntityLinkingProcessor(SignalProcessor):
     def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
         if modality is Modality.IMAGE:
             self.link_image_signals(signals, storage.brain)

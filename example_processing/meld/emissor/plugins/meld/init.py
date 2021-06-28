@@ -26,7 +26,7 @@ _DEFAULT_MODALITIES = (Modality.TEXT, Modality.IMAGE)
 logger = logging.getLogger(__name__)
 
 
-class MMSRMeldInitializer(ScenarioInitializer):
+class MeldInitializer(ScenarioInitializer):
     def __init__(self, dataset):
         self.dataset = dataset
         self.processing_dir = os.path.join(self.dataset, "processing", "frames")

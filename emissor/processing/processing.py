@@ -1,5 +1,3 @@
-from enum import Enum, auto
-
 import logging
 from joblib import Parallel, delayed
 from typing import Iterable
@@ -9,12 +7,6 @@ from emissor.processing.api import DataPreprocessor, ScenarioInitializer, Signal
 from emissor.representation.scenario import Modality
 
 logger = logging.getLogger()
-
-
-class Step(Enum):
-    PREPROCESSING = auto()
-    INIT = auto()
-    PROCESS = auto()
 
 
 class DataProcessing:

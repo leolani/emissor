@@ -1,5 +1,4 @@
 from glob import glob
-from os import PathLike
 
 import json
 import jsonpickle
@@ -14,7 +13,7 @@ from tqdm import tqdm
 
 from emissor.processing.api import DataPreprocessor
 from emissor.representation.scenario import Modality
-from example_processing.meld.emissor.plugins.mmsr.docker import DockerInfra
+from example_processing.meld.emissor.plugins.meld.docker import DockerInfra
 
 IMAGE_DIR = "image"
 
@@ -140,7 +139,7 @@ class TextProcessing:
             logging.debug("Copy %s to %s", text, text_dir)
 
 
-class MMSRMeldPreprocessor(DataPreprocessor):
+class MeldPreprocessor(DataPreprocessor):
     """
     Expected directory structure of the dataset:
 

@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 nlp = spacy.load('en_core_web_sm')
 
 
-class MMSRMeldNERProcessor(SignalProcessor):
+class MeldNERProcessor(SignalProcessor):
     @property
     def parallel(self) -> bool:
         return True

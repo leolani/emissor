@@ -3,16 +3,16 @@ import logging
 from typing import Iterable
 
 from emissor.processing.api import ProcessorPlugin, DataPreprocessor, SignalProcessor, ScenarioInitializer
-from .annotation_entity_linking import MMSRMeldEntityLinkingProcessor
-from .annotation_face import MMSRMeldFaceProcessor
-from .annotation_token_ner import MMSRMeldNERProcessor
-from .preprocessing import MMSRMeldPreprocessor
-from .init import MMSRMeldInitializer
+from .annotation_entity_linking import MeldEntityLinkingProcessor
+from .annotation_face import MeldFaceProcessor
+from .annotation_token_ner import MeldNERProcessor
+from .preprocessing import MeldPreprocessor
+from .init import MeldInitializer
 
 logger = logging.getLogger(__name__)
 
 
-class MMSRMeld(ProcessorPlugin):
+class MeldExamplePlugin(ProcessorPlugin):
     def __init__(self):
         parser = argparse.ArgumentParser(description=self.name + ' plugin for EMISSOR data processing')
 
@@ -41,14 +41,14 @@ class MMSRMeld(ProcessorPlugin):
         self.image_ext = ".jpg"
 
     def create_preprocessor(self) -> DataPreprocessor:
-        return MMSRMeldPreprocessor(self.dataset, self.scenarios, self.port_docker_video2frames, self.width_max,
-                                    self.height_max, self.fps_max, self.num_jobs, self.run_on_gpu, self.video_ext,
-                                    self.image_ext)
+        return MeldPreprocessor(self.dataset, self.scenarios, self.port_docker_video2frames, self.width_max,
+                                self.height_max, self.fps_max, self.num_jobs, self.run_on_gpu, self.video_ext,
+                                self.image_ext)
 
     def create_initializer(self) -> ScenarioInitializer:
-        return MMSRMeldInitializer(self.dataset)
+        return MeldInitializer(self.dataset)
 
     def create_processors(self) -> Iterable[SignalProcessor]:
-        return [MMSRMeldNERProcessor(),
-                MMSRMeldFaceProcessor(self.port_docker_face_analysis, self.run_on_gpu, 0.8),
-                MMSRMeldEntityLinkingProcessor()]
+        return [MeldNERProcessor(),
+                MeldFaceProcessor(self.port_docker_face_analysis, self.run_on_gpu, 0.8),
+                MeldEntityLinkingProcessor()]
