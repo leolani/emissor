@@ -1,9 +1,9 @@
-import os
 from enum import Enum, auto
 
 import argparse
 import logging
-from typing import Any, List
+import os
+from typing import Any
 
 import emissor.processing.util as processing
 

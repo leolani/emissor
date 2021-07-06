@@ -49,11 +49,12 @@ class DataProcessing:
                 self.execute_for_scenarios(_process, processor)
 
     def execute_for_scenarios(self, function, task):
+        scenario_ids = tuple(sorted(self._storage.list_scenarios(), key=task.scenario_key(self._storage)))
         if not task.parallel:
-            for scenario_id in self._storage.list_scenarios():
+            for scenario_id in scenario_ids:
                 function(self._storage.base_path, task, scenario_id)
         else:
-            scenario_ids = tuple(self._storage.list_scenarios())
+            scenario_ids = tuple(scenario_ids)
             num_jobs = min(self._num_jobs, len(scenario_ids))
             Parallel(n_jobs=num_jobs)(
                 delayed(function)(self._storage.base_path, task, scenario_id)
@@ -87,6 +88,14 @@ def _process(base_path, processor, scenario_id):
 
     logger.info("Processing scenario %s with processor %s", scenario_id, processor.name)
     scenario = storage.load_scenario(scenario_id)
-    for modality in scenario.signals:
-        signals = storage.load_modality(scenario_id, Modality[modality.upper()])
-        processor.process(scenario, Modality[modality.upper()], signals, storage)
+
+    signals = {modality: _signal_generator(scenario_id, modality, processor, storage) for modality in scenario.signals}
+
+    processor.process(scenario, signals, storage)
+
+
+def _signal_generator(scenario_id, modality, processor, storage):
+    signals = storage.load_modality(scenario_id, Modality[modality.upper()])
+
+    for signal in sorted(signals, key=processor.signal_key(storage)):
+        yield signal

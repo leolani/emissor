@@ -8,7 +8,7 @@ import uuid
 from joblib import Parallel, delayed
 from sklearn.cluster import AgglomerativeClustering
 from tqdm import tqdm
-from typing import Iterable
+from typing import Iterable, Mapping
 
 from emissor.persistence import ScenarioStorage
 from emissor.processing.api import SignalProcessor
@@ -38,15 +38,13 @@ class MeldFaceProcessor(SignalProcessor):
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.face_infra.__exit__(exc_type, exc_val, exc_tb)
 
-    def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
-        if modality is not Modality.IMAGE:
-            return
-
+    def process(self, scenario: Scenario, signals: Mapping[Modality, Iterable[Signal]], storage: ScenarioStorage):
         logging.debug("Face features extraction will begin ...")
-        self.detect_faces_for_scenario(scenario.id, tuple(signals), storage)
+        image_signals = tuple(signals[Modality.IMAGE.name.lower()])
+        self.detect_faces_for_scenario(scenario.id, image_signals, storage)
         logging.info("Face feature extraction complete!")
 
-    def detect_faces_for_scenario(self, scenario_id, signals, storage: ScenarioStorage):
+    def detect_faces_for_scenario(self, scenario_id: str, signals: Iterable[Signal], storage: ScenarioStorage):
         # TODO do we want to store these?
         # save_path_face_features = os.path.join(self.processing_dir, "face-features", f"{self.scenario_id}.pkl")
         #

@@ -1,7 +1,7 @@
 import logging
 import time
 from rdflib import Namespace, URIRef
-from typing import Iterable
+from typing import Iterable, Mapping
 
 from emissor.annotation.brain.util import EmissorBrain
 from emissor.persistence import ScenarioStorage
@@ -16,13 +16,15 @@ PERSON_NAMESPACE = Namespace("http://cltl.nl/leolani/n2mu/person#")
 
 
 class MeldEntityLinkingProcessor(SignalProcessor):
-    def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
+    def process(self, scenario: Scenario, signals: Mapping[Modality, Iterable[Signal]], storage: ScenarioStorage):
+        self.process_signals(scenario, Modality.IMAGE, signals[Modality.IMAGE.name.lower()], storage)
+        self.process_signals(scenario, Modality.TEXT, signals[Modality.TEXT.name.lower()], storage)
+
+    def process_signals(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
         if modality is Modality.IMAGE:
             self.link_image_signals(signals, storage.brain)
         elif modality is Modality.TEXT:
             self.link_text_signals(signals, storage.brain)
-        else:
-            return
 
         storage.save_signals(scenario.id, Modality.IMAGE, signals)
 

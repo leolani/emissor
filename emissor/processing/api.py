@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Iterable
+from typing import Iterable, Any, Mapping
 
 from emissor.persistence import ScenarioStorage
 from emissor.representation.scenario import Scenario, Signal, Modality
@@ -41,9 +41,12 @@ class ScenarioInitializer(ABC):
     def __exit__(self, exc_type, exc_val, exc_tb):
         pass
 
+    def scenario_key(self, storage: ScenarioStorage) -> Any:
+        return None
+
 
 class SignalProcessor(ABC):
-    def process(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
+    def process(self, scenario: Scenario, signals: Mapping[str, Iterable[Signal]], storage: ScenarioStorage):
         raise NotImplementedError("")
 
     @property
@@ -59,6 +62,12 @@ class SignalProcessor(ABC):
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         pass
+
+    def scenario_key(self, storage: ScenarioStorage) -> Any:
+        return None
+
+    def signal_key(self, storage: ScenarioStorage) -> Any:
+        return lambda signal: signal.time.start
 
 
 class ProcessorPlugin:
