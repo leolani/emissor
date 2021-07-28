@@ -63,7 +63,7 @@ if __name__ == '__main__':
 
     utterance = input(agent+":"+"Hi there. Who are you?"+'\n\n')
     print("you:"+utterance)
-    while not (utterance=='stop'):
+    while not (utterance.lower()=='stop' or utterance.lower()=='bye'):
         textSignal = create_text_signal(scenario, utterance, 1, 2)
         entityText = add_ner_annotation(textSignal)
 
