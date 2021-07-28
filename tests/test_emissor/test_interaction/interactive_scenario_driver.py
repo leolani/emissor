@@ -18,11 +18,11 @@ face=0
 switch=1
 rec=0
 
-def create_image_signal(scenario: Scenario, image: VideoCapture, start: int, end: int):
-    signal = ImageSignal.for_scenario(scenario.id, datetime.now().microsecond, datetime.now().microsecond, "./text.json", [], [])
+def create_image_signal(scenario: Scenario, file: str):
+    signal = ImageSignal.for_scenario(scenario.id, datetime.now().microsecond, datetime.now().microsecond, file, [], [])
     return signal
 
-def create_text_signal(scenario: Scenario, utterance: str, start: int, end: int):
+def create_text_signal(scenario: Scenario, utterance):
     signal = TextSignal.for_scenario(scenario.id, datetime.now().microsecond, datetime.now().microsecond, "./text.json", utterance, [])
     return signal
 
@@ -60,7 +60,6 @@ if __name__ == '__main__':
     camera = cv2.VideoCapture(0)
 
     scenarioStorage = create_scenario(scenario_path, scenarioid)
-
     signals = {
         Modality.IMAGE.name.lower(): "./image.json",
         Modality.TEXT.name.lower(): "./text.json"
@@ -74,6 +73,7 @@ if __name__ == '__main__':
 
     ##### First signals to get started
     success, frame = camera.read()
+    imagepath = ""
     if success:
         imagepath = imagefolder+"/"+ str(datetime.now().microsecond)+".png"
         cv2.imwrite(imagepath, frame)
@@ -81,21 +81,33 @@ if __name__ == '__main__':
     print(human+": "+utterance)
 
     while not (utterance.lower()=='stop' or utterance.lower()=='bye'):
-        textSignal = create_text_signal(scenario, utterance, datetime.now().microsecond, datetime.now().microsecond)
-        if success:
-            imageSignal = create_image_signal(scenario, frame, datetime.now().microsecond, datetime.now().microsecond)
-
+        textSignal = create_text_signal(scenario, utterance)
+        # @TODO
+        ### Apply some processing to the textSignal and add annotations
+        ### when done
         scenarioStorage.add_signal(Modality.TEXT, textSignal)
-        scenarioStorage.add_signal(Modality.IMAGE, imageSignal)
+        response = utterance[::-1]
+        print(agent+": "+response)
+
+        if success:
+            imageSignal = create_image_signal(scenario, imagepath)
+            # @TODO
+            ### Apply some processing to the imageSignal and add annotations
+            ### when done
+
+            scenarioStorage.add_signal(Modality.IMAGE, imageSignal)
+
+        ###### Getting the next input signals
+        utterance = input(agent+": "+"So  what do you want to talk about next?" + '\n')
+        print("you: "+utterance)
 
         success, frame = camera.read()
         if success:
             imagepath = imagefolder + "/" + str(datetime.now().microsecond) + ".png"
             cv2.imwrite(imagepath, frame)
 
-        utterance = input(agent+": "+"So  what do you want to talk about?" + '\n')
-        print("you: "+utterance)
 
-    scenarioStorage.serialise_signals_all_modalities(scenarioid)
-    #scenarioStorage.serialise_signals(scenarioid, Modality.TEXT)
+
+    #scenarioStorage.serialise_signals_all_modalities(scenarioid)
+    scenarioStorage.serialise_signals(scenarioid, Modality.TEXT)
     #scenarioStorage.serialise_signals(scenarioid, Modality.IMAGE)
