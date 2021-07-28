@@ -5,17 +5,16 @@ import os
 import requests
 import time
 import uuid
-from joblib import Parallel, delayed
 from sklearn.cluster import AgglomerativeClustering
 from tqdm import tqdm
-from typing import Iterable, Mapping
+from typing import Iterable, Tuple
 
-from emissor.persistence import ScenarioStorage
+from emissor.persistence.persistence import ScenarioController
 from emissor.processing.api import SignalProcessor
 from emissor.representation.annotation import AnnotationType
 from emissor.representation.container import MultiIndex
 from emissor.representation.entity import Person
-from emissor.representation.scenario import Modality, ImageSignal, Annotation, Mention, Scenario, Signal
+from emissor.representation.scenario import Modality, ImageSignal, Annotation, Mention, Signal
 from example_processing.meld.emissor.plugins.meld.docker import DockerInfra
 from example_processing.meld.emissor.plugins.meld.friends import FRIENDS
 
@@ -23,7 +22,9 @@ from example_processing.meld.emissor.plugins.meld.friends import FRIENDS
 class MeldFaceProcessor(SignalProcessor):
     BYTES_AT_LEAST = 256
 
-    def __init__(self, port_docker_face_analysis: int, run_on_gpu: int, face_cos_distance_threshold: float):
+    def __init__(self, base_path: str, port_docker_face_analysis: int, run_on_gpu: int,
+                 face_cos_distance_threshold: float):
+        self._base_path = base_path
         self.face_infra = DockerInfra('face-analysis-cuda' if run_on_gpu else 'face-analysis',
                                       port_docker_face_analysis, 30000, run_on_gpu, 30)
         self.face_cos_distance_threshold = face_cos_distance_threshold
@@ -32,19 +33,26 @@ class MeldFaceProcessor(SignalProcessor):
     def parallel(self) -> bool:
         return True
 
+    @property
+    def modalities(self) -> Tuple[Modality]:
+        return (Modality.IMAGE,)
+
     def __enter__(self):
         self.face_infra.__enter__()
 
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.face_infra.__exit__(exc_type, exc_val, exc_tb)
 
-    def process(self, scenario: Scenario, signals: Mapping[Modality, Iterable[Signal]], storage: ScenarioStorage):
+    def process_signal(self, scenario: ScenarioController, signal: ImageSignal):
+        raise NotImplementedError("Face detection only supported for all scenarios")
+
+    def process_scenario(self, scenario: ScenarioController):
         logging.debug("Face features extraction will begin ...")
-        image_signals = tuple(signals[Modality.IMAGE.name.lower()])
-        self.detect_faces_for_scenario(scenario.id, image_signals, storage)
+        image_signals = tuple(scenario.signals[Modality.IMAGE])
+        self.detect_faces_for_scenario(scenario.id, image_signals)
         logging.info("Face feature extraction complete!")
 
-    def detect_faces_for_scenario(self, scenario_id: str, signals: Iterable[Signal], storage: ScenarioStorage):
+    def detect_faces_for_scenario(self, scenario_id: str, signals: Iterable[Signal]):
         # TODO do we want to store these?
         # save_path_face_features = os.path.join(self.processing_dir, "face-features", f"{self.scenario_id}.pkl")
         #
@@ -56,7 +64,7 @@ class MeldFaceProcessor(SignalProcessor):
         for signal in tqdm(signals):
             try:
                 assert len(signal.files) == 1
-                result = self.image2face(scenario_id, signal.files[0], storage)
+                result = self.image2face(scenario_id, signal.files[0])
                 fa_results_all.append((signal, result))
             except Exception:
                 logging.exception("Failed to process %s for scenario %s", signal.files[0], scenario_id)
@@ -64,8 +72,6 @@ class MeldFaceProcessor(SignalProcessor):
         detection_results = self.face_detection(fa_results_all)
         for signal, face_result, face_id in detection_results:
             self.annotate_signal(signal, face_result, face_id)
-
-        storage.save_signals(scenario_id, Modality.IMAGE, signals)
 
     def face_detection(self, results):
         faces = [(signal, face) for signal, result in results for face in result]
@@ -102,10 +108,10 @@ class MeldFaceProcessor(SignalProcessor):
 
         return face_ids[len(friends):]
 
-    def image2face(self, scenario_id, image_path, storage: ScenarioStorage):
+    def image2face(self, scenario_id, image_path):
         logging.info("Processing image %s", image_path)
 
-        path = os.path.join(storage.base_path, scenario_id, image_path)
+        path = os.path.join(self._base_path, scenario_id, image_path)
         with open(path, 'rb') as stream:
             data = stream.read()
 

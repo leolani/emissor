@@ -6,8 +6,8 @@ from emissor.processing.api import ProcessorPlugin, DataPreprocessor, SignalProc
 from .annotation_entity_linking import MeldEntityLinkingProcessor
 from .annotation_face import MeldFaceProcessor
 from .annotation_token_ner import MeldNERProcessor
-from .preprocessing import MeldPreprocessor
 from .init import MeldInitializer
+from .preprocessing import MeldPreprocessor
 
 logger = logging.getLogger(__name__)
 
@@ -50,5 +50,5 @@ class MeldExamplePlugin(ProcessorPlugin):
 
     def create_processors(self) -> Iterable[SignalProcessor]:
         return [MeldNERProcessor(),
-                MeldFaceProcessor(self.port_docker_face_analysis, self.run_on_gpu, 0.8),
-                MeldEntityLinkingProcessor()]
+                MeldFaceProcessor(self.scenarios, self.port_docker_face_analysis, self.run_on_gpu, 0.8),
+                MeldEntityLinkingProcessor(self.scenarios)]

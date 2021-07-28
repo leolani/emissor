@@ -1,8 +1,6 @@
 import logging
 import time
 from python_on_whales import docker
-from python_on_whales.components.container.models import ContainerState
-from python_on_whales.components.task.models import ContainerStatus
 
 logger = logging.getLogger(__name__)
 
