@@ -1,22 +1,11 @@
 
 import logging
-import spacy
 import os
-import time
-import uuid
 import cv2
-from cv2 import VideoCapture
 from datetime import datetime
 from emissor.persistence import ScenarioStorage
 from emissor.representation.scenario import Modality, ImageSignal, TextSignal, Mention, Annotation, Scenario
 
-global capture,rec_frame, grey, switch, neg, face, rec, out
-capture=0
-grey=0
-neg=0
-face=0
-switch=1
-rec=0
 
 def create_image_signal(scenario: Scenario, file: str):
     signal = ImageSignal.for_scenario(scenario.id, datetime.now().microsecond, datetime.now().microsecond, file, [], [])
@@ -27,9 +16,7 @@ def create_text_signal(scenario: Scenario, utterance):
     return signal
 
 def create_scenario(scenarioPath: str, scenarioid: str):
-    scenarioid = "myscenario2"
-    scenario_path = "../../../data"
-    myscenariopath = scenario_path+"/"+scenarioid
+    myscenariopath = scenarioPath+"/"+scenarioid
     if not os.path.exists(myscenariopath):
         os.mkdir(myscenariopath)
         print("Directory ", myscenariopath, " Created ")
@@ -54,7 +41,7 @@ if __name__ == '__main__':
     ##### Initialisation
     agent = "Leolani2"
     human = "Stranger"
-    scenarioid = "myscenario2"
+    scenarioid = "myscenario3"
     scenario_path = "../../../data"
     imagefolder = scenario_path+"/"+scenarioid+"/"+"image"
     camera = cv2.VideoCapture(0)
@@ -77,7 +64,14 @@ if __name__ == '__main__':
     if success:
         imagepath = imagefolder+"/"+ str(datetime.now().microsecond)+".png"
         cv2.imwrite(imagepath, frame)
-    utterance = input(agent+": "+"Hi there. Who are you "+human+"?"+'\n\n')
+
+    #### Initial prompt by the system from which we create a TextSignal and store it
+    response = "Hi there. Who are you "+human+"?"
+    print(agent + ": " + response)
+    textSignal = create_text_signal(scenario, response)
+    scenarioStorage.add_signal(Modality.TEXT, textSignal)
+    
+    utterance = input('\n')
     print(human+": "+utterance)
 
     while not (utterance.lower()=='stop' or utterance.lower()=='bye'):
@@ -86,8 +80,6 @@ if __name__ == '__main__':
         ### Apply some processing to the textSignal and add annotations
         ### when done
         scenarioStorage.add_signal(Modality.TEXT, textSignal)
-        response = utterance[::-1]
-        print(agent+": "+response)
 
         if success:
             imageSignal = create_image_signal(scenario, imagepath)
@@ -97,9 +89,14 @@ if __name__ == '__main__':
 
             scenarioStorage.add_signal(Modality.IMAGE, imageSignal)
 
+        # Create the response from the system and store this as a new signal
+        response = utterance[::-1]
+        print(agent + ": " + response)
+        textSignal = create_text_signal(scenario, response)
+        scenarioStorage.add_signal(Modality.TEXT, textSignal)
+
         ###### Getting the next input signals
-        utterance = input(agent+": "+"So  what do you want to talk about next?" + '\n')
-        print("you: "+utterance)
+        utterance = input('\n')
 
         success, frame = camera.read()
         if success:
