@@ -162,8 +162,17 @@ class ScenarioStorage:
 
     def serialise_signals(self, scenario_id: str, modality: Modality) -> None:
         signals = self._cache[modality].values()
-        #print(signals)
+        print(signals)
         self._save_signals(self._get_metadata_path(scenario_id, modality),signals, modality)
+
+
+    def serialise_signals_all_modalities(self, scenario_id: str) -> None:
+        for key in self._cache:
+            print(key)
+            modality = key
+            signals = self._cache[modality].values()
+            print(signals)
+            self._save_signals(self._get_metadata_path(scenario_id, modality),signals, modality)
     #Piek, July, 27th, 2021, end
 
 
