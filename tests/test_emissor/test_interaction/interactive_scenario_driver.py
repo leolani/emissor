@@ -47,16 +47,7 @@ if __name__ == '__main__':
     camera = cv2.VideoCapture(0)
 
     scenarioStorage = create_scenario(scenario_path, scenarioid)
-    signals = {
-        Modality.IMAGE.name.lower(): "./image.json",
-        Modality.TEXT.name.lower(): "./text.json"
-    }
-    scenario = Scenario.new_instance(scenarioid, datetime.now().microsecond, datetime.now().microsecond, agent, signals)
-    scenarioStorage.add_scenario(scenarioid, scenario)
-
-    scenarioStorage.save_scenario(scenario)
-    scenarioStorage.init_modality(Modality.TEXT)
-    scenarioStorage.init_modality(Modality.IMAGE)
+    scenario = scenarioStorage.create_scenario(scenarioid, datetime.now().microsecond, datetime.now().microsecond, agent)
 
     ##### First signals to get started
     success, frame = camera.read()
@@ -69,7 +60,7 @@ if __name__ == '__main__':
     response = "Hi there. Who are you "+human+"?"
     print(agent + ": " + response)
     textSignal = create_text_signal(scenario, response)
-    scenarioStorage.add_signal(Modality.TEXT, textSignal)
+    scenario.append_signal(textSignal)
     
     utterance = input('\n')
     print(human+": "+utterance)
@@ -79,7 +70,7 @@ if __name__ == '__main__':
         # @TODO
         ### Apply some processing to the textSignal and add annotations
         ### when done
-        scenarioStorage.add_signal(Modality.TEXT, textSignal)
+        scenario.append_signal(textSignal)
 
         if success:
             imageSignal = create_image_signal(scenario, imagepath)
@@ -87,13 +78,13 @@ if __name__ == '__main__':
             ### Apply some processing to the imageSignal and add annotations
             ### when done
 
-            scenarioStorage.add_signal(Modality.IMAGE, imageSignal)
+            scenario.append_signal(imageSignal)
 
         # Create the response from the system and store this as a new signal
         response = utterance[::-1]
         print(agent + ": " + response)
         textSignal = create_text_signal(scenario, response)
-        scenarioStorage.add_signal(Modality.TEXT, textSignal)
+        scenario.append_signal(textSignal)
 
         ###### Getting the next input signals
         utterance = input('\n')
@@ -104,7 +95,4 @@ if __name__ == '__main__':
             cv2.imwrite(imagepath, frame)
 
 
-
-    #scenarioStorage.serialise_signals_all_modalities(scenarioid)
-    scenarioStorage.serialise_signals(scenarioid, Modality.TEXT)
-    #scenarioStorage.serialise_signals(scenarioid, Modality.IMAGE)
+    scenarioStorage.save_scenario(scenario)

@@ -1,15 +1,22 @@
 from glob import glob
+from queue import Queue
+
+from types import MappingProxyType
 
 import os
-from typing import Iterable, Optional, Any, Union
+from typing import Iterable, Optional, Any, Union, Mapping, Dict
 
 from emissor.annotation.brain.util import EmissorBrain
-from emissor.representation.scenario import Scenario, Modality, Signal, ImageSignal, TextSignal
+from emissor.representation.scenario import Scenario, Modality, Signal, ImageSignal, TextSignal, ScenarioContext
 from emissor.representation.util import unmarshal, marshal, Identifier
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 
-_MAX_GUESS_RANGE = 1000 * 60 * 60 * 24 * 365 * 100
+
+DEFAULT_SIGNAL_PATHS = MappingProxyType({
+    Modality.IMAGE.name.lower(): "./image.json",
+    Modality.TEXT.name.lower(): "./text.json"
+})
 
 
 def file_name(path):
@@ -20,67 +27,61 @@ def base_name(path):
     return os.path.basename(path)
 
 
-class _ScenarioCache(dict):
-    def __init__(self, scenario: Scenario) -> None:
-        self._scenario_id = scenario.id
-        self._entity_cache = dict()
-        self._entity_cache[scenario.id] = scenario
+class ScenarioController:
+    def __init__(self, scenario: Scenario, storage):
+        self._storage = storage
+        self._scenario = scenario
+        self._signals = dict()
+
+    def append_signal(self, signal: Signal[Any, Any]):
+        if signal.modality not in self._signals:
+            self._signals[signal.modality] = []
+
+        self._signals[signal.modality].append(signal)
 
     @property
-    def scenario_id(self):
-        return self._scenario_id
+    def id(self) -> str:
+        return self.scenario.id
 
-    def __setitem__(self, key: Modality, value: Iterable[Signal]):
-        super().__setitem__(key, {signal.id: signal for signal in value})
+    @property
+    def scenario(self) -> Scenario:
+        return self._scenario
 
-        # Entities are:
-        #  * Scenario
-        #  * Containers: Signal, Annotation values
-        #  * Mentions
-        self._entity_cache.update(self[key])
-        self._entity_cache.update({mention.id: mention
-                                   for signal in self[key].values()
-                                   for mention in signal.mentions})
-        self._entity_cache.update({annotation.value.id: annotation.value
-                                   for signal in self[key].values()
-                                   for mention in signal.mentions
-                                   for annotation in mention.annotations if hasattr(annotation.value, "id")})
+    @property
+    def signals(self) -> Mapping[Modality, Iterable[Signal[Any, Any]]]:
+        return self._signals
 
-    def get_entity(self, id: Identifier):
-        return self._entity_cache[id] if id in self._entity_cache else None
+    def get_signals(self, modality: Modality) -> Iterable[Signal[Any, Any]]:
+        if modality not in self._signals:
+            self._signals[modality] = self._storage.load_modaltiy(self.scenario.id, modality)
+
+        return self._signals[modality]
 
 
 class ScenarioStorage:
     EXTENSION = ".json"
 
     def __init__(self, data_path):
-        self._cache = None
-        self.brain = None
         self._data_path = data_path
 
     @property
     def base_path(self):
         return self._data_path
 
-    def _get_metadata_path(self, scenario_id, modality: Optional[Union[Modality, str]] = None):
-        scenario_path = os.path.join(self.base_path, scenario_id)
-        if not modality:
-            return os.path.join(scenario_path, scenario_id + self.EXTENSION)
-
-        scenario = self.load_scenario(scenario_id)
-        modality_key = modality if isinstance(modality, str) else modality.name.lower()
-        if modality_key not in scenario.signals:
-            return None
-
-        relative_path = scenario.signals[modality_key]
-
-        return os.path.join(scenario_path, relative_path)
-
     def list_scenarios(self) -> Iterable[str]:
         return tuple(os.path.basename(path[:-1]) for path in glob(os.path.join(self.base_path, "*", "")))
 
-    def load_scenario(self, scenario_id: str) -> Optional[Scenario]:
-        scenario_path = self._get_metadata_path(scenario_id)
+    def create_scenario(self, scenario_id: str, start: int, end: int, context: ScenarioContext,
+                     signals: Dict[str, str] = DEFAULT_SIGNAL_PATHS) -> ScenarioController:
+        scenario = Scenario.new_instance(scenario_id, start, end, context, signals)
+        metadata_path = self._get_scenario_metadata_path(scenario_id)
+        with open(metadata_path, 'w') as json_file:
+            json_file.write(marshal(scenario, cls=Scenario))
+
+        return ScenarioController(scenario, self)
+
+    def load_scenario(self, scenario_id: str) -> Optional[ScenarioController]:
+        scenario_path = self._get_scenario_metadata_path(scenario_id)
         if not os.path.isfile(scenario_path):
             raise ValueError(f"No scenario with id {scenario_id} at {scenario_path}")
 
@@ -88,93 +89,17 @@ class ScenarioStorage:
             json_string = json_file.read()
         scenario = unmarshal(json_string, cls=Scenario)
 
-        self._cache = _ScenarioCache(scenario)
+        return ScenarioController(scenario, self)
 
-        # Load memories
-        ememory_path = os.path.join(self.base_path, scenario_id, 'rdf', 'episodic_memory')
-        self.brain = EmissorBrain(ememory_path)
+    def save_scenario(self, scenario: ScenarioController) -> None:
+        scenario_metadata_path = self._get_scenario_metadata_path(scenario.id)
 
-        return scenario
-
-    def save_scenario(self, scenario: Scenario) -> None:
-        scenario_metadata_path = self._get_metadata_path(scenario.id)
+        plain_scenario = scenario.scenario
         with open(scenario_metadata_path, 'w') as json_file:
-            json_file.write(marshal(scenario, cls=Scenario))
+            json_file.write(marshal(plain_scenario, cls=Scenario))
 
-    def load_modality(self, scenario_id: str, modality: Modality) -> Optional[Iterable[Signal[Any, Any]]]:
-        if not self._cache or self._cache.scenario_id != scenario_id:
-            self.load_scenario(scenario_id)
-
-        if self._cache and modality in self._cache:
-            return self._cache[modality].values()
-
-        modality_meta_path = self._get_metadata_path(scenario_id, modality)
-        if not modality_meta_path or not os.path.isfile(modality_meta_path):
-            return None
-
-        with open(modality_meta_path) as json_file:
-            if modality == Modality.IMAGE:
-                cls = ImageSignal
-            elif modality == Modality.TEXT:
-                cls = TextSignal
-            else:
-                raise ValueError(f"Unsupported modality: {modality}")
-
-            signals = unmarshal(json_file.read(), cls=cls)
-
-        self._cache[modality] = signals
-
-        return signals
-
-    def load_signal(self, scenario_id: str, modality: Modality, signal_id: str) -> Signal[Any, Any]:
-        if modality not in self._cache:
-            self.load_modality(scenario_id, modality)
-
-        return self._cache[modality][signal_id]
-
-    def save_signals(self, scenario_id: str, modality: Modality, signals: Iterable[Signal[Any, Any]]) -> None:
-        self._cache[modality] = signals
-        self._save_signals(self._get_metadata_path(scenario_id, modality), signals, modality)
-
-
-    def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
-        modality = signal.modality if isinstance(signal.modality, Modality) else Modality[signal.modality.upper()]
-        self._cache[modality][signal.id] = signal
-        self._save_signals(self._get_metadata_path(scenario_id, modality), self._cache[modality].values(), modality)
-
-
-    #Piek, July, 27th, 2021, start
-    #Next functions are added for iterative interaction
-
-    def add_scenario(self, scenario_id: str, scenario: Scenario) -> Optional[Scenario]:
-        self._cache = _ScenarioCache(scenario)
-
-    def load_brain(self, scenario_id: str) -> Optional[Scenario]:
-        # Load memories
-        ememory_path = os.path.join(self.base_path, scenario_id, 'rdf', 'episodic_memory')
-        self.brain = EmissorBrain(ememory_path)
-
-    def init_modality(self, modality: Modality):
-        self._cache[modality] = []
-
-    def add_signal(self, modality: Modality, signal: Signal[Any, Any]) -> None:
-        self._cache[modality][signal.id] = signal
-
-    def serialise_signals(self, scenario_id: str, modality: Modality) -> None:
-        signals = self._cache[modality].values()
-        print(signals)
-        self._save_signals(self._get_metadata_path(scenario_id, modality),signals, modality)
-
-
-    def serialise_signals_all_modalities(self, scenario_id: str) -> None:
-        for key in self._cache:
-            print(key)
-            modality = key
-            signals = self._cache[modality].values()
-            print(signals)
-            self._save_signals(self._get_metadata_path(scenario_id, modality),signals, modality)
-    #Piek, July, 27th, 2021, end
-
+        for modality, signals in scenario.signals.items():
+            self._save_signals(self._get_metadata_path(plain_scenario, modality), signals, modality)
 
     def _save_signals(self, path, signals, modality: Modality):
         if modality == Modality.IMAGE:
@@ -187,8 +112,32 @@ class ScenarioStorage:
         with open(path, 'w') as json_file:
             json_file.write(marshal(signals, cls=cls))
 
-    def get_entity(self, id: Identifier):
-        if not self._cache:
-            raise ValueError("No scenario loaded")
+    def load_modality(self, scenario_id: str, modality: Modality) -> Optional[Iterable[Signal[Any, Any]]]:
+        scenario = self.load_scenario(scenario_id)
+        modality_meta_path = self._get_metadata_path(scenario.scenario, modality)
+        if not modality_meta_path or not os.path.isfile(modality_meta_path):
+            return None
 
-        return self._cache.get_entity(id)
+        with open(modality_meta_path) as json_file:
+            if modality == Modality.IMAGE:
+                cls = ImageSignal
+            elif modality == Modality.TEXT:
+                cls = TextSignal
+            else:
+                raise ValueError(f"Unsupported modality: {modality}")
+
+            return unmarshal(json_file.read(), cls=cls)
+
+    def _get_scenario_metadata_path(self, scenario_id):
+        return os.path.join(self.base_path, scenario_id, scenario_id + self.EXTENSION)
+
+    def _get_metadata_path(self, scenario: Scenario, modality: Union[Modality, str]):
+        scenario_path = os.path.join(self.base_path, scenario.id)
+
+        modality_key = modality if isinstance(modality, str) else modality.name.lower()
+        if modality_key not in scenario.signals:
+            return None
+
+        relative_path = scenario.signals[modality_key]
+
+        return os.path.join(scenario_path, relative_path)
