@@ -136,10 +136,36 @@ class ScenarioStorage:
         self._cache[modality] = signals
         self._save_signals(self._get_metadata_path(scenario_id, modality), signals, modality)
 
+
     def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
         modality = signal.modality if isinstance(signal.modality, Modality) else Modality[signal.modality.upper()]
         self._cache[modality][signal.id] = signal
         self._save_signals(self._get_metadata_path(scenario_id, modality), self._cache[modality].values(), modality)
+
+
+    #Piek, July, 27th, 2021, start
+    #Next functions are added for iterative interaction
+
+    def add_scenario(self, scenario_id: str, scenario: Scenario) -> Optional[Scenario]:
+        self._cache = _ScenarioCache(scenario)
+
+    def load_brain(self, scenario_id: str) -> Optional[Scenario]:
+        # Load memories
+        ememory_path = os.path.join(self.base_path, scenario_id, 'rdf', 'episodic_memory')
+        self.brain = EmissorBrain(ememory_path)
+
+    def init_modality(self, modality: Modality):
+        self._cache[modality] = []
+
+    def add_signal(self, modality: Modality, signal: Signal[Any, Any]) -> None:
+        self._cache[modality][signal.id] = signal
+
+    def serialise_signals(self, scenario_id: str, modality: Modality) -> None:
+        signals = self._cache[modality].values()
+        #print(signals)
+        self._save_signals(self._get_metadata_path(scenario_id, modality),signals, modality)
+    #Piek, July, 27th, 2021, end
+
 
     def _save_signals(self, path, signals, modality: Modality):
         if modality == Modality.IMAGE:
