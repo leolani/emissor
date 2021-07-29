@@ -5,17 +5,17 @@ import cv2
 from datetime import datetime
 from emissor.persistence import ScenarioStorage
 from emissor.representation.scenario import Modality, ImageSignal, TextSignal, Mention, Annotation, Scenario
+import tests.test_emissor.test_interaction.driver_util as util
 
-
-def create_image_signal(scenario: Scenario, file: str):
+def create_image_signal1(scenario: Scenario, file: str):
     signal = ImageSignal.for_scenario(scenario.id, datetime.now().microsecond, datetime.now().microsecond, file, [], [])
     return signal
 
-def create_text_signal(scenario: Scenario, utterance):
+def create_text_signal1(scenario: Scenario, utterance):
     signal = TextSignal.for_scenario(scenario.id, datetime.now().microsecond, datetime.now().microsecond, "./text.json", utterance, [])
     return signal
 
-def create_scenario(scenarioPath: str, scenarioid: str):
+def create_scenario1(scenarioPath: str, scenarioid: str):
     myscenariopath = scenarioPath+"/"+scenarioid
     if not os.path.exists(myscenariopath):
         os.mkdir(myscenariopath)
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     imagefolder = scenario_path+"/"+scenarioid+"/"+"image"
     camera = cv2.VideoCapture(0)
 
-    scenarioStorage = create_scenario(scenario_path, scenarioid)
+    scenarioStorage = util.create_scenario(scenario_path, scenarioid)
     scenario = scenarioStorage.create_scenario(scenarioid, datetime.now().microsecond, datetime.now().microsecond, agent)
 
     ##### First signals to get started
@@ -59,21 +59,21 @@ if __name__ == '__main__':
     #### Initial prompt by the system from which we create a TextSignal and store it
     response = "Hi there. Who are you "+human+"?"
     print(agent + ": " + response)
-    textSignal = create_text_signal(scenario, response)
+    textSignal = util.create_text_signal(scenario, response)
     scenario.append_signal(textSignal)
     
     utterance = input('\n')
     print(human+": "+utterance)
 
     while not (utterance.lower()=='stop' or utterance.lower()=='bye'):
-        textSignal = create_text_signal(scenario, utterance)
+        textSignal = util.create_text_signal(scenario, utterance)
         # @TODO
         ### Apply some processing to the textSignal and add annotations
         ### when done
         scenario.append_signal(textSignal)
 
         if success:
-            imageSignal = create_image_signal(scenario, imagepath)
+            imageSignal = util.create_image_signal(scenario, imagepath)
             # @TODO
             ### Apply some processing to the imageSignal and add annotations
             ### when done
@@ -83,7 +83,7 @@ if __name__ == '__main__':
         # Create the response from the system and store this as a new signal
         response = utterance[::-1]
         print(agent + ": " + response)
-        textSignal = create_text_signal(scenario, response)
+        textSignal = util.create_text_signal(scenario, response)
         scenario.append_signal(textSignal)
 
         ###### Getting the next input signals
