@@ -5,7 +5,7 @@ with open("emissor/representation/README.md", "r") as fh:
 
 setuptools.setup(
     name="emissor",
-    version="0.0.1",
+    version="0.0.dev1",
     author="CLTL",
     author_email="piek.vossen@vu.nl",
     description="Representation of multi-modal datasets",
