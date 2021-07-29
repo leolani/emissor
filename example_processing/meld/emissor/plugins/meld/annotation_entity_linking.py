@@ -19,6 +19,7 @@ PERSON_NAMESPACE = Namespace("http://cltl.nl/leolani/n2mu/person#")
 class MeldEntityLinkingProcessor(SignalProcessor):
     def __init__(self, base_path):
         self._base_path = base_path
+        self._brain_cache = dict()
 
     @property
     def modalities(self) -> Tuple[Modality]:
@@ -26,7 +27,12 @@ class MeldEntityLinkingProcessor(SignalProcessor):
 
     def process_signal(self, scenario: ScenarioController, signal: Signal):
         ememory_path = os.path.join(self._base_path, scenario.id, 'rdf', 'episodic_memory')
-        brain = EmissorBrain(ememory_path)
+        if ememory_path in self._brain_cache:
+            brain = self._brain_cache[ememory_path]
+        else:
+            brain = EmissorBrain(ememory_path)
+            self._brain_cache.clear()
+            self._brain_cache[ememory_path] = brain
 
         if signal.modality == Modality.TEXT:
             self.add_ner_entity_links(signal, brain)
