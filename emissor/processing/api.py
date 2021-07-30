@@ -1,8 +1,9 @@
 from abc import ABC
-from typing import Iterable, Any, Mapping
+from typing import Iterable, Any, Tuple, Mapping
 
 from emissor.persistence import ScenarioStorage
-from emissor.representation.scenario import Scenario, Signal, Modality
+from emissor.persistence.persistence import ScenarioController
+from emissor.representation.scenario import Signal, Modality
 
 
 class DataPreprocessor(ABC):
@@ -24,7 +25,7 @@ class ScenarioInitializer(ABC):
     def initialize_scenario(self, scenario_id: str, storage: ScenarioStorage):
         raise NotImplementedError("")
 
-    def initialize_modality(self, modality: Modality, scenario: Scenario, storage: ScenarioStorage):
+    def initialize_modality(self, scenario: ScenarioController, modality: Modality):
         raise NotImplementedError("")
 
     @property
@@ -46,8 +47,17 @@ class ScenarioInitializer(ABC):
 
 
 class SignalProcessor(ABC):
-    def process(self, scenario: Scenario, signals: Mapping[str, Iterable[Signal]], storage: ScenarioStorage):
+    def process_signal(self, scenario: ScenarioController, signal: Signal):
         raise NotImplementedError("")
+
+    def process_signals(self, scenario: ScenarioController, signals: Mapping[Modality, Iterable[Signal]]):
+        for modality, signals in signals.items():
+            for signal in signals:
+                self.process_signal(scenario, signal)
+
+    def process_scenario(self, scenario: ScenarioController):
+        scenario.load_signals(self.modalities)
+        self.process_signals(scenario, scenario.signals)
 
     @property
     def name(self) -> str:
@@ -56,6 +66,10 @@ class SignalProcessor(ABC):
     @property
     def parallel(self) -> bool:
         return False
+
+    @property
+    def modalities(self) -> Tuple[Modality]:
+        return ()
 
     def __enter__(self):
         pass

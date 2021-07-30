@@ -1,14 +1,11 @@
 from glob import glob
-from queue import Queue
-
-from types import MappingProxyType
 
 import os
-from typing import Iterable, Optional, Any, Union, Mapping, Dict
+from types import MappingProxyType
+from typing import Iterable, Optional, Any, Union, Mapping, Dict, Tuple
 
-from emissor.annotation.brain.util import EmissorBrain
 from emissor.representation.scenario import Scenario, Modality, Signal, ImageSignal, TextSignal, ScenarioContext
-from emissor.representation.util import unmarshal, marshal, Identifier
+from emissor.representation.util import unmarshal, marshal
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 
@@ -35,7 +32,7 @@ class ScenarioController:
 
     def append_signal(self, signal: Signal[Any, Any]):
         if signal.modality not in self._signals:
-            self._signals[signal.modality] = []
+            self.load_signals((signal.modality,))
 
         self._signals[signal.modality].append(signal)
 
@@ -49,13 +46,19 @@ class ScenarioController:
 
     @property
     def signals(self) -> Mapping[Modality, Iterable[Signal[Any, Any]]]:
-        return self._signals
+        return dict(self._signals)
+
+    def load_signals(self, modalities: Tuple[Modality]):
+        for modality in modalities:
+            signals = self._storage.load_modality(self.scenario.id, modality)
+            signals = signals if signals else []
+            self._signals[modality] = signals
 
     def get_signals(self, modality: Modality) -> Iterable[Signal[Any, Any]]:
         if modality not in self._signals:
-            self._signals[modality] = self._storage.load_modaltiy(self.scenario.id, modality)
+            self.load_signals((modality,))
 
-        return self._signals[modality]
+        return list(self._signals[modality])
 
 
 class ScenarioStorage:
@@ -92,6 +95,9 @@ class ScenarioStorage:
         return ScenarioController(scenario, self)
 
     def save_scenario(self, scenario: ScenarioController) -> None:
+        if not isinstance(scenario, ScenarioController):
+            raise ValueError("Can only save ScenarioController instances, got: " + type(scenario) + ". See the #create_scenario method.")
+
         scenario_metadata_path = self._get_scenario_metadata_path(scenario.id)
 
         plain_scenario = scenario.scenario

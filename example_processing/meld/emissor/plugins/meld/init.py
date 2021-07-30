@@ -9,6 +9,7 @@ import re
 from typing import Mapping
 
 from emissor.persistence import ScenarioStorage
+from emissor.persistence.persistence import ScenarioController
 from emissor.processing.api import ScenarioInitializer
 from emissor.representation.scenario import Scenario, Modality, ImageSignal, TextSignal
 from example_processing.meld.meld import MELDScenarioContext
@@ -41,12 +42,12 @@ class MeldInitializer(ScenarioInitializer):
         self.current_scenario = scenario_id
         self.processing_meta = self.load_processing_metadata(scenario_id, storage)
 
-        scenario = self.create_scenario_metadata(scenario_id)
+        scenario = self.create_scenario_metadata(scenario_id, storage)
         storage.save_scenario(scenario)
 
         logger.info("Initialized scenario %s", scenario_id)
 
-    def create_scenario_metadata(self, scenario_id: str) -> Scenario:
+    def create_scenario_metadata(self, scenario_id: str, storage: ScenarioStorage) -> ScenarioController:
         start, end = self.processing_meta.start.min(), self.processing_meta.start.max()
 
         dialog_info = self.processing_meta[['season', 'episode', 'dialog_id']].drop_duplicates()
@@ -56,11 +57,11 @@ class MeldInitializer(ScenarioInitializer):
         season, episode, dialog_id = dialog_info.iloc[0]
         speakers = self.processing_meta['speaker'].unique()
 
-        return Scenario.new_instance(scenario_id, start, end,
+        return storage.create_scenario(scenario_id, start, end,
                                      MELDScenarioContext(None, season, episode, dialog_id, speakers),
                                      _MELD_SIGNALS)
 
-    def initialize_modality(self, modality: Modality, scenario: Scenario, storage: ScenarioStorage):
+    def initialize_modality(self, scenario: ScenarioController, modality: Modality):
         self.ensure_scenario(scenario.id)
 
         if modality not in [Modality.TEXT, Modality.IMAGE]:
@@ -72,12 +73,12 @@ class MeldInitializer(ScenarioInitializer):
             text_entries = self.processing_meta.groupby(['dialog_id', 'utterance_id']).first()
             signals = [self.create_text_signal(scenario, utt) for idx, utt in text_entries.iterrows()]
 
-        storage.save_signals(scenario.id, modality, signals)
+        [scenario.append_signal(signal) for signal in signals]
 
-    def create_text_signal(self, scenario: Scenario, text_meta: pd.DataFrame) -> TextSignal:
+    def create_text_signal(self, scenario: ScenarioController, text_meta: pd.DataFrame) -> TextSignal:
         return TextSignal.for_scenario(scenario.id, text_meta.start, text_meta.end, text_meta.file_text, text_meta.utterance, [])
 
-    def create_image_signal(self, scenario: Scenario, image_meta: pd.DataFrame) -> ImageSignal:
+    def create_image_signal(self, scenario: ScenarioController, image_meta: pd.DataFrame) -> ImageSignal:
         bounds = (0, 0, image_meta.width, image_meta.height)
         image_start = image_meta.frame_start
         image_end = image_meta.frame_end

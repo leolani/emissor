@@ -3,41 +3,49 @@ import spacy
 import time
 import uuid
 from tqdm import tqdm
-from typing import Iterable, Mapping
+from typing import Tuple, Mapping, Iterable
 
-from emissor.persistence import ScenarioStorage
+from emissor.persistence.persistence import ScenarioController
 from emissor.processing.api import SignalProcessor
 from emissor.representation.annotation import AnnotationType, Token, NER
 from emissor.representation.container import Index
-from emissor.representation.scenario import Modality, TextSignal, Mention, Annotation, Scenario, Signal
+from emissor.representation.scenario import Modality, Mention, Annotation, Signal
 
 logger = logging.getLogger(__name__)
 
 
-nlp = spacy.load('en_core_web_sm')
-
-
 class MeldNERProcessor(SignalProcessor):
+    def __enter__(self):
+        self._nlp = spacy.load('en_core_web_sm')
+
     @property
     def parallel(self) -> bool:
         return True
 
-    def process(self, scenario: Scenario, signals: Mapping[Modality, Iterable[Signal]], storage: ScenarioStorage):
+    @property
+    def modalities(self) -> Tuple[Modality]:
+        return (Modality.TEXT,)
+
+    def process_signals(self, scenario: ScenarioController, signals: Mapping[Modality, Iterable[Signal]]):
         logger.info("Add tokenization and NER annotations to %s", scenario.id)
-        text_signals = tuple(signals[Modality.TEXT.name.lower()])
+        text_signals = tuple(signals[Modality.TEXT])
         with tqdm(text_signals) as progress:
             cnt = 0
             for signal in progress:
                 # TODO: check if annotations already exist
-                cnt += self.add_ner_annotation(signal)
+                cnt += self.add_ner_annotations(signal)
                 progress.set_postfix({'NER count': cnt})
 
-        storage.save_signals(scenario.id, Modality.TEXT, text_signals)
+    def process_signal(self, scenario: ScenarioController, signal: Signal):
+        if not signal.modality == Modality.TEXT:
+            return
 
-    def add_ner_annotation(self, signal: TextSignal):
+        self.add_ner_annotations(signal)
+
+    def add_ner_annotations(self, signal: Signal):
         utterance = ''.join(signal.seq)
 
-        doc = nlp(utterance)
+        doc = self._nlp(utterance)
 
         offsets, tokens = zip(*[(Index(signal.id, token.idx, token.idx+len(token)), Token.for_string(token.text))
                                 for token in doc])

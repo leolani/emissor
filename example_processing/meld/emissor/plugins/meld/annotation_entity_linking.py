@@ -1,13 +1,14 @@
 import logging
+import os
 import time
 from rdflib import Namespace, URIRef
-from typing import Iterable, Mapping
+from typing import Tuple
 
 from emissor.annotation.brain.util import EmissorBrain
-from emissor.persistence import ScenarioStorage
+from emissor.persistence.persistence import ScenarioController
 from emissor.processing.api import SignalProcessor
 from emissor.representation.annotation import AnnotationType, Entity
-from emissor.representation.scenario import Modality, TextSignal, Annotation, ImageSignal, Signal, Scenario
+from emissor.representation.scenario import Modality, TextSignal, Annotation, ImageSignal, Signal
 
 logger = logging.getLogger(__name__)
 
@@ -16,33 +17,29 @@ PERSON_NAMESPACE = Namespace("http://cltl.nl/leolani/n2mu/person#")
 
 
 class MeldEntityLinkingProcessor(SignalProcessor):
-    def process(self, scenario: Scenario, signals: Mapping[Modality, Iterable[Signal]], storage: ScenarioStorage):
-        self.process_signals(scenario, Modality.IMAGE, signals[Modality.IMAGE.name.lower()], storage)
-        self.process_signals(scenario, Modality.TEXT, signals[Modality.TEXT.name.lower()], storage)
+    def __init__(self, base_path):
+        self._base_path = base_path
+        self._brain_cache = dict()
 
-    def process_signals(self, scenario: Scenario, modality: Modality, signals: Iterable[Signal], storage: ScenarioStorage):
-        if modality is Modality.IMAGE:
-            self.link_image_signals(signals, storage.brain)
-        elif modality is Modality.TEXT:
-            self.link_text_signals(signals, storage.brain)
+    @property
+    def modalities(self) -> Tuple[Modality]:
+        return (Modality.TEXT, Modality.IMAGE)
 
-        storage.save_signals(scenario.id, Modality.IMAGE, signals)
+    def process_signal(self, scenario: ScenarioController, signal: Signal):
+        ememory_path = os.path.join(self._base_path, scenario.id, 'rdf', 'episodic_memory')
+        if ememory_path in self._brain_cache:
+            brain = self._brain_cache[ememory_path]
+        else:
+            brain = EmissorBrain(ememory_path)
+            self._brain_cache.clear()
+            self._brain_cache[ememory_path] = brain
 
-    def link_image_signals(self, signals: Iterable[ImageSignal], brain: EmissorBrain):
-        if signals is None:
-            raise ValueError("Signals not found")
-            # if we want to skip we could do continue, but print warning message
-        for signal in signals:
-            # check if annotations exist
-            self.add_face_entity_links(signal, brain)
-
-    def link_text_signals(self, signals: Iterable[TextSignal], brain: EmissorBrain):
-        if signals is None:
-            raise ValueError("Signals not found")
-            # if we want to skip we could do continue, but print warning message
-        for signal in signals:
-            # check if annotations exist
+        if signal.modality == Modality.TEXT:
             self.add_ner_entity_links(signal, brain)
+        elif signal.modality == Modality.IMAGE:
+            self.add_face_entity_links(signal, brain)
+        else:
+            raise ValueError("Unsupported modality " + signal.modality.name)
 
     def add_ner_entity_links(self, signal: TextSignal, brain: EmissorBrain):
         # TODO: check if annotations already exist

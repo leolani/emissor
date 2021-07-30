@@ -6,7 +6,7 @@ from emissor.persistence import ScenarioStorage
 from emissor.processing.api import DataPreprocessor, ScenarioInitializer, SignalProcessor
 from emissor.representation.scenario import Modality
 
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 
 
 class DataProcessing:
@@ -73,27 +73,28 @@ def _initialize(base_path, scenario_initializer, scenario_id):
     scenario_initializer.initialize_scenario(scenario_id, storage)
     logger.info("Initialized scenario %s", scenario_id)
 
+    scenario = storage.load_scenario(scenario_id)
     for modality in Modality:
-        if storage.load_modality(scenario_id, modality):
+        if modality in scenario.signals:
             logger.debug("Modality %s for scenario %s already initialized", modality, scenario_id)
             continue
 
-        scenario = storage.load_scenario(scenario_id)
-        scenario_initializer.initialize_modality(modality, scenario, storage)
+        scenario_initializer.initialize_modality(scenario, modality)
         logger.info("Initialized modality %s for scenario %s", modality.name, scenario_id)
+
+    storage.save_scenario(scenario)
 
 
 def _process(base_path, processor, scenario_id):
     storage = ScenarioStorage(base_path)
 
     logger.info("Processing scenario %s with processor %s", scenario_id, processor.name)
+
     scenario = storage.load_scenario(scenario_id)
+    processor.process_scenario(scenario)
+    storage.save_scenario(scenario)
 
-    signals = {modality: _signal_generator(scenario_id, modality, processor, storage) for modality in scenario.signals}
-
-    processor.process(scenario, signals, storage)
-
-
+# TODO
 def _signal_generator(scenario_id, modality, processor, storage):
     signals = storage.load_modality(scenario_id, Modality[modality.upper()])
 
