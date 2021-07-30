@@ -3,7 +3,7 @@ import spacy
 import time
 import uuid
 from tqdm import tqdm
-from typing import Tuple
+from typing import Tuple, Mapping, Iterable
 
 from emissor.persistence.persistence import ScenarioController
 from emissor.processing.api import SignalProcessor
@@ -26,9 +26,9 @@ class MeldNERProcessor(SignalProcessor):
     def modalities(self) -> Tuple[Modality]:
         return (Modality.TEXT,)
 
-    def process_scenario(self, scenario: ScenarioController):
+    def process_signals(self, scenario: ScenarioController, signals: Mapping[Modality, Iterable[Signal]]):
         logger.info("Add tokenization and NER annotations to %s", scenario.id)
-        text_signals = tuple(scenario.signals[Modality.TEXT])
+        text_signals = tuple(signals[Modality.TEXT])
         with tqdm(text_signals) as progress:
             cnt = 0
             for signal in progress:

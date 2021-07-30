@@ -7,7 +7,7 @@ import time
 import uuid
 from sklearn.cluster import AgglomerativeClustering
 from tqdm import tqdm
-from typing import Iterable, Tuple
+from typing import Iterable, Tuple, Mapping
 
 from emissor.persistence.persistence import ScenarioController
 from emissor.processing.api import SignalProcessor
@@ -46,9 +46,9 @@ class MeldFaceProcessor(SignalProcessor):
     def process_signal(self, scenario: ScenarioController, signal: ImageSignal):
         raise NotImplementedError("Face detection only supported for all scenarios")
 
-    def process_scenario(self, scenario: ScenarioController):
+    def process_signals(self, scenario: ScenarioController, signals: Mapping[Modality, Iterable[Signal]]):
         logging.debug("Face features extraction will begin ...")
-        image_signals = tuple(scenario.signals[Modality.IMAGE])
+        image_signals = tuple(signals[Modality.IMAGE])
         self.detect_faces_for_scenario(scenario.id, image_signals)
         logging.info("Face feature extraction complete!")
 

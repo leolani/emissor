@@ -1,5 +1,5 @@
 from abc import ABC
-from typing import Iterable, Any, Tuple
+from typing import Iterable, Any, Tuple, Mapping
 
 from emissor.persistence import ScenarioStorage
 from emissor.persistence.persistence import ScenarioController
@@ -50,10 +50,14 @@ class SignalProcessor(ABC):
     def process_signal(self, scenario: ScenarioController, signal: Signal):
         raise NotImplementedError("")
 
-    def process_scenario(self, scenario: ScenarioController):
-        for modality, signals in scenario.signals.items():
+    def process_signals(self, scenario: ScenarioController, signals: Mapping[Modality, Iterable[Signal]]):
+        for modality, signals in signals.items():
             for signal in signals:
                 self.process_signal(scenario, signal)
+
+    def process_scenario(self, scenario: ScenarioController):
+        scenario.load_signals(self.modalities)
+        self.process_signals(scenario, scenario.signals)
 
     @property
     def name(self) -> str:

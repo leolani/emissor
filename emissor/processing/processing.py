@@ -91,7 +91,6 @@ def _process(base_path, processor, scenario_id):
     logger.info("Processing scenario %s with processor %s", scenario_id, processor.name)
 
     scenario = storage.load_scenario(scenario_id)
-    scenario.load_signals(processor.modalities)
     processor.process_scenario(scenario)
     storage.save_scenario(scenario)
 
