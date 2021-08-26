@@ -1,5 +1,6 @@
 {
-  "id": "2021-08-19-14:19:00",
+  "@type": "Scenario",
+  "id": "2021-08-26-17:58:59",
   "signals": {
     "image": "./image.json",
     "text": "./text.json"
@@ -11,12 +12,9 @@
     "signals": "https://emissor.org#signals",
     "ruler": "https://emissor.org#ruler"
   },
-  "context": "Leolani2",
-  "@type": "Scenario",
   "ruler": {
-    "end": 166663,
-    "start": 166659,
-    "container_id": "2021-08-19-14:19:00",
+    "@type": "TemporalRuler",
+    "end": 453103,
     "@context": {
       "TemporalRuler": "https://emissor.org#TemporalRuler",
       "id": "@id",
@@ -27,7 +25,9 @@
         "@type": "@id"
       }
     },
-    "@type": "TemporalRuler",
+    "start": 453099,
+    "container_id": "2021-08-26-17:58:59",
     "_py_type": "emissor.representation.container-TemporalRuler"
-  }
+  },
+  "context": "Leolani2"
 }

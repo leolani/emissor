@@ -17,10 +17,14 @@ import logging
 import requests
 import numpy as np
 import pickle
-from PIL import Image
 from PIL import Image, ImageDraw, ImageFont
+from glob import glob
 
 logging.basicConfig(level=logging.DEBUG)
+
+
+def cosine_similarity(x, y):
+    return np.dot(x, y) / (np.sqrt(np.dot(x, x)) * np.sqrt(np.dot(y, y)))
 
 
 def start_docker_container(image, port_id):
@@ -30,7 +34,7 @@ def start_docker_container(image, port_id):
 
     logging.info(f"starting a {image} container ...")
     logging.debug(f"warming up the container ...")
-    time.sleep(5)
+    time.sleep(2)
 
     return container
 
@@ -39,6 +43,41 @@ def kill_container(container):
     container.kill()
     logging.info(f"container killed.")
     logging.info(f"DONE!")
+
+
+def load_pickle(path):
+    with open(path, 'rb') as stream:
+        foo = pickle.load(stream)
+    return foo
+
+
+def load_embeddings():
+    embeddings_predefined = {path.split(
+        '/')[-1].split('.pkl')[0]: load_pickle(path) for path in glob('./embeddings/*.pkl')}
+    return embeddings_predefined
+
+
+def face_recognition(embeddings):
+    cosine_similarity_threshold = 0.65
+
+    embeddings_predefined = load_embeddings()
+    possible_names = list(embeddings_predefined.keys())
+
+    cosine_similarities = []
+    for embedding in embeddings:
+        cosine_similarities_ = {name: cosine_similarity(embedding, embedding_pre)
+                                for name, embedding_pre in embeddings_predefined.items()}
+        cosine_similarities.append(cosine_similarities_)
+
+    logging.debug(f"cosine similarities: {cosine_similarities}")
+
+    faces_detected = [max(sim, key=sim.get) for sim in cosine_similarities]
+    faces_detected = [name.replace('-', ' ') if sim[name] > cosine_similarity_threshold else "Stranger"
+                      for name, sim in zip(faces_detected, cosine_similarities)]
+
+    logging.debug(f"faces_detected: {faces_detected}")
+
+    return faces_detected
 
 
 def do_stuff_with_image(image_path,
@@ -68,17 +107,18 @@ def do_stuff_with_image(image_path,
     det_scores = [fdr['det_score'] for fdr in face_detection_recognition]
     landmarks = [fdr['landmark'] for fdr in face_detection_recognition]
 
-    logging.debug(f"sending embeddings to server ...")
-    data = [fdr['normed_embedding'] for fdr in face_detection_recognition]
+    embeddings = [fdr['normed_embedding']
+                  for fdr in face_detection_recognition]
+
+    faces_detected = face_recognition(embeddings)
 
     # -1 accounts for the batch size.
-    data = np.array(data).reshape(-1, 512).astype(np.float32)
-
-    # I wanna get rid of this pickling part but dunno how.
+    data = np.array(embeddings).reshape(-1, 512).astype(np.float32)
     data = pickle.dumps(data)
 
     data = {'embeddings': data}
     data = jsonpickle.encode(data)
+    logging.debug(f"sending embeddings to server ...")
     response = requests.post(url_age_gender, json=data)
     logging.info(f"got {response} from server!...")
 
@@ -91,15 +131,20 @@ def do_stuff_with_image(image_path,
     draw = ImageDraw.Draw(image)
     font = ImageFont.truetype("fonts/arial.ttf", 25)
 
-    for gender, age, bbox in zip(genders, ages, bboxes):
+    for gender, age, bbox, name, faceprob in zip(genders, ages, bboxes, faces_detected, det_scores):
         draw.rectangle(bbox.tolist(), outline=(0, 0, 0))
+
         draw.text(
-            (bbox[0], bbox[1]), f"AGE: {round(age['mean'])} (entropy: {round(age['entropy'], 3)} / {round(MAXIMUM_ENTROPY['age'], 3)})", fill=(255, 0, 0), font=font)
+            (bbox[0], bbox[1]), f"{name}, {round(age['mean'])} years old", fill=(255, 0, 0), font=font)
+
         draw.text((bbox[0], bbox[3]), 'MALE ' + str(round(gender['m']*100)) + str("%") +
-                  ', ' 'FEMALE ' + str(round(gender['f']*100)) + str("%") + f" (entropy: {round(gender['entropy'], 3)} / {round(MAXIMUM_ENTROPY['gender'], 3)})", fill=(0, 255, 0), font=font)
+                  ', ' 'FEMALE ' + str(round(gender['f']*100)) + str("%"), fill=(0, 255, 0), font=font)
+
         image.save(image_path + '.ANNOTATED.jpg')
     logging.debug(
         f"image annotated and saved at {image_path + '.ANNOTATED.jpg'}")
+
+    return genders, ages, bboxes, faces_detected, det_scores
 
 
 def main(agent, human, scenario_path):
@@ -155,10 +200,11 @@ def main(agent, human, scenario_path):
     success, frame = camera.read()
     imagepath = ""
     if success:
-        imagepath = imagefolder + "/" + \
-            str(datetime.now().microsecond) + ".png"
+        current_time = str(datetime.now().microsecond)
+        imagepath = imagefolder + "/" + current_time + ".png"
         cv2.imwrite(imagepath, frame)
-        do_stuff_with_image(imagepath)
+        genders, ages, bboxes, faces_detected, det_scores = do_stuff_with_image(
+            imagepath)
 
     # Initial prompt by the system from which we create a TextSignal and store it
     response = "Hi there. Who are you " + human + "?"
@@ -179,6 +225,32 @@ def main(agent, human, scenario_path):
 
         if success:
             imageSignal = util.create_image_signal(scenario, imagepath)
+            container_id = str(uuid.uuid4())
+
+            for gender, age, bbox, name, faceprob in zip(genders, ages, bboxes, faces_detected, det_scores):
+
+                age = round(age['mean'])
+                gender = 'male' if gender['m'] > 0.5 else 'female'
+                bbox = [int(num) for num in bbox.tolist()]
+
+                annotations = []
+
+                annotations.append({'source': 'machine',
+                                    'timestamp': current_time,
+                                    'type': 'person',
+                                    'value': {'name': name,
+                                              'age': age,
+                                              'gender': gender,
+                                              'faceprob': faceprob}})
+
+                mention_id = str(uuid.uuid4())
+                segment = [{'bounds': bbox,
+                            'container_id': container_id,
+                            'type': 'MultiIndex'}]
+                imageSignal.mentions.append({'annotations': annotations,
+                                             'id': mention_id,
+                                             'segment': segment})
+
             # @TODO
             # Apply some processing to the imageSignal and add annotations
             # when done
@@ -203,10 +275,11 @@ def main(agent, human, scenario_path):
 
         success, frame = camera.read()
         if success:
-            imagepath = imagefolder + "/" + \
-                str(datetime.now().microsecond) + ".png"
+            current_time = str(datetime.now().microsecond)
+            imagepath = imagefolder + "/" + current_time + ".png"
             cv2.imwrite(imagepath, frame)
-            do_stuff_with_image(imagepath)
+            genders, ages, bboxes, faces_detected, det_scores = do_stuff_with_image(
+                imagepath)
 
     scenarioStorage.save_scenario(scenario)
 

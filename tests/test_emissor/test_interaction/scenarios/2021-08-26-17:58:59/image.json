@@ -1,0 +1,576 @@
+[
+  {
+    "@type": "ImageSignal",
+    "modality": "IMAGE",
+    "id": "c963b394-e24d-4ec7-9d56-1f0915baea5d",
+    "time": {
+      "@type": "TemporalRuler",
+      "end": 949258,
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "start": 949250,
+      "container_id": "2021-08-26-17:58:59"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "ruler": {
+      "@type": "MultiIndex",
+      "container_id": "c963b394-e24d-4ec7-9d56-1f0915baea5d",
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "array": "",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "798101",
+            "type": "person",
+            "value": {
+              "name": "Taewoon Kim",
+              "age": 28,
+              "gender": "male",
+              "faceprob": 0.9994348883628845
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "9351b4ad-4dfd-49e0-a8d8-306970764006",
+        "segment": [
+          {
+            "bounds": [
+              276,
+              200,
+              382,
+              349
+            ],
+            "container_id": "600fbcba-b9e1-4924-be4d-e83eb6d8298a",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "files": [
+      "./scenarios/2021-08-26-17:58:59/image/798101.png"
+    ]
+  },
+  {
+    "@type": "ImageSignal",
+    "modality": "IMAGE",
+    "id": "f61a1830-e405-41d3-a92d-51260cab5ced",
+    "time": {
+      "@type": "TemporalRuler",
+      "end": 663943,
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "start": 663939,
+      "container_id": "2021-08-26-17:58:59"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "ruler": {
+      "@type": "MultiIndex",
+      "container_id": "f61a1830-e405-41d3-a92d-51260cab5ced",
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "array": "",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "146674",
+            "type": "person",
+            "value": {
+              "name": "Taewoon Kim",
+              "age": 29,
+              "gender": "male",
+              "faceprob": 0.9994505047798157
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "b445e2b6-a959-4046-86df-bfa8b3ef3a03",
+        "segment": [
+          {
+            "bounds": [
+              276,
+              200,
+              382,
+              349
+            ],
+            "container_id": "66496401-a6da-4e0e-8955-3b7c974edb1b",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "files": [
+      "./scenarios/2021-08-26-17:58:59/image/146674.png"
+    ]
+  },
+  {
+    "@type": "ImageSignal",
+    "modality": "IMAGE",
+    "id": "5cdf28ec-0b83-46d3-8f67-a8bd911cdf1a",
+    "time": {
+      "@type": "TemporalRuler",
+      "end": 999610,
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "start": 999605,
+      "container_id": "2021-08-26-17:58:59"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "ruler": {
+      "@type": "MultiIndex",
+      "container_id": "5cdf28ec-0b83-46d3-8f67-a8bd911cdf1a",
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "array": "",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "468856",
+            "type": "person",
+            "value": {
+              "name": "Taewoon Kim",
+              "age": 28,
+              "gender": "male",
+              "faceprob": 0.999452531337738
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "64b1fe82-8636-4d87-857a-f94cb8f7c881",
+        "segment": [
+          {
+            "bounds": [
+              276,
+              201,
+              382,
+              350
+            ],
+            "container_id": "c2884c3a-f36a-4446-87d9-38f493cd18a6",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "files": [
+      "./scenarios/2021-08-26-17:58:59/image/468856.png"
+    ]
+  },
+  {
+    "@type": "ImageSignal",
+    "modality": "IMAGE",
+    "id": "c2e7907a-bd42-4dd0-b1fa-99069f12f365",
+    "time": {
+      "@type": "TemporalRuler",
+      "end": 120447,
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "start": 120444,
+      "container_id": "2021-08-26-17:58:59"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "ruler": {
+      "@type": "MultiIndex",
+      "container_id": "c2e7907a-bd42-4dd0-b1fa-99069f12f365",
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "array": "",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "534069",
+            "type": "person",
+            "value": {
+              "name": "Taewoon Kim",
+              "age": 28,
+              "gender": "male",
+              "faceprob": 0.9994603991508484
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "04a1d81e-dbf8-4e63-8cb1-ef9034647f94",
+        "segment": [
+          {
+            "bounds": [
+              276,
+              200,
+              382,
+              350
+            ],
+            "container_id": "9799c80e-8ff3-4a1f-986b-0b276de56c3b",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "files": [
+      "./scenarios/2021-08-26-17:58:59/image/534069.png"
+    ]
+  },
+  {
+    "@type": "ImageSignal",
+    "modality": "IMAGE",
+    "id": "4f2f3671-4831-4dd9-8f9e-831d77b6553d",
+    "time": {
+      "@type": "TemporalRuler",
+      "end": 171802,
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "start": 171799,
+      "container_id": "2021-08-26-17:58:59"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "ruler": {
+      "@type": "MultiIndex",
+      "container_id": "4f2f3671-4831-4dd9-8f9e-831d77b6553d",
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "array": "",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "636551",
+            "type": "person",
+            "value": {
+              "name": "Taewoon Kim",
+              "age": 28,
+              "gender": "male",
+              "faceprob": 0.9994387030601501
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "a8805afa-e4c1-40a1-a3e0-d204fc52d52f",
+        "segment": [
+          {
+            "bounds": [
+              277,
+              200,
+              382,
+              350
+            ],
+            "container_id": "fc3ac35c-2339-4ef7-8804-881011eb39df",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "files": [
+      "./scenarios/2021-08-26-17:58:59/image/636551.png"
+    ]
+  },
+  {
+    "@type": "ImageSignal",
+    "modality": "IMAGE",
+    "id": "01a73156-d894-4483-9b87-dd34ecac4896",
+    "time": {
+      "@type": "TemporalRuler",
+      "end": 303313,
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "start": 303310,
+      "container_id": "2021-08-26-17:58:59"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "ruler": {
+      "@type": "MultiIndex",
+      "container_id": "01a73156-d894-4483-9b87-dd34ecac4896",
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "array": "",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "682935",
+            "type": "person",
+            "value": {
+              "name": "Taewoon Kim",
+              "age": 30,
+              "gender": "male",
+              "faceprob": 0.9992836117744446
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "98634dae-d85e-4f53-82a7-a6a736e601eb",
+        "segment": [
+          {
+            "bounds": [
+              273,
+              202,
+              378,
+              353
+            ],
+            "container_id": "9cd8ba49-7ee2-4b54-86f3-6f910d2c1f20",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "files": [
+      "./scenarios/2021-08-26-17:58:59/image/682935.png"
+    ]
+  },
+  {
+    "@type": "ImageSignal",
+    "modality": "IMAGE",
+    "id": "461238ab-7945-4741-aced-e3fad746d547",
+    "time": {
+      "@type": "TemporalRuler",
+      "end": 629764,
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "start": 629761,
+      "container_id": "2021-08-26-17:58:59"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "ruler": {
+      "@type": "MultiIndex",
+      "container_id": "461238ab-7945-4741-aced-e3fad746d547",
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "array": "",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "100307",
+            "type": "person",
+            "value": {
+              "name": "Taewoon Kim",
+              "age": 36,
+              "gender": "male",
+              "faceprob": 0.999337375164032
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "0a829284-8f9e-43a5-a101-e342530960f5",
+        "segment": [
+          {
+            "bounds": [
+              270,
+              202,
+              376,
+              353
+            ],
+            "container_id": "bde80165-02dd-4e2f-a756-6eb85fe60c6e",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "files": [
+      "./scenarios/2021-08-26-17:58:59/image/100307.png"
+    ]
+  }
+]
