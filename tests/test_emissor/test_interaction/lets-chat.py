@@ -12,7 +12,7 @@ from emissor.representation.scenario import Modality, ImageSignal, TextSignal, M
 import cv2
 import driver_util as util
 import argparse
-from python_on_whales import docker
+import python_on_whales
 import logging
 import requests
 import numpy as np
@@ -23,42 +23,58 @@ from glob import glob
 logging.basicConfig(level=logging.DEBUG)
 
 
-def cosine_similarity(x, y):
+def cosine_similarity(x: np.ndarray, y: np.ndarray) -> np.ndarray:
+    """Compute the cosine similarity of the two vectors.
+
+    The returned value is between 1 and -1.
+    """
     return np.dot(x, y) / (np.sqrt(np.dot(x, x)) * np.sqrt(np.dot(y, y)))
 
 
-def start_docker_container(image, port_id):
-    container = docker.run(image=image,
-                           detach=True,
-                           publish=[(port_id, port_id)])
+def start_docker_container(image: str, port_id: int, sleep_time=5) -> python_on_whales.Container:
+    """Start docker container given the image name and port number.
+
+    A docker container object is returned.
+    """
+    container = python_on_whales.docker.run(image=image,
+                                            detach=True,
+                                            publish=[(port_id, port_id)])
 
     logging.info(f"starting a {image} container ...")
     logging.debug(f"warming up the container ...")
-    time.sleep(2)
+    time.sleep(sleep_time)
 
     return container
 
 
-def kill_container(container):
+def kill_container(container: python_on_whales.Container):
+    """Kill docker container."""
     container.kill()
     logging.info(f"container killed.")
     logging.info(f"DONE!")
 
 
-def load_pickle(path):
+def unpickle(path: str):
+    """Unpickle the pickled file, and return it."""
     with open(path, 'rb') as stream:
         foo = pickle.load(stream)
     return foo
 
 
 def load_embeddings():
+    """Load pre-defined face embeddings."""
     embeddings_predefined = {path.split(
-        '/')[-1].split('.pkl')[0]: load_pickle(path) for path in glob('./embeddings/*.pkl')}
+        '/')[-1].split('.pkl')[0]: unpickle(path) for path in glob('./embeddings/*.pkl')}
     return embeddings_predefined
 
 
-def face_recognition(embeddings):
-    cosine_similarity_threshold = 0.65
+def face_recognition(embeddings: list):
+    """Perform face recognition based on the cosine similarity.
+
+    The cosine similarity threshold is fixed to 0.65. Feel free to play around 
+    with this number.
+    """
+    COSINE_SIMILARITY_THRESHOLD = 0.65
 
     embeddings_predefined = load_embeddings()
     possible_names = list(embeddings_predefined.keys())
@@ -72,31 +88,33 @@ def face_recognition(embeddings):
     logging.debug(f"cosine similarities: {cosine_similarities}")
 
     faces_detected = [max(sim, key=sim.get) for sim in cosine_similarities]
-    faces_detected = [name.replace('-', ' ') if sim[name] > cosine_similarity_threshold else "Stranger"
+    faces_detected = [name.replace('-', ' ') if sim[name] > COSINE_SIMILARITY_THRESHOLD else "Stranger"
                       for name, sim in zip(faces_detected, cosine_similarities)]
 
     logging.debug(f"faces_detected: {faces_detected}")
 
     return faces_detected
 
-
-def do_stuff_with_image(image_path,
-                        url_face='http://127.0.0.1:10002/',
-                        url_age_gender='http://127.0.0.1:10003/'):
-
-    MAXIMUM_ENTROPY = {'gender': 0.6931471805599453,
-                       'age': 4.615120516841261}
-
+def load_binary_image(image_path: str) -> bytes:
+    """Load encoded image as a binary string and return it."""
     logging.debug(f"{image_path} loading image ...")
     with open(image_path, 'rb') as stream:
         binary_image = stream.read()
+    logging.info(f"{image_path} image loaded!")
 
-    data = {'image': binary_image}
-    logging.info(f"image loaded!")
+    return binary_image
 
+def run_face_api(to_send, url_face: str = 'http://127.0.0.1:10002/') -> tuple:
+    """Make a RESTful HTTP request to the face API server.
+    
+    `to_send` is encoded with jsonpickle. I know this is not conventional,
+    but encoding and decoding is so easy with jsonpickle somehow.
+
+    Returns bounding boxes, detection scores, landmarks, and embeddings.
+    """
     logging.debug(f"sending image to server...")
-    data = jsonpickle.encode(data)
-    response = requests.post(url_face, json=data)
+    to_send = jsonpickle.encode(to_send)
+    response = requests.post(url_face, json=to_send)
     logging.info(f"got {response} from server!...")
     response = jsonpickle.decode(response.text)
 
@@ -110,8 +128,16 @@ def do_stuff_with_image(image_path,
     embeddings = [fdr['normed_embedding']
                   for fdr in face_detection_recognition]
 
-    faces_detected = face_recognition(embeddings)
+    return bboxes, det_scores, landmarks, embeddings
 
+def run_age_gender_api(embeddings: list, url_age_gender: str = 'http://127.0.0.1:10003/') -> tuple:
+    """Make a RESTful HTTP request to the age-gender API server.
+    
+    `embeddings` is a list of embeddings. The number of elements in this list is
+    the number of faces detected in the frame.
+
+    Returns a list of ages and a list of genders.
+    """
     # -1 accounts for the batch size.
     data = np.array(embeddings).reshape(-1, 512).astype(np.float32)
     data = pickle.dumps(data)
@@ -125,6 +151,23 @@ def do_stuff_with_image(image_path,
     response = jsonpickle.decode(response.text)
     ages = response['ages']
     genders = response['genders']
+
+    return ages, genders    
+
+def do_stuff_with_image(image_path: str,
+                        url_face: str = 'http://127.0.0.1:10002/',
+                        url_age_gender: str = 'http://127.0.0.1:10003/'):
+
+    MAXIMUM_ENTROPY = {'gender': 0.6931471805599453,
+                       'age': 4.615120516841261}
+
+    data = {'image': load_binary_image(image_path)}
+
+    bboxes, det_scores, landmarks, embeddings = run_face_api(data, url_face)
+
+    faces_detected = face_recognition(embeddings)
+
+    ages, genders = run_age_gender_api(embeddings, url_age_gender)
 
     logging.debug(f"annotating image ...")
     image = Image.open(image_path)
@@ -250,10 +293,6 @@ def main(agent, human, scenario_path):
                 imageSignal.mentions.append({'annotations': annotations,
                                              'id': mention_id,
                                              'segment': segment})
-
-            # @TODO
-            # Apply some processing to the imageSignal and add annotations
-            # when done
 
             scenario.append_signal(imageSignal)
 
