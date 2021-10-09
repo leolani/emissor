@@ -1,0 +1,1990 @@
+[
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "H",
+      "i",
+      " ",
+      "t",
+      "h",
+      "e",
+      "r",
+      "e",
+      ".",
+      " ",
+      "W",
+      "e",
+      " ",
+      "h",
+      "a",
+      "v",
+      "e",
+      "n",
+      "'",
+      "t",
+      " ",
+      "m",
+      "e",
+      "t",
+      " ",
+      "e",
+      "a",
+      "c",
+      "h",
+      " ",
+      "o",
+      "t",
+      "h",
+      "e",
+      "r",
+      ".",
+      " ",
+      "I",
+      " ",
+      "o",
+      "n",
+      "l",
+      "y",
+      " ",
+      "k",
+      "n",
+      "o",
+      "w",
+      " ",
+      "t",
+      "h",
+      "a",
+      "t",
+      " ",
+      "y",
+      "o",
+      "u",
+      "r",
+      " ",
+      "e",
+      "s",
+      "t",
+      "i",
+      "m",
+      "a",
+      "t",
+      "e",
+      "d",
+      " ",
+      "a",
+      "g",
+      "e",
+      " ",
+      "i",
+      "s",
+      " ",
+      "2",
+      "8",
+      " ",
+      "a",
+      "n",
+      "d",
+      " ",
+      "t",
+      "h",
+      "a",
+      "t",
+      " ",
+      "y",
+      "o",
+      "u",
+      "r",
+      " ",
+      "e",
+      "s",
+      "t",
+      "i",
+      "m",
+      "a",
+      "t",
+      "e",
+      "d",
+      " ",
+      "g",
+      "e",
+      "n",
+      "d",
+      "e",
+      "r",
+      " ",
+      "i",
+      "s",
+      " ",
+      "m",
+      "a",
+      "l",
+      "e",
+      ".",
+      " ",
+      "W",
+      "h",
+      "a",
+      "t",
+      "'",
+      "s",
+      " ",
+      "y",
+      "o",
+      "u",
+      "r",
+      " ",
+      "n",
+      "a",
+      "m",
+      "e",
+      "?"
+    ],
+    "mentions": [],
+    "@type": "TextSignal",
+    "id": "b1fb83cf-5719-4fd4-a49b-4a0002c9caae",
+    "time": {
+      "end": 892274,
+      "start": 892269,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 892274,
+      "start": 892269,
+      "@type": "Index",
+      "container_id": "b1fb83cf-5719-4fd4-a49b-4a0002c9caae",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "J",
+      "a",
+      "m",
+      "e",
+      "s",
+      " ",
+      "B",
+      "o",
+      "n",
+      "d"
+    ],
+    "mentions": [],
+    "@type": "TextSignal",
+    "id": "95d1034f-5c83-4a7b-bbb7-104579ac19d8",
+    "time": {
+      "end": 679011,
+      "start": 679006,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 679011,
+      "start": 679006,
+      "@type": "Index",
+      "container_id": "95d1034f-5c83-4a7b-bbb7-104579ac19d8",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "H",
+      "o",
+      "w",
+      " ",
+      "a",
+      "r",
+      "e",
+      " ",
+      "y",
+      "o",
+      "u",
+      " ",
+      "d",
+      "o",
+      "i",
+      "n",
+      "g",
+      "?"
+    ],
+    "mentions": [],
+    "@type": "TextSignal",
+    "id": "355f2ca1-7409-4b9b-a49e-e356582722f6",
+    "time": {
+      "end": 679222,
+      "start": 679220,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 679222,
+      "start": 679220,
+      "@type": "Index",
+      "container_id": "355f2ca1-7409-4b9b-a49e-e356582722f6",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "I",
+      "'",
+      "m",
+      " ",
+      "d",
+      "o",
+      "i",
+      "n",
+      "g",
+      " ",
+      "g",
+      "o",
+      "o",
+      "d",
+      "."
+    ],
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790255,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "7b466ce6-8e8b-4f85-9dfe-3f6c3feca4ae",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "7b466ce6-8e8b-4f85-9dfe-3f6c3feca4ae",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "I",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "e66db9e5-c762-4a13-9366-3b0b6208c600",
+        "segment": [
+          {
+            "stop": 1,
+            "start": 0,
+            "@type": "Index",
+            "container_id": "391f3ec6-d532-4a0d-b49b-1f3b4abe4514",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790255,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "47445adc-4423-4d6d-9891-e51ba4f5a3a0",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "47445adc-4423-4d6d-9891-e51ba4f5a3a0",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "'m",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "9646b065-54ab-4d46-b523-7498e6375a65",
+        "segment": [
+          {
+            "stop": 3,
+            "start": 1,
+            "@type": "Index",
+            "container_id": "391f3ec6-d532-4a0d-b49b-1f3b4abe4514",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790255,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "aee8828c-b719-4c4a-b945-4a4df8f41feb",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "aee8828c-b719-4c4a-b945-4a4df8f41feb",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "doing",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "959e95c8-9c9b-4bc6-88ca-8128310122dc",
+        "segment": [
+          {
+            "stop": 9,
+            "start": 4,
+            "@type": "Index",
+            "container_id": "391f3ec6-d532-4a0d-b49b-1f3b4abe4514",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790255,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "5399af4b-fddc-4996-8221-4f82b7125e49",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "5399af4b-fddc-4996-8221-4f82b7125e49",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "good",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "4d698c64-c731-4551-9f9a-8388e4f7f296",
+        "segment": [
+          {
+            "stop": 14,
+            "start": 10,
+            "@type": "Index",
+            "container_id": "391f3ec6-d532-4a0d-b49b-1f3b4abe4514",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790255,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "6ca4c201-3d49-4b0b-be3f-7c6f10cebdc4",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "6ca4c201-3d49-4b0b-be3f-7c6f10cebdc4",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": ".",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "e1b06317-681e-4eea-9919-eac3d9e77c26",
+        "segment": [
+          {
+            "stop": 15,
+            "start": 14,
+            "@type": "Index",
+            "container_id": "391f3ec6-d532-4a0d-b49b-1f3b4abe4514",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      }
+    ],
+    "@type": "TextSignal",
+    "id": "391f3ec6-d532-4a0d-b49b-1f3b4abe4514",
+    "time": {
+      "end": 381950,
+      "start": 381945,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 381950,
+      "start": 381945,
+      "@type": "Index",
+      "container_id": "391f3ec6-d532-4a0d-b49b-1f3b4abe4514",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "A",
+      "n",
+      "y",
+      " ",
+      "g",
+      "o",
+      "s",
+      "s",
+      "i",
+      "p",
+      "\n"
+    ],
+    "mentions": [],
+    "@type": "TextSignal",
+    "id": "508a110f-6a31-46d0-8a27-e7c5e183f70d",
+    "time": {
+      "end": 387489,
+      "start": 387487,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 387489,
+      "start": 387487,
+      "@type": "Index",
+      "container_id": "508a110f-6a31-46d0-8a27-e7c5e183f70d",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "h",
+      "a",
+      "h",
+      "a",
+      " ",
+      "o",
+      "k",
+      "a",
+      "y"
+    ],
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790260,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "7ac62d21-21ee-47d1-b34f-0b92fb35e735",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "7ac62d21-21ee-47d1-b34f-0b92fb35e735",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "haha",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "92f7c944-11aa-4402-b402-39bce03a9470",
+        "segment": [
+          {
+            "stop": 4,
+            "start": 0,
+            "@type": "Index",
+            "container_id": "c8c6d6f7-6401-4a8e-bf0a-6176b4092872",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790260,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "cf54cd55-7cf9-4992-9d54-d2eadaf9806d",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "cf54cd55-7cf9-4992-9d54-d2eadaf9806d",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "okay",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "195d5d1e-be12-449e-be92-84701f7ee588",
+        "segment": [
+          {
+            "stop": 9,
+            "start": 5,
+            "@type": "Index",
+            "container_id": "c8c6d6f7-6401-4a8e-bf0a-6176b4092872",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      }
+    ],
+    "@type": "TextSignal",
+    "id": "c8c6d6f7-6401-4a8e-bf0a-6176b4092872",
+    "time": {
+      "end": 990694,
+      "start": 990690,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 990694,
+      "start": 990690,
+      "@type": "Index",
+      "container_id": "c8c6d6f7-6401-4a8e-bf0a-6176b4092872",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "A",
+      "n",
+      "y",
+      " ",
+      "g",
+      "o",
+      "s",
+      "s",
+      "i",
+      "p",
+      "\n"
+    ],
+    "mentions": [],
+    "@type": "TextSignal",
+    "id": "e0aab08b-9716-4822-bcc2-e5aa5c8343ee",
+    "time": {
+      "end": 994715,
+      "start": 994713,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 994715,
+      "start": 994713,
+      "@type": "Index",
+      "container_id": "e0aab08b-9716-4822-bcc2-e5aa5c8343ee",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "h",
+      "a",
+      "v",
+      "e",
+      " ",
+      "a",
+      " ",
+      "n",
+      "i",
+      "c",
+      "e",
+      " ",
+      "d",
+      "a",
+      "y",
+      ".",
+      " ",
+      "I",
+      " ",
+      "h",
+      "a",
+      "v",
+      "e",
+      " ",
+      "t",
+      "o",
+      " ",
+      "l",
+      "e",
+      "a",
+      "v",
+      "e",
+      "."
+    ],
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "e23ee5ee-0b66-4726-b814-9ad026b95fd5",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "e23ee5ee-0b66-4726-b814-9ad026b95fd5",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "have",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "05a7d68e-9170-4795-986b-c3ccd8fb87f1",
+        "segment": [
+          {
+            "stop": 4,
+            "start": 0,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "69f070df-325e-462d-942e-d0a53bf1e752",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "69f070df-325e-462d-942e-d0a53bf1e752",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "a",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "41e88451-86ed-44bd-8b20-c158a28ee197",
+        "segment": [
+          {
+            "stop": 6,
+            "start": 5,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "42d66d91-ad45-4481-9758-0f14d0920b61",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "42d66d91-ad45-4481-9758-0f14d0920b61",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "nice",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "1ae34b84-52ca-4f9a-95d7-81434fadfa3f",
+        "segment": [
+          {
+            "stop": 11,
+            "start": 7,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "da9c7568-db8f-4ad3-88ce-dc493aa681cf",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "da9c7568-db8f-4ad3-88ce-dc493aa681cf",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "day",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "3525936f-2dc8-422e-9593-c450ca347e96",
+        "segment": [
+          {
+            "stop": 15,
+            "start": 12,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "889312a7-7890-4aee-9081-bc477fa43ab6",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "889312a7-7890-4aee-9081-bc477fa43ab6",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": ".",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "52878d8f-f9ad-4dea-8ad7-cecbd6a8a968",
+        "segment": [
+          {
+            "stop": 16,
+            "start": 15,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "2676673f-8d69-448c-bacf-fda49f02663e",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "2676673f-8d69-448c-bacf-fda49f02663e",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "I",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "3f6da78d-a17c-4ab7-9cb2-e4f27c519cdc",
+        "segment": [
+          {
+            "stop": 18,
+            "start": 17,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "8e4fe85a-f6c9-4269-b2c3-81f3125dc047",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "8e4fe85a-f6c9-4269-b2c3-81f3125dc047",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "have",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "cf4a54cb-bb03-46a9-8c7f-5a2b452ec568",
+        "segment": [
+          {
+            "stop": 23,
+            "start": 19,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "10aa52e4-0967-4c9f-99e3-daf9aee6009a",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "10aa52e4-0967-4c9f-99e3-daf9aee6009a",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "to",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "eb786070-6a84-4c79-b5e0-e7ecf7554257",
+        "segment": [
+          {
+            "stop": 26,
+            "start": 24,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "4c5aa758-ef1b-466a-9229-7c4b6f581449",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "4c5aa758-ef1b-466a-9229-7c4b6f581449",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": "leave",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "65d4b1b2-a13f-4c1e-9594-5b17cda890c2",
+        "segment": [
+          {
+            "stop": 32,
+            "start": 27,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      },
+      {
+        "annotations": [
+          {
+            "source": "spaCy",
+            "@type": "Annotation",
+            "timestamp": 1633790266,
+            "value": {
+              "@type": "AtomicContainer",
+              "id": "6a17c7c0-3d9f-451a-b9ca-4a24f96a0da6",
+              "ruler": {
+                "@context": {
+                  "AtomicRuler": "https://emissor.org#AtomicRuler",
+                  "id": "@id",
+                  "container_id": {
+                    "@id": "https://emissor.org#container_id",
+                    "@type": "@id"
+                  }
+                },
+                "@type": "AtomicRuler",
+                "container_id": "6a17c7c0-3d9f-451a-b9ca-4a24f96a0da6",
+                "_py_type": "emissor.representation.container-AtomicRuler"
+              },
+              "value": ".",
+              "@context": {
+                "AtomicContainer": "https://emissor.org#AtomicContainer",
+                "id": "@id",
+                "value": "https://emissor.org#value",
+                "ruler": "https://emissor.org#ruler"
+              },
+              "_py_type": "emissor.representation.annotation-Token"
+            },
+            "@context": {
+              "Annotation": "https://emissor.org#Annotation",
+              "id": "@id",
+              "type": "https://emissor.org#type",
+              "value": "https://emissor.org#value",
+              "source": "https://emissor.org#source",
+              "timestamp": "https://emissor.org#timestamp"
+            },
+            "type": "token",
+            "_py_type": "emissor.representation.scenario-Annotation"
+          }
+        ],
+        "@type": "Mention",
+        "id": "36c2d999-ee48-4595-937f-6b5e95a448e2",
+        "segment": [
+          {
+            "stop": 33,
+            "start": 32,
+            "@type": "Index",
+            "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+            "@context": {
+              "Index": "https://emissor.org#Index",
+              "id": "@id",
+              "start": "https://emissor.org#start",
+              "stop": "https://emissor.org#stop",
+              "container_id": {
+                "@id": "https://emissor.org#container_id",
+                "@type": "@id"
+              }
+            },
+            "_py_type": "emissor.representation.container-Index"
+          }
+        ],
+        "@context": {
+          "Mention": "https://emissor.org#Mention",
+          "id": "@id",
+          "segment": "https://emissor.org#segment",
+          "annotations": "https://emissor.org#annotations"
+        }
+      }
+    ],
+    "@type": "TextSignal",
+    "id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+    "time": {
+      "end": 392019,
+      "start": 392015,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 392019,
+      "start": 392015,
+      "@type": "Index",
+      "container_id": "d4673007-fdef-4b62-a359-f89d6b470a88",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  },
+  {
+    "files": [
+      "./text.json"
+    ],
+    "modality": "TEXT",
+    "seq": [
+      "S",
+      "o",
+      " ",
+      "y",
+      "o",
+      "u",
+      " ",
+      "w",
+      "h",
+      "a",
+      "t",
+      " ",
+      "d",
+      "o",
+      " ",
+      "y",
+      "o",
+      "u",
+      " ",
+      "w",
+      "a",
+      "n",
+      "t",
+      " ",
+      "t",
+      "o",
+      " ",
+      "t",
+      "a",
+      "l",
+      "k",
+      " ",
+      "a",
+      "b",
+      "o",
+      "u",
+      "t",
+      " ",
+      "a",
+      " ",
+      "n",
+      "i",
+      "c",
+      "e",
+      " ",
+      "d",
+      "a",
+      "y",
+      "\n"
+    ],
+    "mentions": [],
+    "@type": "TextSignal",
+    "id": "f7542b8d-6328-4c0f-b029-03765e006679",
+    "time": {
+      "end": 396895,
+      "start": 396894,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "stop": 396895,
+      "start": 396894,
+      "@type": "Index",
+      "container_id": "f7542b8d-6328-4c0f-b029-03765e006679",
+      "@context": {
+        "Index": "https://emissor.org#Index",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "stop": "https://emissor.org#stop",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "_py_type": "emissor.representation.container-Index"
+    },
+    "@context": {
+      "TextSignal": "https://emissor.org#TextSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "seq": "https://emissor.org#seq",
+      "ruler": "https://emissor.org#ruler"
+    }
+  }
+]

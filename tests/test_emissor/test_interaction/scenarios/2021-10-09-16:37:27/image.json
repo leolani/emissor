@@ -1,0 +1,257 @@
+[
+  {
+    "files": [
+      "./scenarios/2021-10-09-16:37:27/image/160026.png"
+    ],
+    "modality": "IMAGE",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "160026",
+            "type": "person",
+            "value": {
+              "name": {
+                "uuid": "63ea18d8-e8b6-4569-bc50-ad5d307a0130",
+                "name": null
+              },
+              "age": 28,
+              "gender": "male",
+              "faceprob": 0.9992073178291321
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "e5bc3f56-fbea-4d08-a1b7-92a2197a4a83",
+        "segment": [
+          {
+            "bounds": [
+              242,
+              151,
+              351,
+              312
+            ],
+            "container_id": "0b0ee98c-bae3-4009-8f6b-aad7e1c8053b",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "@type": "ImageSignal",
+    "id": "c3fec318-ac82-4fd5-84be-3a353d2deb8a",
+    "time": {
+      "end": 386875,
+      "start": 386872,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "@type": "MultiIndex",
+      "container_id": "c3fec318-ac82-4fd5-84be-3a353d2deb8a",
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "array": ""
+  },
+  {
+    "files": [
+      "./scenarios/2021-10-09-16:37:27/image/509352.png"
+    ],
+    "modality": "IMAGE",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "509352",
+            "type": "person",
+            "value": {
+              "name": {
+                "uuid": "63ea18d8-e8b6-4569-bc50-ad5d307a0130",
+                "name": "James_Bond"
+              },
+              "age": 27,
+              "gender": "male",
+              "faceprob": 0.9992241859436035
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "f1b0807e-fb69-43de-b6a3-9bb7888d85b0",
+        "segment": [
+          {
+            "bounds": [
+              242,
+              151,
+              351,
+              311
+            ],
+            "container_id": "db85a510-0d15-42c0-be5c-171980f31bd5",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "@type": "ImageSignal",
+    "id": "e611aa07-28e0-4201-822c-7ad9a8df5837",
+    "time": {
+      "end": 994657,
+      "start": 994655,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "@type": "MultiIndex",
+      "container_id": "e611aa07-28e0-4201-822c-7ad9a8df5837",
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "array": ""
+  },
+  {
+    "files": [
+      "./scenarios/2021-10-09-16:37:27/image/866003.png"
+    ],
+    "modality": "IMAGE",
+    "mentions": [
+      {
+        "annotations": [
+          {
+            "source": "machine",
+            "timestamp": "866003",
+            "type": "person",
+            "value": {
+              "name": {
+                "uuid": "63ea18d8-e8b6-4569-bc50-ad5d307a0130",
+                "name": "James_Bond"
+              },
+              "age": 27,
+              "gender": "male",
+              "faceprob": 0.999238133430481
+            },
+            "_py_type": "builtins-dict"
+          }
+        ],
+        "id": "76d119d8-9fdc-42c1-b627-f1682b59ca01",
+        "segment": [
+          {
+            "bounds": [
+              242,
+              151,
+              351,
+              311
+            ],
+            "container_id": "8921f867-7dda-4b31-8c9f-a585448eb863",
+            "type": "MultiIndex",
+            "_py_type": "builtins-dict"
+          }
+        ]
+      }
+    ],
+    "@type": "ImageSignal",
+    "id": "6d6f1d00-2a5c-4e16-8dee-0ad8a3309f40",
+    "time": {
+      "end": 396836,
+      "start": 396832,
+      "@type": "TemporalRuler",
+      "container_id": "2021-10-09-16:37:27",
+      "@context": {
+        "TemporalRuler": "https://emissor.org#TemporalRuler",
+        "id": "@id",
+        "start": "https://emissor.org#start",
+        "end": "https://emissor.org#end",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      }
+    },
+    "ruler": {
+      "bounds": [],
+      "@context": {
+        "MultiIndex": "https://emissor.org#MultiIndex",
+        "id": "@id",
+        "bounds": "https://emissor.org#bounds",
+        "container_id": {
+          "@id": "https://emissor.org#container_id",
+          "@type": "@id"
+        }
+      },
+      "@type": "MultiIndex",
+      "container_id": "6d6f1d00-2a5c-4e16-8dee-0ad8a3309f40",
+      "_py_type": "emissor.representation.container-MultiIndex"
+    },
+    "@context": {
+      "ImageSignal": "https://emissor.org#ImageSignal",
+      "id": "@id",
+      "modality": "https://emissor.org#modality",
+      "time": "https://emissor.org#time",
+      "files": "https://emissor.org#files",
+      "mentions": "https://emissor.org#mentions",
+      "array": "https://emissor.org#array",
+      "ruler": "https://emissor.org#ruler"
+    },
+    "array": ""
+  }
+]
