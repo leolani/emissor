@@ -363,8 +363,8 @@ def main(agent: str, human: str, scenario_path: str, webcam_id: int) -> None:
     webcam_id: webcam id (e.g., 0)
 
     """
-    container_fdr = start_docker_container("tae898/face-detection-recognition", 10002)
-    container_ag = start_docker_container("tae898/age-gender", 10003)
+    container_fdr = start_docker_container("tae898/face-detection-recognition:v0.1", 10002)
+    container_ag = start_docker_container("tae898/age-gender:v0.2", 10003)
 
     scenario_id = datetime.today().strftime("%Y-%m-%d-%H:%M:%S")
     os.makedirs(scenario_path, exist_ok=True)
