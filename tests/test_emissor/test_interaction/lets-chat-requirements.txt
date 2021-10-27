@@ -1,8 +1,0 @@
-jsonpickle
-numpy
-opencv-python
-Pillow
-python-on-whales
-requests
-spacy
-tqdm
