@@ -4,11 +4,10 @@
 
 import enum
 
-from rdflib import URIRef
 from typing import List
 
-from emissor.representation.annotation import Entity, EntityType
-from emissor.representation.ldschema import emissor_dataclass, LdId
+from emissor.representation.annotation import Entity
+from emissor.representation.ldschema import emissor_dataclass
 from emissor.representation.scenario import ScenarioContext
 
 

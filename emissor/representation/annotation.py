@@ -5,7 +5,6 @@
 """
 Basic classes for values used in :class:`emissor.representation.Annotation`.
 """
-from abc import ABC
 from dataclasses import dataclass
 from enum import Enum, auto
 

@@ -2,8 +2,6 @@
 # Enable using the current class in type annotations
 # from __future__ import annotations
 
-from dataclasses import dataclass
-
 import numpy as np
 import uuid
 from abc import ABC
