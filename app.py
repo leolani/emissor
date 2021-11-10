@@ -28,11 +28,16 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Web server for EMISSOR annotations app')
     parser.add_argument('-data', type=str, default=default_data,
                         help='Path to the directory containing scenario data. Defaults to ./data')
+    parser.add_argument('--plugins', type=str, action="append", default=[],
+                        help="Path to plugin directory (parent of emissor/plugins) ")
     args = parser.parse_args()
 
     data = os.path.abspath(args.data)
     logger.info("Serve data folder: %s", data)
 
-    app = create_app(data, static_path)
+    plugins = [os.path.abspath(plugin) for plugin in args.plugins]
+    logger.info("Use plugins from: %s", plugins)
+
+    app = create_app(data, static_path, plugins)
     app.debug = True
     app.run(threaded=False, processes=1)

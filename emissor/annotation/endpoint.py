@@ -4,16 +4,22 @@ from flask import Flask, request, send_from_directory
 from flask_cors import CORS
 
 from emissor.annotation.backend import Backend
-from emissor.representation.scenario import Modality
+from emissor.representation.scenario import Modality, Scenario
 from emissor.representation.util import unmarshal, marshal
 
 
-def create_app(data_path, static_path):
+def create_app(data_path, static_path, plugins):
     app = Flask(__name__, static_url_path='/data', static_folder=data_path)
     Swagger(app)
     CORS(app)
+    def json_response(*args, **kwargs):
+        return app.response_class(
+            response=marshal(*args, **kwargs),
+            status=200,
+            mimetype='application/json'
+        )
 
-    backend = Backend(data_path)
+    backend = Backend(data_path, plugins)
 
     # Serving static files
     @app.route('/', defaults={'path': ''})
@@ -45,7 +51,7 @@ def create_app(data_path, static_path):
             schema:
               $ref: '#/definitions/Scenarios'
         """
-        return marshal(backend.list_scenarios())
+        return json_response(backend.list_scenarios())
 
     @app.route('/api/scenario/<scenario_id>')
     def load_scenario(scenario_id):
@@ -135,7 +141,8 @@ def create_app(data_path, static_path):
             schema:
               $ref: '#/definitions/Scenario'
         """
-        return marshal(backend.load_scenario(scenario_id))
+
+        return json_response(backend.load_scenario(scenario_id), cls=Scenario)
 
     @app.route('/api/scenario/<scenario_id>/<modality>')
     def load_signals(scenario_id, modality):
@@ -165,7 +172,7 @@ def create_app(data_path, static_path):
         if len(signals) == 0:
             return "[]"
 
-        return marshal(signals, cls=signals[0].__class__)
+        return json_response(signals, cls=signals[0].__class__)
 
     @app.route('/api/scenario/<scenario_id>/<modality>/<signal>', methods=['POST'])
     def save_signal(scenario_id, modality, signal):
@@ -228,7 +235,7 @@ def create_app(data_path, static_path):
           200:
             description: A Mention in the given signal, of a specific modality and related to a given scenario. The new Mention contains placeholders for annotations and segments
         """
-        return marshal(backend.create_mention(scenario_id, Modality[modality.upper()], signal_id))
+        return json_response(backend.create_mention(scenario_id, Modality[modality.upper()], signal_id))
 
     @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/<mention_id>/annotation', methods=['PUT'])
     def create_annotation(scenario_id: str, modality: str, signal_id: str, mention_id: str):
@@ -269,7 +276,7 @@ def create_app(data_path, static_path):
             description: An Annotation in the given signal, of a specific modality and related to a given scenario.
         """
         type_ = request.args.get("type")
-        return marshal(backend.create_annotation(type_))
+        return json_response(backend.create_annotation(type_))
 
     @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/<mention_id>/segment', methods=['PUT'])
     def create_segment(scenario_id: str, modality: str, signal_id: str, mention_id: str):
@@ -317,7 +324,7 @@ def create_app(data_path, static_path):
         type_ = request.args.get("type")
         container_id = request.args.get("container")
 
-        return marshal(
+        return json_response(
             backend.create_segment(scenario_id, Modality[modality.upper()], signal_id, mention_id, type_, container_id))
 
     @app.route('/test')
@@ -362,7 +369,7 @@ def create_app(data_path, static_path):
             schema:
               $ref: '#/definitions/AnnotationTypes'
         """
-        return marshal(backend.load_annotation_types())
+        return json_response(backend.load_annotation_types())
 
     @app.route('/api/scenario/<scenario_id>/annotation/relation_types')
     def load_relation_types(scenario_id: str):
@@ -399,7 +406,7 @@ def create_app(data_path, static_path):
             schema:
               $ref: '#/definitions/AnnotationTypes'
         """
-        return marshal(backend.load_relation_types())
+        return json_response(backend.load_relation_types())
 
     @app.route('/api/scenario/<scenario_id>/<modality>/<signal_id>/<mention_id>/<annotation_id>/denotedBy')
     def create_denotedBy(scenario_id: str, modality: str, signal_id: str, mention_id: str, annotation_id: str):
@@ -439,6 +446,6 @@ def create_app(data_path, static_path):
           200:
             description: Successful addition of the link between mention and an annotation
         """
-        return marshal(backend.create_denotations(scenario_id, modality, signal_id, mention_id, annotation_id))
+        return json_response(backend.create_denotations(scenario_id, modality, signal_id, mention_id, annotation_id))
 
     return app

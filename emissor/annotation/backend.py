@@ -1,18 +1,18 @@
+import os
 import time
 import uuid
 from typing import Iterable, Any, Dict
 
-from nltk import TreebankWordTokenizer
-from pandas import Series
-
-from emissor.persistence import ScenarioStorage, file_name
-from emissor.processing.init import run_init
-from emissor.representation.annotation import AnnotationType, Token, Triple, Entity, EntityType
-from emissor.representation.container import TemporalRuler, MultiIndex, Index, AtomicRuler, Ruler
-from emissor.representation.entity import Person, Gender, Emotion, LeolaniContext
-from emissor.representation.scenario import Scenario, ScenarioContext, Modality, ImageSignal, TextSignal, Mention, \
+from emissor.annotation.brain.util import EmissorBrain
+from emissor.annotation.default_plugin import AnnotationToolProcessorPlugin
+from emissor.persistence import ScenarioStorage
+from emissor.persistence.persistence import ScenarioController
+from emissor.processing.util import discover_plugins, from_plugins
+from emissor.representation.annotation import Triple, Entity, EntityType
+from emissor.representation.container import MultiIndex, Index, AtomicRuler, Ruler
+from emissor.representation.entity import Person, Gender, Emotion
+from emissor.representation.scenario import Scenario, Modality, Mention, \
     Annotation, Signal
-
 
 # TODO Put to a central place
 ANNOTATION_TOOL_ID = "annotation tool"
@@ -23,67 +23,51 @@ _DEFAULT_SIGNALS = {
 }
 
 
-def _get_start_ruler(scenario_meta):
-    return TemporalRuler(scenario_meta.id, scenario_meta.start, scenario_meta.start)
-
-
-def create_image_signal(scenario: Scenario, image_meta: Series) -> ImageSignal:
-    bounds = image_meta['bounds']
-    image_time = image_meta['time']
-    file = image_meta['file']
-    image_signal = ImageSignal.for_scenario(scenario.id, image_time, image_time, file, bounds)
-
-    display_annotation = Annotation(AnnotationType.DISPLAY.name.lower(), file_name(file), ANNOTATION_TOOL_ID,
-                                    int(time.time()))
-    display = Mention(str(uuid.uuid4()), [image_signal.ruler.get_area_bounding_box(*bounds)], [display_annotation])
-    image_signal.mentions.append(display)
-
-    return image_signal
-
-
-def _create_text_signal(scenario: Scenario, utterance_data: Series):
-    timestamp = utterance_data['time'] if 'time' in utterance_data else scenario.start
-    utterance = utterance_data['utterance']
-    signal = TextSignal.for_scenario(scenario.id, timestamp, timestamp, utterance_data['file'], utterance, [])
-
-    offsets, tokens = zip(*[(Index(signal.id, start, end), Token.for_string(utterance[start:end]))
-                            for start, end in TreebankWordTokenizer().span_tokenize(utterance)])
-    annotations = [Annotation(AnnotationType.TOKEN.name.lower(), token, ANNOTATION_TOOL_ID, int(time.time()))
-                   for token in tokens]
-    signal.mentions.extend([Mention(str(uuid.uuid4()), [offset], [annotation])
-                            for offset, annotation in zip(offsets, annotations)])
-
-    return signal
-
-
 class Backend:
-    def __init__(self, data_path):
+    def __init__(self, data_path, plugins):
+        plugins = discover_plugins(os.path.abspath(plugin) for plugin in plugins)
+        if not plugins:
+            plugins = [AnnotationToolProcessorPlugin()]
+        self._data_processing = from_plugins(plugins, data_path, preprocessing=False, init=True, processors=[], num_jobs=1)
+
         self._storage = ScenarioStorage(data_path)
+
+        self._scenario_ctrl: ScenarioController = None
+        self._scenario_brain: EmissorBrain = None
 
     def list_scenarios(self) -> Iterable[str]:
         return self._storage.list_scenarios()
 
-    def load_scenario(self, scenario_id: str) -> Scenario:
-        scenario = self._storage.load_scenario(scenario_id)
-        if not scenario:
-            # TODO
-            run_init(self._storage)
+    def _load_scenario_ctrl(self, scenario_id: str) -> ScenarioController:
+        if not self._scenario_ctrl or self._scenario_ctrl.id != scenario_id:
+            try:
+                self._scenario_ctrl = self._storage.load_scenario(scenario_id)
+            except ValueError:
+                self._data_processing.run_init()
+                self._scenario_ctrl = self._storage.load_scenario(scenario_id)
 
-        return scenario
+        return self._scenario_ctrl
+
+    def load_scenario(self, scenario_id: str) -> Scenario:
+        return self._load_scenario_ctrl(scenario_id).scenario
 
     def load_modality(self, scenario_id: str, modality: Modality) -> Iterable[Signal[Any, Any]]:
-        signals = self._storage.load_modality(scenario_id, modality)
-        if signals is None:
-            # TODO
-            run_init(self._storage)
+        ctrl = self._load_scenario_ctrl(scenario_id)
+        ctrl.load_signals(modalities=[modality])
 
-        return signals
+        return ctrl.signals[modality]
 
     def load_signal(self, scenario_id: str, modality: Modality, signal_id: str) -> Signal[Any, Any]:
-        return self._storage.load_signal(scenario_id, modality, signal_id)
+        for signal in self.load_modality(scenario_id, modality):
+            if signal.id == signal_id:
+                return signal
+
+        return None
 
     def save_signal(self, scenario_id: str, signal: Signal[Any, Any]) -> None:
-        self._storage.save_signal(scenario_id, signal)
+        scenario_ctrl = self._load_scenario_ctrl(scenario_id)
+        scenario_ctrl.append_signal(signal)
+        self._storage.save_scenario(scenario_ctrl)
 
     def create_mention(self, scenario_id: str, modality: Modality, signal_id: str):
         return Mention(str(uuid.uuid4()), [], [])
@@ -117,17 +101,29 @@ class Backend:
 
         raise ValueError("Unsupported type: " + type_.lower())
 
+    def _get_brain(self):
+        if not self._scenario_ctrl:
+            return None
+
+        if self._scenario_brain and self._scenario_brain.scenario_id == self._scenario_ctrl.id:
+            return self._scenario_brain.s
+
+        ememory_path = os.path.join(self._storage.base_path, self._scenario_ctrl.id, 'rdf', 'episodic_memory')
+        self._scenario_brain = EmissorBrain(ememory_path, self._scenario_ctrl.id)
+
+        return self._scenario_brain
+
     def load_annotation_types(self) -> Iterable[Dict]:
-        return self._storage.brain.get_annotation_types()
+        return self._get_brain().get_annotation_types()
 
     def load_relation_types(self) -> Iterable[Dict]:
-        return self._storage.brain.get_relation_types()
+        return self._get_brain().get_relation_types()
 
     def load_instances_of_type(self, class_type: str) -> Iterable[Dict]:
-        return self._storage.brain.get_instances_of_type(class_type)
+        return self._get_brain().get_instances_of_type(class_type)
 
     def create_denotations(self, scenario_id: str, modality: str, signal_id: str, mention_id: str,
-                           annotation_id: str) -> None:
+                           annotation_id: str) -> Dict:
 
         # Load modality data
         signals = self.load_modality(scenario_id, Modality[modality.upper()])
@@ -145,6 +141,6 @@ class Backend:
         annotation = annotations[0]
 
         # Create triple
-        triples = self._storage.brain.denote_things(mention, annotation)
+        triples = self._get_brain().denote_things(mention, annotation)
 
         return {"triples": triples}

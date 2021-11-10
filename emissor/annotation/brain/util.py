@@ -15,7 +15,7 @@ ENTITY_ANNOTATIONS = {type.name.upper() for type in [AnnotationType.LINK, Annota
 
 
 class EmissorBrain:
-    def __init__(self, ememory_path):
+    def __init__(self, ememory_path, scenario_id):
 
         # TODO: Similar to robot platform, a brain needs an RDF Builder (taken from cltl-knowledge representation)
         # Porting this should give us access to automatic creation of entities, triples, namespaces and named graphs
@@ -23,6 +23,7 @@ class EmissorBrain:
 
         # Create graphs: world model, memory and current experiences
         self.ememory_path = Path(ememory_path).resolve()
+        self.scenario_id = scenario_id
         self.interpretations_path = self.ememory_path.parent
 
         self.ontology = self._load_ontology()
