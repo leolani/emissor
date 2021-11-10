@@ -1,4 +1,5 @@
 import enum
+import logging
 from collections import namedtuple
 from dataclasses import is_dataclass
 
@@ -14,6 +15,9 @@ from marshmallow import fields, EXCLUDE, ValidationError
 from numpy.typing import ArrayLike
 from rdflib import URIRef
 from typing import Any, Callable, TypeVar, Type, Mapping, Union
+
+_logger = logging.getLogger(__name__)
+
 
 PY_TYPE_FIELD = "_py_type"
 
@@ -36,7 +40,10 @@ class GenericField(fields.Field):
             clazz = getattr(sys.modules[module_], type_)
 
             return _unmarshal(value, cls=clazz, serialized=False)
-        except Exception:
+        except Exception as e:
+            if isinstance(e, ValidationError):
+                _logger.warning("Failed to deserialize object (type %s), %s",
+                                value[PY_TYPE_FIELD] if PY_TYPE_FIELD in value else "unknown", e.messages)
             return _unmarshal(value, serialized=False)
 
 
