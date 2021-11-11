@@ -10,7 +10,7 @@ from typing import TypeVar
 from emissor.representation.container import TemporalRuler, TemporalContainer, AtomicRuler, Index, \
     AtomicContainer, ArrayContainer, MultiIndex, Sequence
 from emissor.representation.entity import Person, Gender, LeolaniContext
-from emissor.representation.scenario import Scenario, TextSignal, Mention, Annotation, ImageSignal
+from emissor.representation.scenario import Scenario, TextSignal, Mention, Annotation, ImageSignal, Modality
 from emissor.representation.util import marshal, unmarshal
 
 PERSON_REF = URIRef("test:person")
@@ -62,7 +62,9 @@ SCENARIO_INSTANCES = [
                                       [Annotation("type", "val", "source", 0)])]),
     LeolaniContext("agent", Person(PERSON_REF, "name", 18, Gender.MALE), [], []),
     Scenario.new_instance("scenario1", 0, 10, LeolaniContext("agent", Person(PERSON_REF, "name", 18, Gender.MALE), [], []),
-                          {})
+                          {}),
+    Scenario.new_instance("scenario1", 0, 10, LeolaniContext("agent", Person(PERSON_REF, "name", 18, Gender.MALE), [], []),
+                          {Modality.IMAGE.name: "file/path", Modality.TEXT.name: "other/file/path"})
 ]
 
 
