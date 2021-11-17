@@ -40,4 +40,4 @@ if __name__ == "__main__":
 
     app = create_app(data, static_path, plugins)
     app.debug = True
-    app.run(threaded=False, processes=1)
+    app.run(host='0.0.0.0', port=5000, threaded=False, processes=1)

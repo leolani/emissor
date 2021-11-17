@@ -1,0 +1,7 @@
+venv
+.git
+dist
+data
+gradle
+images
+example_data
