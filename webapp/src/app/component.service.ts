@@ -14,11 +14,12 @@ import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.compone
 import {AnnotationsTokenComponent} from "./annotations-token/annotations-token.component";
 import {AnnotationsPosComponent} from "./annotations-pos/annotations-pos.component";
 import {AnnotationsPersonComponent} from "./annotations-person/annotations-person.component";
+import {AnnotationsObjectComponent} from "./annotations-object/annotations-object.component";
 import {AnnotationsEmotionComponent} from "./annotations-emotion/annotations-emotion.component";
 import {AnnotationsTripleComponent} from "./annotations-triple/annotations-triple.component";
 
 
-const ANNOTATION_TYPES = ["display", "emotion", "pos", "person", "token", "triple"];
+const ANNOTATION_TYPES = ["display", "emotion", "pos", "person", "object", "token", "triple"];
 
 
 @Injectable({
@@ -43,6 +44,8 @@ export class ComponentService {
         return AnnotationsPosComponent
       case "person":
         return AnnotationsPersonComponent
+      case "object":
+        return AnnotationsObjectComponent
       case "token":
         return AnnotationsTokenComponent
       case "triple":
