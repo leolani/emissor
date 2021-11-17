@@ -11,9 +11,8 @@ import {Ruler} from "./representation/container";
   providedIn: 'root'
 })
 export class ScenarioService {
-  // private scenarioEndpoint = "/api/scenario"
-  private scenarioEndpoint = 'http://localhost:5000/api/scenario';
-  private resourcePath = 'http://localhost:5000/data';
+  private scenarioEndpoint = '/api/scenario';
+  private resourcePath = '/data';
 
   constructor(private http: HttpClient) { }
 
