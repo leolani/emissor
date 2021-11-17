@@ -11,4 +11,6 @@ COPY app.py ./
 COPY emissor ./emissor
 COPY webapp ./webapp
 
-CMD python app.py
+ENV EMISSOR_PORT=5000
+
+CMD python app.py --port "$EMISSOR_PORT"
