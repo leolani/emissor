@@ -27,6 +27,15 @@ It is recommended to choose a separate data folder, then you can easily use vers
 
 * Open the GUI at `https://localhost:5000/index.html` in your browser.
 
+### Docker image
+
+Alternatively you can build a Docker image by running
+
+        > docker build -t choose/tagname .
+
+from the root directory of the EMISSOR repository. Note that this requires to build the UI code first, i.e. the first
+step (`./gradlew build`) above must be executed first.
+
 # Add data
 
 By default the *data/* folder in this repository is used, any other folder can be specified when running `app.py`.
