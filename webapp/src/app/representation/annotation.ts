@@ -46,11 +46,13 @@ export function annotationDisplayValue(annotation: Annotation<any>): string {
     case "utterance":
       return annotation.value.utterance;
     case "entity":
-      return annotation.value.id + " - "+ annotation.value.type;
+      return annotation.value.id + " - " + annotation.value.type;
     case "person":
-      return annotation.value.name
+      return annotation.value.name;
+    case "object":
+      return annotation.value.label;
     case "token":
-      return annotation.value.value || annotation.value
+      return annotation.value.value || annotation.value;
     default:
       throw Error("Unknown type: " + annotation.type);
   }

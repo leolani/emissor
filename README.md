@@ -43,6 +43,23 @@ temporal and spatial containers ads well as by adding any annotations. For a
 detailed description see the [README](emissor/annotation/README.md) of the annotation
 tool.
 
+## Docker image
+
+The annotation tool is also available as Docker image `numblr/emissorui` that can be run using:
+
+        docker run --rm -v </host/path/to/data>:/emissorui/data/ -p 5000:5000 numblr/emissorui
+
+This will run the container with the default port 5000 and mount your local data directory to /emissorui/data in the
+container. To use a different port use the following command:
+
+        docker run --rm -v </host/path/to/data>:/emissorui/data/ -p 8080:8080 -e EMISSOR_PORT=8080 numblr/emissorui
+
+Note that the host port must be mapped to the same port in the container to avoid errors related to cross-site scripting
+restrictions in the web browser.
+
+Once the Docker image is running, you can connect to the UI in the browser under `http://localhost:5000` (or the
+configured port).
+
 ## Example data
 
 Example data can be found in [*example_data/*](example_data) directory. Some of them are annotated by human and some are by machine. You can visualize them with the annotation tool. We highly recommend this, since it gives you how the modalities are referenced / grounded with each other.

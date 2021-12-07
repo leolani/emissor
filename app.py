@@ -30,6 +30,8 @@ if __name__ == "__main__":
                         help='Path to the directory containing scenario data. Defaults to ./data')
     parser.add_argument('--plugins', type=str, action="append", default=[],
                         help="Path to plugin directory (parent of emissor/plugins) ")
+    parser.add_argument('--port', type=int, default=5000,
+                        help="Port of the web server")
     args = parser.parse_args()
 
     data = os.path.abspath(args.data)
@@ -40,4 +42,4 @@ if __name__ == "__main__":
 
     app = create_app(data, static_path, plugins)
     app.debug = True
-    app.run(threaded=False, processes=1)
+    app.run(host='0.0.0.0', port=args.port, threaded=False, processes=1)
