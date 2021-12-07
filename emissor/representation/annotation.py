@@ -32,6 +32,7 @@ class AnnotationType(Enum):
     NER = auto()
     LINK = auto()
     REPRESENTATION = auto()
+    UTTERANCE = auto()
 
 
 class ImageLabel(Enum):
