@@ -68,8 +68,12 @@ class ImageSignal(Signal[MultiIndex, ArrayLike], ArrayContainer):
 
 @emissor_dataclass
 class AudioSignal(Signal[MultiIndex, ArrayLike], ArrayContainer):
-    # TODO factory
-    pass
+    @classmethod
+    def for_scenario(cls: Type[C], scenario_id: Identifier, start: int, stop: int, file: str,
+                     length: int, channels: int, mentions: Iterable[Mention] = None) -> C:
+        signal_id = str(uuid.uuid4())
+        return cls(signal_id, MultiIndex(signal_id, tuple(0, 0, length, channels)), None, Modality.AUDIO,
+                   TemporalRuler(scenario_id, start, stop), [file], list(mentions) if mentions else [])
 
 
 @emissor_dataclass
