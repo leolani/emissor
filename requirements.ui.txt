@@ -1,0 +1,31 @@
+.
+
+# Annotation tool
+flasgger==0.9.5
+Flask==1.1.2
+Flask-Cors==3.0.9
+importlib-resources==5.1.4
+marshmallow==3.11.1
+marshmallow-dataclass==8.4.1
+marshmallow-enum==1.5.1
+nltk==3.5
+numpy==1.20.0
+pandas==1.1.4
+Pillow==8.0.1
+pyparsing==2.4.7
+rdflib==5.0.0
+rdflib-jsonld==0.5.0
+requests==2.25.1
+simplejson==3.17.2
+typeguard==2.12.0
+typing==3.7.4.3
+
+# processing
+jsonpickle==2.0.0
+joblib==1.0.1
+tqdm==4.60.0
+scikit-learn==0.24.2
+
+# build
+build
+twine

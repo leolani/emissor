@@ -1,11 +1,14 @@
 import setuptools
 
+with open("VERSION", "r") as fh:
+    version = fh.read().strip()
+
 with open("emissor/representation/README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="emissor",
-    version="0.0.dev5",
+    version=version,
     author="CLTL",
     author_email="piek.vossen@vu.nl",
     description="Representation of multi-modal datasets",
@@ -14,6 +17,7 @@ setuptools.setup(
     include="emissor/representation/README.md",
     exclude="README.md",
     url="https://github.com/cltl/EMISSOR",
+    data_files=[('VERSION', ['VERSION'])],
     namespace_packages=['emissor'],
     packages=['emissor.representation', 'emissor.processing', 'emissor.persistence'],
     classifiers=[
@@ -29,4 +33,7 @@ setuptools.setup(
                       'rdflib-jsonld~=0.5',
                       'simplejson~=3.17'],
     python_requires='>=3.7',
+    extras_require={
+        "processing": ["joblib~=1.0", "tqdm~=4.60", "scikit-learn~=0.24"]
+    }
 )
