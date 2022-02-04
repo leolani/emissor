@@ -54,9 +54,11 @@ class TextSignal(Signal[Index, str], Sequence[str]):
     def for_scenario(cls: Type[C], scenario_id: Identifier, start: int, stop: int, file: str, text: str = None,
                      mentions: Iterable[Mention] = None, signal_id: Optional[str] = None) -> C:
         signal_id = signal_id if signal_id else str(uuid.uuid4())
-        return cls(signal_id, Index.from_range(signal_id, 0, len(text)), list(text) if text else text,
-                   Modality.TEXT, TemporalRuler(scenario_id, start, stop), [file] if file else [],
-                   list(mentions) if mentions else [], text)
+        text = text if text else ""
+
+        return cls(signal_id, Index.from_range(signal_id, 0, len(text)), list(text), Modality.TEXT,
+                   TemporalRuler(scenario_id, start, stop), [file] if file else [], list(mentions) if mentions else [],
+                   text)
 
 
 @emissor_dataclass
