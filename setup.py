@@ -29,9 +29,10 @@ setuptools.setup(
                       'marshmallow~=3.11',
                       'marshmallow-dataclass~=8.4',
                       'marshmallow-enum~=1.5',
-                      'rdflib~=5.0',
-                      'rdflib-jsonld~=0.5',
-                      'simplejson~=3.17'],
+                      'marshmallow-union~=0.1',
+                      'rdflib~=6.1',
+                      'simplejson~=3.17',
+                      'typeguard~=2.13'],
     python_requires='>=3.7',
     extras_require={
         "processing": ["joblib~=1.0", "tqdm~=4.60", "scikit-learn~=0.24"]
