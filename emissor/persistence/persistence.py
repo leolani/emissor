@@ -4,13 +4,14 @@ import os
 from types import MappingProxyType
 from typing import Iterable, Optional, Any, Union, Mapping, Dict, Tuple
 
-from emissor.representation.scenario import Scenario, Modality, Signal, ImageSignal, TextSignal, ScenarioContext
+from emissor.representation.scenario import Scenario, Modality, Signal, AudioSignal, ImageSignal, TextSignal, ScenarioContext
 from emissor.representation.util import unmarshal, marshal
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 
 
 DEFAULT_SIGNAL_PATHS = MappingProxyType({
+    Modality.AUDIO.name.lower(): "./audio.json",
     Modality.IMAGE.name.lower(): "./image.json",
     Modality.TEXT.name.lower(): "./text.json"
 })
@@ -112,6 +113,8 @@ class ScenarioStorage:
             cls = ImageSignal
         elif modality == Modality.TEXT:
             cls = TextSignal
+        elif modality == Modality.AUDIO:
+            cls = AudioSignal
         else:
             raise ValueError(f"Unsupported modality: {modality}")
 
@@ -129,6 +132,8 @@ class ScenarioStorage:
                 cls = ImageSignal
             elif modality == Modality.TEXT:
                 cls = TextSignal
+            elif modality == Modality.AUDIO:
+                cls = AudioSignal
             else:
                 raise ValueError(f"Unsupported modality: {modality}")
 
