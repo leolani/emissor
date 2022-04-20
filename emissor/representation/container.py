@@ -6,7 +6,7 @@ import numpy as np
 import uuid
 from abc import ABC
 from numpy.typing import ArrayLike
-from typing import TypeVar, Generic, Iterable, Tuple, Type, Any, List
+from typing import TypeVar, Generic, Iterable, Tuple, Type, Any, List, Optional
 
 from emissor.representation.ldschema import emissor_dataclass, LdId
 from emissor.representation.util import Identifier, get_serializable_type_var
@@ -25,20 +25,21 @@ T = get_serializable_type_var('T')
 
 @emissor_dataclass
 class Container(Generic[R, T], ABC):
+    id: Identifier
+
     def get_segment(self, segment: R) -> T:
         raise NotImplementedError()
 
 
 @emissor_dataclass
 class BaseContainer(Generic[R, T], Container[R, T]):
-    id: Identifier
     ruler: R
 
 
 @emissor_dataclass
 class Index(Ruler):
     start: int
-    stop: int
+    stop: Optional[int]
 
     @classmethod
     def from_range(cls: Type[C], container_id: Identifier, start: int, stop: int) -> C:
@@ -106,7 +107,7 @@ class ArrayContainer(BaseContainer[MultiIndex, ArrayLike]):
 @emissor_dataclass
 class TemporalRuler(Ruler):
     start: int
-    end: int
+    end: Optional[int]
 
     # TODO return TemporalRuler (see import of annotations)
     def get_time_segment(self, start: int, end: int) -> Any:
