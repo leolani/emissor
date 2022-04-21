@@ -1,11 +1,17 @@
+import logging
 from glob import glob
 
 import os
+from pathlib import Path
 from types import MappingProxyType
 from typing import Iterable, Optional, Any, Union, Mapping, Dict, Tuple
 
 from emissor.representation.scenario import Scenario, Modality, Signal, AudioSignal, ImageSignal, TextSignal, ScenarioContext
 from emissor.representation.util import unmarshal, marshal
+
+
+logger = logging.getLogger(__name__)
+
 
 ANNOTATION_TOOL_ID = "annotation_tool"
 
@@ -67,6 +73,7 @@ class ScenarioStorage:
 
     def __init__(self, data_path):
         self._data_path = data_path
+        self._create_path(data_path)
 
     @property
     def base_path(self):
@@ -79,6 +86,8 @@ class ScenarioStorage:
                      signals: Dict[str, str] = DEFAULT_SIGNAL_PATHS) -> ScenarioController:
         scenario = Scenario.new_instance(scenario_id, start, end, context, signals)
         metadata_path = self._get_scenario_metadata_path(scenario_id)
+
+        self._create_path(self._get_scenario_path(scenario.id))
         with open(metadata_path, 'w') as json_file:
             json_file.write(marshal(scenario, cls=Scenario))
 
@@ -139,11 +148,14 @@ class ScenarioStorage:
 
             return unmarshal(json_file.read(), cls=cls)
 
+    def _get_scenario_path(self, scenario_id):
+        return os.path.join(self.base_path, scenario_id)
+
     def _get_scenario_metadata_path(self, scenario_id):
-        return os.path.join(self.base_path, scenario_id, scenario_id + self.EXTENSION)
+        return os.path.join(self._get_scenario_path(scenario_id), scenario_id + self.EXTENSION)
 
     def _get_metadata_path(self, scenario: Scenario, modality: Union[Modality, str]):
-        scenario_path = os.path.join(self.base_path, scenario.id)
+        scenario_path = self._get_scenario_path(scenario.id)
 
         modality_key = modality if isinstance(modality, str) else modality.name.lower()
         if modality_key not in scenario.signals:
@@ -152,3 +164,9 @@ class ScenarioStorage:
         relative_path = scenario.signals[modality_key]
 
         return os.path.join(scenario_path, relative_path)
+
+    def _create_path(self, data_path):
+        path = Path(data_path)
+        if not path.exists():
+            path.mkdir(parents=True, exist_ok=True)
+            logger.info("Created directory %s", path)
