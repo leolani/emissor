@@ -1,7 +1,7 @@
 import json
 import uuid
 from dataclasses import dataclass
-from pprint import pprint
+from datetime import datetime, date
 from typing import Union, Optional
 from unittest import TestCase
 
@@ -121,6 +121,32 @@ class TestMarshallingWithTypes(TestCase):
         self.assertIsInstance(unmarshalled, TestString)
         self.assertIsInstance(unmarshalled.label, uuid.UUID)
 
+    def test_datetime(self):
+        @dataclass
+        class TestDate:
+            date: datetime
+
+        now = datetime.now()
+        instance = TestDate(now)
+        self.assertRaises(TypeError, lambda: marshal(instance, default=vars))
+
+        unmarshalled = unmarshal(marshal(instance, cls=TestDate), cls=TestDate)
+        self.assertIsInstance(unmarshalled, TestDate)
+        self.assertIsInstance(unmarshalled.date, datetime)
+        self.assertEquals(unmarshalled.date, now)
+
+    def test_date(self):
+        @dataclass
+        class TestDate:
+            date: date
+
+        now = date.today()
+        instance = TestDate(now)
+        unmarshalled = unmarshal(marshal(instance, cls=TestDate), cls=TestDate)
+
+        self.assertIsInstance(unmarshalled, TestDate)
+        self.assertEqual(unmarshalled.date, now)
+
 
 class TestMarshallingWithoutTypes(TestCase):
     def test_plain(self):
@@ -133,6 +159,30 @@ class TestMarshallingWithoutTypes(TestCase):
 
         self.assertNotIsInstance(unmarshalled, TestString)
         self.assertEqual(unmarshalled.label, "testString")
+
+    def test_datetime(self):
+        @dataclass
+        class TestDate:
+            date: datetime
+
+        now = datetime.now()
+        instance = TestDate(now)
+        unmarshalled = unmarshal(marshal(instance))
+
+        self.assertNotIsInstance(unmarshalled, TestDate)
+        self.assertEqual(unmarshalled.date, now.isoformat())
+
+    def test_date(self):
+        @dataclass
+        class TestDate:
+            date: date
+
+        now = date.today()
+        instance = TestDate(now)
+        unmarshalled = unmarshal(marshal(instance))
+
+        self.assertNotIsInstance(unmarshalled, TestDate)
+        self.assertEqual(unmarshalled.date, now.isoformat())
 
     def test_with_nested(self):
         @dataclass

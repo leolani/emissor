@@ -4,6 +4,8 @@ from collections import namedtuple
 from dataclasses import is_dataclass
 
 import collections.abc
+from datetime import datetime, date
+
 import marshmallow
 import marshmallow_dataclass
 import numbers
@@ -75,11 +77,40 @@ class URIRefField(fields.Field):
             raise ValidationError("Not an URIRef") from error
 
 
+class CalendarField(fields.Field):
+    def _get_date_type(self):
+        raise NotImplemented()
+
+    def _serialize(self, value, attr, obj, **kwargs):
+        if value is None:
+            return ""
+
+        return value.isoformat()
+
+    def _deserialize(self, value, attr, data, **kwargs):
+        try:
+            return self._get_date_type().fromisoformat(value) if value != "" else None
+        except ValueError as error:
+            raise ValidationError("Not a " + self._date_type.__name__) from error
+
+
+class DateField(CalendarField):
+    def _get_date_type(self):
+        return date
+
+
+class DateTimeField(CalendarField):
+    def _get_date_type(self):
+        return datetime
+
+
 class _JsonLdSchema(marshmallow.Schema):
     TYPE_MAPPING: Mapping[Type, fields.Field] = {
         ArrayLike: ArrayLikeField,
         URIRef: URIRefField,
         Any: GenericField,
+        datetime: DateTimeField,
+        date: DateField,
     }
 
     """A Schema that marshals data with JSON-LD contexts."""
@@ -136,6 +167,8 @@ def serializer(obj: Any) -> Union[dict, tuple, str, int, float, complex, bool]:
         return str(obj)
     if isinstance(obj, np.ndarray):
         return tuple(obj.tolist())
+    if isinstance(obj, datetime) or isinstance(obj, date) :
+        return obj.isoformat()
     if isinstance(obj, tuple) and hasattr(obj, '_asdict'):
         # noinspection PyProtectedMember
         return obj._asdict()
