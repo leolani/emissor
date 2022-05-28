@@ -30,7 +30,7 @@ setuptools.setup(
                       'marshmallow-dataclass~=8.4',
                       'marshmallow-enum~=1.5',
                       'marshmallow-union~=0.1',
-                      'rdflib~=6.1',
+                      'rdflib~=6.0',
                       'simplejson~=3.17',
                       'typeguard~=2.13'],
     python_requires='>=3.7',
