@@ -1,5 +1,6 @@
 import enum
 import logging
+import pathlib
 from collections import namedtuple
 from dataclasses import is_dataclass
 
@@ -163,7 +164,7 @@ def serializer(obj: Any) -> Union[dict, tuple, str, int, float, complex, bool]:
         return obj
     if isinstance(obj, enum.Enum):
         return obj.name.lower()
-    if isinstance(obj, (URIRef, uuid.UUID)):
+    if isinstance(obj, (URIRef, uuid.UUID, pathlib.Path)):
         return str(obj)
     if isinstance(obj, np.ndarray):
         return tuple(obj.tolist())
