@@ -1,7 +1,13 @@
 import enum
 import uuid
 from abc import ABC
-from typing import Iterable, Dict, TypeVar, Type, Generic, List, Optional
+from typing import Iterable, Dict, TypeVar, Type, Generic, List, Optional, Union, Any
+
+try:
+    from importlib.metadata import version, PackageNotFoundError
+except ImportError:
+    # Requires Python >= 3.8.
+    pass
 
 from marshmallow import fields
 from numpy.typing import ArrayLike
@@ -87,7 +93,6 @@ class VideoSignal(Signal[MultiIndex, ArrayLike], ArrayContainer):
     pass
 
 
-
 @emissor_dataclass
 class ScenarioContext(ABC):
     agent: Identifier
@@ -114,3 +119,103 @@ class AnnotationField(fields.Field):
 
     def _deserialize(self, value, attr, data, **kwargs):
         return None
+
+
+def class_source(cls: Union[type, Any], include_type: bool = False) -> Identifier:
+    """
+    Provides a common representation of a class that can be used to identify
+    the source of an annotation.
+
+    Requires Python 3.8.
+
+    Example
+    -------
+    Call the function with an object instance or type::
+
+        annotation_source = class_source(obj)
+        annotation_source = class_source(obj.__class__)
+        annotation_source = class_source(MyClass)
+
+    Parameters
+    ----------
+    cls: Union[type, Any]
+        The object type or object instance that is the source of an annotation.
+    include_type: bool
+        Include the class name in the representation. If False, the
+        representation is created only from the module that contains the class.
+        By default, the type is not included.
+
+    Returns
+    -------
+    Identifier
+        An identifier representing the class that can be used as source of an annotation.
+    """
+    clazz = cls if type(cls) == type else cls.__class__
+    parts = [module_source(clazz.__module__)]
+    if include_type:
+        parts.append(clazz.__qualname__)
+
+    return ".".join(parts)
+
+
+def module_source(module_name) -> Identifier:
+    """
+    Provides a common representation of a module name that can be used to identify
+    the source of an annotation.
+
+    Requires Python 3.8.
+
+    Example
+    -------
+    Call the function with the current module name::
+
+        annotation_source = module_source(__name__)
+
+    Parameters
+    ----------
+    module_name: str
+        The name of the module that is the source of an annotation. The name of
+        the current module can be retrieved from the global `__name__` variable
+        at the place where this function is called.
+
+    Returns
+    -------
+    Identifier
+        An identifier representing a module that can be used to identify the source of an annotation.
+    """
+    try:
+        return module_name + "." + version(module_name)
+    except PackageNotFoundError:
+        return module_name
+
+
+def class_type(cls) -> Identifier:
+    """
+    Provides a common representation of a class name that can be used to
+    identify the type of an annotation.
+
+    Requires Python 3.8.
+
+    Example
+    -------
+    Call the function with an object instance or type::
+
+        annotation_type = class_type(obj)
+        annotation_type = class_type(obj.__class__)
+        annotation_type = class_type(MyValueClass)
+
+    Parameters
+    ----------
+    cls: Union[type, Any]
+        The object type or object instance of an annotation value that should
+        be represented.
+
+    Returns
+    -------
+    Identifier
+        An identifier representing a module that can be used to identify the
+        source of an annotation.
+    """
+    clazz = cls if type(cls) == type else cls.__class__
+
+    return ".".join([clazz.__module__, clazz.__qualname__])
