@@ -151,11 +151,11 @@ def class_source(cls: Union[type, Any], include_type: bool = False) -> Identifie
         An identifier representing the class that can be used as source of an annotation.
     """
     clazz = cls if type(cls) == type else cls.__class__
-    parts = [module_source(clazz.__module__)]
+    source, version = module_source(clazz.__module__).split("#")
     if include_type:
-        parts.append(clazz.__qualname__)
+        source += "." + clazz.__qualname__
 
-    return ".".join(parts)
+    return source + "#" + version
 
 
 def module_source(module_name) -> Identifier:
@@ -184,9 +184,11 @@ def module_source(module_name) -> Identifier:
         An identifier representing a module that can be used to identify the source of an annotation.
     """
     try:
-        return module_name + "." + version(module_name)
+        source = module_name + "#" + version(module_name)
     except PackageNotFoundError:
-        return module_name
+        source = module_name
+
+    return "python-source:" + source
 
 
 def class_type(cls) -> Identifier:
@@ -218,4 +220,4 @@ def class_type(cls) -> Identifier:
     """
     clazz = cls if type(cls) == type else cls.__class__
 
-    return ".".join([clazz.__module__, clazz.__qualname__])
+    return "python-type:" + ".".join([clazz.__module__, clazz.__qualname__])
