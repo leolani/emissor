@@ -218,6 +218,6 @@ def class_type(cls) -> Identifier:
         An identifier representing a module that can be used to identify the
         source of an annotation.
     """
-    clazz = cls if type(cls) == type else cls.__class__
+    clazz = cls if isinstance(cls, type) else cls.__class__
 
     return "python-type:" + ".".join([clazz.__module__, clazz.__qualname__])
