@@ -151,11 +151,16 @@ def class_source(cls: Union[type, Any], include_type: bool = False) -> Identifie
         An identifier representing the class that can be used as source of an annotation.
     """
     clazz = cls if type(cls) == type else cls.__class__
-    source, version = module_source(clazz.__module__).split("#")
-    if include_type:
-        source += "." + clazz.__qualname__
+    source_module = module_source(clazz.__module__)
 
-    return source + "#" + version
+    if not include_type:
+        return source_module
+
+    # Split into module name and version
+    parts = source_module.split("#")
+    parts[0] += "." + clazz.__qualname__
+
+    return "#".join(parts)
 
 
 def module_source(module_name) -> Identifier:

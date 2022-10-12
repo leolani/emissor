@@ -4,16 +4,30 @@ from unittest import TestCase
 import numpy as np
 
 from emissor.representation.annotation import Entity
-from emissor.representation.scenario import Annotation, class_type, module_source
+from emissor.representation.scenario import Annotation, class_type, module_source, class_source
 
 
 class TestScenarioModule(TestCase):
-    def test_annotation_from_object(self):
+    def test_annotation_from_object_with_module_source(self):
         annotation_value = Entity("uri:test")
         annotation = Annotation(class_type(annotation_value), annotation_value, module_source(__name__), 0)
 
         self.assertEqual("python-type:emissor.representation.annotation.Entity", annotation.type)
-        self.assertEqual("python-source:test_scenario", annotation.source)
+        self.assertEqual("python-source:test_emissor.test_representation.test_scenario", annotation.source)
+
+    def test_annotation_from_object_with_class_source(self):
+        annotation_value = Entity("uri:test")
+        annotation = Annotation(class_type(annotation_value), annotation_value, class_source(Annotation), 0)
+
+        self.assertEqual("python-type:emissor.representation.annotation.Entity", annotation.type)
+        self.assertEqual("python-source:emissor.representation.scenario", annotation.source)
+
+    def test_annotation_from_object_with_class_source_type(self):
+        annotation_value = Entity("uri:test")
+        annotation = Annotation(class_type(annotation_value), annotation_value, class_source(Annotation, include_type=True), 0)
+
+        self.assertEqual("python-type:emissor.representation.annotation.Entity", annotation.type)
+        self.assertEqual("python-source:emissor.representation.scenario.Annotation", annotation.source)
 
     def test_class_type_from_metaclass(self):
         """Test that class type is not resolved to abc.ABCMeta"""
