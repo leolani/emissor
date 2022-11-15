@@ -16,8 +16,11 @@ pyparsing==2.4.7
 rdflib==6.0.1
 requests==2.25.1
 simplejson==3.17.2
-typeguard==2.12.0
+typeguard~=2.13
 typing==3.7.4.3
+jinja2==3.0.3
+itsdangerous==2.0.1
+Werkzeug==2.0.3
 
 # processing
 jsonpickle==2.0.0
