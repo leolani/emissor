@@ -54,6 +54,8 @@ export function annotationDisplayValue(annotation: Annotation<any>): string {
     case "token":
       return annotation.value.value || annotation.value;
     default:
-      throw Error("Unknown type: " + annotation.type);
+      return annotation.type.startsWith("python-type:") ?
+          annotation.type.split('.').slice(-1)[0] :
+          annotation.type;
   }
 }

@@ -36,6 +36,7 @@ import {SegmentsAtomicComponent} from "./segments-atomic/segments-atomic.compone
 import {AnnotationsPersonComponent} from './annotations-person/annotations-person.component';
 import {AnnotationsObjectComponent} from './annotations-object/annotations-object.component';
 import {AnnotationsEmotionComponent} from './annotations-emotion/annotations-emotion.component';
+import {AnnotationsGenericComponent} from './annotations-generic/annotations-generic.component';
 import {AnnotationsPosComponent} from './annotations-pos/annotations-pos.component';
 import {AnnotationsTokenComponent} from './annotations-token/annotations-token.component';
 import {AnnotationsTripleComponent} from './annotations-triple/annotations-triple.component';
@@ -69,7 +70,8 @@ import {AnnotationsTripleComponent} from './annotations-triple/annotations-tripl
     AnnotationsEmotionComponent,
     AnnotationsPosComponent,
     AnnotationsTokenComponent,
-    AnnotationsTripleComponent
+    AnnotationsTripleComponent,
+    AnnotationsGenericComponent
   ],
   imports: [
     CommonModule,

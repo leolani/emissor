@@ -17,6 +17,7 @@ import {AnnotationsPersonComponent} from "./annotations-person/annotations-perso
 import {AnnotationsObjectComponent} from "./annotations-object/annotations-object.component";
 import {AnnotationsEmotionComponent} from "./annotations-emotion/annotations-emotion.component";
 import {AnnotationsTripleComponent} from "./annotations-triple/annotations-triple.component";
+import {AnnotationsGenericComponent} from "./annotations-generic/annotations-generic.component";
 
 
 const ANNOTATION_TYPES = ["display", "emotion", "pos", "person", "object", "token", "triple"];
@@ -51,7 +52,7 @@ export class ComponentService {
       case "triple":
         return AnnotationsTripleComponent
       default:
-        throw Error("Unsupported annotation type: " + annotation.type);
+        return AnnotationsGenericComponent
     }
   }
 
