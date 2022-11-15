@@ -37,6 +37,7 @@ export interface Display {
 export function annotationDisplayValue(annotation: Annotation<any>): string {
   switch (annotation.type.toLowerCase()) {
     case "display":
+    case "conversationalagent":
     case "label":
     case "pos":
     case "emotion":
@@ -54,14 +55,14 @@ export function annotationDisplayValue(annotation: Annotation<any>): string {
     case "token":
       return annotation.value.value || annotation.value;
     default:
-      if ("display" in annotation.value && annotation.value.display) {
+      if (annotation.value !== Object(annotation.value)) {
+        // pass
+      } else if("display" in annotation.value && annotation.value.display) {
         return annotation.value.display;
       } else if ("name" in annotation.value && annotation.value.name) {
         return annotation.value.name;
       } else if ("label" in annotation.value && annotation.value.label) {
         return annotation.value.label;
-      } else if ("value" in annotation.value && annotation.value.value) {
-        return annotation.value.value;
       }
 
       return annotation.type.startsWith("python-type:") ?
