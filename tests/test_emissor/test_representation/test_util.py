@@ -1,4 +1,5 @@
 import json
+import pickle
 import uuid
 from dataclasses import dataclass
 from datetime import datetime, date
@@ -6,7 +7,7 @@ from typing import Union, Optional
 from unittest import TestCase
 
 from emissor.representation.ldschema import emissor_dataclass, EMISSOR_NAMESPACE, LdProperty
-from emissor.representation.util import marshal, unmarshal
+from emissor.representation.util import marshal, unmarshal, PickleableDict
 
 
 class TestMarshallingWithTypes(TestCase):
@@ -443,3 +444,154 @@ class TestLDMarshalling(TestCase):
         unmarshalled = unmarshal(marshal(instance, cls=TestString))
 
         self.assertEqual(unmarshalled.label, "testString")
+
+
+class TestPickleableDict(TestCase):
+    def test_basic_dict_functionality(self):
+        """Test that PickleableDict works as a regular dictionary"""
+        pd = PickleableDict({'a': 1, 'b': 2})
+
+        self.assertEqual(pd['a'], 1)
+        self.assertEqual(pd['b'], 2)
+        self.assertEqual(len(pd), 2)
+        self.assertIn('a', pd)
+        self.assertNotIn('c', pd)
+
+        pd['c'] = 3
+        self.assertEqual(pd['c'], 3)
+        self.assertEqual(len(pd), 3)
+
+        del pd['c']
+        self.assertEqual(len(pd), 2)
+        self.assertNotIn('c', pd)
+
+    def test_attribute_access(self):
+        """Test that PickleableDict supports attribute-style access"""
+        pd = PickleableDict({'label': 'test', 'value': 42})
+
+        # Test attribute access for reading
+        self.assertEqual(pd.label, 'test')
+        self.assertEqual(pd.value, 42)
+
+        # Test attribute access for writing
+        pd.new_attr = 'new_value'
+        self.assertEqual(pd['new_attr'], 'new_value')
+        self.assertEqual(pd.new_attr, 'new_value')
+
+        # Test modification via attribute access
+        pd.label = 'modified'
+        self.assertEqual(pd['label'], 'modified')
+        self.assertEqual(pd.label, 'modified')
+
+    def test_attribute_errors(self):
+        """Test that AttributeError is raised for non-existent attributes"""
+        pd = PickleableDict({'a': 1})
+
+        with self.assertRaises(AttributeError):
+            _ = pd.nonexistent
+
+        with self.assertRaises(AttributeError):
+            del pd.nonexistent
+
+    def test_pickling(self):
+        """Test that PickleableDict can be pickled and unpickled"""
+        original = PickleableDict({'label': 'test', 'value': 42, 'nested': {'inner': 'data'}})
+
+        # Pickle and unpickle
+        pickled_data = pickle.dumps(original)
+        unpickled = pickle.loads(pickled_data)
+
+        # Verify the unpickled object
+        self.assertIsInstance(unpickled, PickleableDict)
+        self.assertEqual(unpickled['label'], 'test')
+        self.assertEqual(unpickled['value'], 42)
+        self.assertEqual(unpickled['nested'], {'inner': 'data'})
+
+        # Verify attribute access still works
+        self.assertEqual(unpickled.label, 'test')
+        self.assertEqual(unpickled.value, 42)
+
+    def test_property_handling(self):
+        """Test that PickleableDict handles property assignment correctly"""
+        class TestClass(PickleableDict):
+            @property
+            def read_only_prop(self):
+                return "read_only"
+
+            @property
+            def read_write_prop(self):
+                return self.get('_read_write_prop', 'default')
+
+            @read_write_prop.setter
+            def read_write_prop(self, value):
+                self['_read_write_prop'] = value
+
+        obj = TestClass({'a': 1})
+
+        # Test read-only property
+        self.assertEqual(obj.read_only_prop, "read_only")
+
+        # Attempting to set read-only property should store in dict instead
+        obj.read_only_prop = "new_value"
+        self.assertEqual(obj['read_only_prop'], "new_value")
+        # Property getter should still return original value
+        # (Note: This tests the fallback behavior for read-only properties)
+
+        # Test read-write property
+        self.assertEqual(obj.read_write_prop, "default")
+        obj.read_write_prop = "new_value"
+        self.assertEqual(obj.read_write_prop, "new_value")
+        self.assertEqual(obj['_read_write_prop'], "new_value")
+
+    def test_has_keys_method(self):
+        """Test that PickleableDict has keys() method required by emissor marshal"""
+        pd = PickleableDict({'a': 1, 'b': 2})
+
+        keys = pd.keys()
+        self.assertIn('a', keys)
+        self.assertIn('b', keys)
+        self.assertEqual(len(list(keys)), 2)
+
+    def test_unmarshal_compatibility(self):
+        """Test that unmarshal creates PickleableDict objects correctly"""
+        json_data = '{"label": "test", "value": 42}'
+        result = unmarshal(json_data)
+
+        self.assertIsInstance(result, PickleableDict)
+        self.assertEqual(result.label, "test")
+        self.assertEqual(result.value, 42)
+        self.assertEqual(result['label'], "test")
+        self.assertEqual(result['value'], 42)
+
+    def test_nested_unmarshal_compatibility(self):
+        """Test that nested objects are also converted to PickleableDict"""
+        json_data = '{"outer": {"inner": "value", "number": 123}}'
+        result = unmarshal(json_data)
+
+        self.assertIsInstance(result, PickleableDict)
+        self.assertIsInstance(result.outer, PickleableDict)
+
+        self.assertEqual(result.outer.inner, "value")
+        self.assertEqual(result.outer.number, 123)
+        self.assertEqual(result.outer['inner'], "value")
+        self.assertEqual(result.outer['number'], 123)
+
+    def test_backwards_compatibility_with_marshal(self):
+        """Test that PickleableDict works with marshal function"""
+        @dataclass
+        class TestData:
+            name: str
+            value: int
+
+        instance = TestData("test", 42)
+        json_str = marshal(instance)
+        result = unmarshal(json_str)
+
+        # Result should be PickleableDict with attribute access
+        self.assertIsInstance(result, PickleableDict)
+        self.assertEqual(result.name, "test")
+        self.assertEqual(result.value, 42)
+
+        # Should also support dictionary access
+        self.assertEqual(result['name'], "test")
+        self.assertEqual(result['value'], 42)

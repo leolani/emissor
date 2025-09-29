@@ -22,6 +22,42 @@ from typing import Any, Callable, TypeVar, Type, Mapping, Union
 _logger = logging.getLogger(__name__)
 
 
+class PickleableDict(dict):
+    """A dictionary that supports attribute access and is pickleable.
+
+    This replaces the non-pickleable JSON namedtuples while maintaining
+    backwards compatibility for attribute access and dictionary interface.
+    Compatible with both emissor serialization and external messaging systems.
+    """
+    def __getattr__(self, key):
+        try:
+            return self[key]
+        except KeyError:
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{key}'")
+
+    def __setattr__(self, key, value):
+        # Check if this key exists as a property or descriptor in the class
+        if hasattr(type(self), key):
+            attr = getattr(type(self), key)
+            if isinstance(attr, property):
+                # Try to use the property setter
+                try:
+                    super().__setattr__(key, value)
+                    return
+                except AttributeError:
+                    # Property is read-only, store in dict instead
+                    pass
+
+        # For all other cases, store in the dictionary
+        self[key] = value
+
+    def __delattr__(self, key):
+        try:
+            del self[key]
+        except KeyError:
+            raise AttributeError(f"'{type(self).__name__}' object has no attribute '{key}'")
+
+
 PY_TYPE_FIELD = "_py_type"
 
 Identifier = str
@@ -276,6 +312,11 @@ def _unmarshal(json_obj: str, *, cls: type = None, serialized: bool = True) -> A
 
 
 def object_hook(obj_dict):
+    """Create PickleableDict objects instead of JSON namedtuples.
+
+    This maintains backwards compatibility for attribute access while solving
+    pickling issues and property assignment problems in external messaging systems.
+    """
     valid_attributes = {key: val for key, val in obj_dict.items() if key.isidentifier() and not key.startswith("_")}
 
-    return namedtuple('JSON', valid_attributes.keys())(*valid_attributes.values())
+    return PickleableDict(valid_attributes)
