@@ -25,16 +25,16 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=['numpy~=1.20',
-                      'marshmallow~=3.11',
-                      'marshmallow-dataclass~=8.4',
-                      'marshmallow-enum~=1.5',
-                      'marshmallow-union~=0.1',
-                      'rdflib~=6.0',
-                      'simplejson~=3.17',
-                      'typeguard~=2.13'],
+    install_requires=['numpy',
+                      'marshmallow',
+                      'marshmallow-dataclass',
+                      'marshmallow-enum',
+                      'marshmallow-union',
+                      'rdflib',
+                      'simplejson',
+                      'typeguard'],
     python_requires='>=3.7',
     extras_require={
-        "processing": ["joblib~=1.0", "tqdm~=4.60", "scikit-learn~=0.24"]
+        "processing": ["joblib", "tqdm", "scikit-learn"]
     }
 )
