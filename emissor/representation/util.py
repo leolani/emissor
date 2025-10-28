@@ -17,17 +17,17 @@ import uuid
 from marshmallow import fields, EXCLUDE, ValidationError
 from numpy.typing import ArrayLike
 from rdflib import URIRef
-from typing import Any, Callable, TypeVar, Type, Mapping, Union
+from typing import Any, Callable, TypeVar, Type, Mapping, Union, final
 
 _logger = logging.getLogger(__name__)
 
 
+@final
 class PickleableDict(dict):
     """A dictionary that supports attribute access and is pickleable.
 
     This replaces the non-pickleable JSON namedtuples while maintaining
     backwards compatibility for attribute access and dictionary interface.
-    Compatible with both emissor serialization and external messaging systems.
     """
     def __getattr__(self, key):
         try:
@@ -36,19 +36,6 @@ class PickleableDict(dict):
             raise AttributeError(f"'{type(self).__name__}' object has no attribute '{key}'")
 
     def __setattr__(self, key, value):
-        # Check if this key exists as a property or descriptor in the class
-        if hasattr(type(self), key):
-            attr = getattr(type(self), key)
-            if isinstance(attr, property):
-                # Try to use the property setter
-                try:
-                    super().__setattr__(key, value)
-                    return
-                except AttributeError:
-                    # Property is read-only, store in dict instead
-                    pass
-
-        # For all other cases, store in the dictionary
         self[key] = value
 
     def __delattr__(self, key):
@@ -178,6 +165,25 @@ def get_serializable_type_var(name: str, *constraints: type, bound: Union[None, 
     _JsonLdSchema.TYPE_MAPPING[var] = GenericField
 
     return var
+
+
+def register_type_var(type_var: TypeVar):
+    """
+    Register a :class:`TypeVar` to be serialized by the :func:`marshal` and :func:`unmarshal`
+    functions in this module.
+
+    Parameters
+    ----------
+    type_var : TypeVar
+        The :class:`TypeVar` to register.
+
+    Returns
+    -------
+    TypeVar
+        A :class:`TypeVar` with the given parameters.
+    """
+    # noinspection PyTypeHints
+    _JsonLdSchema.TYPE_MAPPING[type_var] = GenericField
 
 
 def serializer(obj: Any) -> Union[dict, tuple, str, int, float, complex, bool]:
