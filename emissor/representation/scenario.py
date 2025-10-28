@@ -28,6 +28,14 @@ class Modality(enum.Enum):
     AUDIO = 2
     VIDEO = 3
 
+    def matches(self, modality):
+        if isinstance(modality, Modality):
+            return self == modality
+        elif isinstance(modality, str):
+            return modality and self.name.lower() == modality.lower()
+
+        return False
+
 
 @emissor_dataclass
 class Annotation(Generic[T]):

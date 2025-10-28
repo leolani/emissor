@@ -118,11 +118,11 @@ class ScenarioStorage:
             self._save_signals(self._get_metadata_path(plain_scenario, modality), signals, modality)
 
     def _save_signals(self, path, signals, modality: Modality):
-        if modality == Modality.IMAGE:
+        if Modality.IMAGE.matches(modality):
             cls = ImageSignal
-        elif modality == Modality.TEXT:
+        elif Modality.TEXT.matches(modality):
             cls = TextSignal
-        elif modality == Modality.AUDIO:
+        elif Modality.AUDIO.matches(modality):
             cls = AudioSignal
         else:
             raise ValueError(f"Unsupported modality: {modality}")
@@ -137,11 +137,11 @@ class ScenarioStorage:
             return None
 
         with open(modality_meta_path) as json_file:
-            if modality == Modality.IMAGE:
+            if Modality.IMAGE.matches(modality):
                 cls = ImageSignal
-            elif modality == Modality.TEXT:
+            elif Modality.TEXT.matches(modality):
                 cls = TextSignal
-            elif modality == Modality.AUDIO:
+            elif Modality.AUDIO.matches(modality):
                 cls = AudioSignal
             else:
                 raise ValueError(f"Unsupported modality: {modality}")
