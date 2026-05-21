@@ -52,13 +52,18 @@ Identifier = str
 
 class GenericField(fields.Field):
     def _serialize(self, value, attr, obj, **kwargs):
+        py_type = f"{value.__class__.__module__}-{value.__class__.__name__}"
         try:
             object_dict = _marshal(value, cls=value.__class__, serialize=False)
-            object_dict[PY_TYPE_FIELD] = f"{value.__class__.__module__}-{value.__class__.__name__}"
+            object_dict[PY_TYPE_FIELD] = py_type
 
             return object_dict
         except Exception:
-            return _marshal(value, serialize=False)
+            object_dict = _marshal(value, serialize=False)
+            if isinstance(object_dict, dict):
+                object_dict[PY_TYPE_FIELD] = py_type
+
+            return object_dict
 
     def _deserialize(self, value, attr, data, **kwargs):
         try:
@@ -308,7 +313,8 @@ def _unmarshal(json_obj: str, *, cls: type = None, serialized: bool = True) -> A
         return schema.load(mapping, unknown=marshmallow.EXCLUDE, many=is_collection)
     elif not serialized:
         if isinstance(json_obj, dict):
-            return object_hook(json_obj)
+            converted = {key: _unmarshal(val, serialized=False) for key, val in json_obj.items()}
+            return object_hook(converted)
         elif isinstance(json_obj, (list, tuple)):
             return [_unmarshal(item, serialized=False) for item in json_obj]
         else:
