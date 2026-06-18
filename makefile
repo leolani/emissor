@@ -13,5 +13,8 @@ sources := $(shell find $(project_root)/$(project_name)/emissor/*)
 artifact_name := emissor
 include util/make/makefile.py.base.mk
 
-docker:
+docker-ghcr-build:
 	$(info "No docker build for $(project_name)")
+
+docker-ghcr-push:
+        $(info "No docker build for $(project_name)")
