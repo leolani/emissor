@@ -26,6 +26,11 @@ uncertainties that may result from multimodal experiences. Our model allows for
 different interpretations across modalities, sources and experiences. Finally note that EMISSOR can also be used
 without any eKG to represent and annotate multimodal interaction data.
 
+## Reference
+Feel free to use our work but cite us:
+* Baez Santamaria, S., Baier, T., Kim, T., Krause, L., Kruijt, J., & Vossen, P. (2021). EMISSOR: A platform for capturing multimodal interactions as episodic memories and interpretations with situated scenario-based ontological references. In Proceedings of the First workshop Beyond Language: Multimodal Semantic Representations in conjunction with IWCS 2022
+
+
 ## [Data Representation](emissor/representation/README.md)
 
 This repository provides the [`emissor.representation`](emissor/representation/README.md) Python package with data classes for
